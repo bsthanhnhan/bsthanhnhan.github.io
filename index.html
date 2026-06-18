@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Test Lo Âu Miễn Phí (2 phút) – BS. Thanh Nhàn · Chuyên khoa Tâm thần</title>
+<meta name="description" content="Làm bài test đánh giá mức độ lo âu (thang Zung) miễn phí trong 2 phút. Nhận kết quả ngay và được Bác sĩ chuyên khoa Tâm thần Thanh Nhàn tư vấn.">
+<meta property="og:title" content="Bạn có đang lo âu quá mức? Test miễn phí 2 phút">
+<meta property="og:description" content="Thang tự đánh giá lo âu Zung – kết quả tức thì, tư vấn cùng BS. Thanh Nhàn (Chuyên khoa Tâm thần).">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap');
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  :root{
+    --teal:#0d9488;
+    --teal-dark:#0f766e;
+    --teal-soft:#ccfbf1;
+    --navy:#14324a;
+    --ink:#1f2d3d;
+    --muted:#5b6b7b;
+    --bg:#f3f8f7;
+    --card:#ffffff;
+    --amber:#f59e0b;
+    --line:#e2ebe9;
+    --green:#16a34a;
+    --orange:#ea7317;
+    --red:#dc2626;
+  }
+  body{font-family:'Be Vietnam Pro',sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:680px;margin:0 auto;padding:0 18px;}
+  a{color:var(--teal-dark);}
+
+  /* HEADER */
+  header{background:var(--card);border-bottom:1px solid var(--line);padding:14px 0;}
+  .hd{display:flex;align-items:center;gap:12px;}
+  .hd .avatar{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--teal-dark));display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0;overflow:hidden;}
+  .hd .avatar img{width:100%;height:100%;object-fit:cover;object-position:center top;}
+  .hd h1{font-size:1rem;font-weight:700;color:var(--navy);line-height:1.2;}
+  .hd p{font-size:.78rem;color:var(--teal-dark);font-weight:600;letter-spacing:.3px;}
+
+  /* HERO */
+  .hero{background:linear-gradient(160deg,#0f766e 0%,#0d9488 100%);color:#fff;padding:46px 0 54px;text-align:center;}
+  .hero .photo{width:128px;height:128px;border-radius:50%;border:4px solid rgba(255,255,255,.55);box-shadow:0 10px 30px rgba(0,0,0,.2);object-fit:cover;object-position:center top;margin:0 auto 18px;background:rgba(255,255,255,.15);}
+  .hero .badge{display:inline-block;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);padding:6px 16px;border-radius:30px;font-size:.78rem;font-weight:600;margin-bottom:18px;}
+
+  /* ABOUT DOCTOR */
+  .about .box{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:0 8px 30px rgba(20,50,74,.06);overflow:hidden;display:flex;flex-wrap:wrap;}
+  .about .pic{flex:1 1 200px;min-height:240px;background:var(--teal-soft);}
+  .about .pic img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;}
+  .about .info{flex:2 1 300px;padding:24px 22px;}
+  .about .info h3{font-size:1.25rem;font-weight:800;color:var(--navy);}
+  .about .info .role{color:var(--teal-dark);font-weight:600;font-size:.9rem;margin-bottom:12px;}
+  .about .info p{color:var(--muted);font-size:.93rem;margin-bottom:12px;}
+  .about .info ul{list-style:none;display:grid;gap:7px;}
+  .about .info li{font-size:.9rem;color:var(--ink);padding-left:24px;position:relative;}
+  .about .info li::before{content:'✓';position:absolute;left:0;color:var(--teal);font-weight:800;}
+  .hero h2{font-size:clamp(1.6rem,5.5vw,2.3rem);font-weight:800;line-height:1.25;margin-bottom:14px;}
+  .hero p{font-size:1rem;color:#e6fffb;max-width:520px;margin:0 auto 26px;}
+  .hero .stats{display:flex;justify-content:center;gap:26px;flex-wrap:wrap;margin-top:26px;}
+  .hero .stats div{font-size:.82rem;color:#cdeee9;}
+  .hero .stats b{display:block;font-size:1.35rem;font-weight:800;color:#fff;}
+
+  .btn{display:inline-block;cursor:pointer;border:none;font-family:inherit;font-weight:700;text-decoration:none;text-align:center;border-radius:14px;transition:transform .15s,box-shadow .15s,background .15s;}
+  .btn-amber{background:var(--amber);color:#3a2500;padding:16px 38px;font-size:1.08rem;box-shadow:0 10px 24px rgba(245,158,11,.4);}
+  .btn-amber:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(245,158,11,.5);}
+  .btn-teal{background:var(--teal);color:#fff;padding:15px 30px;font-size:1rem;width:100%;box-shadow:0 8px 20px rgba(13,148,136,.3);}
+  .btn-teal:hover{background:var(--teal-dark);}
+  .btn-teal:disabled{background:#9fc6c1;cursor:not-allowed;box-shadow:none;}
+
+  section{padding:42px 0;}
+  .sec-title{font-size:clamp(1.3rem,4.5vw,1.7rem);font-weight:800;color:var(--navy);text-align:center;margin-bottom:8px;}
+  .sec-sub{text-align:center;color:var(--muted);max-width:540px;margin:0 auto 28px;font-size:.96rem;}
+
+  /* SIGNS */
+  .signs{background:var(--card);}
+  .signs ul{list-style:none;max-width:560px;margin:0 auto;display:grid;gap:10px;}
+  .signs li{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:13px 16px 13px 46px;position:relative;font-size:.95rem;}
+  .signs li::before{content:'🫧';position:absolute;left:15px;top:12px;}
+
+  /* TEST CARD */
+  #test{scroll-margin-top:10px;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:0 8px 30px rgba(20,50,74,.06);overflow:hidden;}
+  .card-head{background:var(--teal-soft);padding:18px 20px;border-bottom:1px solid var(--line);}
+  .card-head h3{color:var(--navy);font-size:1.15rem;font-weight:800;}
+  .card-head p{color:var(--teal-dark);font-size:.85rem;margin-top:2px;}
+  .progress{height:8px;background:#e6efed;border-radius:6px;overflow:hidden;margin-top:14px;}
+  .progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--teal),var(--amber));transition:width .3s;}
+  .progress-txt{font-size:.78rem;color:var(--muted);margin-top:6px;text-align:right;}
+
+  .q{padding:18px 20px;border-bottom:1px solid var(--line);}
+  .q-text{font-size:.97rem;font-weight:600;color:var(--ink);margin-bottom:12px;}
+  .q-text b{color:var(--teal-dark);margin-right:6px;}
+  .opts{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;}
+  .opt{border:1.5px solid var(--line);background:#fff;border-radius:11px;padding:10px 8px;font-size:.85rem;font-weight:600;color:var(--muted);cursor:pointer;text-align:center;transition:all .12s;user-select:none;}
+  .opt:hover{border-color:var(--teal);}
+  .opt.sel{background:var(--teal);border-color:var(--teal);color:#fff;}
+  .test-foot{padding:20px;}
+
+  /* RESULT */
+  #result{display:none;}
+  .res-score{text-align:center;padding:26px 20px;}
+  .res-num{font-size:3.4rem;font-weight:800;line-height:1;}
+  .res-band{display:inline-block;margin-top:10px;padding:7px 20px;border-radius:30px;font-weight:700;font-size:1rem;color:#fff;}
+  .res-desc{color:var(--muted);font-size:.95rem;max-width:480px;margin:14px auto 0;}
+  .res-scale{max-width:520px;margin:18px auto 0;font-size:.8rem;color:var(--muted);}
+  .res-scale div{display:flex;justify-content:space-between;padding:5px 0;border-top:1px dashed var(--line);}
+
+  /* FORM */
+  .lead{background:linear-gradient(160deg,#0f766e,#0d9488);color:#fff;border-radius:18px;padding:26px 22px;margin-top:8px;}
+  .lead h3{font-size:1.25rem;font-weight:800;text-align:center;}
+  .lead p.s{text-align:center;color:#d8fff9;font-size:.9rem;margin:6px 0 18px;}
+  .lead input{width:100%;padding:14px 16px;border-radius:11px;border:1.5px solid rgba(255,255,255,.25);background:rgba(255,255,255,.12);color:#fff;font-size:.96rem;font-family:inherit;margin-bottom:11px;outline:none;}
+  .lead input::placeholder{color:#d4f3ee;}
+  .lead input:focus{border-color:#fff;background:rgba(255,255,255,.2);}
+  .note{font-size:.78rem;color:#cdeee9;text-align:center;margin-top:10px;}
+  #lead-ok{display:none;text-align:center;padding:14px 0;}
+
+  /* CONTACT */
+  .contact{background:var(--card);}
+  .ch{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;max-width:520px;margin:0 auto;}
+  .ch a{display:flex;align-items:center;gap:12px;padding:15px;border-radius:14px;text-decoration:none;font-weight:700;color:#fff;font-size:.95rem;}
+  .ch .ic{font-size:1.4rem;}
+  .c-zalo{background:#0068ff;}
+  .c-fb{background:#1877f2;}
+  .c-call{background:var(--teal);}
+  .c-mail{background:var(--navy);}
+
+  /* DISCLAIMER */
+  .disc{background:#fff8ec;border:1px solid #f4dcae;border-radius:14px;padding:18px 20px;max-width:600px;margin:0 auto;font-size:.86rem;color:#7a5a16;}
+  .disc b{color:#92400e;}
+
+  footer{background:var(--navy);color:#cdd9e3;text-align:center;padding:26px 18px;font-size:.84rem;}
+  footer b{color:#fff;}
+
+  @media(max-width:420px){.opts{grid-template-columns:1fr 1fr;}.ch{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap hd">
+    <div class="avatar"><img src="bs-thanh-nhan.jpg" alt="BS. Thanh Nhàn" onerror="this.parentNode.textContent='🩺'"></div>
+    <div>
+      <h1>BS. Thanh Nhàn</h1>
+      <p>CHUYÊN KHOA TÂM THẦN</p>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <img class="photo" src="bs-thanh-nhan.jpg" alt="BS. Thanh Nhàn" onerror="this.style.display='none'">
+    <span class="badge">⏱️ Miễn phí · 2 phút · Bảo mật</span>
+    <h2>Bạn có đang lo âu<br>nhiều hơn bình thường?</h2>
+    <p>Làm bài <b>test đánh giá lo âu</b> theo thang Zung (SAS) được bác sĩ tâm thần sử dụng. Biết ngay mức độ của mình — và được tư vấn hướng xử trí phù hợp.</p>
+    <a href="#test" class="btn btn-amber">Làm bài test ngay →</a>
+    <div class="stats">
+      <div><b>20</b>câu hỏi</div>
+      <div><b>~2'</b>hoàn thành</div>
+      <div><b>100%</b>riêng tư</div>
+    </div>
+  </div>
+</section>
+
+<!-- SIGNS -->
+<section class="signs">
+  <div class="wrap">
+    <h2 class="sec-title">Bạn có thấy mình trong những điều này?</h2>
+    <p class="sec-sub">Lo âu kéo dài không chỉ ở trong suy nghĩ — nó hiện ra cả trên cơ thể.</p>
+    <ul>
+      <li>Bồn chồn, lo lắng, dễ giật mình mà không rõ lý do</li>
+      <li>Tim đập nhanh, hồi hộp, khó thở, tay chân run</li>
+      <li>Khó ngủ, ngủ chập chờn, hay gặp ác mộng</li>
+      <li>Căng cơ, đau đầu, đau cổ vai gáy, mệt mỏi rã rời</li>
+      <li>Khó tập trung, dễ cáu gắt, luôn nghĩ đến điều xấu</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ABOUT DOCTOR -->
+<section class="about" style="background:var(--bg);">
+  <div class="wrap">
+    <h2 class="sec-title">Người đồng hành cùng bạn</h2>
+    <p class="sec-sub">Lắng nghe không phán xét — đồng hành bằng chuyên môn.</p>
+    <div class="box">
+      <div class="pic"><img src="bs-thanh-nhan.jpg" alt="BS. Thanh Nhàn" onerror="this.parentNode.style.display='none'"></div>
+      <div class="info">
+        <h3>BS. Thanh Nhàn</h3>
+        <div class="role">Bác sĩ Chuyên khoa Tâm thần · Bệnh viện Tâm thần Trung ương</div>
+        <p><b>Thủ khoa viên chức đầu vào</b> Bệnh viện Tâm thần Trung ương — nhưng điều khiến bác sĩ Nhàn gắn bó với nghề không chỉ là chuyên môn.</p>
+        <p>Bác sĩ từng <b>trải qua nỗi đau khi có người thân mắc bệnh tâm thần</b>. Mỗi ngày chứng kiến người nhà lặng lẽ vào thăm bệnh nhân, bác sĩ hiểu sâu sắc cả hai nỗi đau: của người bệnh khi mắc kẹt trong những trạng thái tâm lý tồi tệ, và của gia đình khi bất lực không biết phải làm gì.</p>
+        <p>Vì vậy, bác sĩ chọn <b>đồng hành</b> — để gia đình hiểu và cảm thông, biết cách chăm sóc người bệnh; để người bệnh được điều trị ổn định và sớm hòa nhập lại cuộc sống thường ngày.</p>
+        <ul>
+          <li>Thủ khoa viên chức đầu vào BV Tâm thần Trung ương</li>
+          <li>Thấu hiểu từ chính trải nghiệm có người thân mắc bệnh</li>
+          <li>Đồng hành cả người bệnh lẫn gia đình — riêng tư, không phán xét</li>
+          <li>Biến kiến thức tâm thần học trừu tượng thành điều dễ hiểu, áp dụng được ngay</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEST -->
+<section style="background:var(--bg);">
+  <div class="wrap" id="test">
+    <h2 class="sec-title">Bài test đánh giá mức độ lo âu</h2>
+    <p class="sec-sub">Với mỗi câu, hãy chọn mức đúng nhất với bạn <b>trong 1–2 tuần qua</b>.</p>
+
+    <div class="card" id="quiz">
+      <div class="card-head">
+        <h3>Thang tự đánh giá lo âu Zung (SAS)</h3>
+        <p>20 câu hỏi · chọn 1 đáp án mỗi câu</p>
+        <div class="progress"><i id="bar"></i></div>
+        <div class="progress-txt" id="ptxt">Đã trả lời 0/20</div>
+      </div>
+      <div id="questions"></div>
+      <div class="test-foot">
+        <button class="btn btn-teal" id="submit-test" disabled onclick="showResult()">Xem kết quả của tôi</button>
+      </div>
+    </div>
+
+    <!-- RESULT -->
+    <div class="card" id="result" style="margin-top:18px;">
+      <div class="card-head"><h3>📋 Kết quả của bạn</h3><p>Mang tính tham khảo, sàng lọc — không thay thế chẩn đoán</p></div>
+      <div class="res-score">
+        <div class="res-num" id="r-num">0</div>
+        <div style="font-size:.85rem;color:var(--muted);">điểm (thang 20–80)</div>
+        <div class="res-band" id="r-band">—</div>
+        <p class="res-desc" id="r-desc"></p>
+        <div class="res-scale">
+          <div><span>20 – 44 điểm</span><span>Bình thường</span></div>
+          <div><span>45 – 59 điểm</span><span>Lo âu nhẹ đến vừa</span></div>
+          <div><span>60 – 74 điểm</span><span>Lo âu mức độ nặng</span></div>
+          <div><span>75 – 80 điểm</span><span>Lo âu rất nặng</span></div>
+        </div>
+      </div>
+
+      <!-- LEAD FORM -->
+      <div style="padding:0 20px 24px;">
+        <div class="lead" id="lead-box">
+          <h3 id="lead-title">Nhận tư vấn cùng BS. Thanh Nhàn</h3>
+          <p class="s">Để lại thông tin — bác sĩ sẽ liên hệ riêng, đọc kỹ kết quả của bạn và gợi ý hướng xử trí phù hợp. Hoàn toàn bảo mật.</p>
+          <form id="lead-form" onsubmit="sendLead(event)">
+            <input type="hidden" name="_subject" value="🔔 Lead mới từ Test Lo Âu (BS. Thanh Nhàn)">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="Kết quả test" id="hidden-result" value="">
+            <input type="text" name="Họ tên" placeholder="Họ và tên của bạn *" required>
+            <input type="tel" name="Số điện thoại (Zalo)" placeholder="Số điện thoại / Zalo *" required>
+            <input type="text" name="Điều bạn đang gặp" placeholder="Bạn đang gặp khó khăn gì? (không bắt buộc)">
+            <button type="submit" class="btn btn-amber" style="width:100%;">📩 Gửi & nhận tư vấn</button>
+            <p class="note">🔒 Thông tin được bảo mật. Bác sĩ liên hệ trong 24 giờ.</p>
+          </form>
+          <div id="lead-ok">
+            <div style="font-size:2.6rem;">💚</div>
+            <h3 style="margin:8px 0;">Đã gửi thành công!</h3>
+            <p style="color:#d8fff9;font-size:.92rem;margin-bottom:16px;">Cảm ơn bạn đã tin tưởng. BS. Thanh Nhàn sẽ liên hệ sớm. Muốn nhanh hơn, hãy nhắn Zalo bên dưới nhé.</p>
+            <a href="https://zalo.me/0339681115" target="_blank" rel="noopener" class="btn btn-amber" style="display:inline-block;text-decoration:none;">💬 Nhắn Zalo cho bác sĩ ngay</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION / COMMUNITY -->
+<section style="background:linear-gradient(160deg,#0f766e,#0d9488);color:#fff;">
+  <div class="wrap" style="text-align:center;">
+    <h2 class="sec-title" style="color:#fff;">Cùng xây một cộng đồng hiểu về sức khỏe tâm thần</h2>
+    <p style="color:#e6fffb;max-width:560px;margin:0 auto 26px;font-size:.98rem;">
+      Bệnh tâm thần không đáng sợ như nhiều người nghĩ — đáng sợ là sự thiếu hiểu biết và kỳ thị.
+      Theo dõi bác sĩ Thanh Nhàn để nhận những chia sẻ <b>dễ hiểu, áp dụng được ngay</b>:
+      cách nhận biết dấu hiệu, hiểu đúng về bệnh, và cách đồng hành cùng người thân.
+    </p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;max-width:560px;margin:0 auto 28px;text-align:left;">
+      <div style="background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:14px;padding:16px;">
+        <div style="font-size:1.5rem;">🔍</div><b>Nhận biết sớm</b>
+        <p style="font-size:.85rem;color:#d8fff9;margin-top:4px;">Dấu hiệu cần để ý ở bản thân &amp; người thân</p>
+      </div>
+      <div style="background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:14px;padding:16px;">
+        <div style="font-size:1.5rem;">💡</div><b>Hiểu đúng về bệnh</b>
+        <p style="font-size:.85rem;color:#d8fff9;margin-top:4px;">Kiến thức y khoa kể bằng ngôn ngữ đời thường</p>
+      </div>
+      <div style="background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:14px;padding:16px;">
+        <div style="font-size:1.5rem;">🤝</div><b>Cách đồng hành</b>
+        <p style="font-size:.85rem;color:#d8fff9;margin-top:4px;">Gia đình làm gì để giúp người bệnh hồi phục</p>
+      </div>
+    </div>
+    <a href="https://www.facebook.com/profile.php?id=61551714135624" target="_blank" rel="noopener" class="btn btn-amber" style="text-decoration:none;">👍 Theo dõi Facebook của bác sĩ</a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact">
+  <div class="wrap">
+    <h2 class="sec-title">Kết nối với bác sĩ</h2>
+    <p class="sec-sub">Bạn không phải đối mặt với lo âu một mình. Nhắn tin bất cứ lúc nào.</p>
+    <div class="ch">
+      <a class="c-zalo" href="https://zalo.me/0339681115" target="_blank" rel="noopener"><span class="ic">💬</span><span>Zalo<br><small>0339 681 115</small></span></a>
+      <a class="c-call" href="tel:0339681115"><span class="ic">📞</span><span>Gọi điện<br><small>0339 681 115</small></span></a>
+      <a class="c-fb" href="https://www.facebook.com/profile.php?id=61551714135624" target="_blank" rel="noopener"><span class="ic">👍</span><span>Facebook<br><small>BS. Thanh Nhàn</small></span></a>
+      <a class="c-mail" href="mailto:phanthithanhnhan765@gmail.com"><span class="ic">✉️</span><span>Email<br><small>Gửi câu hỏi</small></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- DISCLAIMER -->
+<section style="background:var(--bg);padding-top:6px;">
+  <div class="wrap">
+    <div class="disc">
+      <b>⚠️ Lưu ý quan trọng:</b> Bài test này là công cụ <b>sàng lọc tham khảo</b>, không phải là chẩn đoán bệnh. Kết quả chỉ phản ánh cảm nhận của bạn trong thời điểm hiện tại. Chỉ bác sĩ chuyên khoa mới đưa ra chẩn đoán chính thức sau khi thăm khám.
+      <br><br>
+      Nếu bạn đang có <b>ý nghĩ làm hại bản thân</b> hoặc khủng hoảng nghiêm trọng, hãy liên hệ ngay người thân, đến cơ sở y tế gần nhất, hoặc gọi đường dây nóng <b>115</b>.
+    </div>
+  </div>
+</section>
+
+<footer>
+  <b>BS. Thanh Nhàn</b> — Chuyên khoa Tâm thần<br>
+  Zalo/ĐT: 0339 681 115 · <a href="mailto:phanthithanhnhan765@gmail.com" style="color:#9fe3da;">phanthithanhnhan765@gmail.com</a><br><br>
+  <span style="color:#7f95a6;font-size:.78rem;">Đồng hành cùng sức khỏe tinh thần của bạn 🌿</span>
+</footer>
+
+<script>
+// ===== Thang tự đánh giá lo âu Zung (SAS) =====
+const LEAD_EMAIL = 'phanthithanhnhan765@gmail.com'; // đổi email nhận lead tại đây
+
+const QUESTIONS = [
+  "Tôi cảm thấy bồn chồn và lo lắng hơn thường lệ",
+  "Tôi cảm thấy sợ hãi mà không có lý do gì",
+  "Tôi dễ nổi nóng và cảm thấy hoảng sợ",
+  "Tôi cảm thấy cơ thể rã rời",
+  "Tôi cảm thấy mọi thứ đều ổn và không có điều gì xấu xảy ra",
+  "Tay và chân tôi run lên",
+  "Tôi khó chịu vì đau đầu, đau cổ và đau lưng",
+  "Tôi cảm thấy yếu và rất dễ mệt",
+  "Tôi cảm thấy bình tĩnh và có thể ngồi yên dễ dàng",
+  "Tôi cảm thấy tim mình đập nhanh",
+  "Tôi có những cơn hoa mắt, chóng mặt",
+  "Tôi có cơn ngất hoặc cảm giác gần như ngất",
+  "Tôi hít thở ra vào dễ dàng",
+  "Tôi cảm giác tê và châm chích ở đầu ngón tay, ngón chân",
+  "Tôi cảm thấy đau bụng hoặc khó tiêu",
+  "Tôi phải đi tiểu thường xuyên",
+  "Hai bàn tay tôi thường khô và ấm",
+  "Mặt tôi thường nóng và đỏ bừng",
+  "Tôi ngủ dễ dàng và ngủ ngon vào ban đêm",
+  "Tôi gặp ác mộng"
+];
+// Câu đảo điểm (tích cực) — chấm ngược 4-3-2-1
+const REVERSE = [5,9,13,17,19]; // theo số thứ tự câu (1-based)
+const LABELS = ['Hiếm khi','Thỉnh thoảng','Phần lớn thời gian','Gần như luôn luôn'];
+
+const answers = new Array(QUESTIONS.length).fill(null);
+
+const qbox = document.getElementById('questions');
+QUESTIONS.forEach((text, i) => {
+  const q = document.createElement('div');
+  q.className = 'q';
+  const opts = LABELS.map((lb, j) =>
+    `<div class="opt" data-q="${i}" data-col="${j}" onclick="pick(${i},${j},this)">${lb}</div>`
+  ).join('');
+  q.innerHTML = `<div class="q-text"><b>${i+1}.</b>${text}</div><div class="opts">${opts}</div>`;
+  qbox.appendChild(q);
+});
+
+function pick(i, col, el){
+  // giá trị: câu thường = col+1 ; câu đảo = 4-col
+  const isReverse = REVERSE.includes(i+1);
+  answers[i] = isReverse ? (4 - col) : (col + 1);
+  // cập nhật giao diện chọn
+  document.querySelectorAll('.opt[data-q="'+i+'"]').forEach(o => o.classList.remove('sel'));
+  el.classList.add('sel');
+  updateProgress();
+}
+
+function updateProgress(){
+  const done = answers.filter(a => a !== null).length;
+  document.getElementById('bar').style.width = (done/QUESTIONS.length*100) + '%';
+  document.getElementById('ptxt').textContent = 'Đã trả lời ' + done + '/' + QUESTIONS.length;
+  document.getElementById('submit-test').disabled = (done < QUESTIONS.length);
+}
+
+function showResult(){
+  const score = answers.reduce((s,a) => s + a, 0);
+  let band, color, desc;
+  if(score <= 44){
+    band = 'Bình thường'; color = 'var(--green)';
+    desc = 'Mức lo âu của bạn nằm trong giới hạn bình thường. Hãy tiếp tục duy trì lối sống lành mạnh, ngủ đủ và chăm sóc tinh thần của mình.';
+  } else if(score <= 59){
+    band = 'Lo âu nhẹ đến vừa'; color = 'var(--amber)';
+    desc = 'Bạn đang có dấu hiệu lo âu ở mức nhẹ đến vừa. Đây là lúc nên quan tâm hơn đến sức khỏe tinh thần — trò chuyện với bác sĩ sẽ giúp bạn hiểu rõ và xử trí sớm.';
+  } else if(score <= 74){
+    band = 'Lo âu mức độ nặng'; color = 'var(--orange)';
+    desc = 'Kết quả cho thấy mức lo âu khá cao, có thể đang ảnh hưởng đến cuộc sống của bạn. Bạn nên được bác sĩ chuyên khoa tâm thần thăm khám và đồng hành.';
+  } else {
+    band = 'Lo âu rất nặng'; color = 'var(--red)';
+    desc = 'Mức lo âu rất cao. Bạn không nên đối mặt một mình — hãy liên hệ bác sĩ sớm để được hỗ trợ kịp thời.';
+  }
+
+  document.getElementById('r-num').textContent = score;
+  document.getElementById('r-num').style.color = color;
+  const b = document.getElementById('r-band');
+  b.textContent = band; b.style.background = color;
+  document.getElementById('r-desc').textContent = desc;
+  document.getElementById('hidden-result').value = score + ' điểm — ' + band;
+
+  document.getElementById('quiz').style.display = 'none';
+  document.getElementById('result').style.display = 'block';
+  document.getElementById('result').scrollIntoView({behavior:'smooth'});
+}
+
+// ===== Gửi lead về email qua FormSubmit.co (miễn phí) =====
+// Lần submit ĐẦU TIÊN, FormSubmit gửi 1 email xác nhận về hộp thư trên — bấm link kích hoạt 1 lần là xong.
+function sendLead(e){
+  e.preventDefault();
+  const form = document.getElementById('lead-form');
+  const btn = form.querySelector('button[type="submit"]');
+  btn.disabled = true; btn.textContent = 'Đang gửi...';
+  fetch('https://formsubmit.co/ajax/' + LEAD_EMAIL, {
+    method:'POST', headers:{'Accept':'application/json'}, body:new FormData(form)
+  })
+  .then(r => r.json())
+  .then(() => {
+    form.style.display = 'none';
+    document.getElementById('lead-title').style.display = 'none';
+    document.querySelector('#lead-box p.s').style.display = 'none';
+    document.getElementById('lead-ok').style.display = 'block';
+  })
+  .catch(() => {
+    btn.disabled = false; btn.textContent = '📩 Gửi & nhận tư vấn';
+    alert('Gửi chưa thành công. Bạn vui lòng nhắn Zalo trực tiếp: 0339 681 115');
+  });
+}
+</script>
+
+</body>
+</html>
