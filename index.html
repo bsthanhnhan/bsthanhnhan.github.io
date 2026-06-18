@@ -187,12 +187,12 @@
       <div class="pic"><img src="bs-thanh-nhan.jpg" alt="BS. Thanh Nhàn" onerror="this.parentNode.style.display='none'"></div>
       <div class="info">
         <h3>BS. Thanh Nhàn</h3>
-        <div class="role">Bác sĩ Chuyên khoa Tâm thần · Bệnh viện Tâm thần Trung ương</div>
-        <p><b>Thủ khoa viên chức đầu vào</b> Bệnh viện Tâm thần Trung ương — nhưng điều khiến bác sĩ Nhàn gắn bó với nghề không chỉ là chuyên môn.</p>
+        <div class="role">Bác sĩ Chuyên khoa Tâm thần · Được hàng nghìn người theo dõi trên mạng xã hội</div>
+        <p>Bác sĩ Thanh Nhàn được <b>hàng nghìn người tin tưởng theo dõi trên các trang mạng xã hội</b> — nhưng điều khiến bác sĩ gắn bó với nghề không chỉ là chuyên môn.</p>
         <p>Bác sĩ từng <b>trải qua nỗi đau khi có người thân mắc bệnh tâm thần</b>. Mỗi ngày chứng kiến người nhà lặng lẽ vào thăm bệnh nhân, bác sĩ hiểu sâu sắc cả hai nỗi đau: của người bệnh khi mắc kẹt trong những trạng thái tâm lý tồi tệ, và của gia đình khi bất lực không biết phải làm gì.</p>
         <p>Vì vậy, bác sĩ chọn <b>đồng hành</b> — để gia đình hiểu và cảm thông, biết cách chăm sóc người bệnh; để người bệnh được điều trị ổn định và sớm hòa nhập lại cuộc sống thường ngày.</p>
         <ul>
-          <li>Thủ khoa viên chức đầu vào BV Tâm thần Trung ương</li>
+          <li>Được hàng nghìn người theo dõi, tin tưởng trên mạng xã hội</li>
           <li>Thấu hiểu từ chính trải nghiệm có người thân mắc bệnh</li>
           <li>Đồng hành cả người bệnh lẫn gia đình — riêng tư, không phán xét</li>
           <li>Biến kiến thức tâm thần học trừu tượng thành điều dễ hiểu, áp dụng được ngay</li>
@@ -265,11 +265,22 @@
       <!-- BƯỚC TIẾP THEO -->
       <div style="padding:0 20px 24px;">
         <div class="lead">
-          <h3>BS. Thanh Nhàn sẽ liên hệ với bạn</h3>
-          <p class="s">Bác sĩ sẽ gọi/nhắn theo số bạn vừa để lại, đọc kỹ kết quả và gợi ý hướng xử trí phù hợp. Cần trao đổi ngay, hãy nhắn Zalo:</p>
+          <h3>🎁 Tặng bạn 15 phút trò chuyện cùng bác sĩ</h3>
+          <p class="s">Hoàn toàn miễn phí — chỉ để lắng nghe và gợi ý hướng đi cho bạn, <b>không bán gì cả</b>. Bác sĩ sẽ liên hệ theo số bạn vừa để lại. Cần trao đổi ngay thì nhắn Zalo:</p>
           <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;">
             <a href="https://zalo.me/0339681115" target="_blank" rel="noopener" class="btn btn-amber" style="text-decoration:none;">💬 Nhắn Zalo cho bác sĩ</a>
             <a href="tel:0339681115" class="btn" style="background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.45);text-decoration:none;padding:16px 28px;">📞 Gọi ngay</a>
+          </div>
+        </div>
+
+        <!-- CHIA SẺ CHO NGƯỜI THÂN -->
+        <div style="text-align:center;margin-top:20px;padding:22px 18px;background:var(--teal-soft);border-radius:14px;">
+          <p style="font-weight:700;color:var(--navy);margin-bottom:4px;">Bạn biết ai đang căng thẳng, mất ngủ hay hay lo lắng?</p>
+          <p style="font-size:.9rem;color:var(--muted);margin-bottom:16px;">Gửi bài test này cho họ — đôi khi một hành động nhỏ giúp người thân của bạn rất nhiều. 💚</p>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;">
+            <button onclick="shareNative()" class="btn btn-amber" style="padding:13px 22px;font-size:.92rem;border:none;cursor:pointer;">📤 Gửi cho người thân</button>
+            <a id="share-fb" target="_blank" rel="noopener" class="btn" style="background:#1877f2;color:#fff;text-decoration:none;padding:13px 22px;font-size:.92rem;">f Chia sẻ Facebook</a>
+            <button onclick="copyLink()" class="btn" style="background:#fff;color:var(--teal-dark);border:1.5px solid var(--teal);padding:13px 22px;font-size:.92rem;cursor:pointer;">🔗 Sao chép link</button>
           </div>
         </div>
       </div>
@@ -460,6 +471,28 @@ function showResult(){
   document.getElementById('quiz').style.display = 'none';
   document.getElementById('result').style.display = 'block';
   document.getElementById('result').scrollIntoView({behavior:'smooth'});
+}
+
+// ===== Chia sẻ / giới thiệu cho người thân =====
+const SHARE_URL = location.origin + location.pathname;
+const SHARE_TEXT = 'Mình vừa làm bài test đánh giá mức độ lo âu của BS. Thanh Nhàn (miễn phí, chỉ 2 phút). Bạn thử xem nhé:';
+document.getElementById('share-fb').href = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(SHARE_URL);
+
+function shareNative(){
+  if(navigator.share){
+    navigator.share({ title:'Test đánh giá lo âu — BS. Thanh Nhàn', text:SHARE_TEXT, url:SHARE_URL }).catch(()=>{});
+  } else {
+    copyLink();
+  }
+}
+function copyLink(){
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(SHARE_URL)
+      .then(()=> alert('Đã sao chép link! Gửi cho người thân của bạn nhé 💚'))
+      .catch(()=> prompt('Sao chép link này gửi cho người thân:', SHARE_URL));
+  } else {
+    prompt('Sao chép link này gửi cho người thân:', SHARE_URL);
+  }
 }
 </script>
 
