@@ -216,7 +216,31 @@
         <div class="progress-txt" id="ptxt">Đã trả lời 0/20</div>
       </div>
       <div id="questions"></div>
-      <div class="test-foot">
+
+      <div class="test-foot" id="foot-stage1">
+        <button class="btn btn-teal" id="to-gate" disabled onclick="openGate()">Tiếp tục →</button>
+        <p style="font-size:.78rem;color:var(--muted);text-align:center;margin-top:8px;">Trả lời đủ 10 câu đầu để tiếp tục</p>
+      </div>
+
+      <!-- CỔNG: bắt thông tin giữa chừng -->
+      <div id="gate" style="display:none;">
+        <div class="lead" style="margin:18px;">
+          <h3>Bạn đã hoàn thành một nửa! 🎉</h3>
+          <p class="s">Nhập thông tin để tiếp tục 10 câu còn lại và nhận <b>kết quả + khuyến nghị riêng</b> từ BS. Thanh Nhàn.</p>
+          <form id="gate-form" onsubmit="gateSubmit(event)">
+            <input type="hidden" name="_subject" value="🔔 Lead mới từ Test Lo Âu (BS. Thanh Nhàn)">
+            <input type="hidden" name="_template" value="table">
+            <input type="text" name="Họ tên" placeholder="Họ và tên của bạn *" required>
+            <input type="tel" name="Số điện thoại (Zalo)" placeholder="Số điện thoại / Zalo *" required>
+            <button type="submit" class="btn btn-amber" style="width:100%;">Tiếp tục làm test →</button>
+            <p class="note">🔒 Thông tin được bảo mật, chỉ bác sĩ xem.</p>
+          </form>
+        </div>
+      </div>
+
+      <div id="questions2" style="display:none;"></div>
+
+      <div class="test-foot" id="foot-stage2" style="display:none;">
         <button class="btn btn-teal" id="submit-test" disabled onclick="showResult()">Xem kết quả của tôi</button>
       </div>
     </div>
@@ -229,6 +253,7 @@
         <div style="font-size:.85rem;color:var(--muted);">điểm (thang 20–80)</div>
         <div class="res-band" id="r-band">—</div>
         <p class="res-desc" id="r-desc"></p>
+        <ul id="r-tips" style="text-align:left;max-width:470px;margin:16px auto 0;padding:0;list-style:none;display:grid;gap:8px;"></ul>
         <div class="res-scale">
           <div><span>20 – 44 điểm</span><span>Bình thường</span></div>
           <div><span>45 – 59 điểm</span><span>Lo âu nhẹ đến vừa</span></div>
@@ -237,26 +262,14 @@
         </div>
       </div>
 
-      <!-- LEAD FORM -->
+      <!-- BƯỚC TIẾP THEO -->
       <div style="padding:0 20px 24px;">
-        <div class="lead" id="lead-box">
-          <h3 id="lead-title">Nhận tư vấn cùng BS. Thanh Nhàn</h3>
-          <p class="s">Để lại thông tin — bác sĩ sẽ liên hệ riêng, đọc kỹ kết quả của bạn và gợi ý hướng xử trí phù hợp. Hoàn toàn bảo mật.</p>
-          <form id="lead-form" onsubmit="sendLead(event)">
-            <input type="hidden" name="_subject" value="🔔 Lead mới từ Test Lo Âu (BS. Thanh Nhàn)">
-            <input type="hidden" name="_template" value="table">
-            <input type="hidden" name="Kết quả test" id="hidden-result" value="">
-            <input type="text" name="Họ tên" placeholder="Họ và tên của bạn *" required>
-            <input type="tel" name="Số điện thoại (Zalo)" placeholder="Số điện thoại / Zalo *" required>
-            <input type="text" name="Điều bạn đang gặp" placeholder="Bạn đang gặp khó khăn gì? (không bắt buộc)">
-            <button type="submit" class="btn btn-amber" style="width:100%;">📩 Gửi & nhận tư vấn</button>
-            <p class="note">🔒 Thông tin được bảo mật. Bác sĩ liên hệ trong 24 giờ.</p>
-          </form>
-          <div id="lead-ok">
-            <div style="font-size:2.6rem;">💚</div>
-            <h3 style="margin:8px 0;">Đã gửi thành công!</h3>
-            <p style="color:#d8fff9;font-size:.92rem;margin-bottom:16px;">Cảm ơn bạn đã tin tưởng. BS. Thanh Nhàn sẽ liên hệ sớm. Muốn nhanh hơn, hãy nhắn Zalo bên dưới nhé.</p>
-            <a href="https://zalo.me/0339681115" target="_blank" rel="noopener" class="btn btn-amber" style="display:inline-block;text-decoration:none;">💬 Nhắn Zalo cho bác sĩ ngay</a>
+        <div class="lead">
+          <h3>BS. Thanh Nhàn sẽ liên hệ với bạn</h3>
+          <p class="s">Bác sĩ sẽ gọi/nhắn theo số bạn vừa để lại, đọc kỹ kết quả và gợi ý hướng xử trí phù hợp. Cần trao đổi ngay, hãy nhắn Zalo:</p>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;">
+            <a href="https://zalo.me/0339681115" target="_blank" rel="noopener" class="btn btn-amber" style="text-decoration:none;">💬 Nhắn Zalo cho bác sĩ</a>
+            <a href="tel:0339681115" class="btn" style="background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.45);text-decoration:none;padding:16px 28px;">📞 Gọi ngay</a>
           </div>
         </div>
       </div>
@@ -352,86 +365,101 @@ const QUESTIONS = [
 const REVERSE = [5,9,13,17,19]; // theo số thứ tự câu (1-based)
 const LABELS = ['Hiếm khi','Thỉnh thoảng','Phần lớn thời gian','Gần như luôn luôn'];
 
+const GATE_AT = 10; // bắt thông tin sau câu thứ 10
 const answers = new Array(QUESTIONS.length).fill(null);
 
-const qbox = document.getElementById('questions');
-QUESTIONS.forEach((text, i) => {
-  const q = document.createElement('div');
-  q.className = 'q';
-  const opts = LABELS.map((lb, j) =>
-    `<div class="opt" data-q="${i}" data-col="${j}" onclick="pick(${i},${j},this)">${lb}</div>`
-  ).join('');
-  q.innerHTML = `<div class="q-text"><b>${i+1}.</b>${text}</div><div class="opts">${opts}</div>`;
-  qbox.appendChild(q);
-});
+// Vẽ câu hỏi: 1–10 vào #questions, 11–20 vào #questions2
+function renderRange(container, start, end){
+  for(let i = start; i < end; i++){
+    const q = document.createElement('div');
+    q.className = 'q';
+    const opts = LABELS.map((lb, j) =>
+      `<div class="opt" data-q="${i}" data-col="${j}" onclick="pick(${i},${j},this)">${lb}</div>`
+    ).join('');
+    q.innerHTML = `<div class="q-text"><b>${i+1}.</b>${QUESTIONS[i]}</div><div class="opts">${opts}</div>`;
+    container.appendChild(q);
+  }
+}
+renderRange(document.getElementById('questions'), 0, GATE_AT);
+renderRange(document.getElementById('questions2'), GATE_AT, QUESTIONS.length);
 
 function pick(i, col, el){
-  // giá trị: câu thường = col+1 ; câu đảo = 4-col
-  const isReverse = REVERSE.includes(i+1);
+  const isReverse = REVERSE.includes(i+1);            // câu thường = col+1 ; câu đảo = 4-col
   answers[i] = isReverse ? (4 - col) : (col + 1);
-  // cập nhật giao diện chọn
   document.querySelectorAll('.opt[data-q="'+i+'"]').forEach(o => o.classList.remove('sel'));
   el.classList.add('sel');
   updateProgress();
 }
 
+function stage1Done(){ for(let i=0;i<GATE_AT;i++) if(answers[i]===null) return false; return true; }
+function allDone(){ return answers.every(a => a !== null); }
+
 function updateProgress(){
   const done = answers.filter(a => a !== null).length;
   document.getElementById('bar').style.width = (done/QUESTIONS.length*100) + '%';
   document.getElementById('ptxt').textContent = 'Đã trả lời ' + done + '/' + QUESTIONS.length;
-  document.getElementById('submit-test').disabled = (done < QUESTIONS.length);
+  document.getElementById('to-gate').disabled = !stage1Done();
+  document.getElementById('submit-test').disabled = !allDone();
 }
+
+// Mở cổng nhập thông tin sau 10 câu
+function openGate(){
+  document.getElementById('foot-stage1').style.display = 'none';
+  const g = document.getElementById('gate');
+  g.style.display = 'block';
+  g.scrollIntoView({behavior:'smooth'});
+}
+
+// Gửi lead (tên + SĐT) rồi mở 10 câu còn lại — không chặn người dùng nếu mạng lỗi
+function gateSubmit(e){
+  e.preventDefault();
+  const form = document.getElementById('gate-form');
+  const btn = form.querySelector('button[type="submit"]');
+  btn.disabled = true; btn.textContent = 'Đang lưu...';
+  fetch('https://formsubmit.co/ajax/' + LEAD_EMAIL, {
+    method:'POST', headers:{'Accept':'application/json'}, body:new FormData(form)
+  }).finally(() => { revealStage2(); });
+}
+function revealStage2(){
+  document.getElementById('gate').style.display = 'none';
+  document.getElementById('questions2').style.display = 'block';
+  document.getElementById('foot-stage2').style.display = 'block';
+  document.getElementById('questions2').scrollIntoView({behavior:'smooth'});
+}
+
+// Khuyến nghị theo mức điểm
+const BANDS = [
+  { max:44, name:'Bình thường', color:'var(--green)',
+    desc:'Mức lo âu của bạn nằm trong giới hạn bình thường. Hãy tiếp tục giữ lối sống lành mạnh và chăm sóc tinh thần mình.',
+    tips:['Duy trì ngủ đủ 7–8 tiếng, vận động đều đặn','Giữ kết nối với người thân, bạn bè','Theo dõi bác sĩ Thanh Nhàn để hiểu thêm về sức khỏe tinh thần'] },
+  { max:59, name:'Lo âu nhẹ đến vừa', color:'var(--amber)',
+    desc:'Bạn đang có dấu hiệu lo âu mức nhẹ đến vừa. Đây là lúc nên quan tâm hơn — xử trí sớm sẽ nhẹ nhàng hơn nhiều.',
+    tips:['Tập thở chậm 4–7–8, thư giãn mỗi ngày','Giảm caffeine, hạn chế thức khuya','Nên trò chuyện với bác sĩ để được hướng dẫn cụ thể'] },
+  { max:74, name:'Lo âu mức độ nặng', color:'var(--orange)',
+    desc:'Kết quả cho thấy mức lo âu khá cao, có thể đang ảnh hưởng tới cuộc sống của bạn. Bạn nên được bác sĩ chuyên khoa thăm khám và đồng hành.',
+    tips:['Nên đặt lịch khám với bác sĩ chuyên khoa tâm thần','Chia sẻ với người thân để được hỗ trợ','Tránh tự dùng thuốc khi chưa có chỉ định'] },
+  { max:80, name:'Lo âu rất nặng', color:'var(--red)',
+    desc:'Mức lo âu rất cao. Bạn không nên đối mặt một mình — hãy liên hệ bác sĩ sớm để được hỗ trợ kịp thời.',
+    tips:['Hãy liên hệ bác sĩ Thanh Nhàn càng sớm càng tốt','Nói cho người thân biết để có người bên cạnh','Nếu có ý nghĩ làm hại bản thân, gọi ngay 115 hoặc đến cơ sở y tế'] }
+];
 
 function showResult(){
   const score = answers.reduce((s,a) => s + a, 0);
-  let band, color, desc;
-  if(score <= 44){
-    band = 'Bình thường'; color = 'var(--green)';
-    desc = 'Mức lo âu của bạn nằm trong giới hạn bình thường. Hãy tiếp tục duy trì lối sống lành mạnh, ngủ đủ và chăm sóc tinh thần của mình.';
-  } else if(score <= 59){
-    band = 'Lo âu nhẹ đến vừa'; color = 'var(--amber)';
-    desc = 'Bạn đang có dấu hiệu lo âu ở mức nhẹ đến vừa. Đây là lúc nên quan tâm hơn đến sức khỏe tinh thần — trò chuyện với bác sĩ sẽ giúp bạn hiểu rõ và xử trí sớm.';
-  } else if(score <= 74){
-    band = 'Lo âu mức độ nặng'; color = 'var(--orange)';
-    desc = 'Kết quả cho thấy mức lo âu khá cao, có thể đang ảnh hưởng đến cuộc sống của bạn. Bạn nên được bác sĩ chuyên khoa tâm thần thăm khám và đồng hành.';
-  } else {
-    band = 'Lo âu rất nặng'; color = 'var(--red)';
-    desc = 'Mức lo âu rất cao. Bạn không nên đối mặt một mình — hãy liên hệ bác sĩ sớm để được hỗ trợ kịp thời.';
-  }
+  const band = BANDS.find(b => score <= b.max);
 
   document.getElementById('r-num').textContent = score;
-  document.getElementById('r-num').style.color = color;
+  document.getElementById('r-num').style.color = band.color;
   const b = document.getElementById('r-band');
-  b.textContent = band; b.style.background = color;
-  document.getElementById('r-desc').textContent = desc;
-  document.getElementById('hidden-result').value = score + ' điểm — ' + band;
+  b.textContent = band.name; b.style.background = band.color;
+  document.getElementById('r-desc').textContent = band.desc;
+
+  const tips = document.getElementById('r-tips');
+  tips.innerHTML = '<li style="font-weight:700;color:var(--navy);list-style:none;">💡 Khuyến nghị cho bạn:</li>' +
+    band.tips.map(t => `<li style="padding-left:24px;position:relative;font-size:.92rem;color:var(--ink);"><span style="position:absolute;left:0;color:${band.color};font-weight:800;">✓</span>${t}</li>`).join('');
 
   document.getElementById('quiz').style.display = 'none';
   document.getElementById('result').style.display = 'block';
   document.getElementById('result').scrollIntoView({behavior:'smooth'});
-}
-
-// ===== Gửi lead về email qua FormSubmit.co (miễn phí) =====
-// Lần submit ĐẦU TIÊN, FormSubmit gửi 1 email xác nhận về hộp thư trên — bấm link kích hoạt 1 lần là xong.
-function sendLead(e){
-  e.preventDefault();
-  const form = document.getElementById('lead-form');
-  const btn = form.querySelector('button[type="submit"]');
-  btn.disabled = true; btn.textContent = 'Đang gửi...';
-  fetch('https://formsubmit.co/ajax/' + LEAD_EMAIL, {
-    method:'POST', headers:{'Accept':'application/json'}, body:new FormData(form)
-  })
-  .then(r => r.json())
-  .then(() => {
-    form.style.display = 'none';
-    document.getElementById('lead-title').style.display = 'none';
-    document.querySelector('#lead-box p.s').style.display = 'none';
-    document.getElementById('lead-ok').style.display = 'block';
-  })
-  .catch(() => {
-    btn.disabled = false; btn.textContent = '📩 Gửi & nhận tư vấn';
-    alert('Gửi chưa thành công. Bạn vui lòng nhắn Zalo trực tiếp: 0339 681 115');
-  });
 }
 </script>
 
