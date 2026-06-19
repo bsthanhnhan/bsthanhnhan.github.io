@@ -419,30 +419,36 @@ function choose(j){
   setTimeout(next,240);
 }
 function next(){
-  const answered=idx+1;
-  if(answered===GATE_AT && !gateDone){ showGate(); return; }
-  if(idx>=ITEMS.length-1){ showResult(); return; }
+  if(idx>=ITEMS.length-1){            // đã trả lời câu cuối
+    if(!gateDone){ showGate(); } else { showResult(); }
+    return;
+  }
   idx++; renderQ();
 }
 function goBack(){ if(idx>0){ idx--; renderQ(); } }
 function showGate(){
+  document.getElementById('stepTxt').textContent='Hoàn thành!';
   stage.innerHTML='<div class="gate"><div class="mid">🎉</div>'
-   +'<h3>Bạn đã hoàn thành hơn một nửa!</h3>'
-   +'<p>Nhập thông tin để xem <b>10 câu cuối</b> và nhận kết quả + lời khuyên riêng từ BS. Thanh Nhàn.</p>'
+   +'<h3>Bạn đã hoàn thành bài test!</h3>'
+   +'<p>Nhập thông tin để <b>xem kết quả</b> + nhận lời khuyên riêng từ BS. Thanh Nhàn. Bác sĩ sẽ liên hệ đồng hành cùng bạn.</p>'
    +'<form id="gate-form" onsubmit="gateSubmit(event)">'
-   +'<input type="hidden" name="_subject" value="🔔 Lead mới từ Test DASS-21 (BS. Thanh Nhàn)">'
-   +'<input type="hidden" name="_template" value="table">'
    +'<input type="text" name="Họ tên" placeholder="Họ và tên của bạn *" required>'
    +'<input type="tel" name="Số điện thoại (Zalo)" placeholder="Số điện thoại / Zalo *" required>'
    +'<input type="email" name="Email" placeholder="Email của bạn *" required>'
-   +'<button type="submit" class="btn btn-solid">Xem 10 câu cuối →</button>'
+   +'<button type="submit" class="btn btn-solid">Xem kết quả của tôi →</button>'
    +'<div class="lock">🔒 Bảo mật tuyệt đối, chỉ bác sĩ xem.</div></form></div>';
 }
+// Lưu thông tin người làm test
+const lead={name:'',phone:'',email:''};
+// Điền đủ thông tin → mới tính & hiện điểm + gửi 1 email cho bác sĩ
 function gateSubmit(e){
   e.preventDefault();
-  const f=e.target, b=f.querySelector('button'); b.disabled=true; b.textContent='Đang lưu...';
-  fetch('https://formsubmit.co/ajax/'+LEAD_EMAIL,{method:'POST',headers:{'Accept':'application/json'},body:new FormData(f)})
-    .finally(()=>{ gateDone=true; idx=GATE_AT; renderQ(); });
+  const f=e.target;
+  lead.name =(f.querySelector('[name="Họ tên"]')||{}).value||'';
+  lead.phone=(f.querySelector('[name="Số điện thoại (Zalo)"]')||{}).value||'';
+  lead.email=(f.querySelector('[name="Email"]')||{}).value||'';
+  gateDone=true;
+  showResult();
 }
 function bandFor(dim,score){
   const arr=BANDS[dim];
@@ -482,6 +488,24 @@ function showResult(){
   document.getElementById('r-desc').textContent=desc;
   document.getElementById('r-tips').innerHTML='<li style="font-weight:800;color:var(--ink);list-style:none;padding-left:0;">💡 Khuyến nghị cho bạn:</li>'+
     tips.map(t=>'<li><span class="c">✓</span>'+t+'</li>').join('');
+
+  sendResultToDoctor(res); // gửi 1 email đầy đủ (kèm 3 điểm) cho bác sĩ
+}
+
+// Gửi trọn gói kết quả về email bác sĩ: tên · SĐT · email · 3 điểm + mức độ · từng câu
+function sendResultToDoctor(res){
+  const fd=new FormData();
+  const sum='TC '+res.T.score+'('+res.T.name+') · LA '+res.L.score+'('+res.L.name+') · ST '+res.S.score+'('+res.S.name+')';
+  fd.append('_subject','📊 KẾT QUẢ DASS-21 - '+(lead.name||'Người làm test')+' - '+sum);
+  fd.append('_template','table');
+  fd.append('Họ tên',lead.name||'(chưa nhập)');
+  fd.append('Số điện thoại (Zalo)',lead.phone||'(chưa nhập)');
+  fd.append('Email',lead.email||'(chưa nhập)');
+  fd.append('TRẦM CẢM',res.T.score+'/42 — '+res.T.name);
+  fd.append('LO ÂU',res.L.score+'/42 — '+res.L.name);
+  fd.append('STRESS',res.S.score+'/42 — '+res.S.name);
+  ITEMS.forEach((it,i)=>{ fd.append('Câu '+(i+1)+' ['+it.d+']',(answers[i]!=null?answers[i]+' điểm':'-')+' — '+it.t); });
+  fetch('https://formsubmit.co/ajax/'+LEAD_EMAIL,{method:'POST',headers:{'Accept':'application/json'},body:fd}).catch(()=>{});
 }
 
 // share

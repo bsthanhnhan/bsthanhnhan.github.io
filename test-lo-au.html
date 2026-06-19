@@ -218,30 +218,30 @@
       <div id="questions"></div>
 
       <div class="test-foot" id="foot-stage1">
-        <button class="btn btn-teal" id="to-gate" disabled onclick="openGate()">Tiếp tục →</button>
+        <button class="btn btn-teal" id="to-gate" disabled onclick="goStage2()">Tiếp tục →</button>
         <p style="font-size:.78rem;color:var(--muted);text-align:center;margin-top:8px;">Trả lời đủ 10 câu đầu để tiếp tục</p>
-      </div>
-
-      <!-- CỔNG: bắt thông tin giữa chừng -->
-      <div id="gate" style="display:none;">
-        <div class="lead" style="margin:18px;">
-          <h3>Bạn đã hoàn thành một nửa! 🎉</h3>
-          <p class="s">Nhập thông tin để tiếp tục 10 câu còn lại và nhận <b>kết quả + khuyến nghị riêng</b> từ BS. Thanh Nhàn.</p>
-          <form id="gate-form" onsubmit="gateSubmit(event)">
-            <input type="hidden" name="_subject" value="🔔 Lead mới từ Test Lo Âu (BS. Thanh Nhàn)">
-            <input type="hidden" name="_template" value="table">
-            <input type="text" name="Họ tên" placeholder="Họ và tên của bạn *" required>
-            <input type="tel" name="Số điện thoại (Zalo)" placeholder="Số điện thoại / Zalo *" required>
-            <button type="submit" class="btn btn-amber" style="width:100%;">Tiếp tục làm test →</button>
-            <p class="note">🔒 Thông tin được bảo mật, chỉ bác sĩ xem.</p>
-          </form>
-        </div>
       </div>
 
       <div id="questions2" style="display:none;"></div>
 
       <div class="test-foot" id="foot-stage2" style="display:none;">
-        <button class="btn btn-teal" id="submit-test" disabled onclick="showResult()">Xem kết quả của tôi</button>
+        <button class="btn btn-teal" id="submit-test" disabled onclick="openResultGate()">Xem kết quả của tôi →</button>
+        <p style="font-size:.78rem;color:var(--muted);text-align:center;margin-top:8px;">Trả lời đủ 20 câu để xem kết quả</p>
+      </div>
+
+      <!-- CỔNG: điền thông tin SAU khi làm xong, mới mở điểm -->
+      <div id="gate" style="display:none;">
+        <div class="lead" style="margin:18px;">
+          <h3>Bạn đã hoàn thành bài test! 🎉</h3>
+          <p class="s">Nhập thông tin để <b>xem kết quả + khuyến nghị riêng</b> từ BS. Thanh Nhàn. Bác sĩ sẽ liên hệ đồng hành cùng bạn.</p>
+          <form id="gate-form" onsubmit="gateSubmit(event)">
+            <input type="text" name="Họ tên" placeholder="Họ và tên của bạn *" required>
+            <input type="tel" name="Số điện thoại (Zalo)" placeholder="Số điện thoại / Zalo *" required>
+            <input type="email" name="Email" placeholder="Email của bạn *" required>
+            <button type="submit" class="btn btn-amber" style="width:100%;">Xem kết quả của tôi →</button>
+            <p class="note">🔒 Thông tin được bảo mật, chỉ bác sĩ xem.</p>
+          </form>
+        </div>
       </div>
     </div>
 
@@ -413,29 +413,35 @@ function updateProgress(){
   document.getElementById('submit-test').disabled = !allDone();
 }
 
-// Mở cổng nhập thông tin sau 10 câu
-function openGate(){
+// Sau 10 câu đầu → mở thẳng 10 câu còn lại (KHÔNG bắt thông tin ở giữa nữa)
+function goStage2(){
   document.getElementById('foot-stage1').style.display = 'none';
+  document.getElementById('questions2').style.display = 'block';
+  document.getElementById('foot-stage2').style.display = 'block';
+  document.getElementById('questions2').scrollIntoView({behavior:'smooth'});
+}
+
+// Lưu thông tin người làm test
+const lead = { name:'', phone:'', email:'' };
+
+// Làm xong đủ 20 câu → mở form thông tin (CHƯA hiện điểm)
+function openResultGate(){
+  document.getElementById('questions2').style.display = 'none';
+  document.getElementById('foot-stage2').style.display = 'none';
   const g = document.getElementById('gate');
   g.style.display = 'block';
   g.scrollIntoView({behavior:'smooth'});
 }
 
-// Gửi lead (tên + SĐT) rồi mở 10 câu còn lại — không chặn người dùng nếu mạng lỗi
+// Điền ĐỦ thông tin → mới tính điểm, hiện kết quả & gửi 1 email cho bác sĩ
 function gateSubmit(e){
   e.preventDefault();
   const form = document.getElementById('gate-form');
-  const btn = form.querySelector('button[type="submit"]');
-  btn.disabled = true; btn.textContent = 'Đang lưu...';
-  fetch('https://formsubmit.co/ajax/' + LEAD_EMAIL, {
-    method:'POST', headers:{'Accept':'application/json'}, body:new FormData(form)
-  }).finally(() => { revealStage2(); });
-}
-function revealStage2(){
+  lead.name  = (form.querySelector('[name="Họ tên"]')||{}).value || '';
+  lead.phone = (form.querySelector('[name="Số điện thoại (Zalo)"]')||{}).value || '';
+  lead.email = (form.querySelector('[name="Email"]')||{}).value || '';
   document.getElementById('gate').style.display = 'none';
-  document.getElementById('questions2').style.display = 'block';
-  document.getElementById('foot-stage2').style.display = 'block';
-  document.getElementById('questions2').scrollIntoView({behavior:'smooth'});
+  showResult();
 }
 
 // Khuyến nghị theo mức điểm
@@ -471,6 +477,29 @@ function showResult(){
   document.getElementById('quiz').style.display = 'none';
   document.getElementById('result').style.display = 'block';
   document.getElementById('result').scrollIntoView({behavior:'smooth'});
+
+  // === GỬI KẾT QUẢ (kèm ĐIỂM) VỀ EMAIL BÁC SĨ ===
+  sendResultToDoctor(score, band);
+}
+
+// Gửi trọn gói kết quả về email bác sĩ: tên, SĐT, tổng điểm, mức độ, từng câu trả lời
+function sendResultToDoctor(score, band){
+  const fd = new FormData();
+  fd.append('_subject', '📊 KẾT QUẢ Test Lo Âu - ' + (lead.name || 'Người làm test') + ' - ' + score + '/80 (' + band.name + ')');
+  fd.append('_template', 'table');
+  fd.append('Họ tên', lead.name || '(chưa nhập)');
+  fd.append('Số điện thoại (Zalo)', lead.phone || '(chưa nhập)');
+  fd.append('Email', lead.email || '(chưa nhập)');
+  fd.append('TỔNG ĐIỂM', score + '/80');
+  fd.append('MỨC ĐỘ', band.name);
+  // chi tiết từng câu
+  QUESTIONS.forEach((q, i) => {
+    const a = answers[i];
+    fd.append('Câu ' + (i+1), (a !== null ? a + ' điểm' : 'chưa trả lời') + ' — ' + q);
+  });
+  fetch('https://formsubmit.co/ajax/' + LEAD_EMAIL, {
+    method:'POST', headers:{'Accept':'application/json'}, body:fd
+  }).catch(()=>{});
 }
 
 // ===== Chia sẻ / giới thiệu cho người thân =====
