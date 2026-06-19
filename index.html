@@ -3,113 +3,182 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Test Sức Khỏe Tinh Thần (DASS-21) – BS. Thanh Nhàn · Chuyên khoa Tâm thần</title>
-<meta name="description" content="Bài test DASS-21 đánh giá cùng lúc Trầm cảm – Lo âu – Stress, miễn phí 3 phút. Nhận kết quả ngay và được Bác sĩ chuyên khoa Tâm thần Thanh Nhàn tư vấn.">
-<meta property="og:title" content="Bạn đang ổn đến đâu? Test sức khỏe tinh thần 3 phút (miễn phí)">
-<meta property="og:description" content="DASS-21 – đo Trầm cảm, Lo âu, Stress. Kết quả tức thì, tư vấn cùng BS. Thanh Nhàn (Chuyên khoa Tâm thần).">
+<title>Test Sức Khỏe Tinh Thần (DASS-21) – BS. Thanh Nhàn</title>
+<meta name="description" content="Bài test DASS-21 đánh giá Trầm cảm – Lo âu – Stress, miễn phí 3 phút. Kết quả tức thì, tư vấn cùng Bác sĩ chuyên khoa Tâm thần Thanh Nhàn.">
+<meta property="og:title" content="Sức khỏe tinh thần của bạn đang ổn đến đâu?">
+<meta property="og:description" content="Test DASS-21 – đo Trầm cảm, Lo âu, Stress. Kết quả tức thì cùng BS. Thanh Nhàn.">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap');
-
+  @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&display=swap');
   *{margin:0;padding:0;box-sizing:border-box;}
   :root{
-    --teal:#0d9488; --teal-dark:#0f766e; --teal-soft:#ccfbf1;
-    --navy:#14324a; --ink:#1f2d3d; --muted:#5b6b7b; --bg:#f3f8f7; --card:#ffffff;
-    --amber:#f59e0b; --line:#e2ebe9; --green:#16a34a; --orange:#ea7317; --red:#dc2626;
+    --ink:#0c1230; --ink2:#1a2350; --paper:#f6f7fc; --card:#ffffff;
+    --muted:#6b7394; --line:#e9ebf5;
+    --indigo:#6366f1; --violet:#8b5cf6; --teal:#14b8a6; --mint:#5eead4;
+    --amber:#f59e0b; --coral:#fb7185;
+    --green:#16a34a; --orange:#ea7317; --red:#e11d48;
+    --grad:linear-gradient(120deg,#6366f1,#8b5cf6 45%,#14b8a6);
+    --cta:linear-gradient(120deg,#fb7185,#f59e0b);
   }
-  body{font-family:'Be Vietnam Pro',sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased;}
-  .wrap{max-width:680px;margin:0 auto;padding:0 18px;}
-  a{color:var(--teal-dark);}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Be Vietnam Pro',sans-serif;background:var(--paper);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+  .wrap{max-width:720px;margin:0 auto;padding:0 18px;}
+  a{color:var(--indigo);}
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1);}
+  .reveal.in{opacity:1;transform:none;}
 
-  header{background:var(--card);border-bottom:1px solid var(--line);padding:14px 0;}
-  .hd{display:flex;align-items:center;gap:12px;}
-  .hd .avatar{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--teal-dark));display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0;overflow:hidden;}
-  .hd .avatar img{width:100%;height:100%;object-fit:cover;object-position:center top;}
-  .hd h1{font-size:1rem;font-weight:700;color:var(--navy);line-height:1.2;}
-  .hd p{font-size:.78rem;color:var(--teal-dark);font-weight:600;letter-spacing:.3px;}
+  /* ===== buttons ===== */
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;border:none;font-family:inherit;font-weight:800;text-decoration:none;border-radius:16px;transition:transform .15s,box-shadow .2s,filter .2s;}
+  .btn-cta{background:var(--cta);color:#3a1a00;padding:17px 40px;font-size:1.06rem;box-shadow:0 12px 30px rgba(251,113,133,.4);}
+  .btn-cta:hover{transform:translateY(-2px);box-shadow:0 16px 40px rgba(251,113,133,.55);}
+  .btn-ghost{background:rgba(255,255,255,.14);color:#fff;border:1.5px solid rgba(255,255,255,.4);padding:15px 26px;font-weight:700;}
+  .btn-solid{background:var(--grad);color:#fff;padding:16px;width:100%;font-size:1rem;box-shadow:0 12px 30px rgba(99,102,241,.32);}
+  .btn-solid:disabled{filter:grayscale(.6) opacity(.55);cursor:not-allowed;box-shadow:none;}
 
-  .hero{background:linear-gradient(160deg,#0f766e 0%,#0d9488 100%);color:#fff;padding:46px 0 54px;text-align:center;}
-  .hero .photo{width:128px;height:128px;border-radius:50%;border:4px solid rgba(255,255,255,.55);box-shadow:0 10px 30px rgba(0,0,0,.2);object-fit:cover;object-position:center top;margin:0 auto 18px;background:rgba(255,255,255,.15);}
-  .hero .badge{display:inline-block;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);padding:6px 16px;border-radius:30px;font-size:.78rem;font-weight:600;margin-bottom:18px;}
-  .hero h2{font-size:clamp(1.6rem,5.5vw,2.3rem);font-weight:800;line-height:1.25;margin-bottom:14px;}
-  .hero p{font-size:1rem;color:#e6fffb;max-width:520px;margin:0 auto 26px;}
-  .hero .stats{display:flex;justify-content:center;gap:22px;flex-wrap:wrap;margin-top:26px;}
-  .hero .stats div{font-size:.82rem;color:#cdeee9;}
-  .hero .stats b{display:block;font-size:1.25rem;font-weight:800;color:#fff;}
+  /* ===== header ===== */
+  header{position:sticky;top:0;z-index:50;background:rgba(246,247,252,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);}
+  .hd{display:flex;align-items:center;gap:11px;padding:11px 0;}
+  .avatar{width:42px;height:42px;border-radius:50%;background:var(--grad);overflow:hidden;flex-shrink:0;box-shadow:0 4px 14px rgba(99,102,241,.35);}
+  .avatar img{width:100%;height:100%;object-fit:cover;object-position:center top;}
+  .hd h1{font-size:.98rem;font-weight:800;color:var(--ink);line-height:1.1;}
+  .hd p{font-size:.72rem;color:var(--indigo);font-weight:700;letter-spacing:.4px;}
+  .hd .spacer{flex:1;}
+  .hd a.mini{background:var(--ink);color:#fff;font-size:.8rem;font-weight:700;padding:9px 16px;border-radius:30px;text-decoration:none;}
 
-  .about .box{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:0 8px 30px rgba(20,50,74,.06);overflow:hidden;display:flex;flex-wrap:wrap;}
-  .about .pic{flex:1 1 200px;min-height:240px;background:var(--teal-soft);}
-  .about .pic img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;}
-  .about .info{flex:2 1 300px;padding:24px 22px;}
-  .about .info h3{font-size:1.25rem;font-weight:800;color:var(--navy);}
-  .about .info .role{color:var(--teal-dark);font-weight:600;font-size:.9rem;margin-bottom:12px;}
-  .about .info p{color:var(--muted);font-size:.93rem;margin-bottom:12px;}
-  .about .info ul{list-style:none;display:grid;gap:7px;}
-  .about .info li{font-size:.9rem;color:var(--ink);padding-left:24px;position:relative;}
-  .about .info li::before{content:'✓';position:absolute;left:0;color:var(--teal);font-weight:800;}
+  /* ===== hero ===== */
+  .hero{position:relative;background:var(--ink);color:#fff;padding:60px 0 70px;text-align:center;overflow:hidden;}
+  .blob{position:absolute;border-radius:50%;filter:blur(60px);opacity:.55;z-index:0;}
+  .b1{width:340px;height:340px;background:#6366f1;top:-90px;left:-80px;animation:float1 14s ease-in-out infinite;}
+  .b2{width:300px;height:300px;background:#14b8a6;bottom:-100px;right:-70px;animation:float2 16s ease-in-out infinite;}
+  .b3{width:240px;height:240px;background:#8b5cf6;top:40%;left:55%;animation:float1 18s ease-in-out infinite reverse;}
+  @keyframes float1{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(30px,40px) scale(1.12);}}
+  @keyframes float2{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-40px,-30px) scale(1.1);}}
+  .hero .wrap{position:relative;z-index:1;}
+  .hero .ph{width:120px;height:120px;border-radius:50%;object-fit:cover;object-position:center top;margin:0 auto 20px;border:3px solid rgba(255,255,255,.6);box-shadow:0 0 0 8px rgba(255,255,255,.08),0 18px 40px rgba(0,0,0,.35);}
+  .badge{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);padding:7px 16px;border-radius:30px;font-size:.78rem;font-weight:600;margin-bottom:18px;}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--mint);box-shadow:0 0 0 0 rgba(94,234,212,.6);animation:pulse 2s infinite;}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(94,234,212,.5);}70%{box-shadow:0 0 0 10px rgba(94,234,212,0);}100%{box-shadow:0 0 0 0 rgba(94,234,212,0);}}
+  .hero h2{font-size:clamp(1.9rem,6.5vw,2.7rem);font-weight:900;line-height:1.18;letter-spacing:-.5px;margin-bottom:14px;}
+  .hero h2 .g{background:linear-gradient(120deg,#a5b4fc,#5eead4);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .hero p.sub{font-size:1.02rem;color:#c7cdf0;max-width:520px;margin:0 auto 28px;}
+  .trust{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:30px;}
+  .chip{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:14px;padding:10px 16px;min-width:92px;}
+  .chip b{display:block;font-size:1.3rem;font-weight:900;background:linear-gradient(120deg,#a5b4fc,#5eead4);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .chip span{font-size:.74rem;color:#aab2dd;}
+  .wave{display:block;width:100%;height:40px;margin-top:-1px;}
 
-  .btn{display:inline-block;cursor:pointer;border:none;font-family:inherit;font-weight:700;text-decoration:none;text-align:center;border-radius:14px;transition:transform .15s,box-shadow .15s,background .15s;}
-  .btn-amber{background:var(--amber);color:#3a2500;padding:16px 38px;font-size:1.08rem;box-shadow:0 10px 24px rgba(245,158,11,.4);}
-  .btn-amber:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(245,158,11,.5);}
-  .btn-teal{background:var(--teal);color:#fff;padding:15px 30px;font-size:1rem;width:100%;box-shadow:0 8px 20px rgba(13,148,136,.3);}
-  .btn-teal:hover{background:var(--teal-dark);}
-  .btn-teal:disabled{background:#9fc6c1;cursor:not-allowed;box-shadow:none;}
+  /* ===== sections ===== */
+  section{padding:54px 0;}
+  .kicker{text-align:center;font-size:.8rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--indigo);margin-bottom:8px;}
+  .sec-title{font-size:clamp(1.5rem,5vw,2rem);font-weight:900;letter-spacing:-.3px;text-align:center;color:var(--ink);margin-bottom:10px;}
+  .sec-sub{text-align:center;color:var(--muted);max-width:540px;margin:0 auto 34px;}
 
-  section{padding:42px 0;}
-  .sec-title{font-size:clamp(1.3rem,4.5vw,1.7rem);font-weight:800;color:var(--navy);text-align:center;margin-bottom:8px;}
-  .sec-sub{text-align:center;color:var(--muted);max-width:540px;margin:0 auto 28px;font-size:.96rem;}
+  /* signs cards */
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+  .scard{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px 16px;box-shadow:0 10px 30px rgba(20,30,80,.05);}
+  .scard .ic{width:46px;height:46px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:12px;}
+  .scard h4{font-size:1rem;font-weight:800;margin-bottom:8px;color:var(--ink);}
+  .scard ul{list-style:none;display:grid;gap:6px;}
+  .scard li{font-size:.84rem;color:var(--muted);padding-left:16px;position:relative;}
+  .scard li::before{content:'';position:absolute;left:0;top:9px;width:6px;height:6px;border-radius:50%;background:currentColor;opacity:.5;}
+  .i-t{background:#eef2ff;color:#6366f1;} .i-l{background:#ecfeff;color:#0891b2;} .i-s{background:#fff7ed;color:#ea580c;}
 
-  .signs{background:var(--card);}
-  .signs ul{list-style:none;max-width:560px;margin:0 auto;display:grid;gap:10px;}
-  .signs li{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:13px 16px 13px 46px;position:relative;font-size:.95rem;}
-  .signs li::before{content:'🫧';position:absolute;left:15px;top:12px;}
+  /* about */
+  .about-box{background:var(--card);border-radius:24px;padding:6px;box-shadow:0 20px 50px rgba(20,30,80,.08);background-image:var(--grad);}
+  .about-inner{background:var(--card);border-radius:20px;overflow:hidden;display:flex;flex-wrap:wrap;}
+  .about-inner .pic{flex:1 1 200px;min-height:260px;background:#eef2ff;}
+  .about-inner .pic img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;}
+  .about-inner .info{flex:2 1 300px;padding:26px 24px;}
+  .about-inner .info h3{font-size:1.35rem;font-weight:900;color:var(--ink);}
+  .role{display:inline-block;font-size:.82rem;font-weight:700;color:var(--indigo);background:#eef2ff;padding:5px 12px;border-radius:30px;margin:8px 0 14px;}
+  .about-inner .info p{color:var(--muted);font-size:.92rem;margin-bottom:12px;}
+  .creds{list-style:none;display:grid;gap:8px;}
+  .creds li{font-size:.9rem;padding-left:26px;position:relative;color:var(--ink);}
+  .creds li::before{content:'✦';position:absolute;left:0;color:var(--teal);font-weight:800;}
 
-  #test{scroll-margin-top:10px;}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:0 8px 30px rgba(20,50,74,.06);overflow:hidden;}
-  .card-head{background:var(--teal-soft);padding:18px 20px;border-bottom:1px solid var(--line);}
-  .card-head h3{color:var(--navy);font-size:1.15rem;font-weight:800;}
-  .card-head p{color:var(--teal-dark);font-size:.85rem;margin-top:2px;}
-  .progress{height:8px;background:#e6efed;border-radius:6px;overflow:hidden;margin-top:14px;}
-  .progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--teal),var(--amber));transition:width .3s;}
-  .progress-txt{font-size:.78rem;color:var(--muted);margin-top:6px;text-align:right;}
+  /* ===== TEST wizard ===== */
+  #test{scroll-margin-top:70px;}
+  .quiz{background:var(--card);border:1px solid var(--line);border-radius:24px;box-shadow:0 24px 60px rgba(20,30,80,.10);overflow:hidden;}
+  .quiz-top{padding:20px 22px 14px;}
+  .quiz-top .row{display:flex;justify-content:space-between;align-items:center;font-size:.82rem;color:var(--muted);font-weight:600;margin-bottom:10px;}
+  .quiz-top .step{color:var(--indigo);font-weight:800;}
+  .bar{height:9px;background:#eceefb;border-radius:10px;overflow:hidden;}
+  .bar i{display:block;height:100%;width:0;border-radius:10px;background:var(--grad);transition:width .45s cubic-bezier(.3,.8,.3,1);}
+  .stage{padding:8px 22px 24px;min-height:300px;}
+  .qcard{animation:slideIn .4s cubic-bezier(.2,.8,.2,1);}
+  @keyframes slideIn{from{opacity:0;transform:translateX(26px);}to{opacity:1;transform:none;}}
+  .qcard .qnum{font-size:.8rem;font-weight:800;color:var(--violet);letter-spacing:.5px;}
+  .qcard .qtext{font-size:1.22rem;font-weight:800;line-height:1.35;color:var(--ink);margin:6px 0 18px;}
+  .opt{display:flex;align-items:center;gap:14px;width:100%;text-align:left;background:#fbfbff;border:1.6px solid var(--line);border-radius:15px;padding:15px 16px;margin-bottom:10px;cursor:pointer;font-family:inherit;font-size:1rem;font-weight:600;color:var(--ink);transition:all .15s;}
+  .opt:hover{border-color:var(--violet);transform:translateX(3px);}
+  .opt .tick{width:24px;height:24px;border-radius:50%;border:2px solid #cfd3ec;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.8rem;color:#fff;transition:all .15s;}
+  .opt.sel{border-color:var(--violet);background:linear-gradient(120deg,#eef2ff,#f5f3ff);}
+  .opt.sel .tick{background:var(--violet);border-color:var(--violet);}
+  .qnav{display:flex;justify-content:space-between;align-items:center;margin-top:6px;}
+  .back{background:none;border:none;color:var(--muted);font-family:inherit;font-weight:700;font-size:.9rem;cursor:pointer;padding:8px 4px;}
+  .back:disabled{opacity:.3;cursor:default;}
 
-  .q{padding:18px 20px;border-bottom:1px solid var(--line);}
-  .q-text{font-size:.97rem;font-weight:600;color:var(--ink);margin-bottom:12px;}
-  .q-text b{color:var(--teal-dark);margin-right:6px;}
-  .opts{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;}
-  .opt{border:1.5px solid var(--line);background:#fff;border-radius:11px;padding:10px 8px;font-size:.85rem;font-weight:600;color:var(--muted);cursor:pointer;text-align:center;transition:all .12s;user-select:none;}
-  .opt:hover{border-color:var(--teal);}
-  .opt.sel{background:var(--teal);border-color:var(--teal);color:#fff;}
-  .test-foot{padding:20px;}
+  /* gate */
+  .gate{padding:26px 22px;text-align:center;animation:slideIn .4s;}
+  .gate .mid{display:inline-flex;width:64px;height:64px;border-radius:50%;background:var(--cta);align-items:center;justify-content:center;font-size:1.8rem;margin-bottom:12px;box-shadow:0 12px 30px rgba(251,113,133,.4);}
+  .gate h3{font-size:1.35rem;font-weight:900;color:var(--ink);}
+  .gate p{color:var(--muted);font-size:.92rem;max-width:420px;margin:8px auto 18px;}
+  .gate input{width:100%;padding:15px 16px;border-radius:13px;border:1.6px solid var(--line);background:#fbfbff;font-size:1rem;font-family:inherit;margin-bottom:11px;outline:none;transition:border .15s;}
+  .gate input:focus{border-color:var(--violet);}
+  .gate .lock{font-size:.78rem;color:var(--muted);margin-top:10px;}
 
+  /* ===== RESULT ===== */
   #result{display:none;}
-  /* 3 ô kết quả */
-  .res3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:22px 18px 6px;}
-  .rcard{border:1px solid var(--line);border-radius:14px;padding:14px 8px;text-align:center;background:var(--bg);}
-  .rcard .lbl{font-size:.82rem;font-weight:700;color:var(--navy);}
-  .rcard .num{font-size:2rem;font-weight:800;line-height:1.1;margin-top:4px;}
-  .rcard .band{display:inline-block;margin-top:6px;padding:3px 10px;border-radius:20px;font-size:.72rem;font-weight:700;color:#fff;}
-  .res-desc{color:var(--muted);font-size:.95rem;max-width:500px;margin:6px auto 0;padding:0 18px;text-align:center;}
-  #r-tips{text-align:left;max-width:470px;margin:14px auto 0;padding:0 18px;list-style:none;display:grid;gap:8px;}
+  .res-hero{text-align:center;padding:28px 20px 6px;}
+  .res-hero .em{font-size:2.6rem;}
+  .res-hero h3{font-size:1.5rem;font-weight:900;color:var(--ink);margin-top:4px;}
+  .gauges{display:flex;justify-content:center;gap:6px;flex-wrap:wrap;padding:18px 10px 6px;}
+  .gauge{width:33%;min-width:104px;max-width:150px;text-align:center;}
+  .gauge svg{width:100%;height:auto;transform:rotate(-90deg);}
+  .gauge .ring-track{fill:none;stroke:#edeefb;stroke-width:11;}
+  .gauge .ring-val{fill:none;stroke-width:11;stroke-linecap:round;stroke-dasharray:327;stroke-dashoffset:327;transition:stroke-dashoffset 1.1s cubic-bezier(.3,.8,.3,1);}
+  .gauge .gwrap{position:relative;}
+  .gauge .gnum{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+  .gauge .gnum b{font-size:1.6rem;font-weight:900;line-height:1;}
+  .gauge .gnum small{font-size:.62rem;color:var(--muted);}
+  .gauge .glabel{font-weight:800;font-size:.92rem;margin-top:6px;color:var(--ink);}
+  .gauge .gband{display:inline-block;font-size:.72rem;font-weight:700;color:#fff;padding:2px 10px;border-radius:20px;margin-top:4px;}
+  .res-desc{color:var(--muted);font-size:.96rem;max-width:500px;margin:10px auto 0;padding:0 18px;text-align:center;}
+  #r-tips{text-align:left;max-width:480px;margin:16px auto 0;padding:0 18px;list-style:none;display:grid;gap:9px;}
+  #r-tips li{padding-left:26px;position:relative;font-size:.92rem;color:var(--ink);}
+  #r-tips li .c{position:absolute;left:0;color:var(--teal);font-weight:900;}
 
-  .lead{background:linear-gradient(160deg,#0f766e,#0d9488);color:#fff;border-radius:18px;padding:26px 22px;margin-top:8px;}
-  .lead h3{font-size:1.25rem;font-weight:800;text-align:center;}
-  .lead p.s{text-align:center;color:#d8fff9;font-size:.9rem;margin:6px 0 18px;}
-  .lead input{width:100%;padding:14px 16px;border-radius:11px;border:1.5px solid rgba(255,255,255,.25);background:rgba(255,255,255,.12);color:#fff;font-size:.96rem;font-family:inherit;margin-bottom:11px;outline:none;}
-  .lead input::placeholder{color:#d4f3ee;}
-  .lead input:focus{border-color:#fff;background:rgba(255,255,255,.2);}
-  .note{font-size:.78rem;color:#cdeee9;text-align:center;margin-top:10px;}
+  /* lead cta block */
+  .offer{margin:18px 20px 0;background:var(--ink);color:#fff;border-radius:20px;padding:26px 22px;text-align:center;position:relative;overflow:hidden;}
+  .offer .blob{opacity:.4;}
+  .offer .in{position:relative;z-index:1;}
+  .offer h3{font-size:1.3rem;font-weight:900;}
+  .offer p{color:#c7cdf0;font-size:.92rem;max-width:420px;margin:8px auto 18px;}
+  .offer .btns{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;}
+  .share{margin:16px 20px 26px;text-align:center;background:#f1f3fe;border-radius:18px;padding:22px 18px;}
+  .share p.h{font-weight:800;color:var(--ink);margin-bottom:4px;}
+  .share p.s{font-size:.88rem;color:var(--muted);margin-bottom:14px;}
+  .share .btns{display:flex;gap:9px;flex-wrap:wrap;justify-content:center;}
+  .sbtn{border:none;cursor:pointer;font-family:inherit;font-weight:700;font-size:.88rem;padding:12px 18px;border-radius:12px;text-decoration:none;}
 
-  .contact{background:var(--card);}
-  .ch{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;max-width:520px;margin:0 auto;}
-  .ch a{display:flex;align-items:center;gap:12px;padding:15px;border-radius:14px;text-decoration:none;font-weight:700;color:#fff;font-size:.95rem;}
+  /* contact / mission / footer */
+  .mission{position:relative;background:var(--ink);color:#fff;text-align:center;overflow:hidden;}
+  .mission .wrap{position:relative;z-index:1;}
+  .mission h2{color:#fff;}
+  .ch{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;max-width:540px;margin:0 auto;}
+  .ch a{display:flex;align-items:center;gap:12px;padding:16px;border-radius:16px;text-decoration:none;font-weight:800;color:#fff;font-size:.95rem;box-shadow:0 8px 22px rgba(20,30,80,.12);}
   .ch .ic{font-size:1.4rem;}
-  .c-zalo{background:#0068ff;} .c-fb{background:#1877f2;} .c-call{background:var(--teal);} .c-mail{background:var(--navy);}
-
-  .disc{background:#fff8ec;border:1px solid #f4dcae;border-radius:14px;padding:18px 20px;max-width:600px;margin:0 auto;font-size:.86rem;color:#7a5a16;}
+  .c-zalo{background:#0068ff;} .c-fb{background:#1877f2;} .c-call{background:linear-gradient(120deg,#14b8a6,#0d9488);} .c-mail{background:linear-gradient(120deg,#6366f1,#8b5cf6);}
+  .disc{background:#fff8ec;border:1px solid #f4dcae;border-radius:16px;padding:18px 20px;max-width:600px;margin:0 auto;font-size:.86rem;color:#7a5a16;}
   .disc b{color:#92400e;}
-  footer{background:var(--navy);color:#cdd9e3;text-align:center;padding:26px 18px;font-size:.84rem;}
+  footer{background:#070b1d;color:#9aa3c9;text-align:center;padding:30px 18px;font-size:.84rem;}
   footer b{color:#fff;}
-  @media(max-width:420px){.opts{grid-template-columns:1fr 1fr;}.ch{grid-template-columns:1fr;}.res3{padding-left:10px;padding-right:10px;gap:7px;}.rcard .num{font-size:1.7rem;}}
+
+  @media(max-width:430px){
+    .grid3{grid-template-columns:1fr;}
+    .ch{grid-template-columns:1fr;}
+    .gauge{min-width:96px;}
+    .stage{padding:8px 16px 22px;}
+  }
 </style>
 </head>
 <body>
@@ -121,159 +190,147 @@
       <h1>BS. Thanh Nhàn</h1>
       <p>CHUYÊN KHOA TÂM THẦN</p>
     </div>
+    <div class="spacer"></div>
+    <a class="mini" href="#test">Làm test</a>
   </div>
 </header>
 
 <!-- HERO -->
 <section class="hero">
+  <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
   <div class="wrap">
-    <img class="photo" src="bs-thanh-nhan.jpg" alt="BS. Thanh Nhàn" onerror="this.style.display='none'">
-    <span class="badge">⏱️ Miễn phí · 3 phút · Bảo mật</span>
-    <h2>Sức khỏe tinh thần của bạn<br>đang ổn đến đâu?</h2>
-    <p>Làm bài <b>test DASS-21</b> được bác sĩ tâm thần sử dụng — đánh giá cùng lúc <b>Trầm cảm · Lo âu · Stress</b>. Biết ngay mức độ của mình và được tư vấn hướng đi phù hợp.</p>
-    <a href="#test" class="btn btn-amber">Làm bài test ngay →</a>
-    <div class="stats">
-      <div><b>21</b>câu hỏi</div>
-      <div><b>3</b>chỉ số</div>
-      <div><b>100%</b>riêng tư</div>
+    <img class="ph" src="bs-thanh-nhan.jpg" alt="BS. Thanh Nhàn" onerror="this.style.display='none'">
+    <div class="badge"><span class="dot"></span> Miễn phí · 3 phút · Riêng tư tuyệt đối</div>
+    <h2>Sức khỏe tinh thần của bạn<br><span class="g">đang ổn đến đâu?</span></h2>
+    <p class="sub">Bài test <b>DASS-21</b> được bác sĩ tâm thần dùng — đo cùng lúc <b>Trầm cảm · Lo âu · Stress</b>. Trả lời từng câu, nhận kết quả &amp; lời khuyên ngay lập tức.</p>
+    <a href="#test" class="btn btn-cta">Bắt đầu làm test →</a>
+    <div class="trust">
+      <div class="chip"><b>21</b><span>câu hỏi</span></div>
+      <div class="chip"><b>3</b><span>chỉ số đo</span></div>
+      <div class="chip"><b>100%</b><span>bảo mật</span></div>
+    </div>
+  </div>
+  <svg class="wave" viewBox="0 0 1440 40" preserveAspectRatio="none"><path fill="#f6f7fc" d="M0,40 L0,18 C240,40 480,40 720,22 C960,4 1200,4 1440,20 L1440,40 Z"></path></svg>
+</section>
+
+<!-- SIGNS (3 chiều) -->
+<section>
+  <div class="wrap">
+    <div class="kicker reveal">Bạn có thấy mình ở đây?</div>
+    <h2 class="sec-title reveal">3 thứ thường lẫn vào nhau</h2>
+    <p class="sec-sub reveal">Trầm cảm, lo âu và stress hay đi cùng nhau — bài test giúp bạn nhìn rõ từng cái.</p>
+    <div class="grid3">
+      <div class="scard reveal">
+        <div class="ic i-t">🌧️</div><h4>Trầm cảm</h4>
+        <ul><li>Buồn chán, mất hứng thú</li><li>Thấy tương lai vô vọng</li><li>Cảm giác mình kém giá trị</li></ul>
+      </div>
+      <div class="scard reveal">
+        <div class="ic i-l">💓</div><h4>Lo âu</h4>
+        <ul><li>Tim đập nhanh, khó thở</li><li>Run, sợ hãi vô cớ</li><li>Gần như hoảng loạn</li></ul>
+      </div>
+      <div class="scard reveal">
+        <div class="ic i-s">🔥</div><h4>Stress</h4>
+        <ul><li>Căng thẳng, khó thư giãn</li><li>Dễ cáu, dễ kích động</li><li>Phản ứng thái quá</li></ul>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- SIGNS -->
-<section class="signs">
+<!-- ABOUT -->
+<section style="padding-top:0;">
   <div class="wrap">
-    <h2 class="sec-title">Bạn có thấy mình trong những điều này?</h2>
-    <p class="sec-sub">Trầm cảm, lo âu và stress thường lẫn vào nhau — và hiện ra cả trên cơ thể lẫn tâm trạng.</p>
-    <ul>
-      <li>Buồn chán, mất hứng thú, thấy tương lai chẳng có gì đáng mong đợi</li>
-      <li>Bồn chồn, lo lắng, tim đập nhanh, khó thở dù không gắng sức</li>
-      <li>Căng thẳng, khó thư giãn, dễ cáu, dễ bị kích động</li>
-      <li>Khó ngủ, mệt mỏi, khó bắt tay vào công việc</li>
-      <li>Cảm thấy mình kém giá trị, đôi khi thấy cuộc sống vô nghĩa</li>
-    </ul>
-  </div>
-</section>
-
-<!-- ABOUT DOCTOR -->
-<section class="about" style="background:var(--bg);">
-  <div class="wrap">
-    <h2 class="sec-title">Người đồng hành cùng bạn</h2>
-    <p class="sec-sub">Lắng nghe không phán xét — đồng hành bằng chuyên môn.</p>
-    <div class="box">
-      <div class="pic"><img src="bs-thanh-nhan.jpg" alt="BS. Thanh Nhàn" onerror="this.parentNode.style.display='none'"></div>
-      <div class="info">
-        <h3>BS. Thanh Nhàn</h3>
-        <div class="role">Bác sĩ Chuyên khoa Tâm thần · Được hàng nghìn người theo dõi trên mạng xã hội</div>
-        <p>Bác sĩ Thanh Nhàn được <b>hàng nghìn người tin tưởng theo dõi trên các trang mạng xã hội</b> — nhưng điều khiến bác sĩ gắn bó với nghề không chỉ là chuyên môn.</p>
-        <p>Bác sĩ từng <b>trải qua nỗi đau khi có người thân mắc bệnh tâm thần</b>, nên hiểu sâu sắc cả nỗi đau của người bệnh lẫn của gia đình. Vì vậy, bác sĩ chọn <b>đồng hành</b> — để người bệnh được điều trị ổn định và sớm hòa nhập lại cuộc sống.</p>
-        <ul>
-          <li>Được hàng nghìn người theo dõi, tin tưởng trên mạng xã hội</li>
-          <li>Thấu hiểu từ chính trải nghiệm có người thân mắc bệnh</li>
-          <li>Đồng hành cả người bệnh lẫn gia đình — riêng tư, không phán xét</li>
-          <li>Biến kiến thức tâm thần học trừu tượng thành điều dễ hiểu, áp dụng được ngay</li>
-        </ul>
+    <div class="about-box reveal">
+      <div class="about-inner">
+        <div class="pic"><img src="bs-thanh-nhan.jpg" alt="BS. Thanh Nhàn" onerror="this.parentNode.style.display='none'"></div>
+        <div class="info">
+          <h3>BS. Thanh Nhàn</h3>
+          <div class="role">Bác sĩ Chuyên khoa Tâm thần</div>
+          <p>Được <b>hàng nghìn người tin tưởng theo dõi trên mạng xã hội</b> — nhưng điều khiến bác sĩ gắn bó với nghề không chỉ là chuyên môn.</p>
+          <p>Bác sĩ từng <b>trải qua nỗi đau khi có người thân mắc bệnh tâm thần</b>, nên thấu hiểu cả nỗi đau của người bệnh lẫn của gia đình.</p>
+          <ul class="creds">
+            <li>Hàng nghìn người theo dõi, tin tưởng trên mạng xã hội</li>
+            <li>Thấu hiểu từ chính trải nghiệm cá nhân</li>
+            <li>Đồng hành riêng tư, không phán xét</li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- TEST -->
-<section style="background:var(--bg);">
+<section style="background:linear-gradient(180deg,#f6f7fc,#eef0fb);">
   <div class="wrap" id="test">
-    <h2 class="sec-title">Bài test sức khỏe tinh thần DASS-21</h2>
-    <p class="sec-sub">Với mỗi câu, hãy chọn mức đúng nhất với bạn <b>trong tuần qua</b>.</p>
+    <div class="kicker reveal">Bắt đầu</div>
+    <h2 class="sec-title reveal">Bài test DASS-21</h2>
+    <p class="sec-sub reveal">Chọn mức đúng nhất với bạn <b>trong tuần qua</b>. Mỗi lần một câu — nhẹ nhàng thôi.</p>
 
-    <div class="card" id="quiz">
-      <div class="card-head">
-        <h3>Thang đánh giá Trầm cảm – Lo âu – Stress (DASS-21)</h3>
-        <p>21 câu hỏi · chọn 1 đáp án mỗi câu</p>
-        <div class="progress"><i id="bar"></i></div>
-        <div class="progress-txt" id="ptxt">Đã trả lời 0/21</div>
+    <div class="quiz reveal" id="quiz">
+      <div class="quiz-top">
+        <div class="row"><span class="step" id="stepTxt">Câu 1 / 21</span><span id="pctTxt">0%</span></div>
+        <div class="bar"><i id="bar"></i></div>
       </div>
-      <div id="questions"></div>
-
-      <div class="test-foot" id="foot-stage1">
-        <button class="btn btn-teal" id="to-gate" disabled onclick="openGate()">Tiếp tục →</button>
-        <p style="font-size:.78rem;color:var(--muted);text-align:center;margin-top:8px;">Trả lời 11 câu đầu để tiếp tục</p>
-      </div>
-
-      <!-- CỔNG: bắt thông tin giữa chừng -->
-      <div id="gate" style="display:none;">
-        <div class="lead" style="margin:18px;">
-          <h3>Bạn đã hoàn thành hơn một nửa! 🎉</h3>
-          <p class="s">Nhập thông tin để tiếp tục 10 câu còn lại và nhận <b>kết quả + khuyến nghị riêng</b> từ BS. Thanh Nhàn.</p>
-          <form id="gate-form" onsubmit="gateSubmit(event)">
-            <input type="hidden" name="_subject" value="🔔 Lead mới từ Test DASS-21 (BS. Thanh Nhàn)">
-            <input type="hidden" name="_template" value="table">
-            <input type="text" name="Họ tên" placeholder="Họ và tên của bạn *" required>
-            <input type="tel" name="Số điện thoại (Zalo)" placeholder="Số điện thoại / Zalo *" required>
-            <button type="submit" class="btn btn-amber" style="width:100%;">Tiếp tục làm test →</button>
-            <p class="note">🔒 Thông tin được bảo mật, chỉ bác sĩ xem.</p>
-          </form>
-        </div>
-      </div>
-
-      <div id="questions2" style="display:none;"></div>
-      <div class="test-foot" id="foot-stage2" style="display:none;">
-        <button class="btn btn-teal" id="submit-test" disabled onclick="showResult()">Xem kết quả của tôi</button>
-      </div>
+      <div class="stage" id="stage"><!-- câu hỏi / cổng / render bằng JS --></div>
     </div>
 
     <!-- RESULT -->
-    <div class="card" id="result" style="margin-top:18px;">
-      <div class="card-head"><h3>📋 Kết quả của bạn</h3><p>Mang tính tham khảo, sàng lọc — không thay thế chẩn đoán</p></div>
-      <div class="res3">
-        <div class="rcard"><div class="lbl">Trầm cảm</div><div class="num" id="n-t">0</div><div class="band" id="b-t">—</div></div>
-        <div class="rcard"><div class="lbl">Lo âu</div><div class="num" id="n-l">0</div><div class="band" id="b-l">—</div></div>
-        <div class="rcard"><div class="lbl">Stress</div><div class="num" id="n-s">0</div><div class="band" id="b-s">—</div></div>
+    <div class="quiz reveal in" id="result" style="margin-top:18px;">
+      <div class="res-hero">
+        <div class="em">🌿</div>
+        <h3>Kết quả của bạn</h3>
+        <div style="font-size:.82rem;color:var(--muted);">Tham khảo &amp; sàng lọc — không thay thế chẩn đoán</div>
+      </div>
+      <div class="gauges">
+        <div class="gauge"><div class="gwrap"><svg viewBox="0 0 120 120"><circle class="ring-track" cx="60" cy="60" r="52"/><circle class="ring-val" id="ring-T" cx="60" cy="60" r="52"/></svg><div class="gnum"><b id="n-T">0</b><small>/ 42</small></div></div><div class="glabel">Trầm cảm</div><div class="gband" id="b-T">—</div></div>
+        <div class="gauge"><div class="gwrap"><svg viewBox="0 0 120 120"><circle class="ring-track" cx="60" cy="60" r="52"/><circle class="ring-val" id="ring-L" cx="60" cy="60" r="52"/></svg><div class="gnum"><b id="n-L">0</b><small>/ 42</small></div></div><div class="glabel">Lo âu</div><div class="gband" id="b-L">—</div></div>
+        <div class="gauge"><div class="gwrap"><svg viewBox="0 0 120 120"><circle class="ring-track" cx="60" cy="60" r="52"/><circle class="ring-val" id="ring-S" cx="60" cy="60" r="52"/></svg><div class="gnum"><b id="n-S">0</b><small>/ 42</small></div></div><div class="glabel">Stress</div><div class="gband" id="b-S">—</div></div>
       </div>
       <p class="res-desc" id="r-desc"></p>
       <ul id="r-tips"></ul>
 
-      <!-- BƯỚC TIẾP THEO -->
-      <div style="padding:18px 20px 24px;">
-        <div class="lead">
+      <div class="offer">
+        <div class="blob b1" style="width:200px;height:200px;top:-60px;left:-40px;"></div>
+        <div class="in">
           <h3>🎁 Tặng bạn 15 phút trò chuyện cùng bác sĩ</h3>
-          <p class="s">Hoàn toàn miễn phí — chỉ để lắng nghe và gợi ý hướng đi cho bạn, <b>không bán gì cả</b>. Bác sĩ sẽ liên hệ theo số bạn vừa để lại. Cần trao đổi ngay thì nhắn Zalo:</p>
-          <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;">
-            <a href="https://zalo.me/0339681115" target="_blank" rel="noopener" class="btn btn-amber" style="text-decoration:none;">💬 Nhắn Zalo cho bác sĩ</a>
-            <a href="tel:0339681115" class="btn" style="background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.45);text-decoration:none;padding:16px 28px;">📞 Gọi ngay</a>
+          <p>Miễn phí — chỉ để lắng nghe và gợi ý hướng đi, <b>không bán gì cả</b>. Bác sĩ sẽ liên hệ theo số bạn để lại.</p>
+          <div class="btns">
+            <a href="https://zalo.me/0339681115" target="_blank" rel="noopener" class="btn btn-cta" style="padding:14px 28px;">💬 Nhắn Zalo</a>
+            <a href="tel:0339681115" class="btn btn-ghost">📞 Gọi ngay</a>
           </div>
         </div>
+      </div>
 
-        <div style="text-align:center;margin-top:20px;padding:22px 18px;background:var(--teal-soft);border-radius:14px;">
-          <p style="font-weight:700;color:var(--navy);margin-bottom:4px;">Bạn biết ai đang căng thẳng, mất ngủ hay hay lo lắng?</p>
-          <p style="font-size:.9rem;color:var(--muted);margin-bottom:16px;">Gửi bài test này cho họ — đôi khi một hành động nhỏ giúp người thân của bạn rất nhiều. 💚</p>
-          <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;">
-            <button onclick="shareNative()" class="btn btn-amber" style="padding:13px 22px;font-size:.92rem;border:none;cursor:pointer;">📤 Gửi cho người thân</button>
-            <a id="share-fb" target="_blank" rel="noopener" class="btn" style="background:#1877f2;color:#fff;text-decoration:none;padding:13px 22px;font-size:.92rem;">f Chia sẻ Facebook</a>
-            <button onclick="copyLink()" class="btn" style="background:#fff;color:var(--teal-dark);border:1.5px solid var(--teal);padding:13px 22px;font-size:.92rem;cursor:pointer;">🔗 Sao chép link</button>
-          </div>
+      <div class="share">
+        <p class="h">Bạn biết ai đang căng thẳng, mất ngủ, hay lo lắng?</p>
+        <p class="s">Gửi bài test này cho họ — đôi khi một hành động nhỏ giúp người thân rất nhiều. 💚</p>
+        <div class="btns">
+          <button onclick="shareNative()" class="sbtn" style="background:var(--cta);color:#3a1a00;">📤 Gửi cho người thân</button>
+          <a id="share-fb" target="_blank" rel="noopener" class="sbtn" style="background:#1877f2;color:#fff;">f Facebook</a>
+          <button onclick="copyLink()" class="sbtn" style="background:#fff;color:var(--indigo);border:1.5px solid var(--indigo);">🔗 Sao chép link</button>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- MISSION / COMMUNITY -->
-<section style="background:linear-gradient(160deg,#0f766e,#0d9488);color:#fff;">
-  <div class="wrap" style="text-align:center;">
-    <h2 class="sec-title" style="color:#fff;">Cùng xây một cộng đồng hiểu về sức khỏe tâm thần</h2>
-    <p style="color:#e6fffb;max-width:560px;margin:0 auto 26px;font-size:.98rem;">
-      Bệnh tâm thần không đáng sợ như nhiều người nghĩ — đáng sợ là sự thiếu hiểu biết và kỳ thị.
-      Theo dõi bác sĩ Thanh Nhàn để nhận những chia sẻ <b>dễ hiểu, áp dụng được ngay</b>.
-    </p>
-    <a href="https://www.facebook.com/profile.php?id=61551714135624" target="_blank" rel="noopener" class="btn btn-amber" style="text-decoration:none;">👍 Theo dõi Facebook của bác sĩ</a>
+<!-- MISSION -->
+<section class="mission">
+  <div class="blob b1" style="opacity:.4;"></div><div class="blob b2" style="opacity:.4;"></div>
+  <div class="wrap">
+    <div class="kicker" style="color:#a5b4fc;">Sứ mệnh</div>
+    <h2 class="sec-title">Cùng xây cộng đồng hiểu về sức khỏe tâm thần</h2>
+    <p class="sec-sub" style="color:#c7cdf0;">Bệnh tâm thần không đáng sợ như nhiều người nghĩ — đáng sợ là sự thiếu hiểu biết và kỳ thị. Theo dõi bác sĩ để nhận chia sẻ dễ hiểu, áp dụng được ngay.</p>
+    <div style="text-align:center;"><a href="https://www.facebook.com/profile.php?id=61551714135624" target="_blank" rel="noopener" class="btn btn-cta">👍 Theo dõi Facebook của bác sĩ</a></div>
   </div>
 </section>
 
 <!-- CONTACT -->
-<section class="contact">
+<section>
   <div class="wrap">
-    <h2 class="sec-title">Kết nối với bác sĩ</h2>
-    <p class="sec-sub">Bạn không phải đối mặt một mình. Nhắn tin bất cứ lúc nào.</p>
-    <div class="ch">
+    <div class="kicker reveal">Kết nối</div>
+    <h2 class="sec-title reveal">Bạn không phải đối mặt một mình</h2>
+    <p class="sec-sub reveal">Nhắn tin cho bác sĩ bất cứ lúc nào.</p>
+    <div class="ch reveal">
       <a class="c-zalo" href="https://zalo.me/0339681115" target="_blank" rel="noopener"><span class="ic">💬</span><span>Zalo<br><small>0339 681 115</small></span></a>
       <a class="c-call" href="tel:0339681115"><span class="ic">📞</span><span>Gọi điện<br><small>0339 681 115</small></span></a>
       <a class="c-fb" href="https://www.facebook.com/profile.php?id=61551714135624" target="_blank" rel="noopener"><span class="ic">👍</span><span>Facebook<br><small>BS. Thanh Nhàn</small></span></a>
@@ -282,161 +339,162 @@
   </div>
 </section>
 
-<!-- DISCLAIMER -->
-<section style="background:var(--bg);padding-top:6px;">
+<section style="padding-top:0;">
   <div class="wrap">
-    <div class="disc">
-      <b>⚠️ Lưu ý quan trọng:</b> Bài test DASS-21 là công cụ <b>sàng lọc tham khảo</b>, không phải chẩn đoán bệnh. Kết quả chỉ phản ánh cảm nhận của bạn trong tuần qua. Chỉ bác sĩ chuyên khoa mới đưa ra chẩn đoán chính thức sau khi thăm khám.
-      <br><br>
-      Nếu bạn đang có <b>ý nghĩ làm hại bản thân</b> hoặc khủng hoảng nghiêm trọng, hãy liên hệ ngay người thân, đến cơ sở y tế gần nhất, hoặc gọi đường dây nóng <b>115</b>.
+    <div class="disc reveal">
+      <b>⚠️ Lưu ý:</b> DASS-21 là công cụ <b>sàng lọc tham khảo</b>, không phải chẩn đoán. Kết quả phản ánh cảm nhận của bạn trong tuần qua; chỉ bác sĩ chuyên khoa mới chẩn đoán chính thức sau thăm khám.
+      <br><br>Nếu bạn có <b>ý nghĩ làm hại bản thân</b> hoặc khủng hoảng nghiêm trọng, hãy liên hệ người thân, đến cơ sở y tế gần nhất, hoặc gọi <b>115</b> ngay.
     </div>
   </div>
 </section>
 
 <footer>
   <b>BS. Thanh Nhàn</b> — Chuyên khoa Tâm thần<br>
-  Zalo/ĐT: 0339 681 115 · <a href="mailto:phanthithanhnhan765@gmail.com" style="color:#9fe3da;">phanthithanhnhan765@gmail.com</a><br><br>
-  <span style="color:#7f95a6;font-size:.78rem;">Đồng hành cùng sức khỏe tinh thần của bạn 🌿 · <a href="test-lo-au.html" style="color:#9fe3da;">Test lo âu nhanh (Zung)</a></span>
+  Zalo/ĐT: 0339 681 115 · <a href="mailto:phanthithanhnhan765@gmail.com" style="color:#9fb4ff;">phanthithanhnhan765@gmail.com</a><br><br>
+  <span style="color:#5b6488;font-size:.78rem;">Đồng hành cùng sức khỏe tinh thần của bạn 🌿 · <a href="test-lo-au.html" style="color:#9fb4ff;">Test lo âu nhanh (Zung)</a></span>
 </footer>
 
 <script>
-// ===== DASS-21 =====
-const LEAD_EMAIL = 'phanthithanhnhan765@gmail.com';
-const GATE_AT = 11;
-// d = thang đo: 'T' trầm cảm, 'L' lo âu, 'S' stress
-const ITEMS = [
-  {t:"Tôi nhận thấy khó mà thoải mái được.", d:'S'},
-  {t:"Tôi thấy khô miệng.", d:'L'},
-  {t:"Tôi gần như không thấy có cảm xúc tích cực nào.", d:'T'},
-  {t:"Tôi thấy khó thở (thở nhanh, khó thở cả khi không gắng sức).", d:'L'},
-  {t:"Tôi thấy khó mà bắt tay vào công việc.", d:'T'},
-  {t:"Tôi đã phản ứng thái quá với những sự việc xảy ra.", d:'S'},
-  {t:"Tôi cảm thấy run (ví dụ ở tay).", d:'L'},
-  {t:"Tôi thấy mình đang dùng nhiều sức lực vào việc lo lắng.", d:'S'},
-  {t:"Tôi lo mình rơi vào tình huống có thể bị hoảng sợ hoặc mất mặt.", d:'L'},
-  {t:"Tôi thấy tương lai chẳng có gì đáng để mong đợi.", d:'T'},
-  {t:"Tôi thấy mình dễ bị kích động.", d:'S'},
-  {t:"Tôi thấy khó mà thư giãn được.", d:'S'},
-  {t:"Tôi thấy chán nản và thất vọng.", d:'T'},
-  {t:"Tôi thấy khó chấp nhận điều gì cản trở việc tôi đang làm.", d:'S'},
-  {t:"Tôi thấy mình gần như bị hoảng loạn.", d:'L'},
-  {t:"Tôi thấy không hăng hái với bất kỳ việc gì nữa.", d:'T'},
-  {t:"Tôi thấy mình chẳng còn là người có giá trị.", d:'T'},
-  {t:"Tôi thấy mình dễ phật ý, tự ái.", d:'S'},
-  {t:"Tôi nghe rõ tim mình đập dù không gắng sức (ví dụ tim đập nhanh, lỗi nhịp).", d:'L'},
-  {t:"Tôi cảm thấy sợ hãi vô cớ.", d:'L'},
-  {t:"Tôi thấy cuộc sống thật vô nghĩa.", d:'T'}
+const LEAD_EMAIL='phanthithanhnhan765@gmail.com';
+const GATE_AT=11;
+const ITEMS=[
+ {t:"Tôi thấy khó mà thoải mái, thư giãn được.",d:'S'},
+ {t:"Tôi bị khô miệng.",d:'L'},
+ {t:"Tôi gần như không thấy có cảm xúc tích cực nào.",d:'T'},
+ {t:"Tôi thấy khó thở (thở gấp, hụt hơi dù không gắng sức).",d:'L'},
+ {t:"Tôi thấy khó bắt tay vào làm việc gì đó.",d:'T'},
+ {t:"Tôi phản ứng thái quá với những việc xảy ra.",d:'S'},
+ {t:"Tôi bị run (ví dụ run tay).",d:'L'},
+ {t:"Tôi thấy mình tiêu hao nhiều sức lực vì căng thẳng.",d:'S'},
+ {t:"Tôi lo mình rơi vào tình huống hoảng sợ và tự làm mình bẽ mặt.",d:'L'},
+ {t:"Tôi thấy chẳng có gì ở tương lai để mình mong đợi.",d:'T'},
+ {t:"Tôi thấy bản thân dễ bị kích động.",d:'S'},
+ {t:"Tôi thấy khó mà thư giãn được.",d:'S'},
+ {t:"Tôi thấy buồn chán, nản lòng.",d:'T'},
+ {t:"Tôi khó chấp nhận điều gì xen vào việc tôi đang làm.",d:'S'},
+ {t:"Tôi thấy mình gần như hoảng loạn.",d:'L'},
+ {t:"Tôi không thấy hăng hái với bất cứ việc gì.",d:'T'},
+ {t:"Tôi cảm thấy mình chẳng có mấy giá trị.",d:'T'},
+ {t:"Tôi thấy mình khá dễ tự ái, phật ý.",d:'S'},
+ {t:"Tôi nghe rõ nhịp tim dù không gắng sức (tim đập nhanh, hụt nhịp).",d:'L'},
+ {t:"Tôi thấy sợ hãi mà không có lý do.",d:'L'},
+ {t:"Tôi thấy cuộc sống thật vô nghĩa.",d:'T'}
 ];
-const LABELS = ['Không có','Đôi khi','Thường xuyên','Rất hay xảy ra']; // 0,1,2,3
-
-// ngưỡng đánh giá (điểm = tổng nhóm × 2) theo Bảng 24
-const BANDS = {
-  T:[[9,'Bình thường','var(--green)'],[13,'Nhẹ','var(--amber)'],[20,'Vừa','var(--orange)'],[27,'Nặng','var(--red)'],[99,'Rất nặng','var(--red)']],
-  L:[[7,'Bình thường','var(--green)'],[9,'Nhẹ','var(--amber)'],[14,'Vừa','var(--orange)'],[19,'Nặng','var(--red)'],[99,'Rất nặng','var(--red)']],
-  S:[[14,'Bình thường','var(--green)'],[18,'Nhẹ','var(--amber)'],[25,'Vừa','var(--orange)'],[33,'Nặng','var(--red)'],[99,'Rất nặng','var(--red)']]
+const LABELS=['Không có / hiếm khi','Đôi khi','Thường xuyên','Rất thường xuyên'];
+const BANDS={
+ T:[[9,'Bình thường','#16a34a'],[13,'Nhẹ','#f59e0b'],[20,'Vừa','#ea7317'],[27,'Nặng','#e11d48'],[99,'Rất nặng','#be123c']],
+ L:[[7,'Bình thường','#16a34a'],[9,'Nhẹ','#f59e0b'],[14,'Vừa','#ea7317'],[19,'Nặng','#e11d48'],[99,'Rất nặng','#be123c']],
+ S:[[14,'Bình thường','#16a34a'],[18,'Nhẹ','#f59e0b'],[25,'Vừa','#ea7317'],[33,'Nặng','#e11d48'],[99,'Rất nặng','#be123c']]
 };
-const NAME = {T:'trầm cảm', L:'lo âu', S:'stress'};
+const FULL={T:28,L:20,S:34}; // điểm "rất nặng" -> vòng tròn đầy
+const NAME={T:'trầm cảm',L:'lo âu',S:'stress'};
+const C=2*Math.PI*52;
 
-const answers = new Array(ITEMS.length).fill(null);
+const answers=new Array(ITEMS.length).fill(null);
+let idx=0, gateDone=false;
+const stage=document.getElementById('stage');
 
-function renderRange(container, start, end){
-  for(let i=start;i<end;i++){
-    const q=document.createElement('div'); q.className='q';
-    const opts=LABELS.map((lb,j)=>`<div class="opt" data-q="${i}" data-col="${j}" onclick="pick(${i},${j},this)">${lb}</div>`).join('');
-    q.innerHTML=`<div class="q-text"><b>${i+1}.</b>${ITEMS[i].t}</div><div class="opts">${opts}</div>`;
-    container.appendChild(q);
-  }
-}
-renderRange(document.getElementById('questions'),0,GATE_AT);
-renderRange(document.getElementById('questions2'),GATE_AT,ITEMS.length);
-
-function pick(i,col,el){
-  answers[i]=col; // 0..3
-  document.querySelectorAll('.opt[data-q="'+i+'"]').forEach(o=>o.classList.remove('sel'));
-  el.classList.add('sel');
-  updateProgress();
-}
-function stage1Done(){ for(let i=0;i<GATE_AT;i++) if(answers[i]===null) return false; return true; }
-function allDone(){ return answers.every(a=>a!==null); }
-function updateProgress(){
+function updateBar(){
   const done=answers.filter(a=>a!==null).length;
-  document.getElementById('bar').style.width=(done/ITEMS.length*100)+'%';
-  document.getElementById('ptxt').textContent='Đã trả lời '+done+'/'+ITEMS.length;
-  document.getElementById('to-gate').disabled=!stage1Done();
-  document.getElementById('submit-test').disabled=!allDone();
+  const pct=Math.round(done/ITEMS.length*100);
+  document.getElementById('bar').style.width=pct+'%';
+  document.getElementById('pctTxt').textContent=pct+'%';
+  document.getElementById('stepTxt').textContent='Câu '+Math.min(idx+1,ITEMS.length)+' / '+ITEMS.length;
 }
-function openGate(){
-  document.getElementById('foot-stage1').style.display='none';
-  const g=document.getElementById('gate'); g.style.display='block'; g.scrollIntoView({behavior:'smooth'});
+function renderQ(){
+  updateBar();
+  const it=ITEMS[idx];
+  let html='<div class="qcard"><div class="qnum">CÂU '+(idx+1)+'</div><div class="qtext">'+it.t+'</div>';
+  LABELS.forEach((lb,j)=>{
+    const sel=answers[idx]===j?' sel':'';
+    html+='<button class="opt'+sel+'" onclick="choose('+j+')"><span class="tick">'+(sel?'✓':'')+'</span>'+lb+'</button>';
+  });
+  html+='<div class="qnav"><button class="back" onclick="goBack()"'+(idx===0?' disabled':'')+'>← Quay lại</button><span style="font-size:.78rem;color:var(--muted);">'+(idx+1)+'/'+ITEMS.length+'</span></div></div>';
+  stage.innerHTML=html;
+}
+function choose(j){
+  answers[idx]=j;
+  document.querySelectorAll('.opt').forEach((o,k)=>{o.classList.toggle('sel',k===j);o.querySelector('.tick').textContent=k===j?'✓':'';});
+  updateBar();
+  setTimeout(next,240);
+}
+function next(){
+  const answered=idx+1;
+  if(answered===GATE_AT && !gateDone){ showGate(); return; }
+  if(idx>=ITEMS.length-1){ showResult(); return; }
+  idx++; renderQ();
+}
+function goBack(){ if(idx>0){ idx--; renderQ(); } }
+function showGate(){
+  stage.innerHTML='<div class="gate"><div class="mid">🎉</div>'
+   +'<h3>Bạn đã hoàn thành hơn một nửa!</h3>'
+   +'<p>Nhập thông tin để xem <b>10 câu cuối</b> và nhận kết quả + lời khuyên riêng từ BS. Thanh Nhàn.</p>'
+   +'<form id="gate-form" onsubmit="gateSubmit(event)">'
+   +'<input type="hidden" name="_subject" value="🔔 Lead mới từ Test DASS-21 (BS. Thanh Nhàn)">'
+   +'<input type="hidden" name="_template" value="table">'
+   +'<input type="text" name="Họ tên" placeholder="Họ và tên của bạn *" required>'
+   +'<input type="tel" name="Số điện thoại (Zalo)" placeholder="Số điện thoại / Zalo *" required>'
+   +'<button type="submit" class="btn btn-solid">Xem 10 câu cuối →</button>'
+   +'<div class="lock">🔒 Bảo mật tuyệt đối, chỉ bác sĩ xem.</div></form></div>';
 }
 function gateSubmit(e){
   e.preventDefault();
-  const form=document.getElementById('gate-form');
-  const btn=form.querySelector('button[type="submit"]'); btn.disabled=true; btn.textContent='Đang lưu...';
-  fetch('https://formsubmit.co/ajax/'+LEAD_EMAIL,{method:'POST',headers:{'Accept':'application/json'},body:new FormData(form)})
-    .finally(()=>revealStage2());
+  const f=e.target, b=f.querySelector('button'); b.disabled=true; b.textContent='Đang lưu...';
+  fetch('https://formsubmit.co/ajax/'+LEAD_EMAIL,{method:'POST',headers:{'Accept':'application/json'},body:new FormData(f)})
+    .finally(()=>{ gateDone=true; idx=GATE_AT; renderQ(); });
 }
-function revealStage2(){
-  document.getElementById('gate').style.display='none';
-  document.getElementById('questions2').style.display='block';
-  document.getElementById('foot-stage2').style.display='block';
-  document.getElementById('questions2').scrollIntoView({behavior:'smooth'});
+function bandFor(dim,score){
+  const arr=BANDS[dim];
+  for(let k=0;k<arr.length;k++){ if(score<=arr[k][0]) return {name:arr[k][1],color:arr[k][2],level:k}; }
 }
-
-function bandFor(dim, score){
-  for(const [max,name,color] of BANDS[dim]){ if(score<=max) return {name,color,level:BANDS[dim].findIndex(b=>b[0]===max)}; }
+function animNum(el,to){
+  let cur=0; const step=Math.max(1,Math.round(to/24));
+  const t=setInterval(()=>{cur+=step; if(cur>=to){cur=to;clearInterval(t);} el.textContent=cur;},28);
 }
 function showResult(){
-  const sum={T:0,L:0,S:0};
-  ITEMS.forEach((it,i)=>{ sum[it.d]+=answers[i]; });
+  document.getElementById('quiz').style.display='none';
+  const sum={T:0,L:0,S:0}; ITEMS.forEach((it,i)=>sum[it.d]+=answers[i]);
   const res={};
-  ['T','L','S'].forEach(dim=>{
-    const score=sum[dim]*2; // DASS-21 nhân đôi
-    res[dim]={score, ...bandFor(dim,score)};
-  });
-  // điền 3 ô
-  const map={T:['n-t','b-t'],L:['n-l','b-l'],S:['n-s','b-s']};
-  ['T','L','S'].forEach(dim=>{
-    document.getElementById(map[dim][0]).textContent=res[dim].score;
-    document.getElementById(map[dim][0]).style.color=res[dim].color;
-    const b=document.getElementById(map[dim][1]); b.textContent=res[dim].name; b.style.background=res[dim].color;
-  });
-  // mức nặng nhất
+  ['T','L','S'].forEach(d=>{ const sc=sum[d]*2; res[d]={score:sc,...bandFor(d,sc)}; });
   const worst=['T','L','S'].reduce((a,b)=>res[b].level>res[a].level?b:a);
   const wl=res[worst].level;
-  let desc, tips;
-  if(wl===0){
-    desc='Cả ba chỉ số của bạn đều trong giới hạn bình thường. Hãy tiếp tục duy trì lối sống lành mạnh và chăm sóc tinh thần của mình.';
-    tips=['Giữ giấc ngủ đều, vận động và kết nối với người thân','Theo dõi bác sĩ để hiểu thêm về sức khỏe tinh thần'];
-  } else if(wl<=2){
-    desc='Bạn đang có dấu hiệu '+NAME[worst]+' ở mức '+res[worst].name.toLowerCase()+'. Đây là lúc nên quan tâm hơn — xử trí sớm sẽ nhẹ nhàng hơn nhiều.';
-    tips=['Tập thở chậm, thư giãn mỗi ngày; giảm caffeine, ngủ đủ giấc','Chia sẻ với người thân tin cậy','Nên trò chuyện với bác sĩ để được hướng dẫn cụ thể'];
-  } else {
-    desc='Kết quả cho thấy mức '+NAME[worst]+' khá cao, có thể đang ảnh hưởng tới cuộc sống của bạn. Bạn nên được bác sĩ chuyên khoa tâm thần thăm khám và đồng hành.';
-    tips=['Nên đặt lịch trò chuyện với bác sĩ sớm','Nói cho người thân biết để có người bên cạnh','Nếu có ý nghĩ làm hại bản thân, hãy gọi ngay 115 hoặc đến cơ sở y tế'];
-  }
-  document.getElementById('r-desc').textContent=desc;
-  const tipsEl=document.getElementById('r-tips');
-  tipsEl.innerHTML='<li style="font-weight:700;color:var(--navy);list-style:none;">💡 Khuyến nghị cho bạn:</li>'+
-    tips.map(t=>`<li style="padding-left:24px;position:relative;font-size:.92rem;color:var(--ink);"><span style="position:absolute;left:0;color:var(--teal);font-weight:800;">✓</span>${t}</li>`).join('');
+  let desc,tips;
+  if(wl===0){ desc='Cả ba chỉ số đều trong giới hạn bình thường. Hãy tiếp tục giữ lối sống lành mạnh và chăm sóc tinh thần của mình.';
+    tips=['Giữ giấc ngủ đều, vận động, kết nối với người thân','Theo dõi bác sĩ để hiểu thêm về sức khỏe tinh thần']; }
+  else if(wl<=2){ desc='Bạn đang có dấu hiệu '+NAME[worst]+' ở mức '+res[worst].name.toLowerCase()+'. Quan tâm sớm sẽ nhẹ nhàng hơn nhiều.';
+    tips=['Tập thở chậm, thư giãn mỗi ngày; ngủ đủ, giảm caffeine','Chia sẻ với người thân tin cậy','Nên trò chuyện với bác sĩ để được hướng dẫn cụ thể']; }
+  else { desc='Mức '+NAME[worst]+' của bạn khá cao và có thể đang ảnh hưởng tới cuộc sống. Bạn nên được bác sĩ chuyên khoa thăm khám và đồng hành.';
+    tips=['Nên đặt lịch trò chuyện với bác sĩ sớm','Nói cho người thân biết để có người bên cạnh','Nếu có ý nghĩ làm hại bản thân, gọi ngay 115 hoặc đến cơ sở y tế']; }
 
-  document.getElementById('quiz').style.display='none';
-  document.getElementById('result').style.display='block';
-  document.getElementById('result').scrollIntoView({behavior:'smooth'});
+  const R=document.getElementById('result'); R.style.display='block';
+  R.scrollIntoView({behavior:'smooth'});
+  setTimeout(()=>{
+    ['T','L','S'].forEach(d=>{
+      const ring=document.getElementById('ring-'+d);
+      const pct=Math.min(res[d].score/FULL[d],1);
+      ring.style.stroke=res[d].color;
+      ring.style.strokeDashoffset=C*(1-pct);
+      animNum(document.getElementById('n-'+d),res[d].score);
+      const bb=document.getElementById('b-'+d); bb.textContent=res[d].name; bb.style.background=res[d].color;
+    });
+  },180);
+  document.getElementById('r-desc').textContent=desc;
+  document.getElementById('r-tips').innerHTML='<li style="font-weight:800;color:var(--ink);list-style:none;padding-left:0;">💡 Khuyến nghị cho bạn:</li>'+
+    tips.map(t=>'<li><span class="c">✓</span>'+t+'</li>').join('');
 }
 
-// ===== Chia sẻ =====
+// share
 const SHARE_URL=location.origin+location.pathname;
 const SHARE_TEXT='Mình vừa làm bài test sức khỏe tinh thần (DASS-21) của BS. Thanh Nhàn — miễn phí, 3 phút. Bạn thử xem nhé:';
 document.getElementById('share-fb').href='https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(SHARE_URL);
-function shareNative(){
-  if(navigator.share){ navigator.share({title:'Test sức khỏe tinh thần — BS. Thanh Nhàn',text:SHARE_TEXT,url:SHARE_URL}).catch(()=>{}); }
-  else { copyLink(); }
-}
-function copyLink(){
-  if(navigator.clipboard){ navigator.clipboard.writeText(SHARE_URL).then(()=>alert('Đã sao chép link! Gửi cho người thân của bạn nhé 💚')).catch(()=>prompt('Sao chép link này:',SHARE_URL)); }
-  else { prompt('Sao chép link này:',SHARE_URL); }
-}
+function shareNative(){ if(navigator.share){navigator.share({title:'Test sức khỏe tinh thần — BS. Thanh Nhàn',text:SHARE_TEXT,url:SHARE_URL}).catch(()=>{});} else copyLink(); }
+function copyLink(){ if(navigator.clipboard){navigator.clipboard.writeText(SHARE_URL).then(()=>alert('Đã sao chép link! Gửi cho người thân của bạn nhé 💚')).catch(()=>prompt('Sao chép link:',SHARE_URL));} else prompt('Sao chép link:',SHARE_URL); }
+
+// reveal on scroll
+const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+// init
+renderQ();
 </script>
 </body>
 </html>
