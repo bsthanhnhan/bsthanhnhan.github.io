@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gói Sàng Lọc Teen 5-trong-1 + Buổi tư vấn riêng cùng BS. Thanh Nhàn</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-1:#f4f0ff; --bg-2:#eafaf6;
+    --accent:#8b5cf6; --accent-dark:#6d28d9; --accent-light:#ede9fe;
+    --accent-2:#14b8a6;
+    --text:#2a2438; --card:#ffffff; --danger:#e11d48; --warn:#d97706; --safe:#16a34a;
+  }
+  body.theme-nu{
+    --bg-1:#fff0f6; --bg-2:#ffe4ef;
+    --accent:#ec4899; --accent-dark:#be185d; --accent-light:#fce7f3;
+    --accent-2:#fb7185;
+  }
+  body.theme-nam{
+    --bg-1:#eef2ff; --bg-2:#e0e7ff;
+    --accent:#2563eb; --accent-dark:#1e40af; --accent-light:#dbeafe;
+    --accent-2:#f97316;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; min-height:100vh; font-family:'Quicksand',sans-serif; color:var(--text);
+    background:linear-gradient(160deg,var(--bg-1),var(--bg-2));
+    transition:background 0.5s ease;
+    position:relative; overflow-x:hidden;
+  }
+  .blob{position:fixed; border-radius:50%; filter:blur(60px); opacity:0.35; z-index:0; transition:background 0.5s ease;}
+  .blob1{width:340px; height:340px; background:var(--accent); top:-100px; left:-100px;}
+  .blob2{width:280px; height:280px; background:var(--accent-2); bottom:-80px; right:-80px;}
+  .wrap{position:relative; z-index:1; max-width:480px; margin:0 auto; padding:28px 20px 60px; min-height:100vh; display:flex; flex-direction:column;}
+  h1,h2,h3{font-family:'Baloo 2',cursive; color:var(--accent-dark); margin:0 0 12px;}
+  .card{
+    background:var(--card); border-radius:24px; padding:24px 20px; box-shadow:0 12px 30px rgba(0,0,0,0.08);
+    margin-top:16px;
+  }
+  .badge{display:inline-block; padding:4px 12px; border-radius:999px; background:var(--accent-light); color:var(--accent-dark); font-weight:700; font-size:13px; margin-bottom:10px;}
+  p{line-height:1.6; font-size:16px;}
+  .btn{
+    display:block; width:100%; text-align:left; padding:16px 18px; margin:10px 0; border:2px solid var(--accent-light);
+    border-radius:16px; background:#fff; font-family:'Quicksand',sans-serif; font-size:16px; font-weight:600; color:var(--text);
+    cursor:pointer; transition:all .15s ease;
+  }
+  .btn:hover, .btn:active{border-color:var(--accent); background:var(--accent-light); transform:translateY(-1px);}
+  .btn-primary{
+    background:var(--accent); color:#fff; border:none; text-align:center; font-weight:700; font-size:17px; padding:16px;
+    border-radius:16px; cursor:pointer; margin-top:20px; width:100%;
+  }
+  .btn-primary:hover{background:var(--accent-dark);}
+  .gender-row{display:flex; gap:14px; margin-top:20px;}
+  .gender-card{
+    flex:1; padding:22px 10px; border-radius:20px; text-align:center; border:2px solid var(--accent-light);
+    cursor:pointer; background:#fff; transition:all .15s ease;
+  }
+  .gender-card:hover{transform:translateY(-2px); box-shadow:0 8px 18px rgba(0,0,0,0.08);}
+  .gender-card .emoji{font-size:38px; display:block; margin-bottom:8px;}
+  .progress{height:8px; background:var(--accent-light); border-radius:999px; overflow:hidden; margin-bottom:18px;}
+  .progress-fill{height:100%; background:var(--accent); transition:width .3s ease;}
+  .result-card{border-radius:24px; padding:26px 20px; margin-top:16px; color:#fff;}
+  .result-safe{background:linear-gradient(135deg,#22c55e,#16a34a);}
+  .result-warn{background:linear-gradient(135deg,#f59e0b,#d97706);}
+  .result-danger{background:linear-gradient(135deg,#f43f5e,#be123c);}
+  .result-neutral{background:var(--card); color:var(--text); border:2px solid var(--accent-light);}
+  .stat-row{display:flex; gap:12px; margin-top:16px;}
+  .stat-box{flex:1; border-radius:16px; padding:14px; text-align:center;}
+  .stat-box .stat-label{font-size:13px; color:#6b6478;}
+  .stat-box .stat-value{font-weight:800; margin-top:4px; font-family:'Baloo 2',cursive;}
+  .emergency-box{background:rgba(255,255,255,0.18); border:2px solid rgba(255,255,255,0.5); border-radius:16px; padding:16px; margin-top:14px;}
+  .emergency-box .num{font-size:22px; font-weight:800; font-family:'Baloo 2',cursive;}
+  input[type=tel]{
+    width:100%; padding:14px; border-radius:12px; border:2px solid var(--accent-light); font-size:16px; font-family:'Quicksand',sans-serif;
+    margin-top:10px;
+  }
+  .muted{font-size:13px; color:#6b6478; margin-top:8px;}
+  .q-hint{font-size:14px; color:#6b6478; background:var(--accent-light); border-radius:12px; padding:10px 14px; margin:10px 0 4px; line-height:1.5;}
+  .hidden{display:none !important;}
+  .footer-link{
+    text-align:center; margin-top:24px; font-size:13px; color:#8a8296; text-decoration:underline; cursor:pointer;
+  }
+  .theme-art{display:none; position:fixed; z-index:0; pointer-events:none; top:0; right:-30px; width:240px;}
+  body.theme-nu .art-nu{display:block;}
+  body.theme-nam .art-nam{display:block;}
+  .summary-item{display:flex; justify-content:space-between; align-items:center; padding:12px 14px; border-radius:14px; margin-top:10px;}
+  .report-banner{border-radius:18px; padding:16px 18px; margin-top:14px; color:#fff; font-weight:700;}
+  .report-card{background:var(--card); border-radius:18px; padding:16px 18px; margin-top:14px; box-shadow:0 8px 20px rgba(0,0,0,0.06);}
+  .report-card-head{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;}
+  .report-tier{font-weight:800; font-family:'Baloo 2',cursive; font-size:15px; padding:4px 12px; border-radius:999px;}
+  .report-detail{margin-top:8px; font-size:14.5px; line-height:1.5;}
+  .report-action{margin-top:8px; font-size:14.5px; line-height:1.5; padding:10px 12px; background:var(--accent-light); border-radius:12px;}
+  .report-action b{color:var(--accent-dark);}
+  .report-disclaimer{font-size:12.5px; color:#8a8296; margin-top:20px; line-height:1.6; border-top:1px solid var(--accent-light); padding-top:14px;}
+  .doctor-card p{margin-bottom:12px;}
+  .doctor-avatar{width:84px; height:84px; border-radius:50%; background:var(--accent-light); display:flex; align-items:center; justify-content:center; font-size:42px; margin:0 auto 12px;}
+  .zalo-card{background:linear-gradient(135deg,#0068ff,#0044cc); color:#fff; border-radius:20px; padding:22px 20px; margin-top:16px; text-align:center;}
+  .zalo-card h3{color:#fff; margin-bottom:6px;}
+  .zalo-btn{display:inline-flex; align-items:center; justify-content:center; gap:8px; background:#fff; color:#0044cc; font-weight:800; font-family:'Baloo 2',cursive; font-size:16px; padding:14px 20px; border-radius:14px; text-decoration:none; margin-top:14px; width:100%; box-sizing:border-box;}
+  .zalo-phone{margin-top:10px; font-size:14px; opacity:0.9;}
+  .doctor-photo{width:150px; height:150px; border-radius:50%; object-fit:cover; object-position:top; display:block; margin:0 auto 12px; border:4px solid var(--accent-light); box-shadow:0 8px 20px rgba(0,0,0,0.12);}
+  .trust-line{font-size:14.5px; background:var(--accent-light); border-radius:12px; padding:10px 14px; line-height:1.55;}
+  .offer-list{list-style:none; padding:0; margin:0;}
+  .offer-list li{padding:10px 0 10px 30px; position:relative; line-height:1.55; font-size:15.5px; border-bottom:1px dashed var(--accent-light);}
+  .offer-list li:last-child{border-bottom:none;}
+  .offer-list li::before{content:'✓'; position:absolute; left:2px; top:10px; color:var(--accent-dark); font-weight:800;}
+  .price-box{text-align:center; margin:18px 0 6px; padding:16px; background:var(--accent-light); border-radius:16px;}
+  .price-old{font-size:18px; color:#8a8296; text-decoration:line-through; margin-right:12px;}
+  .price-new{font-size:32px; font-weight:800; font-family:'Baloo 2',cursive; color:var(--accent-dark);}
+  .price-note{font-size:13px; color:#6b6478; margin-top:6px;}
+  .btn-zalo-link{display:block; text-align:center; text-decoration:none; box-sizing:border-box; background:#0068ff; color:#fff; font-weight:700; font-size:17px; padding:16px; border-radius:16px; margin-top:14px;}
+  .btn-zalo-link:hover{background:#0044cc;}
+  .code-box{background:#f5f3ff; border:2px dashed var(--accent); border-radius:14px; padding:14px; margin-top:12px; font-family:monospace; font-size:12.5px; word-break:break-all; max-height:160px; overflow-y:auto; color:#4c1d95;}
+  textarea.code-input{width:100%; min-height:110px; border:2px solid var(--accent-light); border-radius:12px; padding:12px; font-family:monospace; font-size:13px; box-sizing:border-box; resize:vertical;}
+  .qa-item{padding:10px 0; border-bottom:1px dashed var(--accent-light); font-size:14px; line-height:1.5;}
+  .qa-item .qa-q{color:#6b6478;}
+  .qa-item .qa-a{font-weight:700; margin-top:2px;}
+</style>
+</head>
+<body>
+<div class="blob blob1"></div>
+<div class="blob blob2"></div>
+
+<!-- Minh họa gốc tự vẽ (SVG thuần, không dùng ảnh/logo bên ngoài — tránh vấn đề bản quyền) -->
+<svg class="theme-art art-nu" viewBox="0 0 400 400">
+  <ellipse cx="200" cy="180" rx="120" ry="70" fill="#ffffff" opacity="0.85"/>
+  <circle cx="130" cy="160" r="55" fill="#ffffff" opacity="0.85"/>
+  <circle cx="270" cy="160" r="55" fill="#ffffff" opacity="0.85"/>
+  <circle cx="200" cy="130" r="65" fill="#ffffff" opacity="0.85"/>
+  <circle cx="170" cy="185" r="7" fill="#be185d"/>
+  <circle cx="230" cy="185" r="7" fill="#be185d"/>
+  <circle cx="155" cy="200" r="12" fill="#f9a8d4" opacity="0.7"/>
+  <circle cx="245" cy="200" r="12" fill="#f9a8d4" opacity="0.7"/>
+  <path d="M180 205 Q200 220 220 205" stroke="#be185d" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <path d="M60 90 L66 106 L82 112 L66 118 L60 134 L54 118 L38 112 L54 106 Z" fill="#fbcfe8"/>
+  <path d="M330 260 L334 271 L345 275 L334 279 L330 290 L326 279 L315 275 L326 271 Z" fill="#fbcfe8"/>
+  <path d="M320 60 L323 68 L331 71 L323 74 L320 82 L317 74 L309 71 L317 68 Z" fill="#f9a8d4"/>
+  <path d="M90 290 C90 278 108 278 108 290 C108 278 126 278 126 290 C126 304 108 314 108 314 C108 314 90 304 90 290 Z" fill="#fda4c0" opacity="0.85"/>
+  <path d="M300 320 C300 312 313 312 313 320 C313 312 326 312 326 320 C326 330 313 337 313 337 C313 337 300 330 300 320 Z" fill="#fda4c0" opacity="0.7"/>
+</svg>
+<svg class="theme-art art-nam" viewBox="0 0 400 400">
+  <line x1="0" y1="55" x2="150" y2="55" stroke="#93c5fd" stroke-width="7" stroke-linecap="round" opacity="0.6"/>
+  <line x1="0" y1="82" x2="190" y2="82" stroke="#93c5fd" stroke-width="7" stroke-linecap="round" opacity="0.5"/>
+  <line x1="0" y1="109" x2="120" y2="109" stroke="#93c5fd" stroke-width="7" stroke-linecap="round" opacity="0.4"/>
+  <path d="M40 230 Q60 195 112 192 L152 168 Q192 152 252 158 L302 178 Q332 190 342 213 L347 228 L330 228 Q325 212 305 212 Q285 212 280 228 L142 228 Q137 212 117 212 Q97 212 92 228 L40 228 Z" fill="#1e40af" opacity="0.9"/>
+  <circle cx="117" cy="228" r="19" fill="#1e293b"/>
+  <circle cx="305" cy="228" r="19" fill="#1e293b"/>
+  <circle cx="117" cy="228" r="8" fill="#93c5fd"/>
+  <circle cx="305" cy="228" r="8" fill="#93c5fd"/>
+  <path d="M255 55 L228 108 L249 108 L222 162 L275 100 L252 100 Z" fill="#f97316" opacity="0.9"/>
+  <g transform="translate(240,275)">
+    <rect x="0" y="10" width="72" height="36" rx="18" fill="#1e293b" opacity="0.88"/>
+    <circle cx="16" cy="28" r="6" fill="#93c5fd"/>
+    <circle cx="56" cy="20" r="5" fill="#f97316"/>
+    <circle cx="56" cy="35" r="5" fill="#f97316"/>
+  </g>
+  <g transform="translate(28,255) rotate(-18)">
+    <rect x="8" y="0" width="6" height="88" fill="#cbd5e1"/>
+    <polygon points="11,0 4,20 18,20" fill="#e2e8f0"/>
+    <rect x="-2" y="86" width="24" height="8" fill="#7c4a10"/>
+    <rect x="8" y="93" width="6" height="28" fill="#78350f"/>
+  </g>
+</svg>
+
+<div class="wrap">
+
+  <!-- SCREEN -1: landing dành cho phụ huynh -->
+  <div id="screen-landing">
+    <span class="badge">Dành cho phụ huynh có con 10–17 tuổi</span>
+    <h1 style="font-size:25px;line-height:1.35">Con dạo này cáu gắt, đóng cửa phòng, hỏi gì cũng "con không sao"…</h1>
+    <p style="font-weight:600">Là tuổi dậy thì bình thường — hay dấu hiệu con đang cần giúp đỡ? Ranh giới giữa hai điều đó mong manh đến mức người có chuyên môn cũng phải quan sát kỹ mới phân biệt được. <strong>Đừng đoán một mình. Hãy để bác sĩ chuyên khoa cùng nhìn với bạn.</strong></p>
+    <div class="trust-line">⏱️ Chỉ <strong>10 phút con tự làm trên điện thoại</strong> — bạn có <strong>bức tranh ban đầu về 5 lĩnh vực quan trọng</strong> của con, được <strong>bác sĩ chuyên khoa trực tiếp đọc và giải thích</strong> trong buổi tư vấn riêng, kèm gợi ý bước tiếp theo phù hợp.</div>
+
+    <div class="card" style="text-align:center">
+      <img class="doctor-photo" src="bs-thanh-nhan.jpg" alt="BS. Thanh Nhàn — Bác sĩ chuyên khoa Tâm thần">
+      <h2 style="margin-bottom:4px">BS. Thanh Nhàn</h2>
+      <p class="muted" style="margin-top:0">Bác sĩ chuyên khoa Tâm thần</p>
+      <p style="font-size:15px;margin-bottom:0">Đang công tác tại <strong>Bệnh viện Tâm thần Trung ương 2</strong> — một trong hai bệnh viện chuyên khoa tâm thần tuyến Trung ương trực thuộc Bộ Y tế.</p>
+      <p class="muted" style="font-size:12.5px;margin-bottom:0">Thông tin nơi công tác chỉ nhằm giới thiệu quá trình làm việc của bác sĩ. Dịch vụ tư vấn này là hoạt động cá nhân độc lập, <strong>không phải dịch vụ của bệnh viện</strong> và không do bệnh viện bảo trợ.</p>
+    </div>
+
+    <div class="card">
+      <h3 style="margin-bottom:4px">Gói Sàng Lọc Teen 5-trong-1<br>+ Buổi tư vấn riêng cùng bác sĩ</h3>
+      <ul class="offer-list">
+        <li><strong>Bài sàng lọc 5 lĩnh vực</strong> (~10 phút, con tự làm): an toàn bản thân · cảm xúc–lo âu · khả năng tập trung · giao tiếp–cảm nhận · thói quen chơi game. Bộ câu hỏi do bác sĩ chuyên khoa tâm thần biên soạn, tham khảo cấu trúc các thang sàng lọc quốc tế.</li>
+        <li><strong>BS. Thanh Nhàn trực tiếp đọc kết quả</strong> — không phải máy chấm điểm tự động. Kết quả không hiện lên màn hình để con không tự dán nhãn bản thân; bác sĩ là người đọc và diễn giải đúng chuyên môn.</li>
+        <li><strong>1 buổi tư vấn riêng với bác sĩ (qua Zalo)</strong> dành cho bố mẹ: bác sĩ giải thích kết quả sàng lọc dễ hiểu — lĩnh vực nào con đang ổn, lĩnh vực nào nên chú ý — và <strong>gợi ý bước tiếp theo phù hợp</strong>, dựa trên chính câu trả lời của con. Đây là tư vấn định hướng dựa trên sàng lọc ban đầu, không phải buổi khám chẩn đoán.</li>
+      </ul>
+      <div class="price-box">
+        <div style="font-size:13px;color:#6b6478;margin-bottom:4px">Giá niêm yết trọn gói: <span class="price-old" style="font-size:15px">1.868.000đ</span></div>
+        <div><span style="font-size:14px;font-weight:700;color:var(--accent-dark)">Ưu đãi ra mắt:</span> <span class="price-new">686.000đ</span></div>
+        <div class="price-note">Áp dụng cho <strong>20 gia đình đăng ký đầu tiên</strong> trong giai đoạn ra mắt. Trọn gói — đã gồm cả bài sàng lọc và buổi tư vấn riêng với bác sĩ, không phát sinh thêm chi phí.</div>
+      </div>
+      <a class="btn-zalo-link" href="https://zalo.me/0339681115" target="_blank" rel="noopener">💬 Nhắn Zalo "TEEN" cho BS. Nhàn để đăng ký</a>
+      <p class="muted" style="text-align:center">Sau khi bạn nhắn, bác sĩ sẽ xác nhận, hướng dẫn cách thanh toán và gửi link bài test cho con. Số điện thoại của bạn chỉ mình bác sĩ xem — không spam, không chuyển cho bất kỳ bên nào khác.</p>
+    </div>
+
+    <div class="card doctor-card">
+      <h3>Vì sao tôi tạo bài sàng lọc này?</h3>
+      <p>Trong phòng khám, tôi đã gặp rất nhiều đứa trẻ ngồi im lặng, hai tay siết chặt vào nhau — không phải vì các em không có gì để nói, mà vì các em đã học được rằng nói ra cũng chẳng thay đổi được gì. Có em từng nói với tôi: <em>"Con không dám kể với bố mẹ, vì con sợ bị la, hoặc tệ hơn — sợ bố mẹ chẳng để ý."</em></p>
+      <p>Còn với phụ huynh, tôi hiểu rõ sự bối rối của các anh chị: ranh giới giữa "nổi loạn tuổi teen" và một vấn đề tâm lý thật sự đôi khi mong manh đến mức người có chuyên môn cũng cần quan sát kỹ — huống chi bố mẹ, những người đang bận trăm nỗi lo khác. Và khoảng cách đó cứ lớn dần trong im lặng: con không nói, bố mẹ không hỏi đúng cách.</p>
+      <p>Tôi tin sức khỏe tinh thần cũng cần được <strong>tầm soát định kỳ</strong> như sức khỏe thể chất — không chờ đến khi có khủng hoảng mới tìm bác sĩ. Một dấu hiệu nhỏ được phát hiện sớm luôn dễ xử lý hơn rất nhiều — và đó cũng là cách để bố mẹ biết chắc con mình đang thật sự ổn, thay vì chỉ đoán.</p>
+      <p style="text-align:right;font-style:italic;margin-top:18px">— BS. Thanh Nhàn</p>
+    </div>
+
+    <div class="card">
+      <p style="font-weight:700;margin-top:0">Con đã được đăng ký và sẵn sàng làm bài?</p>
+      <button class="btn-primary" style="margin-top:4px" onclick="goTo('screen-intro')">Bắt đầu bài test →</button>
+    </div>
+
+    <div class="report-disclaimer">
+      Đây là công cụ <strong>sàng lọc/tham khảo</strong> do bác sĩ chuyên khoa biên soạn, <strong>không phải công cụ chẩn đoán</strong> và không thay thế việc thăm khám trực tiếp với bác sĩ/chuyên gia tâm lý. Buổi tư vấn giúp gia đình hiểu kết quả sàng lọc và định hướng bước tiếp theo, không phải buổi khám bệnh, không kê đơn thuốc. Giá ưu đãi 686.000đ áp dụng cho 20 gia đình đăng ký đầu tiên trong giai đoạn ra mắt; khi hết ưu đãi, áp dụng giá niêm yết trọn gói 1.868.000đ.
+    </div>
+  </div>
+
+  <!-- SCREEN 0: intro -->
+  <div id="screen-intro" class="hidden">
+    <span class="badge">Bước 1 / Bắt đầu bài test</span>
+    <h1>Trước khi bắt đầu, mình nói rõ vài điều nhé 💬</h1>
+    <div class="card">
+      <p>Đây không phải bài kiểm tra "chấm điểm đúng sai" — là những <strong>câu hỏi tham khảo tự soạn</strong>, KHÔNG phải phiên bản chính thức của bất kỳ thang đo tâm lý chuẩn hóa nào (không phải bản chuẩn của C-SSRS, PHQ-9, GAD-7 hay các thang khác). Nó KHÔNG thay thế việc thăm khám với bác sĩ/chuyên gia tâm lý thật.</p>
+      <p><strong>Ai sẽ xem câu trả lời của bạn?</strong> Kết quả sẽ <strong>không hiện lên màn hình</strong> sau khi bạn làm xong — bài làm được chuyển thành một mã hồ sơ ngắn để gửi cho <strong>BS. Thanh Nhàn</strong>. Nói thật rõ để bạn quyết định: bác sĩ sẽ xem <strong>từng câu trả lời chi tiết</strong> của bạn (để hiểu đúng, không phán xét), và sẽ trao đổi với bố/mẹ bạn trong buổi tư vấn về bức tranh chung cùng những điều cần hỗ trợ. Nếu có điều gì bạn muốn nói riêng với bác sĩ trước, bạn có thể nhắn Zalo cho bác sĩ.</p>
+      <p><strong>Quyền của bạn:</strong> bạn có thể dừng bài test bất cứ lúc nào, và không bắt buộc phải gửi mã nếu chưa sẵn sàng — nhưng gửi cho bác sĩ là cách để bạn được hỗ trợ đúng.</p>
+      <p><strong>Ngoại lệ duy nhất:</strong> nếu câu trả lời của bạn cho thấy bạn có thể đang gặp nguy hiểm (ví dụ có ý định tự làm hại bản thân), bài test sẽ <strong>dừng lại ngay và hướng dẫn bạn báo cho người lớn + các số hỗ trợ khẩn cấp</strong>. Hãy làm theo hướng dẫn đó — không phải để phạt bạn, mà vì sự an toàn luôn là ưu tiên số 1.</p>
+      <p>Ngoài điều đó ra, cứ trả lời <strong>thật lòng</strong> là được 💛</p>
+      <button class="btn-primary" onclick="goTo('screen-gender')">Mình hiểu rồi, bắt đầu thôi</button>
+    </div>
+  </div>
+
+  <!-- SCREEN 1: gender -->
+  <div id="screen-gender" class="hidden">
+    <span class="badge">Bước 2 / Một chút về bạn</span>
+    <h2>Bạn là bạn nam hay bạn nữ?</h2>
+    <p class="muted">Chỉ để mình đổi giao diện cho hợp với bạn thôi, không ảnh hưởng đến kết quả.</p>
+    <div class="gender-row">
+      <div class="gender-card" onclick="setGender('nu')">
+        <span class="emoji">💗</span>
+        <div>Bạn nữ</div>
+      </div>
+      <div class="gender-card" onclick="setGender('nam')">
+        <span class="emoji">💪</span>
+        <div>Bạn nam</div>
+      </div>
+    </div>
+    <div class="footer-link" onclick="setGender('khac')">Mình không muốn chọn / khác →</div>
+  </div>
+
+  <!-- SCREEN 2: questions -->
+  <div id="screen-question" class="hidden">
+    <span class="badge" id="q-badge">Câu hỏi</span>
+    <div class="progress"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+    <div class="card">
+      <h3 id="q-text"></h3>
+      <div id="q-options"></div>
+    </div>
+  </div>
+
+  <!-- SCREEN 3: result -->
+  <div id="screen-result" class="hidden">
+    <div id="result-card" class="result-card"></div>
+  </div>
+
+  <!-- SCREEN 4: module 2 intro -->
+  <div id="screen-mod2-intro" class="hidden">
+    <span class="badge">Bước tiếp theo</span>
+    <h2>Xong phần đó rồi 🎉</h2>
+    <div class="card">
+      <p>Giờ mình hỏi tiếp vài câu về <strong>cảm xúc và những lo lắng gần đây</strong> của bạn nhé.</p>
+      <p class="muted">Trong 2 tuần gần đây, mức độ mỗi điều đúng với bạn thế nào? Chọn đáp án gần đúng nhất là được, không cần suy nghĩ quá lâu.</p>
+      <button class="btn-primary" onclick="startModule(moduleDepAnx)">Tiếp tục</button>
+    </div>
+  </div>
+
+  <!-- SCREEN 5: module 3 intro (ADHD) -->
+  <div id="screen-mod3-intro" class="hidden">
+    <span class="badge">Bước tiếp theo</span>
+    <h2>Gần xong rồi, cố lên nhé 💪</h2>
+    <div class="card">
+      <p>Phần cuối này hỏi về <strong>khả năng tập trung và sự hiếu động</strong> — những điều này ai cũng có ở một mức nào đó, không có gì phải lo lắng khi trả lời cả.</p>
+      <p class="muted">Trả lời theo đúng thói quen thường ngày của bạn (không chỉ 2 tuần gần đây) nhé.</p>
+      <button class="btn-primary" onclick="startModule(moduleADHD)">Tiếp tục</button>
+    </div>
+  </div>
+
+  <!-- SCREEN 6: module 4 intro (Tự kỷ) -->
+  <div id="screen-mod4-intro" class="hidden">
+    <span class="badge">Bước tiếp theo</span>
+    <h2>Vài câu về cách bạn nhìn thế giới 🌍</h2>
+    <div class="card">
+      <p>Phần này hỏi về <strong>cách bạn giao tiếp và cảm nhận</strong> mọi thứ xung quanh — mỗi người một kiểu khác nhau, không có kiểu nào là "sai" cả.</p>
+      <p class="muted">Chọn mức đúng nhất với con người thật của bạn nhé.</p>
+      <button class="btn-primary" onclick="startModule(moduleAutism)">Tiếp tục</button>
+    </div>
+  </div>
+
+  <!-- SCREEN 7: module 5 intro (Nghiện game) -->
+  <div id="screen-mod5-intro" class="hidden">
+    <span class="badge">Phần cuối cùng</span>
+    <h2>Còn 9 câu nữa là xong hết 🎮</h2>
+    <div class="card">
+      <p>Phần cuối hỏi về <strong>thói quen chơi game</strong> của bạn. Chơi game không xấu — câu hỏi chỉ để xem nó có đang ảnh hưởng đến cuộc sống của bạn không thôi.</p>
+      <button class="btn-primary" onclick="startModule(moduleGaming)">Tiếp tục</button>
+    </div>
+  </div>
+
+  <!-- SCREEN 8: hoàn tất — kết quả KHÔNG hiển thị, chỉ tạo mã gửi bác sĩ -->
+  <div id="screen-final" class="hidden">
+    <span class="badge">Hoàn tất 🎉</span>
+    <h2>Cảm ơn bạn đã hoàn thành bài test!</h2>
+    <div class="card">
+      <p>Bạn đã làm xong toàn bộ 5 phần — cảm ơn bạn đã trả lời thật lòng 💛</p>
+      <p>Như đã nói từ đầu, kết quả sẽ <strong>không hiện ở đây</strong>. <strong>BS. Thanh Nhàn sẽ trực tiếp đọc</strong> và giải thích cặn kẽ, dễ hiểu trong buổi tư vấn riêng cùng bố/mẹ bạn.</p>
+      <p><strong>Bước cuối cùng:</strong> bấm nút sao chép bên dưới, rồi gửi mã hồ sơ qua Zalo cho bác sĩ nhé.</p>
+      <div class="code-box" id="result-code" style="font-size:15px;letter-spacing:0.5px"></div>
+      <button class="btn-primary" id="copy-code-btn" onclick="copyResultCode()">📋 Sao chép mã hồ sơ</button>
+      <a class="btn-zalo-link" href="https://zalo.me/0339681115" target="_blank" rel="noopener">💬 Gửi mã cho BS. Thanh Nhàn qua Zalo</a>
+      <p class="muted">Mã này chỉ chứa các câu trả lời trong bài test, không chứa tên hay thông tin cá nhân nào của bạn. <strong>Chỉ gửi mã cho bác sĩ</strong> — đừng đăng lên nơi công khai, vì ai có mã cũng có thể đọc được nội dung bài làm.</p>
+    </div>
+    <div id="final-support"></div>
+  </div>
+
+  <!-- SCREEN 9: khu vực bác sĩ — giải mã kết quả (mở bằng ?bs=1) -->
+  <div id="screen-doctor" class="hidden">
+    <span class="badge">Khu vực bác sĩ</span>
+    <h2>Giải mã kết quả sàng lọc</h2>
+    <div class="card">
+      <p>Dán mã hồ sơ nhận được qua Zalo vào ô dưới đây:</p>
+      <textarea class="code-input" id="code-input" style="min-height:60px" placeholder="Dán mã hồ sơ tại đây (dạng TEEN-...)"></textarea>
+      <button class="btn-primary" onclick="decodeReport()">Giải mã báo cáo</button>
+      <p class="muted" id="decode-error" style="color:#dc2626"></p>
+      <p class="muted">Lưu ý: trang tĩnh không có đăng nhập — ai có mã đều có thể giải tại đây. Không chia sẻ mã hoặc đường dẫn này công khai. Mã bị thiếu/không nhất quán sẽ bị từ chối, không hiển thị báo cáo.</p>
+    </div>
+    <div id="parent-report-body"></div>
+  </div>
+
+</div>
+
+<script>
+// Thang tần suất kiểu PHQ-9/GAD-7: neo theo SỐ NGÀY cụ thể trong 2 tuần thay vì cảm nhận mơ hồ
+// ("thỉnh thoảng" hay "thường xuyên" mỗi bạn hiểu một kiểu — đếm ngày thì ai cũng trả lời giống nhau hơn)
+const freq = [
+  {label:'Không hề — gần như không ngày nào', score:0},
+  {label:'Vài ngày (khoảng 1–6 ngày)', score:1},
+  {label:'Hơn nửa số ngày (khoảng 7–10 ngày)', score:2},
+  {label:'Gần như ngày nào cũng vậy (11–14 ngày)', score:3},
+];
+
+const moduleSafety = {
+  id:'safety',
+  label:'Sàng lọc an toàn',
+  questions:[
+    {
+      id:'q1',
+      text:'Trong khoảng 1 tháng gần đây, có khi nào bạn ước gì mình biến mất, hoặc không còn tồn tại trên đời nữa không?',
+      hint:'Ví dụ: kiểu nghĩ "ước gì mình ngủ luôn không dậy nữa" hoặc "giá mà mình chưa từng được sinh ra" — chỉ là ý nghĩ thoáng qua, chưa phải là muốn tự làm gì.',
+      options:[
+        {label:'Không, mình chưa từng nghĩ vậy', score:0},
+        {label:'Có, khoảng 1–2 lần trong tháng', score:1},
+        {label:'Có, nhiều hơn 1 lần mỗi tuần', score:2},
+      ]
+    },
+    {
+      id:'q2',
+      text:'Bạn có từng THẬT SỰ nghĩ về việc tự mình kết thúc cuộc sống (không chỉ ước "biến mất" chung chung), dù chưa nghĩ ra cách nào cụ thể?',
+      hint:'Khác câu trên: đây là nghĩ nghiêm túc về việc TỰ MÌNH LÀM một điều gì đó, dù chưa nghĩ ra cách. Nếu suy nghĩ này khó gạt bỏ, hãy chọn đúng — điều đó quan trọng để mình hỗ trợ đúng cách.',
+      options:[
+        {label:'Chưa từng nghĩ vậy', score:0},
+        {label:'Có thoáng qua, nhưng dễ dàng gạt bỏ, không đọng lại', score:1},
+        {label:'Có, và mình thấy khó gạt suy nghĩ này ra khỏi đầu', score:3},
+      ]
+    },
+    {
+      id:'q6',
+      text:'Bạn đã chuẩn bị gì cho việc đó chưa? (ví dụ: chuẩn bị vật dụng, viết gì đó để lại, cho đi đồ đạc quan trọng...)',
+      hint:'Luôn hỏi câu này dù câu trước bạn trả lời thế nào — hành động chuẩn bị THẬT là thông tin rất quan trọng, kể cả khi bạn thấy suy nghĩ của mình chỉ "thoáng qua".',
+      options:[
+        {label:'Chưa làm gì cả', score:0},
+        {label:'Có nghĩ đến việc chuẩn bị nhưng chưa làm', score:2},
+        {label:'Có, mình đã thực sự chuẩn bị rồi', score:3},
+      ]
+    },
+    {
+      id:'q3',
+      text:'Bạn đã từng nghĩ đến MỘT CÁCH cụ thể nào đó để làm điều này chưa (dù chưa quyết định sẽ làm)?',
+      condition:(a)=> (a.q2 >= 1) || (a.q6 >= 1),
+      hint:'Ví dụ: thoáng nghĩ về việc dùng thuốc, vật sắc nhọn, độ cao... Đây chỉ hỏi bạn ĐÃ NGHĨ ĐẾN cách nào chưa, không phải đã quyết định làm.',
+      options:[
+        {label:'Chưa, chỉ nghĩ chung chung, không nghĩ đến cách nào', score:0},
+        {label:'Có nghĩ thoáng qua về 1 cách nào đó', score:1},
+        {label:'Có, mình đã nghĩ khá rõ về cách đó', score:2},
+      ]
+    },
+    {
+      id:'q4',
+      text:'Bạn có Ý ĐỊNH sẽ thật sự làm điều đó không, hay chỉ là suy nghĩ thoáng qua mà không có ý định hành động?',
+      condition:(a)=> (a.q2 >= 1) || (a.q6 >= 1),
+      hint:'Có sự khác biệt lớn giữa "có nghĩ đến" và "có ý định thật sự sẽ làm" — câu này hỏi riêng về ý định.',
+      options:[
+        {label:'Không, mình chắc chắn sẽ không làm', score:0},
+        {label:'Có phần muốn làm, nhưng chưa chắc chắn', score:2},
+        {label:'Có, mình khá chắc là mình muốn làm điều đó', score:3},
+      ]
+    },
+    {
+      id:'q5',
+      text:'Bạn đã có kế hoạch cụ thể chưa (sẽ dùng gì, ở đâu, khi nào)?',
+      condition:(a)=> (a.q3 >= 1) || (a.q4 >= 1) || (a.q6 >= 1),
+      options:[
+        {label:'Chưa có kế hoạch gì cụ thể', score:0},
+        {label:'Có nghĩ sơ qua nhưng chưa quyết định', score:1},
+        {label:'Có, mình đã có kế hoạch khá rõ ràng', score:3},
+      ]
+    },
+    {
+      id:'q7a',
+      text:'Đã bao giờ bạn tự làm đau cơ thể mình (như cắn, cào, cắt da...) mà KHÔNG nhằm mục đích kết thúc cuộc sống chưa?',
+      hint:'Câu này hỏi về việc tự làm đau để giải tỏa cảm xúc — khác với việc cố tự tử ở câu tiếp theo.',
+      options:[
+        {label:'Chưa bao giờ', score:0},
+        {label:'Có, nhưng đã hơn 3 tháng rồi', score:1},
+        {label:'Có, trong 3 tháng gần đây', score:2},
+      ]
+    },
+    {
+      id:'q7b',
+      text:'Bạn đã từng thử tự tử thật sự (có hành động nhằm kết thúc cuộc sống, không chỉ là suy nghĩ) chưa?',
+      hint:'Luôn hỏi câu này — dù đã lâu, đây vẫn là thông tin quan trọng nhất để đánh giá đúng mức độ cần hỗ trợ.',
+      options:[
+        {label:'Chưa bao giờ', score:0},
+        {label:'Có, nhưng đã hơn 3 tháng trước', score:2},
+        {label:'Có, trong 3 tháng gần đây', score:3},
+      ]
+    },
+    {
+      id:'q8',
+      text:'Ngay bây giờ, có người lớn nào ở gần bạn không, và bạn có thấy an toàn khi nói chuyện với họ không?',
+      hint:'Câu này không tính điểm — chỉ để mình đưa ra gợi ý phù hợp nhất với hoàn cảnh của bạn lúc này.',
+      options:[
+        {label:'Có người ở gần, và mình tin tưởng để nói chuyện với họ', score:0},
+        {label:'Có người ở gần, nhưng mình không chắc có thể nói với họ', score:0},
+        {label:'Không có ai ở gần lúc này', score:0},
+        {label:'Không chắc', score:0},
+      ]
+    },
+  ]
+};
+
+const moduleDepAnx = {
+  id:'depanx',
+  label:'Cảm xúc & Lo âu',
+  questions:[
+    {id:'d1', group:'dep', text:'Mình cảm thấy buồn, chán nản hoặc trống rỗng mà không rõ vì sao', hint:'Không phải kiểu buồn vì một chuyện cụ thể (như bị điểm kém) — mà là cảm giác buồn tự nhiên xuất hiện, không rõ lý do.', options:freq},
+    {id:'d2', group:'dep', text:'Mình mất hứng thú với những thứ trước đây từng thích (chơi game, gặp bạn bè, xem phim, thể thao...)', hint:'Ví dụ: trước đây thích nhưng giờ làm cũng thấy chán, không còn vui như trước.', options:freq},
+    {id:'d3', group:'dep', text:'Mình cảm thấy mệt mỏi, ít năng lượng, dù không làm gì nhiều hoặc đã ngủ đủ giấc', hint:'Kiểu cảm giác "chẳng muốn nhấc người dậy" dù cơ thể không bệnh gì.', options:freq},
+    {id:'d4', group:'dep', text:'Mình nghĩ bản thân mình vô dụng, kém cỏi, hoặc là gánh nặng cho gia đình/bạn bè', hint:'Ví dụ: hay tự trách bản thân, thấy mình làm gì cũng không đủ tốt.', options:freq},
+    {id:'a1', group:'anx', text:'Mình lo lắng quá mức về bài kiểm tra, điểm số, hoặc những chuyện chưa chắc đã xảy ra', hint:'Lo đến mức khó tập trung làm việc khác, dù chuyện đó chưa chắc sẽ xảy ra.', options:freq},
+    {id:'a2', group:'anx', text:'Cơ thể mình phản ứng lạ (tim đập nhanh, tay run, đổ mồ hôi, khó thở) dù không có gì nguy hiểm thật sự', hint:'Ví dụ: trước khi kiểm tra hoặc phải nói trước lớp dù đã chuẩn bị kỹ.', options:freq},
+    {id:'a3', group:'anx', text:'Mình sợ hoặc cố né tránh việc phải nói chuyện, làm quen người mới, hoặc đứng trước đám đông', hint:'Ví dụ: né phát biểu trong lớp, ngại nhắn tin làm quen dù trong lòng muốn.', options:freq},
+    {id:'a4', group:'anx', text:'Đầu óc mình cứ suy nghĩ, lo lắng liên tục đến mức khó ngủ hoặc khó tập trung', hint:'Ví dụ: nằm mãi không ngủ được vì đầu cứ nghĩ lung tung chuyện này chuyện kia.', options:freq},
+  ]
+};
+
+// ADHD là đặc điểm kéo dài lâu dài (không phải cảm xúc theo 2 tuần), nên neo tần suất theo
+// thói quen thường ngày (tháng/tuần/ngày) thay vì đếm ngày trong 2 tuần như thang cảm xúc ở trên
+const adhdFreq = [
+  {label:'Hầu như không bao giờ', score:0},
+  {label:'Thỉnh thoảng (vài lần một tháng)', score:1},
+  {label:'Khá thường xuyên (vài lần một tuần)', score:2},
+  {label:'Gần như mỗi ngày', score:3},
+];
+
+const moduleADHD = {
+  id:'adhd',
+  label:'Tập trung & Hiếu động',
+  questions:[
+    {id:'h1', group:'inattention', text:'Mình khó tập trung khi làm bài tập hoặc đọc sách, dù mình muốn tập trung', hint:'Ví dụ: đọc được vài dòng là lại suy nghĩ sang chuyện khác, phải đọc đi đọc lại nhiều lần.', options:adhdFreq},
+    {id:'h2', group:'inattention', text:'Mình hay quên hoặc để thất lạc đồ dùng học tập (sách vở, bút, điện thoại...)', hint:'Ví dụ: quên mang tập vở, tìm mãi không thấy đồ mình vừa để đâu đó.', options:adhdFreq},
+    {id:'h3', group:'inattention', text:'Mình hay trì hoãn hoặc né tránh những việc cần suy nghĩ nhiều, dù biết là quan trọng', hint:'Ví dụ: bài tập lớn cứ để đến sát hạn nộp mới bắt đầu làm.', options:adhdFreq},
+    {id:'h4', group:'hyper', text:'Mình cảm thấy bồn chồn, ngồi yên một chỗ lâu (như trong giờ học) là thấy khó chịu', hint:'Ví dụ: cứ phải rung chân, cựa quậy, đứng lên ngồi xuống liên tục.', options:adhdFreq},
+    {id:'h5', group:'hyper', text:'Mình buột miệng nói hoặc hành động trước khi kịp suy nghĩ kỹ', hint:'Ví dụ: cắt ngang lời người khác, trả lời khi câu hỏi chưa nói xong.', options:adhdFreq},
+    {id:'h6', group:'hyper', text:'Mình thấy khó chờ đến lượt mình (xếp hàng, chờ nói chuyện, chờ đến phiên chơi...)', hint:'Ví dụ: sốt ruột, muốn chen ngang khi phải chờ đợi.', options:adhdFreq},
+  ]
+};
+
+// Thang đồng ý — dùng cho đặc điểm/tính cách ổn định (không phải hành vi lặp lại theo thời gian)
+const agreeScale = [
+  {label:'Hoàn toàn không đúng với mình', score:0},
+  {label:'Không đúng lắm', score:1},
+  {label:'Khá đúng', score:2},
+  {label:'Rất đúng với mình', score:3},
+];
+
+const moduleAutism = {
+  id:'autism',
+  label:'Giao tiếp & Cảm nhận',
+  questions:[
+    {id:'s1', text:'Mình để ý những chi tiết nhỏ mà nhiều người khác không nhận ra', hint:'Ví dụ: nhận ra ngay khi có gì đó thay đổi dù rất nhỏ (đồ vật bị xê dịch, 1 lỗi chính tả nhỏ trong bài...).', options:agreeScale},
+    {id:'s2', text:'Mình thấy khó đoán người khác đang nghĩ gì hoặc cảm thấy gì qua nét mặt, giọng nói của họ', hint:'Ví dụ: không chắc bạn mình đang vui thật hay chỉ đang giả vờ vui, dễ hiểu nhầm ý người khác.', options:agreeScale},
+    {id:'s3', text:'Mình thích làm mọi việc theo đúng 1 trình tự quen thuộc, và khó chịu nếu bị thay đổi đột ngột', hint:'Ví dụ: có thói quen cố định mỗi ngày, bực bội nếu lịch trình bị đảo lộn bất ngờ.', options:agreeScale},
+    {id:'s4', text:'Mình gặp khó khăn khi trò chuyện qua lại — không chắc lúc nào nên nói, lúc nào nên lắng nghe', hint:'Ví dụ: nói một mạch về điều mình thích mà không để ý người nghe còn hứng thú không.', options:agreeScale},
+    {id:'s5', text:'Mình có 1–2 chủ đề yêu thích mà mình tìm hiểu rất sâu, nhiều hơn hẳn bạn bè cùng tuổi', hint:'Ví dụ: biết rất chi tiết về 1 chủ đề (khủng long, tàu hỏa, 1 tựa game...) hơn hẳn người xung quanh.', options:agreeScale},
+    {id:'s6', text:'Mình khó hiểu câu nói đùa, mỉa mai, hoặc ẩn ý — thường hiểu theo đúng nghĩa đen', hint:'Ví dụ: khi ai đó nói mỉa "giỏi thật đấy", mình không chắc họ đang khen hay đang chê.', options:agreeScale},
+  ]
+};
+
+// IGDS9-SF rút gọn, dùng thang thói quen (tháng/tuần/ngày) như ADHD vì đây cũng là hành vi kéo dài
+const moduleGaming = {
+  id:'gaming',
+  label:'Thói quen chơi game',
+  questions:[
+    {id:'g1', text:'Mình hay nghĩ về việc chơi game ngay cả khi đang làm việc khác (học bài, ăn cơm, nói chuyện...)', hint:'Ví dụ: đang học mà đầu cứ nghĩ tới ván game dang dở.', options:adhdFreq},
+    {id:'g2', text:'Mình cảm thấy bứt rứt, khó chịu, hoặc buồn bực khi không được chơi game', hint:'Ví dụ: cáu gắt hoặc bồn chồn khi bị cấm chơi hoặc hết thời gian chơi.', options:adhdFreq},
+    {id:'g3', text:'Mình cần chơi nhiều thời gian hơn trước mới thấy đã, thấy thỏa mãn', hint:'Ví dụ: trước chơi 1 tiếng là đủ vui, giờ phải vài tiếng mới thấy đủ.', options:adhdFreq},
+    {id:'g4', text:'Mình đã thử giảm thời gian chơi game nhưng không thành công', hint:'Ví dụ: tự hứa chỉ chơi 30 phút nhưng rồi vẫn chơi lâu hơn nhiều.', options:adhdFreq},
+    {id:'g5', text:'Mình mất hứng thú với hoạt động khác (thể thao, gặp bạn bè ngoài đời...) vì mê chơi game hơn', options:adhdFreq},
+    {id:'g6', text:'Mình vẫn chơi nhiều dù biết nó đang ảnh hưởng xấu đến học tập, giấc ngủ hoặc sức khỏe', options:adhdFreq},
+    {id:'g7', text:'Mình từng nói không đúng sự thật với gia đình/thầy cô về thời gian mình chơi game', hint:'Ví dụ: nói đang học bài nhưng thật ra đang chơi game.', options:adhdFreq},
+    {id:'g8', text:'Mình chơi game để quên đi cảm giác buồn, lo lắng, hoặc tội lỗi', options:adhdFreq},
+    {id:'g9', text:'Mình từng gặp rắc rối với gia đình, bạn bè, hoặc việc học vì chơi game quá nhiều', options:adhdFreq},
+  ]
+};
+
+let allAnswers = {};
+let allAnswersText = {};
+let allAnswersIdx = {};
+let currentModule = null;
+let currentIndex = 0;
+let activeQuestions = [];
+let summary = [];
+
+function goTo(id){
+  document.querySelectorAll('.wrap > div').forEach(el=>el.classList.add('hidden'));
+  document.getElementById(id).classList.remove('hidden');
+}
+
+function setGender(g){
+  document.body.classList.remove('theme-nu','theme-nam');
+  if(g==='nu') document.body.classList.add('theme-nu');
+  if(g==='nam') document.body.classList.add('theme-nam');
+  startModule(moduleSafety);
+}
+
+function startModule(moduleObj){
+  currentModule = moduleObj;
+  currentIndex = 0;
+  goTo('screen-question');
+  renderQuestion();
+}
+
+function renderQuestion(){
+  activeQuestions = currentModule.questions.filter(q => !q.condition || q.condition(allAnswers));
+  if(currentIndex >= activeQuestions.length){
+    if(currentModule.id === 'safety') showSafetyResult();
+    else if(currentModule.id === 'depanx') showDepAnxResult();
+    else if(currentModule.id === 'adhd') showADHDResult();
+    else if(currentModule.id === 'autism') showAutismResult();
+    else if(currentModule.id === 'gaming') showGamingResult();
+    return;
+  }
+  const q = activeQuestions[currentIndex];
+  document.getElementById('q-badge').textContent = currentModule.label + ' · Câu ' + (currentIndex+1) + '/' + activeQuestions.length;
+  document.getElementById('progress-fill').style.width = Math.round((currentIndex/activeQuestions.length)*100) + '%';
+  document.getElementById('q-text').textContent = q.text;
+  const existingHint = document.getElementById('q-hint');
+  if(existingHint) existingHint.remove();
+  if(q.hint){
+    const hintEl = document.createElement('div');
+    hintEl.id = 'q-hint';
+    hintEl.className = 'q-hint';
+    hintEl.textContent = q.hint;
+    document.getElementById('q-text').after(hintEl);
+  }
+  const optsWrap = document.getElementById('q-options');
+  optsWrap.innerHTML = '';
+  q.options.forEach((opt, optIdx)=>{
+    const b = document.createElement('button');
+    b.className = 'btn';
+    b.textContent = opt.label;
+    b.onclick = ()=>{
+      allAnswers[q.id] = opt.score;
+      allAnswersText[q.id] = opt.label;
+      allAnswersIdx[q.id] = optIdx;
+      currentIndex++;
+      renderQuestion();
+    };
+    optsWrap.appendChild(b);
+  });
+}
+
+// ===== TÍNH TOÁN — tách riêng để dùng cho cả luồng làm bài lẫn khu vực giải mã của bác sĩ =====
+// Ngưỡng phân tầng giữ NGUYÊN theo bản đã qua 3 vòng review Codex — không thay đổi logic lâm sàng.
+
+function computeSafety(ans){
+  // BẤT KỲ câu nào rơi vào mức nặng nhất (score 3) tự kích hoạt đỏ.
+  // Riêng q7b (từng thử tự tử thật) luôn ép đỏ dù đã lâu — tiền sử tự sát là yếu tố nguy cơ độc lập,
+  // không nên để bị "pha loãng" bởi các câu khác đều thấp.
+  const scored = ['q1','q2','q3','q4','q5','q6','q7a','q7b'].map(k => ans[k]||0);
+  const maxScore = Math.max(...scored);
+  const total = scored.reduce((a,b)=>a+b,0);
+  let tier = 'safe';
+  if(maxScore >= 3) tier = 'danger';
+  else if(total >= 1) tier = 'warn';
+  if((ans.q7b||0) >= 1) tier = 'danger'; // từng thử tự tử, dù đã lâu -> luôn đỏ
+  // Sửa theo góp ý Codex (vòng review bán hàng, 2026-07-05): "đã NGHĨ đến việc chuẩn bị" (q6 score 2)
+  // cũng ép đỏ — hành vi/ý nghĩ chuẩn bị là chỉ dấu nguy cơ cao ở vị thành niên, thà nhạy quá còn hơn sót.
+  if((ans.q6||0) >= 2) tier = 'danger';
+
+  const hadPriorAttempt = (ans.q7b||0) >= 1;
+  const hadPrep = (ans.q6||0) >= 2;
+
+  const safetyInfo = {
+    safe: {label:'Ổn định', color:'#16a34a', detail:'Con không có dấu hiệu nguy hiểm về an toàn bản thân tại thời điểm làm bài.', action:'Tiếp tục quan tâm và trò chuyện đều đặn với con.'},
+    warn: {label:'Cần chú ý', color:'#d97706',
+      detail:'Con có một vài dấu hiệu/suy nghĩ đáng chú ý liên quan đến an toàn bản thân. Theo câu trả lời tự khai, hiện chưa ở mức cần xử lý khẩn cấp, nhưng cần người lớn quan tâm sát sao.',
+      action:'Dành thời gian trò chuyện cởi mở, không phán xét, không chờ con chủ động nói trước. Nếu cảm giác này kéo dài, xuất hiện thường xuyên hơn, hoặc bạn vẫn thấy lo lắng sau khi đọc báo cáo này, nên tìm gặp chuyên gia tâm lý sớm — không cần chờ đến mức "nghiêm trọng" mới đi khám.'},
+    danger: {label:'Cần hỗ trợ ngay', color:'#dc2626',
+      detail: hadPriorAttempt
+        ? 'Con cho biết đã từng thử tự tử trước đây. Đây là yếu tố nguy cơ quan trọng cần được đánh giá bởi chuyên gia, dù lần đó đã lâu hay gần đây.'
+        : (hadPrep
+          ? 'Con cho biết đã nghĩ đến hoặc đã có hành động chuẩn bị liên quan đến việc tự hại. Ý nghĩ/hành vi chuẩn bị là dấu hiệu nguy cơ cao, cần được người lớn và chuyên gia quan tâm ngay.'
+          : 'Con có dấu hiệu ý định, kế hoạch, hoặc hành vi chuẩn bị liên quan đến tự hại/tự tử cần được quan tâm ngay lập tức.'),
+      action:'Không để con ở một mình lúc này. Giảm/loại bỏ khả năng tiếp cận các vật dụng có thể gây nguy hiểm. Liên hệ chuyên gia tâm lý/bác sĩ tâm thần để được đánh giá trực tiếp ngay trong hôm nay. Nếu đang nguy hiểm, gọi 115 hoặc đưa con đến cơ sở y tế gần nhất.'},
+  }[tier];
+  return {tier, item:{name:'Sàng lọc an toàn', label:safetyInfo.label, color:safetyInfo.color, detail:safetyInfo.detail, action:safetyInfo.action}};
+}
+
+function showSafetyResult(){
+  const r = computeSafety(allAnswers);
+  summary.push(r.item);
+  const tier = r.tier;
+
+  // Kết quả KHÔNG hiển thị cho người làm bài — chỉ bác sĩ đọc qua mã kết quả.
+  // NGOẠI LỆ CHUYÊN MÔN (không nhân nhượng): tầng đỏ vẫn hiện can thiệp khẩn cấp ngay lập tức;
+  // tầng vàng vẫn hiện lời nhắn hỗ trợ (không nhãn, không điểm số) — đây là chăm sóc, không phải "trả kết quả".
+  if(tier === 'safe'){
+    goTo('screen-mod2-intro');
+    return;
+  }
+
+  goTo('screen-result');
+  const el = document.getElementById('result-card');
+
+  if(tier === 'warn'){
+    el.className = 'result-card result-warn';
+    el.innerHTML = `
+      <h2 style="color:#fff">Cảm ơn bạn đã chia sẻ 💛</h2>
+      <p>Có những suy nghĩ như vậy không có nghĩa là nên bỏ qua — bạn xứng đáng được ai đó lắng nghe thật sự, và không cần chờ đến khi mọi thứ tệ hơn mới nói ra.</p>
+      <p>Bạn có thể thử nói chuyện với bố mẹ, thầy cô, hoặc người bạn tin tưởng không?</p>
+      <div class="emergency-box">
+        <div>Nếu muốn có người lắng nghe ngay bây giờ (không bắt buộc):</div>
+        <div style="margin-top:8px"><a href="https://zalo.me/0339681115" target="_blank" rel="noopener" style="color:#fff;font-weight:700">💬 Nhắn Zalo riêng cho BS. Thanh Nhàn</a></div>
+        <div style="margin-top:6px">Hoặc gọi <a href="tel:111" style="color:#fff;font-weight:700">111</a> (tổng đài quốc gia bảo vệ trẻ em, miễn phí 24/7)</div>
+      </div>
+      <button class="btn-primary" style="background:#fff;color:#d97706" onclick="goTo('screen-mod2-intro')">Tiếp tục bài test →</button>
+    `;
+  } else {
+    el.className = 'result-card result-danger';
+    const nearby = allAnswersText.q8 || '';
+    let contextMsg;
+    if(nearby.includes('Không có ai')){
+      contextMsg = 'Ngay cả khi không có ai ở gần lúc này, hãy <strong>gọi điện thoại ngay</strong> cho một người lớn tin tưởng — đừng chờ đến khi có ai ở cạnh mới nói ra.';
+    } else if(nearby.includes('tin tưởng để nói chuyện')){
+      contextMsg = 'Vì đang có người lớn ở gần mà bạn tin tưởng, hãy <strong>đến gặp trực tiếp họ ngay bây giờ</strong> và nói cho họ biết cảm giác của bạn.';
+    } else if(nearby.includes('không chắc có thể nói')){
+      contextMsg = 'Nếu chưa chắc có thể nói với người đang ở gần, hãy <strong>gọi điện cho một người lớn khác mà bạn thật sự tin tưởng</strong>, hoặc gọi thẳng hotline/tổng đài bên dưới — không nhất thiết phải là người đang ở gần bạn.';
+    } else {
+      contextMsg = 'Hãy tìm cách liên lạc với một người lớn tin tưởng ngay bây giờ, bằng bất kỳ cách nào có thể (gặp trực tiếp hoặc gọi điện).';
+    }
+    el.innerHTML = `
+      <h2 style="color:#fff">Cảm ơn bạn đã tin tưởng chia sẻ điều này 🧡</h2>
+      <p>Đây là điều dũng cảm, không phải yếu đuối. Điều quan trọng nhất ngay bây giờ là sự an toàn của bạn — đừng ở một mình lúc này.</p>
+      <div class="emergency-box">
+        <div style="margin-bottom:8px">${contextMsg}</div>
+        <div style="margin-bottom:8px"><strong>Hãy đưa màn hình này cho bố/mẹ hoặc người lớn gần nhất xem ngay.</strong></div>
+        <div>Tránh xa hoặc nhờ người khác cất giữ giúp những vật dụng có thể gây nguy hiểm cho bản thân.</div>
+      </div>
+      <div class="emergency-box">
+        <div>Nếu đang trong tình huống nguy hiểm ngay lúc này, hãy bấm gọi:</div>
+        <div class="num"><a href="tel:115" style="color:#fff;text-decoration:none">📞 115 (cấp cứu)</a></div>
+        <div class="num"><a href="tel:111" style="color:#fff;text-decoration:none">📞 111 (bảo vệ trẻ em, miễn phí 24/7)</a></div>
+      </div>
+      <div class="emergency-box">
+        <div>Để BS. Thanh Nhàn nắm được tình hình và hỗ trợ gia đình sớm nhất, bạn (hoặc người lớn đang ở cạnh bạn) hãy gửi mã dưới đây qua Zalo cho bác sĩ:</div>
+        <div class="code-box" id="emergency-code" style="background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.6);color:#fff"></div>
+        <button class="btn-primary" id="copy-emergency-btn" style="background:#fff;color:#be123c;margin-top:10px" onclick="copyCodeFrom('emergency-code','copy-emergency-btn')">📋 Sao chép mã</button>
+        <a class="btn-zalo-link" href="https://zalo.me/0339681115" target="_blank" rel="noopener" style="margin-top:10px">💬 Gửi cho BS. Thanh Nhàn qua Zalo</a>
+      </div>
+      <p style="margin-top:14px;font-size:13.5px;opacity:0.9">Vì lý do an toàn, bài test dừng lại ở đây — phần còn lại không quan trọng bằng việc bạn được hỗ trợ ngay lúc này.</p>
+      <div class="footer-link" style="color:#fff;opacity:0.8" onclick="location.reload()">🔄 Làm lại bài test từ đầu</div>
+    `;
+    // Mã khẩn cấp: chỉ chứa phần sàng lọc an toàn đã trả lời (bài test dừng tại đây)
+    document.getElementById('emergency-code').textContent = buildShortCode(true);
+  }
+}
+
+function computeDepAnx(ans){
+  const dep = ['d1','d2','d3','d4'].reduce((s,k)=> s + (ans[k]||0), 0);
+  const anx = ['a1','a2','a3','a4'].reduce((s,k)=> s + (ans[k]||0), 0);
+  function tierOfDep(v){
+    if(v<=3) return {label:'Ổn định', color:'#16a34a', detail:'Không có dấu hiệu rõ ràng về buồn chán/trầm cảm kéo dài.', action:'Duy trì lối sống lành mạnh, tiếp tục quan tâm cảm xúc của con.'};
+    if(v<=7) return {label:'Nên chú ý', color:'#d97706', detail:'Con có một số dấu hiệu buồn chán, mệt mỏi, giảm hứng thú ở mức vừa phải trong 2 tuần qua.', action:'Quan sát thêm, khuyến khích con chia sẻ cảm xúc nhiều hơn.'};
+    return {label:'Khá rõ rệt', color:'#dc2626', detail:'Con có nhiều dấu hiệu buồn chán, mất hứng thú, mệt mỏi rõ rệt trong 2 tuần qua.', action:'Nên đưa con gặp chuyên gia tâm lý/bác sĩ tâm thần để được đánh giá kỹ hơn.'};
+  }
+  function tierOfAnx(v){
+    if(v<=3) return {label:'Ổn định', color:'#16a34a', detail:'Không có dấu hiệu lo âu/căng thẳng đáng kể.', action:'Duy trì thói quen hiện tại của con.'};
+    if(v<=7) return {label:'Nên chú ý', color:'#d97706', detail:'Con có một số dấu hiệu lo âu, căng thẳng ở mức vừa phải.', action:'Trò chuyện cùng con về áp lực học tập/cuộc sống, giúp con thư giãn hơn.'};
+    return {label:'Khá rõ rệt', color:'#dc2626', detail:'Con có dấu hiệu lo âu/căng thẳng khá rõ rệt trong 2 tuần qua.', action:'Nên đưa con gặp chuyên gia để được hỗ trợ thêm.'};
+  }
+  const depTier = tierOfDep(dep), anxTier = tierOfAnx(anx);
+  return [
+    {name:'Cảm xúc buồn/chán', label:depTier.label, color:depTier.color, detail:depTier.detail, action:depTier.action},
+    {name:'Lo âu/căng thẳng', label:anxTier.label, color:anxTier.color, detail:anxTier.detail, action:anxTier.action},
+  ];
+}
+
+function showDepAnxResult(){
+  summary.push(...computeDepAnx(allAnswers));
+  goTo('screen-mod3-intro'); // không hiển thị kết quả — bác sĩ sẽ đọc qua mã kết quả
+}
+
+function computeADHD(ans){
+  const inatt = ['h1','h2','h3'].reduce((s,k)=> s + (ans[k]||0), 0);
+  const hyper = ['h4','h5','h6'].reduce((s,k)=> s + (ans[k]||0), 0);
+  const total = inatt + hyper;
+  let tier;
+  if(total <= 5) tier = {label:'Không có dấu hiệu rõ ràng', color:'#16a34a', detail:'Không có dấu hiệu về khó tập trung/hiếu động đáng chú ý qua tự đánh giá của con.', action:'Không cần can thiệp gì thêm.'};
+  else if(total <= 11) tier = {label:'Có một vài dấu hiệu, nên quan sát thêm', color:'#d97706', detail:'Con tự nhận thấy một vài dấu hiệu khó tập trung hoặc hiếu động.', action:'Quan sát thêm ở nhà, trao đổi với giáo viên xem có thấy điều tương tự ở lớp không — ADHD chỉ thật sự đáng chú ý khi xuất hiện ở NHIỀU môi trường khác nhau, không chỉ một nơi.'};
+  else tier = {label:'Khá nhiều dấu hiệu, nên tìm hiểu thêm cùng chuyên gia', color:'#dc2626', detail:'Con tự nhận thấy khá nhiều dấu hiệu liên quan khả năng tập trung/hiếu động qua bài tự đánh giá này.', action:'Đây KHÔNG phải chẩn đoán — chỉ là gợi ý nên tìm hiểu thêm. ADHD cần được chuyên gia đánh giá chính thức, dựa trên thông tin từ NHIỀU nguồn (con, phụ huynh, giáo viên), qua NHIỀU bối cảnh, và có ảnh hưởng rõ rệt đến sinh hoạt/học tập — một bài tự test không thể kết luận.'};
+  return {name:'Tập trung & Hiếu động', label:tier.label, color:tier.color, detail:tier.detail, action:tier.action};
+}
+
+function showADHDResult(){
+  summary.push(computeADHD(allAnswers));
+  goTo('screen-mod4-intro'); // không hiển thị kết quả
+}
+
+function computeAutism(ans){
+  const total = ['s1','s2','s3','s4','s5','s6'].reduce((s,k)=> s + (ans[k]||0), 0);
+  let tier;
+  if(total <= 5) tier = {label:'Không có dấu hiệu rõ ràng', color:'#16a34a', detail:'Không có đặc điểm gì đáng chú ý về giao tiếp/cảm nhận xã hội qua tự đánh giá của con.', action:'Không cần can thiệp gì thêm.'};
+  else if(total <= 11) tier = {label:'Có một vài đặc điểm, nên quan sát thêm', color:'#d97706', detail:'Con tự nhận thấy một vài đặc điểm khác biệt trong giao tiếp/cảm nhận xã hội.', action:'Chỉ cần quan sát thêm nếu những điều này thực sự ảnh hưởng đến việc kết bạn/học tập — nếu không ảnh hưởng gì thì đây chỉ là sự đa dạng bình thường giữa mọi người.'};
+  else tier = {label:'Khá nhiều đặc điểm, nên tìm hiểu thêm cùng chuyên gia', color:'#dc2626', detail:'Con tự nhận thấy khá nhiều đặc điểm liên quan đến phổ tự kỷ qua bài tự đánh giá này.', action:'Đây KHÔNG phải chẩn đoán, chỉ là gợi ý nên tìm hiểu thêm. Đánh giá tự kỷ cần chuyên gia có kinh nghiệm, dựa trên thông tin từ nhiều nguồn và cả lịch sử phát triển từ nhỏ — tuyệt đối không nên tự kết luận hay để con tự dán nhãn chỉ từ bài test này.'};
+  return {name:'Giao tiếp & Cảm nhận', label:tier.label, color:tier.color, detail:tier.detail, action:tier.action};
+}
+
+function showAutismResult(){
+  summary.push(computeAutism(allAnswers));
+  goTo('screen-mod5-intro'); // không hiển thị kết quả
+}
+
+function computeGaming(ans){
+  const total = ['g1','g2','g3','g4','g5','g6','g7','g8','g9'].reduce((s,k)=> s + (ans[k]||0), 0);
+  let tier;
+  if(total <= 9) tier = {label:'Không có dấu hiệu đáng lo', color:'#16a34a', detail:'Thói quen chơi game của con ở mức lành mạnh.', action:'Không cần can thiệp gì thêm.'};
+  else if(total <= 18) tier = {label:'Có một vài dấu hiệu, nên điều chỉnh thói quen', color:'#d97706', detail:'Có dấu hiệu game đang ảnh hưởng nhẹ đến sinh hoạt của con.', action:'Cùng con đặt giới hạn giờ chơi, khuyến khích hoạt động khác.'};
+  else tier = {label:'Khá nhiều dấu hiệu, nên tìm thêm hỗ trợ', color:'#dc2626', detail:'Có dấu hiệu đáng lo về nghiện game.', action:'Nên tìm hỗ trợ từ chuyên gia tâm lý.'};
+  return {name:'Thói quen chơi game', label:tier.label, color:tier.color, detail:tier.detail, action:tier.action};
+}
+
+function showGamingResult(){
+  summary.push(computeGaming(allAnswers));
+  showFinalScreen(); // không hiển thị kết quả — chuyển sang màn tạo mã gửi bác sĩ
+}
+
+// ===== MÃ HỒ SƠ — kết quả không hiển thị cho người làm bài; bác sĩ dán mã vào khu giải mã để đọc.
+// Định dạng NGẮN GỌN (~55 ký tự): TEEN-YYMMDD-<các chữ số đáp án theo thứ tự câu hỏi, '.' ngăn cách
+// từng phần, '-' cho câu không được hỏi do phân nhánh>-<mã kiểm tra base36 = tổng điểm>.
+// Mã khẩn cấp (bài dừng ở phần an toàn) có tiền tố TEEN-E-.
+// Lưu ý trung thực: đây là nén dữ liệu, KHÔNG phải mã hóa bảo mật — ai có mã và hiểu cấu trúc đều đọc được.
+// Vì vậy mọi lời hứa với người dùng chỉ nói "không hiện trên màn hình", không nói "chỉ bác sĩ đọc được".
+
+const CODE_MODS_FULL = () => [moduleSafety, moduleDepAnx, moduleADHD, moduleAutism, moduleGaming];
+
+function buildShortCode(isEmergency){
+  const mods = isEmergency ? [moduleSafety] : CODE_MODS_FULL();
+  const body = mods.map(m => m.questions.map(q => {
+    const idx = allAnswersIdx[q.id];
+    return idx === undefined ? '-' : String(idx);
+  }).join('')).join('.');
+  const total = Object.values(allAnswers).reduce((s,v)=>s+(v||0),0);
+  const ck = total.toString(36).toUpperCase().padStart(2,'0');
+  const d = new Date();
+  const ds = String(d.getFullYear()).slice(2) + String(d.getMonth()+1).padStart(2,'0') + String(d.getDate()).padStart(2,'0');
+  return (isEmergency ? 'TEEN-E-' : 'TEEN-') + ds + '-' + body + '-' + ck;
+}
+
+function showFinalScreen(){
+  document.getElementById('result-code').textContent = buildShortCode(false);
+
+  // Lưới hỗ trợ tối thiểu (góp ý Codex): dù kết quả bị ẩn, trẻ có mức đáng chú ý ở các lĩnh vực
+  // ngoài an toàn vẫn nhận được lời động viên tìm hỗ trợ — không nhãn, không điểm số.
+  const RED = '#dc2626';
+  const hasNotableSignals = summary.some(s => s.color === RED);
+  const supportEl = document.getElementById('final-support');
+  supportEl.innerHTML = `
+    ${hasNotableSignals ? `
+    <div class="card" style="border:2px solid var(--accent-light)">
+      <p style="margin:0">💛 Một vài câu trả lời cho thấy gần đây bạn đang phải gồng gánh khá nhiều. Điều đó không có gì sai — và bạn xứng đáng được hỗ trợ sớm. <strong>Hãy gửi mã cho bác sĩ ngay hôm nay</strong>, và nếu được, chia sẻ với một người lớn mà bạn tin tưởng nhé.</p>
+    </div>` : ''}
+    <div class="card">
+      <p style="margin:0" class="muted">Dù kết quả thế nào: nếu lúc này bạn thấy rất mệt mỏi hoặc cần ai đó lắng nghe ngay, đừng chờ buổi tư vấn — gọi <a href="tel:111"><strong>111</strong></a> (tổng đài quốc gia bảo vệ trẻ em, miễn phí, 24/7).</p>
+    </div>`;
+
+  goTo('screen-final');
+}
+
+function copyCodeFrom(codeElId, btnElId){
+  const code = document.getElementById(codeElId).textContent;
+  const btn = document.getElementById(btnElId);
+  const done = ()=>{ btn.textContent = '✅ Đã sao chép — giờ dán vào Zalo gửi bác sĩ nhé'; };
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(code).then(done).catch(()=>fallbackCopy(code, done));
+  } else {
+    fallbackCopy(code, done);
+  }
+}
+
+function copyResultCode(){ copyCodeFrom('result-code','copy-code-btn'); }
+
+function fallbackCopy(text, done){
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.position = 'fixed';
+  ta.style.opacity = '0';
+  document.body.appendChild(ta);
+  ta.select();
+  try{ if(document.execCommand('copy')) done(); }catch(e){}
+  document.body.removeChild(ta);
+}
+
+// ===== KHU VỰC BÁC SĨ — mở trang với ?bs=1, dán mã nhận qua Zalo để xem báo cáo đầy đủ =====
+
+// Giải mã + kiểm tra tính đầy đủ/toàn vẹn của mã hồ sơ (góp ý Codex: không được render báo cáo "ổn"
+// từ mã thiếu/giả). Lưu ý trung thực: đây là phát hiện LỖI SAO CHÉP/mã không nhất quán — không phải
+// cơ chế "chống giả mạo" theo nghĩa bảo mật (trang tĩnh không có chữ ký số). Xác thực nguồn gửi dựa vào Zalo gia đình.
+// Trả về {error:'...'} hoặc {data:{t,d,a,i}}.
+function parseShortCode(raw){
+  raw = (raw || '').trim().toUpperCase().replace(/\s+/g,'');
+  if(!raw.startsWith('TEEN-')) return {error:'Mã không hợp lệ — mã hồ sơ bắt đầu bằng "TEEN-".'};
+  const isEmergency = raw.startsWith('TEEN-E-');
+  const rest = raw.slice(isEmergency ? 7 : 5);
+  const m = rest.match(/^(\d{6})-([0-9.\-]+)-([0-9A-Z]{2})$/);
+  if(!m) return {error:'Mã không đúng định dạng — kiểm tra lại xem đã dán đủ toàn bộ mã chưa (dạng TEEN-YYMMDD-...-XX).'};
+  const mo = parseInt(m[1].slice(2,4),10), da = parseInt(m[1].slice(4,6),10);
+  if(mo < 1 || mo > 12 || da < 1 || da > 31) return {error:'Mã không hợp lệ (ngày làm bài sai). Nhờ gửi lại mã gốc.'};
+  const dateStr = '20' + m[1].slice(0,2) + '-' + m[1].slice(2,4) + '-' + m[1].slice(4,6);
+
+  const mods = isEmergency ? [moduleSafety] : CODE_MODS_FULL();
+  const sections = m[2].split('.');
+  if(sections.length !== mods.length) return {error:'Mã KHÔNG ĐẦY ĐỦ — thiếu phần dữ liệu. Có thể mã bị cắt khi sao chép; nhờ gửi lại toàn bộ mã.'};
+
+  const a = {}, i = {};
+  for(let si = 0; si < mods.length; si++){
+    const mod = mods[si], s = sections[si];
+    if(s.length !== mod.questions.length) return {error:'Mã KHÔNG ĐẦY ĐỦ (phần "' + mod.label + '") — có thể mã bị cắt/sửa khi sao chép. KHÔNG dùng mã này để đánh giá; nhờ gửi lại mã gốc.'};
+    for(let qi = 0; qi < mod.questions.length; qi++){
+      const q = mod.questions[qi], ch = s[qi];
+      if(ch === '-') continue;
+      const idx = parseInt(ch, 10);
+      if(!(idx >= 0 && idx < q.options.length)) return {error:'Mã không hợp lệ (phần "' + mod.label + '"). Nhờ gửi lại mã gốc.'};
+      a[q.id] = q.options[idx].score;
+      i[q.id] = idx;
+    }
+  }
+  // Kiểm tra nhất quán phân nhánh: câu bắt buộc phải có trả lời, câu bị ẩn theo điều kiện phải là '-'
+  for(const mod of mods){
+    for(const q of mod.questions){
+      const required = !q.condition || q.condition(a);
+      if(required && i[q.id] === undefined) return {error:'Mã KHÔNG ĐẦY ĐỦ — thiếu câu trả lời (phần "' + mod.label + '"). Có thể bài test chưa làm xong. KHÔNG dùng mã này để đánh giá.'};
+      if(!required && i[q.id] !== undefined) return {error:'Mã KHÔNG NHẤT QUÁN (phần "' + mod.label + '") — có thể bị lỗi/sửa khi sao chép. KHÔNG dùng mã này để đánh giá; nhờ gửi lại mã gốc.'};
+    }
+  }
+  const total = Object.values(a).reduce((s,v)=>s+(v||0),0);
+  const ck = total.toString(36).toUpperCase().padStart(2,'0');
+  if(ck !== m[3]) return {error:'Mã không vượt qua kiểm tra toàn vẹn — có thể bị lỗi khi sao chép. Nhờ gửi lại mã gốc.'};
+
+  return {data:{t: isEmergency ? 'emergency' : 'full', d: dateStr, a, i}};
+}
+
+function decodeReport(){
+  const errEl = document.getElementById('decode-error');
+  errEl.textContent = '';
+  document.getElementById('parent-report-body').innerHTML = '';
+  const parsed = parseShortCode(document.getElementById('code-input').value);
+  if(parsed.error){ errEl.textContent = parsed.error; return; }
+  renderDoctorReport(parsed.data);
+}
+
+function renderDoctorReport(data){
+  const ans = data.a || {};
+  const idx = data.i || {};
+  const isEmergency = data.t === 'emergency';
+  const safety = computeSafety(ans);
+  const items = isEmergency
+    ? [safety.item]
+    : [safety.item, ...computeDepAnx(ans), computeADHD(ans), computeAutism(ans), computeGaming(ans)];
+
+  const RED = '#dc2626', ORANGE = '#d97706';
+  const safetyItem = items[0];
+  const others = items.slice(1);
+  const redCount = others.filter(s => s.color === RED).length;
+  const orangeCount = others.filter(s => s.color === ORANGE).length;
+  const isSafetyRed = safetyItem.color === RED;
+
+  let bannerHTML = '';
+  if(isSafetyRed){
+    bannerHTML = `
+      <div class="report-banner" style="background:linear-gradient(135deg,#f43f5e,#be123c)">
+        🚨 ƯU TIÊN HÀNG ĐẦU — CẦN XỬ LÝ NGAY, TRƯỚC KHI ĐỌC PHẦN CÒN LẠI CỦA BÁO CÁO NÀY:<br><br>
+        ${safetyItem.detail}<br><br>
+        <span style="font-weight:600">${safetyItem.action}</span><br><br>
+        <span style="font-weight:800">115 (cấp cứu) · 111 (tổng đài quốc gia bảo vệ trẻ em)</span>
+      </div>
+      <div class="card" style="border:2px solid #dc2626">
+        <strong style="color:#dc2626">Cách phản ứng với con ngay bây giờ</strong>
+        <p style="margin-top:8px">Đến gặp con trực tiếp, ở bên cạnh con, và lắng nghe — <strong>không phán xét, không trách mắng, không tịch thu đồ đạc như một hình phạt</strong>. Tránh chất vấn dồn dập; hỏi mở kiểu "con muốn kể cho bố/mẹ nghe không?" Tạm thời cất giữ giúp con những vật dụng có thể gây nguy hiểm. Nếu gia đình đang có xung đột hoặc con không cảm thấy an toàn khi nói với bố mẹ, hãy tìm một người lớn khác con tin tưởng (thầy cô, họ hàng gần) hoặc gọi tổng đài bảo vệ trẻ em <strong>111</strong> để được hướng dẫn.</p>
+      </div>`;
+  } else if(safetyItem.color === ORANGE){
+    bannerHTML = `
+      <div class="report-banner" style="background:linear-gradient(135deg,#f59e0b,#d97706)">
+        ⚠️ Lưu ý: ${safetyItem.detail} ${safetyItem.action}
+      </div>`;
+  }
+
+  let overallHTML;
+  if(isSafetyRed){
+    overallHTML = 'Mức an toàn cần xử lý ngay lập tức — quan trọng hơn mọi chỉ số khác trong báo cáo này. Các phần dưới đây chỉ nên xem sau khi đã đảm bảo con an toàn.';
+  } else if(redCount >= 1){
+    overallHTML = `Có ${redCount} lĩnh vực ở mức "khá rõ rệt" cần được chuyên gia đánh giá thêm. Đây là gợi ý nên tìm hiểu sâu hơn, không phải kết luận.`;
+  } else if(orangeCount >= 1){
+    overallHTML = `Có ${orangeCount} lĩnh vực ở mức "nên chú ý". Chưa cần can thiệp gấp, nhưng nên quan sát thêm và giữ trò chuyện cởi mở với con.`;
+  } else {
+    overallHTML = 'Nhìn chung con đang ở trạng thái ổn định trên tất cả các lĩnh vực qua tự đánh giá lần này. Phụ huynh cứ tiếp tục đồng hành như hiện tại, có thể làm lại bài test định kỳ (vài tháng/lần) để theo dõi. Lưu ý: đây là câu trả lời tự khai của con, có thể chưa phản ánh đầy đủ nếu con còn e ngại chia sẻ.';
+  }
+
+  const cardsHTML = items.map(s => `
+    <div class="report-card">
+      <div class="report-card-head">
+        <strong>${s.name}</strong>
+        <span class="report-tier" style="background:${s.color}1a;color:${s.color}">${s.label}</span>
+      </div>
+      <div class="report-detail">${s.detail}</div>
+      <div class="report-action"><b>Gợi ý cho phụ huynh:</b> ${s.action}</div>
+    </div>
+  `).join('');
+
+  // Chi tiết từng câu trả lời — chỉ bác sĩ xem, phục vụ buổi tư vấn
+  const mods = isEmergency ? [moduleSafety] : [moduleSafety, moduleDepAnx, moduleADHD, moduleAutism, moduleGaming];
+  const qaHTML = mods.map(m => {
+    const rows = m.questions
+      .filter(q => idx[q.id] !== undefined && q.options[idx[q.id]])
+      .map(q => `<div class="qa-item"><div class="qa-q">${q.text}</div><div class="qa-a">→ ${q.options[idx[q.id]].label}</div></div>`)
+      .join('');
+    return rows ? `<div class="report-card"><strong>${m.label} — chi tiết từng câu</strong>${rows}</div>` : '';
+  }).join('');
+
+  document.getElementById('parent-report-body').innerHTML = `
+    ${isEmergency ? `<div class="report-banner" style="background:linear-gradient(135deg,#7c2d12,#431407)">⛔ MÃ KHẨN CẤP — bài test đã tự động dừng ngay sau phần sàng lọc an toàn (các phần khác chưa làm). Ưu tiên liên hệ gia đình ngay.</div>` : ''}
+    ${bannerHTML}
+    <div class="card">
+      <strong>Tổng quan</strong>
+      <p class="muted" style="margin:6px 0 0">Ngày làm bài: ${/^\d{4}-\d{2}-\d{2}$/.test(data.d||'') ? data.d : 'không rõ'}</p>
+      <p style="margin-top:8px">${overallHTML}</p>
+    </div>
+    ${cardsHTML}
+    ${qaHTML}
+    <div class="report-disclaimer">
+      Đây là công cụ <strong>tự sàng lọc/tham khảo</strong> dựa trên câu trả lời tự khai của con (có thể chưa đầy đủ do lo lắng, hiểu nhầm câu hỏi, hoặc ngại chia sẻ), <strong>không phải kết luận chẩn đoán y khoa</strong>. Các mức "khá rõ rệt/cần hỗ trợ" là gợi ý nên tìm thêm đánh giá chuyên môn, không phải bệnh án chính thức. Quyết định điều trị luôn cần bác sĩ chuyên khoa trực tiếp thăm khám.
+    </div>
+  `;
+}
+
+// Mở chế độ bác sĩ khi truy cập với ?bs=1
+if(new URLSearchParams(location.search).get('bs') === '1'){
+  goTo('screen-doctor');
+}
+</script>
+</body>
+</html>
