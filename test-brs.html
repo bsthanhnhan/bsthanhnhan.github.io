@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Test Sức Bền Tinh Thần BRS (Brief Resilience Scale) – BS. Thanh Nhàn</title>
+<meta name="description" content="Thang đo sức bền tinh thần BRS chuẩn quốc tế (6 câu, 1 phút). Đánh giá khả năng phục hồi, bật dậy sau biến cố và áp lực cuộc sống cùng BS. Thanh Nhàn.">
+<meta property="og:title" content="Khả năng bật dậy sau biến cố của bạn cao đến đâu? Test BRS miễn phí">
+<meta property="og:description" content="Thang đo sức bền tinh thần BRS – kết quả tức thì cùng BS. Thanh Nhàn (Chuyên khoa Tâm thần).">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&display=swap');
+  *{margin:0;padding:0;box-sizing:border-box;}
+  :root{
+    --teal:#0d9488; --teal-dark:#0f766e; --teal-soft:#ccfbf1;
+    --navy:#14324a; --ink:#1f2d3d; --muted:#5b6b7b; --bg:#f3f8f7;
+    --card:#ffffff; --amber:#f59e0b; --line:#e2ebe9;
+    --green:#16a34a; --orange:#ea7317; --red:#dc2626;
+  }
+  body{font-family:'Be Vietnam Pro',sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:680px;margin:0 auto;padding:0 18px;}
+  a{color:var(--teal-dark);}
+
+  header{background:var(--card);border-bottom:1px solid var(--line);padding:14px 0;}
+  .hd{display:flex;align-items:center;gap:12px;}
+  .hd .avatar{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--teal-dark));display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0;overflow:hidden;}
+  .hd .avatar img{width:100%;height:100%;object-fit:cover;object-position:center top;}
+  .hd h1{font-size:1rem;font-weight:700;color:var(--navy);line-height:1.2;}
+  .hd p{font-size:.78rem;color:var(--teal-dark);font-weight:600;letter-spacing:.3px;}
+  .hd .nav-links{margin-left:auto;display:flex;gap:8px;}
+  .hd .nav-links a{font-size:.8rem;font-weight:700;color:var(--teal-dark);text-decoration:none;padding:6px 12px;border-radius:20px;background:var(--teal-soft);}
+
+  .hero{background:linear-gradient(160deg,#065f46 0%,#0f766e 100%);color:#fff;padding:46px 0 50px;text-align:center;}
+  .hero .photo{width:120px;height:120px;border-radius:50%;border:4px solid rgba(255,255,255,.55);box-shadow:0 10px 30px rgba(0,0,0,.2);object-fit:cover;object-position:center top;margin:0 auto 18px;background:rgba(255,255,255,.15);}
+  .hero .badge{display:inline-block;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);padding:6px 16px;border-radius:30px;font-size:.78rem;font-weight:600;margin-bottom:16px;}
+  .hero h2{font-size:clamp(1.7rem,5.5vw,2.3rem);font-weight:800;line-height:1.25;margin-bottom:12px;}
+  .hero p{font-size:1rem;color:#d1fae5;max-width:540px;margin:0 auto 24px;line-height:1.6;}
+  .btn{display:inline-block;padding:14px 34px;border-radius:30px;font-weight:800;text-decoration:none;font-size:1rem;cursor:pointer;border:none;transition:transform .15s,box-shadow .15s;}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.2);}
+  .btn-amber{background:var(--amber);color:#451a03;}
+  .stats{display:flex;justify-content:center;gap:24px;margin-top:28px;padding-top:22px;border-top:1px solid rgba(255,255,255,.2);font-size:.84rem;color:#a7f3d0;}
+  .stats b{display:block;font-size:1.3rem;color:#fff;}
+
+  section{padding:42px 0;}
+  .quiz-box{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:28px 22px;box-shadow:0 8px 30px rgba(20,50,74,.06);}
+  .q-progress{background:#e2e8f0;height:8px;border-radius:10px;overflow:hidden;margin-bottom:24px;}
+  .q-bar{height:100%;width:0%;background:linear-gradient(90deg,var(--teal),var(--amber));transition:width .3s;}
+  .q-head{display:flex;justify-content:space-between;align-items:center;font-size:.85rem;color:var(--muted);margin-bottom:14px;font-weight:700;}
+  .q-title{font-size:1.15rem;font-weight:800;color:var(--navy);line-height:1.45;margin-bottom:22px;}
+  .opts{display:grid;gap:10px;}
+  .opt-btn{background:var(--bg);border:1.5px solid var(--line);border-radius:14px;padding:14px 18px;text-align:left;font-family:inherit;font-size:.95rem;font-weight:600;color:var(--ink);cursor:pointer;display:flex;align-items:center;justify-content:space-between;transition:all .15s;}
+  .opt-btn:hover{border-color:var(--teal);background:var(--teal-soft);transform:translateX(3px);}
+
+  #result{display:none;}
+  .res-card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:32px 24px;text-align:center;box-shadow:0 12px 40px rgba(20,50,74,.08);}
+  .res-num{font-size:3.5rem;font-weight:900;line-height:1;}
+  .res-band{display:inline-block;margin-top:12px;padding:8px 24px;border-radius:30px;font-weight:800;font-size:1.05rem;color:#fff;}
+  .res-desc{color:var(--ink);font-size:1rem;max-width:540px;margin:18px auto 0;line-height:1.65;}
+  .res-scale{max-width:520px;margin:24px auto 0;font-size:.85rem;color:var(--muted);text-align:left;}
+  .res-scale div{display:flex;justify-content:space-between;padding:8px 0;border-top:1px dashed var(--line);}
+
+  .lead{background:linear-gradient(160deg,#0f766e,#0d9488);color:#fff;border-radius:18px;padding:26px 22px;margin-top:24px;text-align:center;}
+  .lead h3{font-size:1.25rem;font-weight:800;}
+  .lead p{color:#d8fff9;font-size:.9rem;margin:6px 0 18px;}
+  .ch{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;max-width:520px;margin:16px auto 0;}
+  .ch a{display:flex;align-items:center;justify-content:center;gap:10px;padding:14px;border-radius:14px;text-decoration:none;font-weight:700;color:#fff;font-size:.95rem;}
+  .c-zalo{background:#0068ff;}
+  .c-call{background:var(--amber);color:#451a03;}
+
+  .hub-box{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;margin-top:30px;}
+  .hub-box h3{font-size:1.1rem;font-weight:800;color:var(--navy);margin-bottom:14px;text-align:center;}
+  .hub-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;}
+  .hub-item{display:block;background:var(--bg);padding:12px 14px;border-radius:12px;text-decoration:none;border:1px solid var(--line);transition:transform .15s;}
+  .hub-item:hover{transform:translateY(-2px);border-color:var(--teal);}
+  .hub-item b{display:block;color:var(--navy);font-size:.9rem;}
+  .hub-item span{font-size:.76rem;color:var(--muted);}
+
+  footer{background:var(--navy);color:#cdd9e3;text-align:center;padding:28px 18px;font-size:.85rem;margin-top:40px;}
+  footer b{color:#fff;}
+  @media(max-width:480px){.ch{grid-template-columns:1fr;}.hub-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap hd">
+    <div class="avatar"><img src="bs-thanh-nhan.jpg" alt="BS. Thanh Nhàn" onerror="this.parentNode.textContent='🩺'"></div>
+    <div>
+      <h1>BS. Thanh Nhàn</h1>
+      <p>CHUYÊN KHOA TÂM THẦN</p>
+    </div>
+    <div class="nav-links">
+      <a href="index.html">Trang chủ</a>
+      <a href="test-pss10.html">Test Stress</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <img class="photo" src="bs-thanh-nhan.jpg" alt="BS. Thanh Nhàn" onerror="this.style.display='none'">
+    <span class="badge">⏱️ Miễn phí · 6 câu · 1 phút</span>
+    <h2>Thang Đo Sức Bền Tinh Thần BRS</h2>
+    <p>Brief Resilience Scale (Smith et al.) đo khả năng "bật dậy" (bounce back) và phục hồi sau áp lực, biến cố hoặc nghịch cảnh của bạn.</p>
+    <a href="#test" class="btn btn-amber">Bắt đầu bài test ngay →</a>
+    <div class="stats">
+      <div><b>6</b>câu hỏi</div>
+      <div><b>~1'</b>thực hiện</div>
+      <div><b>100%</b>kết quả tức thì</div>
+    </div>
+  </div>
+</section>
+
+<section id="test">
+  <div class="wrap">
+    <div class="quiz-box" id="quiz">
+      <div class="q-progress"><div class="q-bar" id="pbar"></div></div>
+      <div class="q-head">
+        <span id="qidx">Câu hỏi 1 / 6</span>
+        <span>Mức độ đồng ý</span>
+      </div>
+      <div class="q-title" id="qtext">...</div>
+      <div class="opts" id="opts"></div>
+    </div>
+
+    <div id="result">
+      <div class="res-card">
+        <span style="font-size:.85rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);">Kết quả thang đo sức bền BRS</span>
+        <div class="res-num" id="rscore" style="color:var(--teal-dark);margin-top:10px;">--</div>
+        <div class="res-band" id="rband">--</div>
+        <div class="res-desc" id="rdesc">--</div>
+        
+        <div class="res-scale">
+          <div><span>1.00 – 2.99 điểm:</span><b>Sức bền thấp (Dễ kiệt sức, phục hồi chậm)</b></div>
+          <div><span>3.00 – 4.30 điểm:</span><b>Sức bền trung bình (Phục hồi bình thường)</b></div>
+          <div><span>4.31 – 5.00 điểm:</span><b>Sức bền cao (Bật dậy rất nhanh sau nghịch cảnh)</b></div>
+        </div>
+
+        <div class="lead">
+          <h3>Rèn Luyện Khả Năng Thích Ứng Cùng BS. Thanh Nhàn</h3>
+          <p>Sức bền tinh thần không phải là điều bất biến mà là bộ kỹ năng hoàn toàn có thể rèn luyện và củng cố qua liệu pháp nhận thức - hành vi.</p>
+          <div class="ch">
+            <a href="https://zalo.me/0339681115" target="_blank" class="c-zalo">💬 Nhắn Zalo: 0339 681 115</a>
+            <a href="tel:0339681115" class="c-call">📞 Gọi Bác sĩ tư vấn</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HUB NAVIGATION -->
+    <div class="hub-box">
+      <h3>Bộ Thang Đo Sức Khỏe Tinh Thần BS. Thanh Nhàn</h3>
+      <div class="hub-grid">
+        <a href="index.html" class="hub-item">
+          <b>🌿 DASS-21 (21 câu)</b>
+          <span>Đo Trầm cảm · Lo âu · Stress</span>
+        </a>
+        <a href="test-lo-au.html" class="hub-item">
+          <b>🌊 Zung SAS (20 câu)</b>
+          <span>Sàng lọc mức độ lo âu cơ thể & tâm lý</span>
+        </a>
+        <a href="test-pss10.html" class="hub-item">
+          <b>⚡ PSS-10 Stress (10 câu)</b>
+          <span>Đo mức độ quá tải & kiểm soát</span>
+        </a>
+        <a href="test-isi.html" class="hub-item">
+          <b>🌙 ISI Mất Ngủ (7 câu)</b>
+          <span>Đo mức độ mất ngủ & chất lượng giấc ngủ</span>
+        </a>
+        <a href="goi-tu-sang-loc-an-danh.html" class="hub-item">
+          <b>🎯 Gói Sàng Lọc Ẩn Danh</b>
+          <span>Bộ 6 thang đo chuẩn quốc tế</span>
+        </a>
+        <a href="goi-teen.html" class="hub-item">
+          <b>🎒 Gói Teen 5-trong-1</b>
+          <span>Dành riêng cho thanh thiếu niên</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p><b>BS. PHAN THỊ THANH NHÀN</b> · Bác sĩ Chuyên khoa Tâm thần</p>
+    <p style="margin-top:6px;opacity:.85;">Bệnh viện Tâm thần Trung ương 2 (trực thuộc Bộ Y tế) · Đồng hành cùng sức khỏe tinh thần người Việt</p>
+    <p style="margin-top:10px;font-size:.78rem;opacity:.7;">Lưu ý: Kết quả thang đo có giá trị tự nhận thức và định hướng rèn luyện, không dùng để dán nhãn bệnh lý.</p>
+  </div>
+</footer>
+
+<script>
+const QUESTIONS = [
+  {t: "1. Tôi có xu hướng phục hồi nhanh sau những giai đoạn khó khăn.", rev: false},
+  {t: "2. Tôi thấy khó khăn để vượt qua những sự kiện gây căng thẳng.", rev: true},
+  {t: "3. Tôi không mất nhiều thời gian để phục hồi sau một sự kiện căng thẳng.", rev: false},
+  {t: "4. Thật khó để tôi lấy lại tinh thần khi có chuyện không may xảy ra.", rev: true},
+  {t: "5. Tôi thường vượt qua giai đoạn khó khăn trong cuộc sống mà không gặp quá nhiều trở ngại.", rev: false},
+  {t: "6. Tôi có xu hướng mất nhiều thời gian mới vượt qua được khó khăn / thất bại trong cuộc sống.", rev: true}
+];
+
+const OPTIONS = [
+  {lbl: "Hoàn toàn không đồng ý", val: 1},
+  {lbl: "Không đồng ý", val: 2},
+  {lbl: "Trung lập / Bình thường", val: 3},
+  {lbl: "Đồng ý", val: 4},
+  {lbl: "Hoàn toàn đồng ý", val: 5}
+];
+
+let curQ = 0;
+let scores = [];
+
+function renderQ() {
+  const q = QUESTIONS[curQ];
+  document.getElementById('pbar').style.width = ((curQ / QUESTIONS.length) * 100) + '%';
+  document.getElementById('qidx').textContent = `Câu hỏi ${curQ + 1} / ${QUESTIONS.length}`;
+  document.getElementById('qtext').textContent = q.t;
+  
+  const optsDiv = document.getElementById('opts');
+  optsDiv.innerHTML = '';
+  OPTIONS.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = 'opt-btn';
+    btn.innerHTML = `<span>${opt.lbl}</span><span style="font-size:1.1rem;opacity:.4;">→</span>`;
+    btn.onclick = () => choose(opt.val);
+    optsDiv.appendChild(btn);
+  });
+}
+
+function choose(val) {
+  const q = QUESTIONS[curQ];
+  const finalVal = q.rev ? (6 - val) : val;
+  scores[curQ] = finalVal;
+  
+  if (curQ < QUESTIONS.length - 1) {
+    curQ++;
+    renderQ();
+  } else {
+    showResult();
+  }
+}
+
+function showResult() {
+  const sum = scores.reduce((a, b) => a + b, 0);
+  const mean = (sum / 6).toFixed(2);
+  
+  document.getElementById('quiz').style.display = 'none';
+  document.getElementById('result').style.display = 'block';
+  document.getElementById('rscore').textContent = `${mean} / 5.0`;
+  
+  const band = document.getElementById('rband');
+  const desc = document.getElementById('rdesc');
+  
+  const m = parseFloat(mean);
+  if (m < 3.00) {
+    band.textContent = 'Sức Bền Tinh Thần Thấp';
+    band.style.background = '#ea7317';
+    desc.textContent = 'Bạn dễ bị choáng ngợp trước những sự kiện bất ngờ và cần nhiều thời gian để lấy lại cân bằng sau thất bại hoặc áp lực. Đây là chỉ dấu cho thấy bạn cần xây dựng thêm các chiến lược ứng phó (coping skills) và hệ thống hỗ trợ xung quanh.';
+  } else if (m <= 4.30) {
+    band.textContent = 'Sức Bền Tinh Thần Trung Bình';
+    band.style.background = '#16a34a';
+    desc.textContent = 'Bạn có khả năng phục hồi ở mức bình thường. Bạn có thể chao đảo khi gặp sóng gió lớn, nhưng từng bước vẫn tìm lại được trạng thái thăng bằng cuộc sống.';
+  } else {
+    band.textContent = 'Sức Bền Tinh Thần Cao';
+    band.style.background = '#0f766e';
+    desc.textContent = 'Khả năng phục hồi tâm lý của bạn rất tuyệt vời. Bạn có năng lực "bật dậy" mạnh mẽ sau nghịch cảnh, biến khó khăn thành bài học kinh nghiệm để tiếp tục tiến lên.';
+  }
+  
+  document.getElementById('result').scrollIntoView({behavior: 'smooth'});
+}
+
+renderQ();
+</script>
+</body>
+</html>

@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Test Mất Ngủ ISI (Insomnia Severity Index) – BS. Thanh Nhàn</title>
+<meta name="description" content="Thang đo mức độ mất ngủ ISI chuẩn y khoa quốc tế (7 câu, 2 phút). Đánh giá chất lượng giấc ngủ và hướng can thiệp CBT-I cùng Bác sĩ Tâm thần Thanh Nhàn.">
+<meta property="og:title" content="Giấc ngủ của bạn có đang bị rối loạn? Test ISI miễn phí">
+<meta property="og:description" content="Đo mức độ mất ngủ theo thang ISI – kết quả tức thì cùng BS. Thanh Nhàn (Chuyên khoa Tâm thần).">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&display=swap');
+  *{margin:0;padding:0;box-sizing:border-box;}
+  :root{
+    --teal:#0d9488; --teal-dark:#0f766e; --teal-soft:#ccfbf1;
+    --navy:#14324a; --ink:#1f2d3d; --muted:#5b6b7b; --bg:#f3f8f7;
+    --card:#ffffff; --amber:#f59e0b; --line:#e2ebe9;
+    --green:#16a34a; --orange:#ea7317; --red:#dc2626;
+  }
+  body{font-family:'Be Vietnam Pro',sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:680px;margin:0 auto;padding:0 18px;}
+  a{color:var(--teal-dark);}
+
+  header{background:var(--card);border-bottom:1px solid var(--line);padding:14px 0;}
+  .hd{display:flex;align-items:center;gap:12px;}
+  .hd .avatar{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--teal-dark));display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0;overflow:hidden;}
+  .hd .avatar img{width:100%;height:100%;object-fit:cover;object-position:center top;}
+  .hd h1{font-size:1rem;font-weight:700;color:var(--navy);line-height:1.2;}
+  .hd p{font-size:.78rem;color:var(--teal-dark);font-weight:600;letter-spacing:.3px;}
+  .hd .nav-links{margin-left:auto;display:flex;gap:8px;}
+  .hd .nav-links a{font-size:.8rem;font-weight:700;color:var(--teal-dark);text-decoration:none;padding:6px 12px;border-radius:20px;background:var(--teal-soft);}
+
+  .hero{background:linear-gradient(160deg,#312e81 0%,#0f766e 100%);color:#fff;padding:46px 0 50px;text-align:center;}
+  .hero .photo{width:120px;height:120px;border-radius:50%;border:4px solid rgba(255,255,255,.55);box-shadow:0 10px 30px rgba(0,0,0,.2);object-fit:cover;object-position:center top;margin:0 auto 18px;background:rgba(255,255,255,.15);}
+  .hero .badge{display:inline-block;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);padding:6px 16px;border-radius:30px;font-size:.78rem;font-weight:600;margin-bottom:16px;}
+  .hero h2{font-size:clamp(1.7rem,5.5vw,2.3rem);font-weight:800;line-height:1.25;margin-bottom:12px;}
+  .hero p{font-size:1rem;color:#e0e7ff;max-width:540px;margin:0 auto 24px;line-height:1.6;}
+  .btn{display:inline-block;padding:14px 34px;border-radius:30px;font-weight:800;text-decoration:none;font-size:1rem;cursor:pointer;border:none;transition:transform .15s,box-shadow .15s;}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.2);}
+  .btn-amber{background:var(--amber);color:#451a03;}
+  .stats{display:flex;justify-content:center;gap:24px;margin-top:28px;padding-top:22px;border-top:1px solid rgba(255,255,255,.2);font-size:.84rem;color:#c7d2fe;}
+  .stats b{display:block;font-size:1.3rem;color:#fff;}
+
+  section{padding:42px 0;}
+  .quiz-box{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:28px 22px;box-shadow:0 8px 30px rgba(20,50,74,.06);}
+  .q-progress{background:#e2e8f0;height:8px;border-radius:10px;overflow:hidden;margin-bottom:24px;}
+  .q-bar{height:100%;width:0%;background:linear-gradient(90deg,var(--teal),var(--amber));transition:width .3s;}
+  .q-head{display:flex;justify-content:space-between;align-items:center;font-size:.85rem;color:var(--muted);margin-bottom:14px;font-weight:700;}
+  .q-title{font-size:1.15rem;font-weight:800;color:var(--navy);line-height:1.45;margin-bottom:22px;}
+  .opts{display:grid;gap:10px;}
+  .opt-btn{background:var(--bg);border:1.5px solid var(--line);border-radius:14px;padding:14px 18px;text-align:left;font-family:inherit;font-size:.95rem;font-weight:600;color:var(--ink);cursor:pointer;display:flex;align-items:center;justify-content:space-between;transition:all .15s;}
+  .opt-btn:hover{border-color:var(--teal);background:var(--teal-soft);transform:translateX(3px);}
+
+  #result{display:none;}
+  .res-card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:32px 24px;text-align:center;box-shadow:0 12px 40px rgba(20,50,74,.08);}
+  .res-num{font-size:3.5rem;font-weight:900;line-height:1;}
+  .res-band{display:inline-block;margin-top:12px;padding:8px 24px;border-radius:30px;font-weight:800;font-size:1.05rem;color:#fff;}
+  .res-desc{color:var(--ink);font-size:1rem;max-width:540px;margin:18px auto 0;line-height:1.65;}
+  .res-scale{max-width:520px;margin:24px auto 0;font-size:.85rem;color:var(--muted);text-align:left;}
+  .res-scale div{display:flex;justify-content:space-between;padding:8px 0;border-top:1px dashed var(--line);}
+
+  .lead{background:linear-gradient(160deg,#0f766e,#0d9488);color:#fff;border-radius:18px;padding:26px 22px;margin-top:24px;text-align:center;}
+  .lead h3{font-size:1.25rem;font-weight:800;}
+  .lead p{color:#d8fff9;font-size:.9rem;margin:6px 0 18px;}
+  .ch{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;max-width:520px;margin:16px auto 0;}
+  .ch a{display:flex;align-items:center;justify-content:center;gap:10px;padding:14px;border-radius:14px;text-decoration:none;font-weight:700;color:#fff;font-size:.95rem;}
+  .c-zalo{background:#0068ff;}
+  .c-call{background:var(--amber);color:#451a03;}
+
+  .hub-box{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;margin-top:30px;}
+  .hub-box h3{font-size:1.1rem;font-weight:800;color:var(--navy);margin-bottom:14px;text-align:center;}
+  .hub-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;}
+  .hub-item{display:block;background:var(--bg);padding:12px 14px;border-radius:12px;text-decoration:none;border:1px solid var(--line);transition:transform .15s;}
+  .hub-item:hover{transform:translateY(-2px);border-color:var(--teal);}
+  .hub-item b{display:block;color:var(--navy);font-size:.9rem;}
+  .hub-item span{font-size:.76rem;color:var(--muted);}
+
+  footer{background:var(--navy);color:#cdd9e3;text-align:center;padding:28px 18px;font-size:.85rem;margin-top:40px;}
+  footer b{color:#fff;}
+  @media(max-width:480px){.ch{grid-template-columns:1fr;}.hub-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap hd">
+    <div class="avatar"><img src="bs-thanh-nhan.jpg" alt="BS. Thanh Nhàn" onerror="this.parentNode.textContent='🩺'"></div>
+    <div>
+      <h1>BS. Thanh Nhàn</h1>
+      <p>CHUYÊN KHOA TÂM THẦN</p>
+    </div>
+    <div class="nav-links">
+      <a href="index.html">Trang chủ</a>
+      <a href="test-pss10.html">Test Stress</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <img class="photo" src="bs-thanh-nhan.jpg" alt="BS. Thanh Nhàn" onerror="this.style.display='none'">
+    <span class="badge">⏱️ Miễn phí · 7 câu · 2 phút</span>
+    <h2>Thang Đánh Giá Mức Độ Mất Ngủ ISI</h2>
+    <p>Insomnia Severity Index là công cụ lâm sàng tiêu chuẩn vàng thế giới (Bastien et al.) giúp bạn xác định rõ mức độ rối loạn giấc ngủ trong 2 tuần qua.</p>
+    <a href="#test" class="btn btn-amber">Bắt đầu bài test ngay →</a>
+    <div class="stats">
+      <div><b>7</b>câu hỏi</div>
+      <div><b>~2'</b>thực hiện</div>
+      <div><b>100%</b>kết quả tức thì</div>
+    </div>
+  </div>
+</section>
+
+<section id="test">
+  <div class="wrap">
+    <div class="quiz-box" id="quiz">
+      <div class="q-progress"><div class="q-bar" id="pbar"></div></div>
+      <div class="q-head">
+        <span id="qidx">Câu hỏi 1 / 7</span>
+        <span>Trong 2 tuần qua</span>
+      </div>
+      <div class="q-title" id="qtext">...</div>
+      <div class="opts" id="opts"></div>
+    </div>
+
+    <div id="result">
+      <div class="res-card">
+        <span style="font-size:.85rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);">Kết quả thang đo mất ngủ ISI</span>
+        <div class="res-num" id="rscore" style="color:var(--teal-dark);margin-top:10px;">--</div>
+        <div class="res-band" id="rband">--</div>
+        <div class="res-desc" id="rdesc">--</div>
+        
+        <div class="res-scale">
+          <div><span>0 – 7 điểm:</span><b>Không có mất ngủ đáng kể lâm sàng</b></div>
+          <div><span>8 – 14 điểm:</span><b>Mất ngủ dưới ngưỡng (Subthreshold)</b></div>
+          <div><span>15 – 21 điểm:</span><b>Mất ngủ mức độ vừa</b></div>
+          <div><span>22 – 28 điểm:</span><b>Mất ngủ mức độ nặng</b></div>
+        </div>
+
+        <div class="lead">
+          <h3>Tư Vấn Giấc Ngủ Cùng BS. Thanh Nhàn</h3>
+          <p>Tìm nguyên nhân gốc rễ gây mất ngủ và áp dụng phác đồ vệ sinh giấc ngủ / Liệu pháp hành vi nhận thức mất ngủ (CBT-I) không lạm dụng thuốc ngủ.</p>
+          <div class="ch">
+            <a href="https://zalo.me/0339681115" target="_blank" class="c-zalo">💬 Nhắn Zalo: 0339 681 115</a>
+            <a href="tel:0339681115" class="c-call">📞 Gọi Bác sĩ tư vấn</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HUB NAVIGATION -->
+    <div class="hub-box">
+      <h3>Bộ Thang Đo Sức Khỏe Tinh Thần BS. Thanh Nhàn</h3>
+      <div class="hub-grid">
+        <a href="index.html" class="hub-item">
+          <b>🌿 DASS-21 (21 câu)</b>
+          <span>Đo Trầm cảm · Lo âu · Stress</span>
+        </a>
+        <a href="test-lo-au.html" class="hub-item">
+          <b>🌊 Zung SAS (20 câu)</b>
+          <span>Sàng lọc mức độ lo âu cơ thể & tâm lý</span>
+        </a>
+        <a href="test-pss10.html" class="hub-item">
+          <b>⚡ PSS-10 Stress (10 câu)</b>
+          <span>Đo mức độ quá tải & kiểm soát</span>
+        </a>
+        <a href="test-brs.html" class="hub-item">
+          <b>🛡️ BRS Sức Bền (6 câu)</b>
+          <span>Đo khả năng bật dậy & phục hồi tinh thần</span>
+        </a>
+        <a href="goi-tu-sang-loc-an-danh.html" class="hub-item">
+          <b>🎯 Gói Sàng Lọc Ẩn Danh</b>
+          <span>Bộ 6 thang đo chuẩn quốc tế</span>
+        </a>
+        <a href="goi-teen.html" class="hub-item">
+          <b>🎒 Gói Teen 5-trong-1</b>
+          <span>Dành riêng cho thanh thiếu niên</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p><b>BS. PHAN THỊ THANH NHÀN</b> · Bác sĩ Chuyên khoa Tâm thần</p>
+    <p style="margin-top:6px;opacity:.85;">Bệnh viện Tâm thần Trung ương 2 (trực thuộc Bộ Y tế) · Đồng hành cùng sức khỏe tinh thần người Việt</p>
+    <p style="margin-top:10px;font-size:.78rem;opacity:.7;">Lưu ý: Kết quả thang đo có giá trị sàng lọc lâm sàng và theo dõi điều trị, không thay thế khám chuyên khoa trực tiếp.</p>
+  </div>
+</footer>
+
+<script>
+const QUESTIONS = [
+  {
+    t: "1. Mức độ khó khăn khi bắt đầu vào giấc ngủ (khó ngủ được)?",
+    opts: [
+      {lbl: "Không có", val: 0},
+      {lbl: "Nhẹ", val: 1},
+      {lbl: "Vừa phải", val: 2},
+      {lbl: "Nặng", val: 3},
+      {lbl: "Rất nặng", val: 4}
+    ]
+  },
+  {
+    t: "2. Mức độ khó duy trì giấc ngủ (hay thức giấc giữa đêm)?",
+    opts: [
+      {lbl: "Không có", val: 0},
+      {lbl: "Nhẹ", val: 1},
+      {lbl: "Vừa phải", val: 2},
+      {lbl: "Nặng", val: 3},
+      {lbl: "Rất nặng", val: 4}
+    ]
+  },
+  {
+    t: "3. Mức độ thức dậy quá sớm vào buổi sáng và không thể ngủ lại?",
+    opts: [
+      {lbl: "Không có", val: 0},
+      {lbl: "Nhẹ", val: 1},
+      {lbl: "Vừa phải", val: 2},
+      {lbl: "Nặng", val: 3},
+      {lbl: "Rất nặng", val: 4}
+    ]
+  },
+  {
+    t: "4. Bạn hài lòng hay không hài lòng với giấc ngủ hiện tại của mình?",
+    opts: [
+      {lbl: "Rất hài lòng", val: 0},
+      {lbl: "Hài lòng", val: 1},
+      {lbl: "Bình thường / Tạm chấp nhận", val: 2},
+      {lbl: "Không hài lòng", val: 3},
+      {lbl: "Rất không hài lòng", val: 4}
+    ]
+  },
+  {
+    t: "5. Người khác (gia đình, bạn bè, đồng nghiệp) có nhận thấy vấn đề giấc ngủ ảnh hưởng tới chất lượng sống của bạn?",
+    opts: [
+      {lbl: "Không chút nào", val: 0},
+      {lbl: "Chỉ một chút", val: 1},
+      {lbl: "Có phần nào", val: 2},
+      {lbl: "Nhiều", val: 3},
+      {lbl: "Rất nhiều", val: 4}
+    ]
+  },
+  {
+    t: "6. Bạn lo lắng hoặc đau khổ đến mức nào về vấn đề giấc ngủ hiện tại?",
+    opts: [
+      {lbl: "Không chút nào", val: 0},
+      {lbl: "Hơi lo một chút", val: 1},
+      {lbl: "Khá lo lắng", val: 2},
+      {lbl: "Rất lo lắng", val: 3},
+      {lbl: "Cực kỳ lo lắng / ám ảnh", val: 4}
+    ]
+  },
+  {
+    t: "7. Giấc ngủ kém cản trở hoạt động ban ngày của bạn đến mức nào (mệt mỏi, khó tập trung, suy giảm trí nhớ, cáu gắt)?",
+    opts: [
+      {lbl: "Không chút nào", val: 0},
+      {lbl: "Chỉ một chút", val: 1},
+      {lbl: "Có phần nào", val: 2},
+      {lbl: "Nhiều", val: 3},
+      {lbl: "Rất nhiều", val: 4}
+    ]
+  }
+];
+
+let curQ = 0;
+let scores = [];
+
+function renderQ() {
+  const q = QUESTIONS[curQ];
+  document.getElementById('pbar').style.width = ((curQ / QUESTIONS.length) * 100) + '%';
+  document.getElementById('qidx').textContent = `Câu hỏi ${curQ + 1} / ${QUESTIONS.length}`;
+  document.getElementById('qtext').textContent = q.t;
+  
+  const optsDiv = document.getElementById('opts');
+  optsDiv.innerHTML = '';
+  q.opts.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = 'opt-btn';
+    btn.innerHTML = `<span>${opt.lbl}</span><span style="font-size:1.1rem;opacity:.4;">→</span>`;
+    btn.onclick = () => choose(opt.val);
+    optsDiv.appendChild(btn);
+  });
+}
+
+function choose(val) {
+  scores[curQ] = val;
+  if (curQ < QUESTIONS.length - 1) {
+    curQ++;
+    renderQ();
+  } else {
+    showResult();
+  }
+}
+
+function showResult() {
+  const total = scores.reduce((a, b) => a + b, 0);
+  document.getElementById('quiz').style.display = 'none';
+  document.getElementById('result').style.display = 'block';
+  document.getElementById('rscore').textContent = `${total} / 28`;
+  
+  const band = document.getElementById('rband');
+  const desc = document.getElementById('rdesc');
+  
+  if (total <= 7) {
+    band.textContent = 'Không Có Mất Ngủ Đáng Kể Lâm Sàng';
+    band.style.background = '#16a34a';
+    desc.textContent = 'Chất lượng giấc ngủ của bạn đang ở mức tốt. Cơ thể và não bộ của bạn được tái tạo năng lượng đầy đủ mỗi đêm.';
+  } else if (total <= 14) {
+    band.textContent = 'Mất Ngủ Dưới Ngưỡng (Subthreshold)';
+    band.style.background = '#ea7317';
+    desc.textContent = 'Bạn bắt đầu có dấu hiệu rối loạn giấc ngủ nhẹ (khó vào giấc hoặc dễ thức giữa đêm). Giai đoạn này rất thích hợp để điều chỉnh lại nhịp sinh học và thói quen ngủ trước khi chuyển thành mất ngủ mãn tính.';
+  } else if (total <= 21) {
+    band.textContent = 'Mất Ngủ Mức Độ Vừa';
+    band.style.background = '#dc2626';
+    desc.textContent = 'Giấc ngủ của bạn đang bị ảnh hưởng rõ rệt, gây mệt mỏi, giảm tập trung và suy giảm chất lượng cuộc sống ban ngày. Bạn nên tham khảo ý kiến chuyên gia để áp dụng phác đồ CBT-I lành tính.';
+  } else {
+    band.textContent = 'Mất Ngủ Mức Độ Nặng';
+    band.style.background = '#991b1b';
+    desc.textContent = 'Bạn đang trong tình trạng mất ngủ nghiêm trọng. Hệ thần kinh đang bị vắt kiệt và rất dễ đi kèm với các rối loạn lo âu hoặc trầm cảm. Cần liên hệ với Bác sĩ Thanh Nhàn để được đánh giá toàn diện.';
+  }
+  
+  document.getElementById('result').scrollIntoView({behavior: 'smooth'});
+}
+
+renderQ();
+</script>
+</body>
+</html>

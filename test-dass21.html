@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Bạn đang ổn chứ? · Bài test sức khỏe tinh thần · BS. Nhàn</title>
+<meta name="description" content="Bài test DASS-21 miễn phí, 3 phút — đánh giá mức độ Trầm cảm, Lo âu và Stress. Tư vấn cùng Bác sĩ Nhàn." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..600&family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#16302B;
+    --ink-soft:#3D5A52;
+    --sage-bg:#F1F5F1;
+    --mist:#E2EDE6;
+    --surface:#FFFFFF;
+    --line:#D6E2DB;
+    --teal:#2F7D6E;
+    --teal-deep:#23615; /* fallback below overrides */
+    --teal-deep:#235C50;
+    --clay:#DC8A5E;
+    --clay-deep:#C9744A;
+    --shadow:0 2px 4px rgba(22,48,43,.04), 0 12px 32px rgba(22,48,43,.07);
+    --shadow-lg:0 8px 60px rgba(22,48,43,.12);
+    --r:18px;
+    --maxw:1080px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:"Be Vietnam Pro",system-ui,sans-serif;
+    color:var(--ink);
+    background:var(--sage-bg);
+    line-height:1.6;
+    font-weight:400;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{font-family:"Lora",Georgia,serif;font-weight:600;line-height:1.18;letter-spacing:-.01em;margin:0;}
+  p{margin:0;}
+  a{color:inherit;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
+  .eyebrow{
+    font-size:.74rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--teal);display:inline-flex;align-items:center;gap:.5em;
+  }
+  .eyebrow::before{content:"";width:22px;height:1px;background:var(--teal);opacity:.6;}
+
+  /* ---------- Header ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(241,245,241,.82);backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{display:flex;align-items:center;justify-content:space-between;height:68px;}
+  .brand{display:flex;align-items:center;gap:.6rem;font-family:"Lora",serif;font-weight:600;font-size:1.12rem;}
+  .brand .dot{width:30px;height:30px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#5CB6A4,var(--teal));flex:none;}
+  .brand small{display:block;font-family:"Be Vietnam Pro";font-weight:400;font-size:.7rem;color:var(--ink-soft);letter-spacing:.02em;}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
+    font-family:"Be Vietnam Pro";font-weight:600;font-size:.95rem;
+    padding:.7rem 1.35rem;border-radius:999px;border:0;cursor:pointer;
+    text-decoration:none;transition:transform .15s ease,box-shadow .2s ease,background .2s ease;
+  }
+  .btn-primary{background:var(--clay);color:#fff;box-shadow:0 6px 18px rgba(220,138,94,.32);}
+  .btn-primary:hover{background:var(--clay-deep);transform:translateY(-1px);}
+  .btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line);}
+  .btn-ghost:hover{border-color:var(--teal);color:var(--teal);}
+  .btn-teal{background:var(--teal);color:#fff;box-shadow:0 6px 18px rgba(47,125,110,.28);}
+  .btn-teal:hover{background:var(--teal-deep);transform:translateY(-1px);}
+  .nav .btn{padding:.55rem 1.1rem;font-size:.88rem;}
+
+  /* ---------- Hero ---------- */
+  .hero{position:relative;overflow:hidden;padding:74px 0 86px;}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;}
+  .hero h1{font-size:clamp(2.3rem,5.2vw,3.7rem);}
+  .hero h1 em{font-style:italic;color:var(--teal);}
+  .hero .lede{margin-top:1.25rem;font-size:1.12rem;color:var(--ink-soft);max-width:34ch;}
+  .hero-cta{margin-top:2rem;display:flex;flex-wrap:wrap;gap:.8rem;align-items:center;}
+  .hero-note{margin-top:1.1rem;font-size:.86rem;color:var(--ink-soft);display:flex;gap:1.2rem;flex-wrap:wrap;}
+  .hero-note span{display:inline-flex;align-items:center;gap:.4rem;}
+  .check{width:16px;height:16px;flex:none;color:var(--teal);}
+
+  /* breathing orb — signature element */
+  .orb-stage{display:grid;place-items:center;position:relative;aspect-ratio:1/1;max-width:380px;margin:0 auto;width:100%;}
+  .orb{position:relative;width:74%;aspect-ratio:1/1;border-radius:50%;
+    background:radial-gradient(circle at 38% 32%,#7FCBB9 0%,#3E9685 48%,var(--teal-deep) 100%);
+    box-shadow:0 24px 70px rgba(35,92,80,.4), inset 0 4px 30px rgba(255,255,255,.25);
+    display:grid;place-items:center;animation:breathe 9s ease-in-out infinite;}
+  .orb::after{content:"";position:absolute;inset:-26%;border-radius:50%;border:1px solid rgba(47,125,110,.25);animation:ring 9s ease-in-out infinite;}
+  .orb::before{content:"";position:absolute;inset:-13%;border-radius:50%;border:1px solid rgba(47,125,110,.4);animation:ring 9s ease-in-out infinite;animation-delay:-.4s;}
+  .orb-label{color:#EAF6F1;text-align:center;font-family:"Lora",serif;font-style:italic;font-size:1.05rem;letter-spacing:.02em;}
+  @keyframes breathe{0%,100%{transform:scale(.9)}50%{transform:scale(1.06)}}
+  @keyframes ring{0%,100%{transform:scale(.86);opacity:.35}50%{transform:scale(1.08);opacity:.75}}
+
+  /* ---------- Sections ---------- */
+  section{padding:72px 0;}
+  .section-head{max-width:62ch;}
+  .section-head h2{font-size:clamp(1.7rem,3.6vw,2.5rem);margin-top:.9rem;}
+  .section-head p{margin-top:1rem;color:var(--ink-soft);font-size:1.05rem;}
+
+  .feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:42px;}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:28px;box-shadow:var(--shadow);}
+  .card .ic{width:42px;height:42px;border-radius:12px;background:var(--mist);display:grid;place-items:center;color:var(--teal);margin-bottom:16px;}
+  .card h3{font-size:1.18rem;}
+  .card p{margin-top:.5rem;color:var(--ink-soft);font-size:.96rem;}
+
+  /* ---------- Test ---------- */
+  #test{background:var(--mist);}
+  .test-shell{background:var(--surface);border-radius:24px;box-shadow:var(--shadow-lg);max-width:720px;margin:42px auto 0;overflow:hidden;border:1px solid var(--line);}
+  .test-top{padding:24px 30px 0;}
+  .progress-row{display:flex;align-items:center;justify-content:space-between;font-size:.82rem;color:var(--ink-soft);font-weight:500;}
+  .bar{height:6px;background:var(--mist);border-radius:999px;margin-top:10px;overflow:hidden;}
+  .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--teal),#5CB6A4);border-radius:999px;transition:width .35s ease;}
+  .q-body{padding:14px 30px 30px;}
+  .q-index{font-size:.8rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);}
+  .q-text{font-family:"Lora",serif;font-size:1.4rem;line-height:1.35;margin:.4rem 0 1.4rem;min-height:2.4em;}
+  .opts{display:grid;gap:10px;}
+  .opt{display:flex;align-items:center;gap:14px;padding:15px 18px;border:1.5px solid var(--line);border-radius:14px;cursor:pointer;transition:border-color .15s,background .15s,transform .1s;background:#fff;}
+  .opt:hover{border-color:var(--teal);background:#F6FBF8;}
+  .opt.sel{border-color:var(--teal);background:#EAF6F1;}
+  .opt .pip{width:22px;height:22px;border-radius:50%;border:2px solid var(--line);flex:none;display:grid;place-items:center;transition:.15s;}
+  .opt.sel .pip{border-color:var(--teal);background:var(--teal);}
+  .opt.sel .pip::after{content:"";width:8px;height:8px;border-radius:50%;background:#fff;}
+  .opt .lbl{font-weight:500;}
+  .opt .sub{display:block;font-size:.8rem;color:var(--ink-soft);font-weight:400;}
+  .q-nav{display:flex;justify-content:space-between;align-items:center;margin-top:24px;}
+  .lnk{background:none;border:0;color:var(--ink-soft);font-family:inherit;font-size:.9rem;cursor:pointer;padding:.5rem 0;font-weight:500;}
+  .lnk:hover{color:var(--teal);}
+  .lnk[disabled]{opacity:.35;cursor:not-allowed;}
+
+  /* ---------- Results ---------- */
+  .result-card{display:none;}
+  .result-card.show{display:block;}
+  .res-head{text-align:center;padding:36px 30px 8px;}
+  .res-head h3{font-size:1.7rem;}
+  .res-head p{color:var(--ink-soft);margin-top:.5rem;}
+  .scales{padding:14px 30px 6px;display:grid;gap:18px;}
+  .scale{border:1px solid var(--line);border-radius:16px;padding:18px 20px;}
+  .scale-top{display:flex;align-items:baseline;justify-content:space-between;gap:10px;}
+  .scale-top b{font-family:"Lora",serif;font-size:1.15rem;font-weight:600;}
+  .pill{font-size:.78rem;font-weight:600;padding:.25rem .7rem;border-radius:999px;}
+  .scale-track{height:9px;background:var(--mist);border-radius:999px;margin-top:12px;overflow:hidden;}
+  .scale-track i{display:block;height:100%;width:0;border-radius:999px;transition:width .8s cubic-bezier(.4,0,.2,1);}
+  .scale-meta{display:flex;justify-content:space-between;margin-top:8px;font-size:.8rem;color:var(--ink-soft);}
+  .lvl-0{background:#E6F2EC;color:#2F7D6E;} .fill-0{background:#4FB196;}
+  .lvl-1{background:#FBF3DD;color:#B9892A;} .fill-1{background:#E7C25A;}
+  .lvl-2{background:#FCE9D6;color:#C9744A;} .fill-2{background:#E89B5E;}
+  .lvl-3{background:#FAD9CE;color:#C6532F;} .fill-3{background:#E07350;}
+  .lvl-4{background:#F6D2CC;color:#B23A2C;} .fill-4{background:#D24A38;}
+  .interpret{margin:18px 30px 4px;background:var(--mist);border-radius:16px;padding:20px 22px;font-size:.97rem;color:var(--ink-soft);}
+  .interpret b{color:var(--ink);}
+  .res-cta{padding:24px 30px 34px;text-align:center;}
+  .res-cta .btn{margin:.3rem;}
+  .disc{font-size:.8rem;color:var(--ink-soft);margin:0 30px 26px;border-top:1px solid var(--line);padding-top:16px;}
+
+  /* ---------- Lead form ---------- */
+  #lien-he{background:var(--ink);color:#EAF6F1;}
+  #lien-he h2{color:#fff;}
+  #lien-he .section-head p{color:#B8CFC7;}
+  .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:42px;margin-top:40px;align-items:start;}
+  .form-box{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:30px;}
+  .field{margin-bottom:18px;}
+  .field label{display:block;font-size:.85rem;font-weight:500;margin-bottom:7px;color:#CFE3DB;}
+  .field input,.field textarea,.field select{
+    width:100%;padding:13px 15px;border-radius:12px;border:1px solid rgba(255,255,255,.16);
+    background:rgba(255,255,255,.06);color:#fff;font-family:inherit;font-size:.98rem;
+  }
+  .field textarea{min-height:96px;resize:vertical;}
+  .field input::placeholder,.field textarea::placeholder{color:#88A79E;}
+  .field input:focus,.field textarea:focus,.field select:focus{outline:2px solid var(--teal);border-color:transparent;}
+  .form-box .btn-primary{width:100%;margin-top:6px;}
+  .form-ok{display:none;background:rgba(79,177,150,.16);border:1px solid rgba(79,177,150,.4);border-radius:12px;padding:14px 16px;font-size:.92rem;margin-top:14px;color:#CFF3E6;}
+  .contact-list{display:grid;gap:16px;}
+  .contact-list a{display:flex;gap:14px;align-items:center;text-decoration:none;padding:16px 18px;border:1px solid rgba(255,255,255,.12);border-radius:14px;transition:background .15s;}
+  .contact-list a:hover{background:rgba(255,255,255,.06);}
+  .contact-list .ic{width:40px;height:40px;border-radius:11px;background:rgba(255,255,255,.08);display:grid;place-items:center;flex:none;}
+  .contact-list b{display:block;font-size:1rem;}
+  .contact-list small{color:#9FBCB2;}
+
+  /* ---------- About ---------- */
+  .about-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:48px;align-items:center;}
+  .doc-photo{aspect-ratio:4/5;border-radius:22px;background:linear-gradient(160deg,#CFE6DC,#9FCFC0);display:grid;place-items:center;box-shadow:var(--shadow);overflow:hidden;}
+  .doc-photo span{font-family:"Lora",serif;font-style:italic;color:#3D7A6C;font-size:1.05rem;}
+  .about-grid h2{font-size:clamp(1.7rem,3.4vw,2.4rem);}
+  .about-grid .lede{margin-top:1rem;color:var(--ink-soft);font-size:1.05rem;}
+  .creds{margin-top:1.4rem;display:grid;gap:12px;}
+  .creds li{list-style:none;display:flex;gap:12px;align-items:flex-start;}
+  .creds .check{margin-top:4px;}
+
+  /* ---------- Footer ---------- */
+  footer{background:var(--ink);color:#9FBCB2;padding:38px 0;border-top:1px solid rgba(255,255,255,.08);}
+  .foot-grid{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:center;}
+  footer .brand{color:#fff;}
+  footer .brand small{color:#9FBCB2;}
+  .crisis{font-size:.82rem;line-height:1.6;max-width:52ch;}
+  .crisis b{color:#EAF6F1;}
+
+  @media(max-width:860px){
+    .hero-grid,.about-grid,.form-grid{grid-template-columns:1fr;}
+    .orb-stage{order:-1;max-width:300px;}
+    .feature-grid{grid-template-columns:1fr;}
+    .nav .btn-ghost{display:none;}
+    section{padding:54px 0;}
+    .hero{padding:48px 0 60px;}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .orb,.orb::before,.orb::after{animation:none;}
+    *{scroll-behavior:auto;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="brand">
+      <span class="dot"></span>
+      <span>BS. Nhàn<small>Tâm lý · Sức khỏe tinh thần</small></span>
+    </div>
+    <div style="display:flex;gap:.6rem;align-items:center;">
+      <a href="#lien-he" class="btn btn-ghost">Đặt lịch tư vấn</a>
+      <a href="#test" class="btn btn-primary">Làm bài test</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Bài test miễn phí · 3 phút</span>
+      <h1>Bạn đang ổn chứ?<br>Hãy <em>lắng nghe</em> chính mình.</h1>
+      <p class="lede">Một bài đánh giá ngắn giúp bạn nhìn rõ mức độ <strong>căng thẳng, lo âu và buồn chán</strong> mình đang trải qua — riêng tư, không phán xét.</p>
+      <div class="hero-cta">
+        <a href="#test" class="btn btn-primary">Bắt đầu bài test &rarr;</a>
+        <a href="#gioi-thieu" class="btn btn-ghost">Tìm hiểu về bài test</a>
+      </div>
+      <div class="hero-note">
+        <span><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg>Hoàn toàn miễn phí</span>
+        <span><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg>Bảo mật riêng tư</span>
+        <span><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg>Có kết quả ngay</span>
+      </div>
+    </div>
+    <div class="orb-stage">
+      <div class="orb"><span class="orb-label">Hít vào…<br>Thở ra…</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- GIỚI THIỆU -->
+<section id="gioi-thieu">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Về bài test</span>
+      <h2>Thang đo DASS‑21 — công cụ được tin dùng trên toàn thế giới</h2>
+      <p>21 câu hỏi ngắn đánh giá ba khía cạnh của sức khỏe tinh thần trong tuần vừa qua. Bài test không thay thế chẩn đoán y khoa, nhưng là bước đầu tiên để bạn hiểu mình và biết khi nào nên tìm đến sự hỗ trợ.</p>
+    </div>
+    <div class="feature-grid">
+      <div class="card">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg></div>
+        <h3>Trầm cảm</h3>
+        <p>Cảm giác buồn chán, mất hứng thú, thấy tương lai vô vọng hay cuộc sống thiếu ý nghĩa.</p>
+      </div>
+      <div class="card">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a7 7 0 0 0-7 7c0 3 2 4 2 7h10c0-3 2-4 2-7a7 7 0 0 0-7-7Z"/><path d="M9 21h6"/></svg></div>
+        <h3>Lo âu</h3>
+        <p>Hồi hộp, run rẩy, khó thở, tim đập nhanh, hay những nỗi sợ xuất hiện không rõ nguyên do.</p>
+      </div>
+      <div class="card">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20Z"/><path d="M12 6v6l4 2"/></svg></div>
+        <h3>Stress</h3>
+        <p>Căng thẳng kéo dài, khó thư giãn, dễ kích động, dễ phật ý và phản ứng quá mức.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEST -->
+<section id="test">
+  <div class="wrap">
+    <div class="section-head" style="text-align:center;margin:0 auto;">
+      <span class="eyebrow" style="justify-content:center;">Bắt đầu thôi</span>
+      <h2>Trong tuần vừa qua, bạn cảm thấy thế nào?</h2>
+      <p style="margin-left:auto;margin-right:auto;">Chọn mức độ phù hợp nhất với bạn. Không có câu trả lời đúng hay sai — hãy trả lời thật lòng nhé.</p>
+    </div>
+
+    <div class="test-shell">
+      <!-- Question flow -->
+      <div id="questionView">
+        <div class="test-top">
+          <div class="progress-row"><span id="qCounter">Câu 1 / 21</span><span id="qPct">0%</span></div>
+          <div class="bar"><i id="qBar"></i></div>
+        </div>
+        <div class="q-body">
+          <div class="q-index" id="qDim">Stress</div>
+          <div class="q-text" id="qText"></div>
+          <div class="opts" id="qOpts"></div>
+          <div class="q-nav">
+            <button class="lnk" id="backBtn" disabled>&larr; Câu trước</button>
+            <button class="lnk" id="skipNote">Chọn một mục để tiếp tục</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Results -->
+      <div class="result-card" id="resultView">
+        <div class="res-head">
+          <span class="eyebrow" style="justify-content:center;">Kết quả của bạn</span>
+          <h3 id="resHeadline">Cảm ơn bạn đã dành thời gian</h3>
+          <p id="resSub">Đây là bức tranh nhanh về tuần vừa qua của bạn.</p>
+        </div>
+        <div class="scales" id="scales"></div>
+        <div class="interpret" id="interpret"></div>
+        <div class="res-cta">
+          <a href="#lien-he" class="btn btn-primary">Đặt lịch tư vấn cùng BS. Nhàn &rarr;</a>
+          <button class="btn btn-ghost" id="retakeBtn">Làm lại bài test</button>
+        </div>
+        <p class="disc"><strong>Lưu ý:</strong> Bài test DASS‑21 là công cụ sàng lọc, <b>không phải là chẩn đoán y khoa</b>. Kết quả chỉ mang tính tham khảo. Nếu bạn đang gặp khó khăn, việc trò chuyện với một chuyên gia sẽ giúp bạn rõ ràng hơn rất nhiều.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VỀ BÁC SĨ -->
+<section id="bac-si">
+  <div class="wrap about-grid">
+    <div class="doc-photo"><span>[ Ảnh BS. Nhàn ]</span></div>
+    <div>
+      <span class="eyebrow">Người đồng hành cùng bạn</span>
+      <h2>Bác sĩ Nhàn</h2>
+      <p class="lede">Với phương pháp lắng nghe thấu cảm và không phán xét, BS. Nhàn đồng hành cùng bạn trên hành trình hiểu mình, gỡ rối những căng thẳng, lo âu và tìm lại sự cân bằng trong cuộc sống.</p>
+      <ul class="creds">
+        <li><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg><span>Chuyên về tư vấn & điều trị stress, lo âu, trầm cảm</span></li>
+        <li><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg><span>Tư vấn trực tiếp và trực tuyến, linh hoạt thời gian</span></li>
+        <li><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg><span>Không gian an toàn, riêng tư và bảo mật tuyệt đối</span></li>
+      </ul>
+      <div style="margin-top:1.8rem;">
+        <a href="#lien-he" class="btn btn-teal">Đặt lịch tư vấn ngay</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIÊN HỆ / LEAD FORM -->
+<section id="lien-he">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Bước tiếp theo</span>
+      <h2>Để lại thông tin — BS. Nhàn sẽ liên hệ lại với bạn</h2>
+      <p>Bạn không phải đối mặt với mọi thứ một mình. Để lại lời nhắn, đội ngũ sẽ kết nối bạn với buổi tư vấn phù hợp.</p>
+    </div>
+    <div class="form-grid">
+      <div class="form-box">
+        <div class="field">
+          <label for="fName">Họ và tên</label>
+          <input id="fName" type="text" placeholder="Nguyễn Văn A" autocomplete="name">
+        </div>
+        <div class="field">
+          <label for="fPhone">Số điện thoại / Zalo</label>
+          <input id="fPhone" type="tel" placeholder="09xx xxx xxx" autocomplete="tel">
+        </div>
+        <div class="field">
+          <label for="fTopic">Bạn muốn được hỗ trợ về</label>
+          <select id="fTopic">
+            <option>Căng thẳng / Stress</option>
+            <option>Lo âu, hồi hộp</option>
+            <option>Buồn chán, mất hứng thú</option>
+            <option>Giấc ngủ</option>
+            <option>Chưa rõ — muốn được tư vấn</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="fMsg">Lời nhắn (không bắt buộc)</label>
+          <textarea id="fMsg" placeholder="Chia sẻ ngắn gọn điều bạn đang gặp phải…"></textarea>
+        </div>
+        <button class="btn btn-primary" id="submitLead">Gửi thông tin &rarr;</button>
+        <div class="form-ok" id="formOk"></div>
+      </div>
+      <div>
+        <div class="contact-list">
+          <a href="tel:+84000000000">
+            <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7FCBB9" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2Z"/></svg></span>
+            <span><b>Gọi điện</b><small>Thay số hotline thật vào đây</small></span>
+          </a>
+          <a href="https://zalo.me/0000000000" target="_blank" rel="noopener">
+            <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7FCBB9" stroke-width="2"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9.3 9.3 0 0 1-4-.9L3 20l1-3.9a8.4 8.4 0 0 1-1-4.1A8.4 8.4 0 0 1 12 3.5a8.4 8.4 0 0 1 9 8Z"/></svg></span>
+            <span><b>Nhắn Zalo</b><small>Thay link Zalo thật vào đây</small></span>
+          </a>
+          <a href="mailto:email@example.com">
+            <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7FCBB9" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
+            <span><b>Gửi email</b><small>Thay email thật vào đây</small></span>
+          </a>
+        </div>
+        <p class="crisis" style="margin-top:22px;color:#9FBCB2;">Nếu bạn đang có ý nghĩ làm tổn thương bản thân hoặc cần hỗ trợ khẩn cấp, hãy liên hệ ngay đường dây nóng <b>Ngày mai 096 306 1414</b> hoặc cơ sở y tế gần nhất.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div class="brand"><span class="dot"></span><span>BS. Nhàn<small>© 2026 · Tâm lý & Sức khỏe tinh thần</small></span></div>
+    <p class="crisis">Thông tin trên trang này chỉ mang tính tham khảo, <b>không thay thế cho tư vấn, chẩn đoán hay điều trị y khoa chuyên nghiệp</b>.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  // ---- DASS-21 data: dim = D (Trầm cảm), A (Lo âu), S (Stress) ----
+  const Q = [
+    {t:"Tôi nhận thấy khó mà thoải mái được.", d:"S"},
+    {t:"Tôi thấy khô miệng.", d:"A"},
+    {t:"Tôi gần như không thấy lạc quan tí nào.", d:"D"},
+    {t:"Tôi thấy khó thở (thở nhanh, khó thở ngay cả khi không gắng sức).", d:"A"},
+    {t:"Tôi thấy khó mà bắt tay vào công việc.", d:"D"},
+    {t:"Tôi đã phản ứng một cách thái quá với những sự việc xảy ra.", d:"S"},
+    {t:"Tôi cảm thấy run (ví dụ: ở tay).", d:"A"},
+    {t:"Tôi thấy mình quá căng thẳng.", d:"S"},
+    {t:"Tôi lo mình rơi vào những tình huống mà tôi có thể bị hoảng sợ hoặc bị mất mặt.", d:"A"},
+    {t:"Tôi thấy tương lai chẳng có gì đáng để mong đợi cả.", d:"D"},
+    {t:"Tôi thấy mình dễ bị kích động.", d:"S"},
+    {t:"Tôi thấy khó mà thư giãn được.", d:"S"},
+    {t:"Tôi thấy chán nản và thất vọng.", d:"D"},
+    {t:"Tôi thấy khó chấp nhận với những gì cản trở công việc tôi đang làm.", d:"S"},
+    {t:"Tôi thấy mình gần như bị hoảng loạn.", d:"A"},
+    {t:"Tôi thấy không hăng hái với bất kỳ việc gì nữa.", d:"D"},
+    {t:"Tôi thấy mình là người kém giá trị.", d:"D"},
+    {t:"Tôi rất dễ bị phật ý và tự ái.", d:"S"},
+    {t:"Tôi thấy tim mình đập nhanh, đập lỗi nhịp mà không do gắng sức.", d:"A"},
+    {t:"Tôi cảm thấy sợ vô cớ.", d:"A"},
+    {t:"Tôi thấy cuộc sống thật vô nghĩa.", d:"D"}
+  ];
+  const OPTS = [
+    {v:0,l:"Không có",s:"Hoàn toàn không xảy ra"},
+    {v:1,l:"Đôi khi",s:"1–2 ngày trong tuần"},
+    {v:2,l:"Thường xuyên",s:"3–4 ngày trong tuần"},
+    {v:3,l:"Hầu như luôn",s:"5–7 ngày trong tuần"}
+  ];
+  const DIM_NAME = {D:"Trầm cảm", A:"Lo âu", S:"Stress"};
+  // thresholds on the x2 scale (Bảng 24). [min,max] inclusive; last = Infinity
+  const CUT = {
+    D:[[0,9],[10,13],[14,20],[21,27],[28,1e9]],
+    A:[[0,7],[8,9],[10,14],[15,19],[20,1e9]],
+    S:[[0,14],[15,18],[19,25],[26,33],[34,1e9]]
+  };
+  const LEVELS = ["Bình thường","Nhẹ","Vừa","Nặng","Rất nặng"];
+
+  const answers = new Array(Q.length).fill(null);
+  let cur = 0;
+
+  const $ = s => document.querySelector(s);
+  const qText=$("#qText"), qOpts=$("#qOpts"), qDim=$("#qDim"),
+        qCounter=$("#qCounter"), qPct=$("#qPct"), qBar=$("#qBar"),
+        backBtn=$("#backBtn"), skipNote=$("#skipNote");
+
+  function renderQ(){
+    const q = Q[cur];
+    qDim.textContent = DIM_NAME[q.d];
+    qText.textContent = q.t;
+    qCounter.textContent = "Câu "+(cur+1)+" / "+Q.length;
+    const answered = answers.filter(a=>a!==null).length;
+    const pct = Math.round(answered/Q.length*100);
+    qPct.textContent = pct+"%";
+    qBar.style.width = pct+"%";
+    backBtn.disabled = cur===0;
+    skipNote.textContent = answers[cur]!==null ? "Đã chọn — bạn có thể đổi đáp án" : "Chọn một mục để tiếp tục";
+
+    qOpts.innerHTML = "";
+    OPTS.forEach(o=>{
+      const el = document.createElement("div");
+      el.className = "opt"+(answers[cur]===o.v?" sel":"");
+      el.innerHTML = '<span class="pip"></span><span class="lbl">'+o.l+'<span class="sub">'+o.s+'</span></span>';
+      el.addEventListener("click",()=>{
+        answers[cur]=o.v;
+        renderQ();
+        setTimeout(next,260);
+      });
+      qOpts.appendChild(el);
+    });
+  }
+  function next(){
+    if(answers[cur]===null) return;
+    if(cur < Q.length-1){ cur++; renderQ(); }
+    else if(answers.every(a=>a!==null)){ showResults(); }
+  }
+  backBtn.addEventListener("click",()=>{ if(cur>0){cur--;renderQ();} });
+
+  function levelIndex(dim,score){
+    const c = CUT[dim];
+    for(let i=0;i<c.length;i++){ if(score>=c[i][0] && score<=c[i][1]) return i; }
+    return c.length-1;
+  }
+
+  function showResults(){
+    const raw = {D:0,A:0,S:0};
+    Q.forEach((q,i)=> raw[q.d]+=answers[i]);
+    const score = {D:raw.D*2, A:raw.A*2, S:raw.S*2}; // x2 per DASS-21 convention
+
+    const scalesEl = $("#scales");
+    scalesEl.innerHTML="";
+    const lvls = {};
+    ["D","A","S"].forEach(dim=>{
+      const sc = score[dim];
+      const li = levelIndex(dim,sc);
+      lvls[dim]=li;
+      const max = 42;
+      const w = Math.min(100, Math.round(sc/max*100));
+      const box = document.createElement("div");
+      box.className="scale";
+      box.innerHTML =
+        '<div class="scale-top"><b>'+DIM_NAME[dim]+'</b>'+
+        '<span class="pill lvl-'+li+'">'+LEVELS[li]+'</span></div>'+
+        '<div class="scale-track"><i class="fill-'+li+'" style="width:0"></i></div>'+
+        '<div class="scale-meta"><span>Điểm: '+sc+'</span><span>Mức tham chiếu: '+LEVELS[li]+'</span></div>';
+      scalesEl.appendChild(box);
+      requestAnimationFrame(()=>{ box.querySelector("i").style.width = w+"%"; });
+    });
+
+    const maxLvl = Math.max(lvls.D,lvls.A,lvls.S);
+    let head, sub, body;
+    if(maxLvl===0){
+      head="Bạn đang ở trạng thái khá cân bằng 🌿";
+      sub="Kết quả của bạn nằm trong ngưỡng bình thường ở cả ba khía cạnh.";
+      body="Đây là tín hiệu tích cực. Việc duy trì giấc ngủ, vận động và kết nối với người thân sẽ giúp bạn giữ vững trạng thái này. Nếu sau này có điều gì khiến bạn bận lòng, đừng ngần ngại quay lại làm bài test hoặc trò chuyện cùng <b>BS. Nhàn</b>.";
+    } else if(maxLvl<=1){
+      head="Có một vài dấu hiệu nhẹ đáng lưu tâm";
+      sub="Một số khía cạnh đang ở mức nhẹ — không có gì phải hoảng, nhưng nên để ý.";
+      body="Những cảm xúc này rất phổ biến và thường có thể cải thiện với vài điều chỉnh nhỏ trong nhịp sống. Một buổi trò chuyện với <b>BS. Nhàn</b> có thể giúp bạn nhận ra điều gì đang tạo áp lực và cách nhẹ nhàng tháo gỡ nó.";
+    } else if(maxLvl===2){
+      head="Bạn đang trải qua giai đoạn không dễ dàng";
+      sub="Kết quả cho thấy mức độ vừa ở ít nhất một khía cạnh.";
+      body="Việc bạn dành thời gian nhìn lại bản thân hôm nay đã là một bước rất đáng quý. Ở mức này, được lắng nghe và đồng hành sẽ tạo khác biệt lớn. <b>BS. Nhàn</b> có thể cùng bạn tìm hướng đi phù hợp — bạn không cần đối mặt với điều này một mình.";
+    } else {
+      head="Bạn đang mang trên vai khá nhiều điều";
+      sub="Một số khía cạnh đang ở mức nặng đến rất nặng.";
+      body="Cảm ơn bạn đã thành thật với chính mình — điều đó cần rất nhiều can đảm. Khi cảm xúc trở nên nặng nề như vậy, được hỗ trợ chuyên môn là điều thật sự nên làm. Hãy để lại thông tin để <b>BS. Nhàn</b> liên hệ và đồng hành cùng bạn sớm. Nếu bạn cảm thấy quá sức ngay lúc này, hãy gọi đường dây nóng <b>Ngày mai 096 306 1414</b>.";
+    }
+    $("#resHeadline").textContent = head;
+    $("#resSub").textContent = sub;
+    $("#interpret").innerHTML = body;
+
+    $("#questionView").style.display="none";
+    $("#resultView").classList.add("show");
+    document.getElementById("test").scrollIntoView({behavior:"smooth",block:"start"});
+  }
+
+  $("#retakeBtn").addEventListener("click",()=>{
+    for(let i=0;i<answers.length;i++) answers[i]=null;
+    cur=0;
+    $("#resultView").classList.remove("show");
+    $("#questionView").style.display="block";
+    renderQ();
+    document.getElementById("test").scrollIntoView({behavior:"smooth",block:"start"});
+  });
+
+  // lead form (front-end only — wire to a backend / Google Form to collect)
+  $("#submitLead").addEventListener("click",()=>{
+    const name=$("#fName").value.trim();
+    const phone=$("#fPhone").value.trim();
+    const ok=$("#formOk");
+    if(!name || !phone){
+      ok.style.display="block";
+      ok.style.background="rgba(224,115,80,.15)";
+      ok.style.borderColor="rgba(224,115,80,.4)";
+      ok.textContent="Vui lòng nhập họ tên và số điện thoại để BS. Nhàn liên hệ lại nhé.";
+      return;
+    }
+    ok.style.display="block";
+    ok.textContent="Cảm ơn "+name+"! Thông tin đã được ghi nhận. BS. Nhàn sẽ liên hệ với bạn trong thời gian sớm nhất.";
+  });
+
+  renderQ();
+})();
+</script>
+</body>
+</html>
