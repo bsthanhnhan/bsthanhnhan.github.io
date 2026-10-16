@@ -556,10 +556,12 @@
     document.getElementById("test").scrollIntoView({behavior:"smooth",block:"start"});
   });
 
-  // lead form (front-end only — wire to a backend / Google Form to collect)
+  // lead form gửi trực tiếp về email BS. Nhàn qua FormSubmit.co
   $("#submitLead").addEventListener("click",()=>{
     const name=$("#fName").value.trim();
     const phone=$("#fPhone").value.trim();
+    const topic=($("#fTopic")||{}).value||"";
+    const msg=($("#fMsg")||{}).value||"";
     const ok=$("#formOk");
     if(!name || !phone){
       ok.style.display="block";
@@ -568,8 +570,16 @@
       ok.textContent="Vui lòng nhập họ tên và số điện thoại để BS. Nhàn liên hệ lại nhé.";
       return;
     }
+    const fd=new FormData();
+    fd.append("_subject","📊 ĐĂNG KÝ TƯ VẤN DASS-21 - "+name+" ("+phone+")");
+    fd.append("_template","table");
+    fd.append("Họ tên",name);
+    fd.append("Số điện thoại / Zalo",phone);
+    fd.append("Chủ đề cần hỗ trợ",topic);
+    fd.append("Lời nhắn",msg||"(không có)");
+    fetch("https://formsubmit.co/ajax/nhanthi.bs@gmail.com",{method:"POST",headers:{"Accept":"application/json"},body:fd}).catch(()=>{});
     ok.style.display="block";
-    ok.textContent="Cảm ơn "+name+"! Thông tin đã được ghi nhận. BS. Nhàn sẽ liên hệ với bạn trong thời gian sớm nhất.";
+    ok.textContent="Cảm ơn "+name+"! Thông tin đã được gửi tới email nhanthi.bs@gmail.com. BS. Nhàn sẽ liên hệ với bạn trong thời gian sớm nhất.";
   });
 
   renderQ();
