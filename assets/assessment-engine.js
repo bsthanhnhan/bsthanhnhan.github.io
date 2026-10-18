@@ -612,10 +612,10 @@
         "  </div>" +
         compareHtml +
         '  <div class="res-cta">' +
-        '    <a href="#lien-he" class="btn btn-primary">📅 Đặt lịch tư vấn kết quả cùng BS. Thanh Nhàn →</a>' +
-        '    <button type="button" class="btn btn-ghost" id="retakeBtnBottom">🔄 Làm lại</button>' +
+        '    <a href="#lien-he" class="btn btn-primary">Đặt lịch tư vấn cùng BS. Nhàn &rarr;</a>' +
+        '    <button type="button" class="btn btn-ghost" id="retakeBtnBottom">Làm lại bài test</button>' +
         "  </div>" +
-        '  <p class="disc">⚠️ <strong>Tuyên bố miễn trách:</strong> Kết quả này chỉ mang tính tham khảo và <strong>không phải chẩn đoán y khoa</strong>. Chỉ bác sĩ hoặc chuyên gia tâm lý lâm sàng mới có thể đưa ra chẩn đoán chính thức. Nếu bạn lo lắng về sức khỏe tâm thần, hãy liên hệ BS. Phan Thị Thanh Nhàn (<strong>0354.54.89.39</strong>) hoặc gọi đường dây nóng <strong>0931773637</strong>.</p>' +
+        '  <p class="disc"><strong>Lưu ý:</strong> Bài test ' + esc(scale.name) + ' là công cụ sàng lọc, <b>không phải là chẩn đoán y khoa</b>. Kết quả chỉ mang tính tham khảo. Nếu bạn đang gặp khó khăn, việc trò chuyện với một chuyên gia sẽ giúp bạn rõ ràng hơn rất nhiều.</p>' +
         "</div>";
 
       var rTop = $("#retakeBtnTop");
@@ -858,9 +858,9 @@
             ' <button type="button" class="btn btn-ghost" id="recalcAgeBtn" style="padding:4px 10px;font-size:.78rem;margin-left:6px;">Tính lại sau khi nhập Tuổi</button></div></div>') +
         "  </div>" +
         '  <div class="res-cta">' +
-        '    <a href="#lien-he" class="btn btn-primary">📅 Gửi kết quả để BS. Thanh Nhàn xác nhận & tư vấn →</a>' +
+        '    <a href="#lien-he" class="btn btn-primary">Đặt lịch tư vấn cùng BS. Nhàn &rarr;</a>' +
         "  </div>" +
-        '  <p class="disc"><strong>Lưu ý:</strong> Đây là trắc nghiệm phi ngôn ngữ (Raven). Ứng dụng tự chấm điểm theo đáp án gốc và quy đổi ra chỉ số IQ (nếu có đủ tuổi, áp dụng cho trẻ 4-11 tuổi), nhưng kết quả chỉ mang tính <strong>sàng lọc tham khảo</strong> — hãy để <strong>chuyên gia</strong> xác nhận và đưa ra kết luận cuối cùng.</p>' +
+        '  <p class="disc"><strong>Lưu ý:</strong> Bài test Raven CPM là công cụ sàng lọc, <b>không phải là chẩn đoán y khoa</b>. Kết quả chỉ mang tính tham khảo. Nếu bạn đang gặp khó khăn, việc trò chuyện với một chuyên gia sẽ giúp bạn rõ ràng hơn rất nhiều.</p>' +
         "</div>";
 
       var rt = $("#rvRetakeBtn");
@@ -936,8 +936,8 @@
         "    " + esc(meta.specialistNote || "Cần chuyên gia thực hiện bằng bộ công cụ, bảng chuẩn và quy trình được cơ sở y tế phê duyệt.") +
         "  </div>" +
         '  <div style="display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 26px;">' +
-        '    <a href="#lien-he" class="btn btn-primary">📅 Đặt lịch thực hiện ' + esc(meta.name) + " cùng BS. Thanh Nhàn →</a>" +
-        '    <a href="https://zalo.me/0354548939" target="_blank" rel="noopener" class="btn btn-teal">💬 Nhắn Zalo BS. Nhàn (0354.54.89.39)</a>' +
+        '    <a href="#lien-he" class="btn btn-primary">Đặt lịch tư vấn cùng BS. Nhàn &rarr;</a>' +
+        '    <a href="https://zalo.me/0354548939" target="_blank" rel="noopener" class="btn btn-teal">💬 Nhắn Zalo: 0354.54.89.39</a>' +
         "  </div>" +
         '  <div style="border-top:1px solid var(--line);padding-top:20px;">' +
         '    <span class="eyebrow">Tài liệu hướng dẫn Bộ Y tế</span>' +
@@ -1077,20 +1077,19 @@
           ok.style.display = "block";
           ok.style.background = "rgba(224,115,80,.2)";
           ok.style.borderColor = "rgba(224,115,80,.5)";
-          ok.textContent = "Vui lòng nhập Họ tên và Số điện thoại / Zalo để BS. Thanh Nhàn liên hệ lại với bạn nhé.";
+          ok.textContent = "Vui lòng nhập họ tên và số điện thoại để chúng tôi có thể liên hệ lại với bạn.";
         }
         return;
       }
 
       var resp = getRespondent();
       var fd = new FormData();
-      fd.append("_subject", "🩺 ĐĂNG KÝ TƯ VẤN [" + DATA.meta.name + "] - " + name + " (" + phone + ")");
+      fd.append("_subject", "🌿 Đăng ký tư vấn [" + DATA.meta.name + "] — " + name);
       fd.append("_template", "table");
       fd.append("Họ tên", name);
       fd.append("Số điện thoại / Zalo", phone);
-      fd.append("Bài trắc nghiệm", summary || DATA.meta.name);
+      fd.append("Bài test", summary || DATA.meta.name);
       fd.append("Chủ đề cần hỗ trợ", topic);
-      fd.append("Tuổi / Ghi chú người làm", (resp.age ? resp.age + " tuổi" : "") + (resp.note ? " - " + resp.note : ""));
       fd.append("Lời nhắn", msg || "(không có)");
 
       fetch("https://formsubmit.co/ajax/nhanthi.bs@gmail.com", {
@@ -1123,11 +1122,9 @@
         ok.style.background = "rgba(79,177,150,.2)";
         ok.style.borderColor = "rgba(79,177,150,.5)";
         ok.textContent =
-          "✅ Cảm ơn " +
+          "Cảm ơn " +
           name +
-          "! Kết quả " +
-          DATA.meta.name +
-          " và thông tin của bạn đã được gửi tới BS. Phan Thị Thanh Nhàn (nhanthi.bs@gmail.com / Zalo 0354.54.89.39). Bác sĩ sẽ phản hồi sớm nhất.";
+          "! Thông tin đã được gửi tới email nhanthi.bs@gmail.com. BS. Nhàn sẽ liên hệ với bạn trong thời gian sớm nhất.";
       }
     });
   }
