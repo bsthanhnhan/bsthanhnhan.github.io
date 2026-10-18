@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ZAI — Zung Self-Rating Anxiety Inventory (Trắc nghiệm Lo âu Zung) · Chuẩn Bộ Y Tế · BS. Phan Thị Thanh Nhàn</title>
+<meta name="description" content="ZAI (Zung Self-Rating Anxiety Inventory (Trắc nghiệm Lo âu Zung)): Bài đánh giá theo tài liệu hướng dẫn Bộ Y tế. Hệ thống 47 Bộ Trắc Nghiệm Tâm Lý & Thang Đo Lâm Sàng chuẩn hướng dẫn Bộ Y tế Việt Nam cùng BS. Thanh Nhàn." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..600&family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#192930;
+    --ink-soft:#435861;
+    --sage-bg:#F1F4F5;
+    --mist:#E1E8EB;
+    --surface:#FFFFFF;
+    --line:#D1DBE0;
+    --teal:#3F6978;
+    --teal-deep:#2D4E59;
+    --orb-light:#8BB3C2;
+    --clay:#C87452;
+    --clay-deep:#AF5E3E;
+    --shadow:0 2px 4px rgba(22,48,43,.04), 0 12px 32px rgba(22,48,43,.07);
+    --shadow-lg:0 8px 60px rgba(22,48,43,.12);
+    --r:18px;
+    --maxw:1080px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:"Be Vietnam Pro",system-ui,sans-serif;
+    color:var(--ink);
+    background:var(--sage-bg);
+    line-height:1.6;
+    font-weight:400;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{font-family:"Lora",Georgia,serif;font-weight:600;line-height:1.18;letter-spacing:-.01em;margin:0;}
+  p{margin:0;}
+  a{color:inherit;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
+  .eyebrow{
+    font-size:.74rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--teal);display:inline-flex;align-items:center;gap:.5em;
+  }
+  .eyebrow::before{content:"";width:22px;height:1px;background:var(--teal);opacity:.6;}
+
+  /* ---------- Header ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:color-mix(in srgb, var(--sage-bg) 86%, transparent);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{display:flex;align-items:center;justify-content:space-between;height:68px;gap:12px;}
+  .brand{display:flex;align-items:center;gap:.65rem;font-family:"Lora",serif;font-weight:600;font-size:1.08rem;text-decoration:none;}
+  .brand small{display:block;font-family:"Be Vietnam Pro";font-weight:400;font-size:.7rem;color:var(--ink-soft);letter-spacing:.02em;}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
+    font-family:"Be Vietnam Pro";font-weight:600;font-size:.93rem;
+    padding:.7rem 1.3rem;border-radius:999px;border:0;cursor:pointer;
+    text-decoration:none;transition:transform .15s ease,box-shadow .2s ease,background .2s ease;
+  }
+  .btn-primary{background:var(--clay);color:#fff;box-shadow:0 6px 18px rgba(0,0,0,.14);}
+  .btn-primary:hover{background:var(--clay-deep);transform:translateY(-1px);}
+  .btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line);}
+  .btn-ghost:hover{border-color:var(--teal);color:var(--teal);}
+  .btn-teal{background:var(--teal);color:#fff;box-shadow:0 6px 18px rgba(0,0,0,.14);}
+  .btn-teal:hover{background:var(--teal-deep);transform:translateY(-1px);}
+  .nav .btn{padding:.52rem 1.05rem;font-size:.85rem;}
+
+  /* ---------- Hero ---------- */
+  .hero{position:relative;overflow:hidden;padding:64px 0 76px;}
+  .hero-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:44px;align-items:center;}
+  .hero h1{font-size:clamp(2.1rem,4.6vw,3.35rem);margin-top:.55rem;}
+  .hero h1 em{font-style:italic;color:var(--teal);}
+  .hero .fullname-sub{margin-top:.45rem;font-family:"Lora",serif;font-style:italic;font-size:1.12rem;color:var(--ink-soft);}
+  .hero .lede{margin-top:1.1rem;font-size:1.06rem;color:var(--ink-soft);max-width:46ch;}
+  .meta-pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:1.15rem;}
+  .meta-pill{display:inline-flex;align-items:center;gap:6px;padding:5px 13px;border-radius:999px;background:var(--surface);border:1px solid var(--line);font-size:.8rem;font-weight:600;color:var(--teal);}
+  .palette-tag{display:inline-flex;align-items:center;gap:7px;margin-top:.9rem;font-size:.75rem;color:var(--ink-soft);background:var(--mist);padding:4px 12px;border-radius:999px;border:1px solid var(--line);}
+  .palette-swatch{width:10px;height:10px;border-radius:50%;background:var(--teal);box-shadow:0 0 0 3px var(--clay);margin-right:3px;}
+  .hero-cta{margin-top:1.8rem;display:flex;flex-wrap:wrap;gap:.8rem;align-items:center;}
+  .hero-note{margin-top:1.1rem;font-size:.84rem;color:var(--ink-soft);display:flex;gap:1.1rem;flex-wrap:wrap;}
+  .hero-note span{display:inline-flex;align-items:center;gap:.4rem;}
+  .check{width:16px;height:16px;flex:none;color:var(--teal);}
+
+  /* breathing orb — signature element */
+  .orb-stage{display:grid;place-items:center;position:relative;aspect-ratio:1/1;max-width:360px;margin:0 auto;width:100%;}
+  .orb{position:relative;width:74%;aspect-ratio:1/1;border-radius:50%;
+    background:radial-gradient(circle at 38% 32%,var(--orb-light) 0%,var(--teal) 52%,var(--teal-deep) 100%);
+    box-shadow:0 24px 70px rgba(0,0,0,.22), inset 0 4px 30px rgba(255,255,255,.28);
+    display:grid;place-items:center;animation:breathe 9s ease-in-out infinite;padding:22px;}
+  .orb::after{content:"";position:absolute;inset:-24%;border-radius:50%;border:1px solid var(--line);animation:ring 9s ease-in-out infinite;}
+  .orb::before{content:"";position:absolute;inset:-12%;border-radius:50%;border:1.5px solid var(--orb-light);opacity:.5;animation:ring 9s ease-in-out infinite;animation-delay:-.4s;}
+  .orb-label{color:#FFFFFF;text-align:center;font-family:"Lora",serif;font-size:1.02rem;letter-spacing:.02em;line-height:1.4;}
+  .orb-label .orb-icon{display:block;font-size:2.4rem;margin-bottom:6px;font-style:normal;}
+  .orb-label .orb-code{display:block;font-family:"Be Vietnam Pro",sans-serif;font-weight:700;font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;opacity:.88;margin-bottom:4px;}
+  @keyframes breathe{0%,100%{transform:scale(.92)}50%{transform:scale(1.05)}}
+  @keyframes ring{0%,100%{transform:scale(.88);opacity:.35}50%{transform:scale(1.07);opacity:.75}}
+
+  /* ---------- Sections ---------- */
+  section{padding:68px 0;}
+  .section-head{max-width:66ch;}
+  .section-head h2{font-size:clamp(1.65rem,3.4vw,2.35rem);margin-top:.8rem;}
+  .section-head p{margin-top:.9rem;color:var(--ink-soft);font-size:1.02rem;}
+
+  .feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:36px;}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:26px;box-shadow:var(--shadow);}
+  .card .ic{width:44px;height:44px;border-radius:12px;background:var(--mist);display:grid;place-items:center;color:var(--teal);font-size:1.35rem;margin-bottom:14px;}
+  .card h3{font-size:1.14rem;}
+  .card p{margin-top:.5rem;color:var(--ink-soft);font-size:.93rem;line-height:1.58;}
+
+  /* ---------- Disclaimer & Respondent Info ---------- */
+  #test{background:var(--mist);}
+  .disclaimer-banner{
+    background:var(--surface);border:1.5px solid var(--line);border-left:4px solid var(--clay);
+    border-radius:16px;padding:15px 18px;max-width:780px;margin:24px auto 0;
+    display:flex;gap:12px;align-items:flex-start;font-size:.86rem;color:var(--ink-soft);box-shadow:var(--shadow);
+  }
+  .disclaimer-banner strong{color:var(--ink);}
+  .respondent-card{
+    background:var(--surface);border:1px solid var(--line);border-radius:18px;
+    padding:18px 22px;max-width:780px;margin:16px auto 0;box-shadow:var(--shadow);
+  }
+  .rc-title-toggle{
+    display:flex;align-items:center;justify-content:space-between;cursor:pointer;
+    font-family:"Be Vietnam Pro",sans-serif;font-size:.96rem;font-weight:700;color:var(--ink);
+  }
+  .rc-sub{font-size:.8rem;color:var(--ink-soft);margin-top:10px;line-height:1.6;display:none;background:var(--sage-bg);padding:12px 14px;border-radius:12px;border:1px solid var(--line);}
+  .rc-sub.open{display:block;}
+  .rc-grid{display:grid;grid-template-columns:1.6fr 1.1fr .7fr .7fr;gap:12px;margin-top:14px;}
+  .rc-field label{display:block;font-size:.76rem;font-weight:600;color:var(--ink-soft);margin-bottom:5px;}
+  .rc-field input,.rc-field textarea{
+    width:100%;padding:9px 12px;border-radius:10px;border:1.5px solid var(--line);
+    background:var(--sage-bg);color:var(--ink);font-family:inherit;font-size:.88rem;
+  }
+  .rc-field input:focus,.rc-field textarea:focus{outline:none;border-color:var(--teal);background:#fff;}
+
+  /* ---------- Test Shell ---------- */
+  .test-shell{background:var(--surface);border-radius:24px;box-shadow:var(--shadow-lg);max-width:780px;margin:22px auto 0;overflow:hidden;border:1px solid var(--line);}
+  .test-top{padding:22px 28px 0;}
+  .test-header-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--line);}
+  .th-left{display:flex;align-items:center;gap:12px;}
+  .th-icon{width:44px;height:44px;border-radius:12px;background:var(--mist);border:1.5px solid var(--line);display:grid;place-items:center;font-size:1.35rem;flex:none;}
+  .th-name{font-weight:700;font-size:1rem;color:var(--ink);}
+  .th-fullname{font-size:.78rem;color:var(--ink-soft);}
+  .th-right{display:flex;align-items:center;gap:10px;}
+  .btn-emergency{background:#FEF2F2;color:#B91C1C;border:1.5px solid #FECACA;border-radius:999px;padding:6px 13px;font-size:.78rem;font-weight:700;cursor:pointer;font-family:inherit;}
+  .btn-emergency:hover{background:#FEE2E2;}
+  .progress-row{display:flex;align-items:center;justify-content:space-between;font-size:.82rem;color:var(--ink-soft);font-weight:600;}
+  .bar{height:7px;background:var(--mist);border-radius:999px;margin-top:8px;overflow:hidden;}
+  .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--teal),var(--orb-light));border-radius:999px;transition:width .3s ease;}
+  .q-body{padding:18px 28px 28px;}
+  .q-meta-row{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:8px;}
+  .q-index{font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);background:var(--mist);padding:4px 11px;border-radius:999px;}
+  .q-timeref{font-size:.78rem;color:var(--ink-soft);font-style:italic;}
+  .q-text{font-family:"Lora",serif;font-size:1.34rem;line-height:1.4;margin:.5rem 0 1.35rem;min-height:2.2em;color:var(--ink);}
+  .opts{display:grid;gap:10px;}
+  .opt{display:flex;align-items:center;gap:14px;padding:14px 18px;border:1.5px solid var(--line);border-radius:14px;cursor:pointer;transition:border-color .15s,background .15s,transform .1s;background:#fff;}
+  .opt:hover{border-color:var(--teal);background:var(--sage-bg);}
+  .opt.sel{border-color:var(--teal);background:var(--mist);}
+  .opt .pip{width:22px;height:22px;border-radius:50%;border:2px solid var(--line);flex:none;display:grid;place-items:center;transition:.15s;}
+  .opt.sel .pip{border-color:var(--teal);background:var(--teal);}
+  .opt.sel .pip::after{content:"";width:8px;height:8px;border-radius:50%;background:#fff;}
+  .opt .emo{font-size:1.15rem;flex:none;}
+  .opt .lbl{font-weight:600;font-size:.96rem;flex:1;}
+  .opt .score-tag{font-size:.75rem;color:var(--ink-soft);background:var(--sage-bg);padding:2px 8px;border-radius:999px;border:1px solid var(--line);}
+  .psqi-input-wrap{display:flex;align-items:center;gap:12px;margin:18px 0;}
+  .psqi-input{font-size:1.15rem;padding:12px 16px;border:2px solid var(--line);border-radius:12px;font-family:inherit;color:var(--ink);background:var(--sage-bg);min-width:160px;}
+  .psqi-input:focus{outline:none;border-color:var(--teal);background:#fff;}
+  .q-nav{display:flex;justify-content:space-between;align-items:center;margin-top:22px;padding-top:16px;border-top:1px solid var(--line);gap:10px;}
+  .lnk{background:none;border:0;color:var(--ink-soft);font-family:inherit;font-size:.9rem;cursor:pointer;padding:.5rem .8rem;font-weight:600;border-radius:10px;}
+  .lnk:hover:not([disabled]){color:var(--teal);background:var(--sage-bg);}
+  .lnk[disabled]{opacity:.35;cursor:not-allowed;}
+
+  /* ---------- Raven Matrix Grid ---------- */
+  .rv-image-box{background:var(--sage-bg);border:1.5px solid var(--line);border-radius:16px;padding:18px;text-align:center;margin-bottom:18px;}
+  .rv-image-box img{max-width:100%;max-height:320px;border-radius:10px;object-fit:contain;}
+  .rv-options{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-top:12px;}
+  .rv-opt{padding:16px 10px;border:2px solid var(--line);border-radius:14px;text-align:center;font-weight:700;font-size:1.15rem;cursor:pointer;background:#fff;transition:.15s;}
+  .rv-opt:hover{border-color:var(--teal);background:var(--sage-bg);}
+  .rv-opt.sel{border-color:var(--teal);background:var(--teal);color:#fff;}
+
+  /* ---------- Specialist Guided Mode ---------- */
+  .specialist-box{padding:32px 28px;}
+  .spec-notice{background:var(--mist);border-left:4px solid var(--teal);border-radius:0 14px 14px 0;padding:18px 20px;margin:18px 0;font-size:.95rem;color:var(--ink);}
+  .protocol-filter-bar{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 14px;}
+  .prot-tab{padding:6px 13px;border-radius:999px;border:1px solid var(--line);background:var(--sage-bg);font-size:.8rem;font-weight:600;cursor:pointer;font-family:inherit;color:var(--ink-soft);}
+  .prot-tab.active{background:var(--teal);color:#fff;border-color:var(--teal);}
+  .protocol-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;max-height:380px;overflow-y:auto;padding:4px;}
+  .prot-card{text-align:left;background:var(--sage-bg);border:1px solid var(--line);border-radius:12px;padding:12px 14px;cursor:pointer;font-family:inherit;transition:.15s;}
+  .prot-card:hover{border-color:var(--teal);background:#fff;}
+  .prot-card .p-no{font-size:.7rem;font-weight:700;color:var(--teal);text-transform:uppercase;display:block;}
+  .prot-card strong{display:block;font-size:.86rem;color:var(--ink);margin:3px 0;}
+  .prot-card span{font-size:.75rem;color:var(--ink-soft);display:block;line-height:1.45;}
+  .prot-detail-box{display:none;background:var(--sage-bg);border:1.5px solid var(--teal);border-radius:16px;padding:20px;margin-top:16px;}
+  .prot-detail-box.show{display:block;}
+  .prot-detail-box p{white-space:pre-line;font-size:.88rem;color:var(--ink-soft);margin-top:8px;line-height:1.68;}
+
+  /* ---------- Results ---------- */
+  .result-card{display:none;}
+  .result-card.show{display:block;}
+  .res-top-actions{display:flex;justify-content:space-between;align-items:center;padding:20px 28px 0;flex-wrap:wrap;gap:10px;}
+  .res-banner-wrap{padding:16px 28px 0;text-align:center;}
+  .res-banner-wrap img{max-height:180px;border-radius:16px;object-fit:contain;margin:0 auto;}
+  .res-head{text-align:center;padding:22px 28px 8px;}
+  .res-head h3{font-size:1.65rem;}
+  .res-head p{color:var(--ink-soft);margin-top:.4rem;font-size:.9rem;}
+  .scales{padding:14px 28px 6px;display:grid;gap:14px;}
+  .scale{border:1px solid var(--line);border-radius:16px;padding:16px 20px;background:var(--sage-bg);}
+  .scale-top{display:flex;align-items:baseline;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+  .scale-top b{font-family:"Lora",serif;font-size:1.12rem;font-weight:600;}
+  .pill{font-size:.78rem;font-weight:700;padding:.28rem .78rem;border-radius:999px;}
+  .scale-track{height:9px;background:var(--mist);border-radius:999px;margin-top:10px;overflow:hidden;}
+  .scale-track i{display:block;height:100%;width:0;border-radius:999px;transition:width .7s cubic-bezier(.4,0,.2,1);}
+  .scale-meta{display:flex;justify-content:space-between;margin-top:8px;font-size:.8rem;color:var(--ink-soft);}
+  .level-0,.lvl-0{background:#E6F2EC;color:#2F7D6E;} .fill-0{background:#4FB196;}
+  .level-1,.lvl-1{background:#FBF3DD;color:#B9892A;} .fill-1{background:#E7C25A;}
+  .level-2,.lvl-2{background:#FCE9D6;color:#C9744A;} .fill-2{background:#E89B5E;}
+  .level-3,.lvl-3{background:#FAD9CE;color:#C6532F;} .fill-3{background:#E07350;}
+  .level-4,.lvl-4{background:#F6D2CC;color:#B23A2C;} .fill-4{background:#D24A38;}
+  .interpret{margin:16px 28px 4px;background:var(--mist);border-radius:16px;padding:18px 22px;font-size:.94rem;color:var(--ink-soft);}
+  .interpret h4{font-family:"Be Vietnam Pro",sans-serif;font-size:.95rem;font-weight:700;color:var(--ink);margin:0 0 10px;}
+  .ri-list{list-style:none;padding:0;margin:0;display:grid;gap:10px;}
+  .ri-item{display:flex;gap:10px;align-items:flex-start;background:var(--surface);padding:12px 14px;border-radius:12px;border:1px solid var(--line);}
+  .ri-item strong{color:var(--ink);}
+  .compare-box{margin:14px 28px 4px;background:var(--sage-bg);border:1px solid var(--line);border-radius:16px;padding:16px 20px;font-size:.86rem;}
+  .compare-box h4{margin:0 0 10px;font-size:.92rem;color:var(--ink);}
+  .cmp-row{margin-bottom:10px;}
+  .cmp-bar-line{display:flex;align-items:center;gap:10px;margin-top:4px;font-size:.78rem;}
+  .cmp-track{flex:1;height:8px;background:var(--mist);border-radius:999px;overflow:hidden;}
+  .cmp-fill{height:100%;border-radius:999px;}
+  .res-cta{padding:22px 28px 28px;text-align:center;}
+  .res-cta .btn{margin:.3rem;}
+  .disc{font-size:.8rem;color:var(--ink-soft);margin:0 28px 24px;border-top:1px solid var(--line);padding-top:14px;line-height:1.6;}
+
+  /* ---------- Emergency Overlay ---------- */
+  .emergency-overlay{
+    position:fixed;inset:0;background:rgba(15,23,42,.65);backdrop-filter:blur(4px);
+    z-index:100;display:none;place-items:center;padding:20px;
+  }
+  .emergency-overlay.show{display:grid;}
+  .emergency-popup{
+    background:#fff;border-radius:22px;max-width:460px;width:100%;padding:28px 24px;
+    text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.25);border:2px solid #FECACA;
+  }
+  .ep-icon{font-size:2.4rem;margin-bottom:8px;}
+  .ep-title{font-family:"Lora",serif;font-size:1.5rem;font-weight:700;color:#991B1B;}
+  .ep-text{font-size:.93rem;color:#4B5563;margin:10px 0 16px;}
+  .ep-hotline{background:#FEF2F2;border:1.5px solid #FECACA;border-radius:14px;padding:14px;margin-bottom:18px;}
+  .eph-num{font-size:1.35rem;font-weight:800;color:#B91C1C;}
+  .eph-label{font-size:.78rem;color:#7F1D1D;margin-top:2px;}
+  .ep-actions{display:grid;gap:8px;}
+
+  /* ---------- Hub 47 Tests Directory ---------- */
+  #kho-47-test{background:var(--sage-bg);border-top:1px solid var(--line);}
+  .hub-toolbar{display:flex;flex-wrap:wrap;gap:10px;margin:24px 0 16px;align-items:center;}
+  .hub-search{flex:1 1 260px;padding:11px 16px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);font-family:inherit;font-size:.9rem;color:var(--ink);}
+  .hub-search:focus{outline:none;border-color:var(--teal);}
+  .hub-cats{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px;}
+  .hub-cat-btn{padding:6px 13px;border-radius:999px;border:1px solid var(--line);background:var(--surface);font-size:.78rem;font-weight:600;color:var(--ink-soft);cursor:pointer;font-family:inherit;transition:.15s;}
+  .hub-cat-btn.active,.hub-cat-btn:hover{background:var(--teal);color:#fff;border-color:var(--teal);}
+  .hub-grid-47{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;max-height:540px;overflow-y:auto;padding:4px;}
+  .hub-card-47{
+    display:flex;flex-direction:column;justify-content:space-between;
+    background:var(--surface);border:1.5px solid var(--line);border-radius:16px;
+    padding:14px 16px;text-decoration:none;transition:transform .15s,border-color .15s,box-shadow .15s;
+  }
+  .hub-card-47:hover{transform:translateY(-2px);border-color:var(--teal);box-shadow:var(--shadow);}
+  .hub-card-47.current{border-color:var(--clay);background:var(--mist);}
+  .hc47-top{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px;}
+  .hc47-icon{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-size:1.1rem;background:var(--mist);}
+  .hc47-no{font-size:.7rem;font-weight:700;color:var(--ink-soft);background:var(--sage-bg);padding:2px 8px;border-radius:999px;border:1px solid var(--line);}
+  .hc47-title{font-weight:700;font-size:.94rem;color:var(--ink);}
+  .hc47-sub{font-size:.75rem;color:var(--ink-soft);line-height:1.35;margin-top:2px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+  .hc47-foot{display:flex;align-items:center;justify-content:space-between;margin-top:10px;padding-top:8px;border-top:1px dashed var(--line);font-size:.72rem;color:var(--teal);font-weight:600;}
+
+  /* ---------- Lead form ---------- */
+  #lien-he{background:var(--ink);color:#EAF6F1;}
+  #lien-he h2{color:#fff;}
+  #lien-he .section-head p{color:#B8CFC7;}
+  .form-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:42px;margin-top:36px;align-items:start;}
+  .form-box{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:28px;}
+  .field{margin-bottom:16px;}
+  .field label{display:block;font-size:.84rem;font-weight:500;margin-bottom:6px;color:#CFE3DB;}
+  .field input,.field textarea,.field select{
+    width:100%;padding:12px 15px;border-radius:12px;border:1px solid rgba(255,255,255,.16);
+    background:rgba(255,255,255,.07);color:#fff;font-family:inherit;font-size:.95rem;
+  }
+  .field select option{background:var(--ink);color:#fff;}
+  .field textarea{min-height:92px;resize:vertical;}
+  .field input::placeholder,.field textarea::placeholder{color:#88A79E;}
+  .field input:focus,.field textarea:focus,.field select:focus{outline:2px solid var(--orb-light);border-color:transparent;}
+  .form-box .btn-primary{width:100%;margin-top:6px;}
+  .form-ok{display:none;background:rgba(79,177,150,.18);border:1px solid rgba(79,177,150,.45);border-radius:12px;padding:14px 16px;font-size:.9rem;margin-top:14px;color:#CFF3E6;}
+  .contact-list{display:grid;gap:14px;}
+  .contact-list a{display:flex;gap:14px;align-items:center;text-decoration:none;padding:15px 18px;border:1px solid rgba(255,255,255,.12);border-radius:14px;transition:background .15s;}
+  .contact-list a:hover{background:rgba(255,255,255,.06);}
+  .contact-list .ic{width:40px;height:40px;border-radius:11px;background:rgba(255,255,255,.08);display:grid;place-items:center;flex:none;}
+  .contact-list b{display:block;font-size:.98rem;color:#fff;}
+  .contact-list small{color:#9FBCB2;}
+
+  /* ---------- About ---------- */
+  .about-grid{display:grid;grid-template-columns:.78fr 1.22fr;gap:44px;align-items:center;}
+  .doc-photo{aspect-ratio:4/5;border-radius:22px;background:var(--mist);display:grid;place-items:center;box-shadow:var(--shadow);overflow:hidden;border:1px solid var(--line);}
+  .about-grid h2{font-size:clamp(1.65rem,3.2vw,2.3rem);}
+  .about-grid .lede{margin-top:.9rem;color:var(--ink-soft);font-size:1.02rem;}
+  .creds{margin-top:1.3rem;padding:0;display:grid;gap:11px;}
+  .creds li{list-style:none;display:flex;gap:12px;align-items:flex-start;}
+  .creds .check{margin-top:4px;}
+
+  /* ---------- Footer ---------- */
+  footer{background:var(--ink);color:#9FBCB2;padding:34px 0;border-top:1px solid rgba(255,255,255,.08);}
+  .foot-grid{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:center;}
+  footer .brand{color:#fff;}
+  footer .brand small{color:#9FBCB2;}
+  .crisis{font-size:.82rem;line-height:1.6;max-width:56ch;}
+  .crisis b{color:#EAF6F1;}
+
+  @media(max-width:860px){
+    .hero-grid,.about-grid,.form-grid{grid-template-columns:1fr;}
+    .rc-grid{grid-template-columns:1fr 1fr;}
+    .orb-stage{order:-1;max-width:270px;}
+    .feature-grid{grid-template-columns:1fr;}
+    .rv-options{grid-template-columns:repeat(3,1fr);}
+    section{padding:50px 0;}
+    .hero{padding:42px 0 54px;}
+  }
+  @media print{
+    header,#gioi-thieu,#bac-si,#lien-he,#kho-47-test,footer,.res-top-actions,.res-cta,.respondent-card{display:none!important;}
+    body{background:#fff;}
+    .test-shell{box-shadow:none;border:none;max-width:100%;}
+  }
+</style>
+</head>
+<body>
+
+<!-- EMERGENCY CRISIS OVERLAY (Chuẩn PeaceFlow) -->
+<div class="emergency-overlay" id="emergencyOverlay">
+  <div class="emergency-popup">
+    <div class="ep-icon">❤️</div>
+    <div class="ep-title">Bạn không đơn độc</div>
+    <p class="ep-text">Nếu điểm số cao và bạn đang cảm thấy khó khăn, hãy để ai đó giúp bạn ngay bây giờ.</p>
+    <div class="ep-hotline">
+      <div class="eph-num">📞 0931773637</div>
+      <div class="eph-label">Đường dây nóng sức khỏe tâm thần — Miễn phí, 24/7</div>
+    </div>
+    <div class="ep-actions">
+      <a href="tel:0931773637" class="btn btn-primary" style="background:#DC2626;">📞 Gọi ngay hotline 0931773637</a>
+      <a href="https://zalo.me/0354548939" target="_blank" rel="noopener" class="btn btn-teal">💬 Kết nối BS. Thanh Nhàn (0354.54.89.39)</a>
+      <button type="button" class="btn btn-ghost" id="closeEmergencyBtn">Tôi hiểu, đóng lại</button>
+    </div>
+  </div>
+</div>
+
+<header>
+  <div class="wrap nav">
+    <a href="index.html" class="brand">
+      <img src="bs-thanh-nhan.jpg" alt="BS. Thanh Nhàn" style="width:38px;height:38px;border-radius:50%;object-fit:cover;object-position:center top;border:2px solid var(--teal);">
+      <span>BS. Phan Thị Thanh Nhàn<small>Chuyên khoa Tâm thần · BV Tâm thần TW2</small></span>
+    </a>
+    <div style="display:flex;gap:.55rem;align-items:center;flex-wrap:wrap;">
+      <a href="kho-47-trac-nghiem-tam-ly.html" class="btn btn-ghost">📋 Kho 47 Trắc Nghiệm</a>
+      <a href="#lien-he" class="btn btn-ghost">Đặt lịch tư vấn</a>
+      <a href="#test" class="btn btn-primary">Làm bài đánh giá</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Bài #17/47 · Lo âu · Chuẩn Bộ Y Tế</span>
+      <h1>ZAI — <em>Lo âu</em></h1>
+      <div class="fullname-sub">Zung Self-Rating Anxiety Inventory (Trắc nghiệm Lo âu Zung)</div>
+      <p class="lede">Bài đánh giá theo tài liệu hướng dẫn Bộ Y tế.</p>
+      <div class="meta-pills"><span class="meta-pill">20 câu hỏi</span><span class="meta-pill">~Theo quy trình</span></div>
+      <div class="palette-tag">
+        <span class="palette-swatch"></span>
+        <span>Bảng màu #17: <strong>Coastal Pebble & Warm Rust · Sỏi Biển Trung Tính & Cam Đất Trầm</strong></span>
+      </div>
+      <div class="hero-cta">
+        <a href="#test" class="btn btn-primary">Bắt đầu bài đánh giá &rarr;</a>
+        <a href="#gioi-thieu" class="btn btn-ghost">Thông số lâm sàng</a>
+        <a href="kho-47-trac-nghiem-tam-ly.html" class="btn btn-ghost">Xem 47 thang đo</a>
+      </div>
+      <div class="hero-note">
+        <span><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg>Nội dung chuẩn Bộ Y tế</span>
+        <span><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg>Bảo mật & ẩn danh</span>
+        <span><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg>BS. Thanh Nhàn đồng hành</span>
+      </div>
+    </div>
+    <div class="orb-stage">
+      <div class="orb">
+        <div class="orb-label">
+          <span class="orb-icon">😟</span>
+          <span class="orb-code">ZAI</span>
+          Hít vào nhẹ nhàng…<br>Lắng nghe chính mình
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GIỚI THIỆU THANG ĐO -->
+<section id="gioi-thieu">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Cấu trúc & Tiêu chuẩn lâm sàng</span>
+      <h2>ZAI (Zung Self-Rating Anxiety Inventory (Trắc nghiệm Lo âu Zung))</h2>
+      <p>Bài đánh giá theo tài liệu hướng dẫn Bộ Y tế. — Self-rated anxiety scale</p>
+    </div>
+    <div class="feature-grid">
+      
+      <div class="card">
+        <div class="ic">😟</div>
+        <h3>Lo âu</h3>
+        <p><strong>Số mục đánh giá:</strong> 20 câu hỏi · <strong>Khung thời gian:</strong> 1 tuần qua.</p>
+        <p style="margin-top:.55rem;font-size:.84rem;opacity:.88;"><strong>Ngưỡng phân loại chuẩn:</strong> ≤44: Không có lo âu bệnh lý · ≤59: Lo âu mức độ nhẹ đến trung bình · ≤74: Lo âu mức độ nặng · ≤100: Lo âu mức độ rất nặng</p>
+      </div>
+
+      <div class="card">
+        <div class="ic">⏱️</div>
+        <h3>Cấu trúc & Thời gian tham chiếu</h3>
+        <p><strong>Tổng số câu:</strong> 20 câu hỏi chuẩn hóa · <strong>Điểm tối đa:</strong> 100 điểm.</p>
+        <p style="margin-top:.55rem;font-size:.84rem;opacity:.88;"><strong>Khung thời gian đánh giá:</strong> 1 tuần qua.</p>
+      </div>
+      <div class="card">
+        <div class="ic">📋</div>
+        <h3>Thang điểm & Phương thức chấm</h3>
+        <p>Self-rated anxiety scale</p>
+        <p style="margin-top:.55rem;font-size:.84rem;opacity:.88;"><strong>Thang trả lời:</strong> 1đ: Không có · 2đ: Đôi khi · 3đ: Thường xuyên · 4đ: Luôn luôn</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KHU VỰC LÀM BÀI ĐÁNH GIÁ -->
+<section id="test">
+  <div class="wrap">
+    <div class="section-head" style="text-align:center;margin:0 auto;">
+      <span class="eyebrow" style="justify-content:center;">Hệ thống đánh giá tâm lý chuẩn hóa</span>
+      <h2>ZAI · Zung Self-Rating Anxiety Inventory (Trắc nghiệm Lo âu Zung)</h2>
+      <p style="margin-left:auto;margin-right:auto;">Bài đánh giá theo tài liệu hướng dẫn Bộ Y tế.</p>
+    </div>
+
+    <!-- Disclaimer nguyên văn chuẩn PeaceFlow -->
+    <div class="disclaimer-banner">
+      <span style="font-size:1.2rem;flex:none;">⚠️</span>
+      <div><strong>Lưu ý quan trọng:</strong> Các bài kiểm tra này là công cụ <strong>sàng lọc tham khảo</strong>, không phải chẩn đoán y khoa. Kết quả chỉ mang tính định hướng. Nếu điểm số ở mức cao, hãy tham khảo ý kiến chuyên gia tâm lý lâm sàng. Ứng dụng này <strong>không thay thế</strong> dịch vụ y tế chuyên nghiệp.</div>
+    </div>
+
+    <!-- Thông tin người làm test (dùng chung qua localStorage) -->
+    <div class="respondent-card">
+      <div class="rc-title-toggle" id="rcToggle">
+        <span>📝 Thông tin người làm test (tuỳ chọn — lưu tự động)</span>
+        <span id="rcArrow">▾ Hướng dẫn</span>
+      </div>
+      <div class="rc-sub" id="rcSub">
+        Điền tên của <strong>người sẽ làm bài</strong> (khách hàng, học sinh, người thân...). Thông tin này dùng chung cho mọi bài test, chỉ cần điền một lần.<br>
+        ℹ️ "Tháng lẻ" chỉ cần điền khi làm bài <strong>Raven CPM</strong> cho trẻ 4-11 tuổi — dùng để tính điểm chuẩn (IQ) đúng theo mốc tuổi tháng.<br>
+        📅 Có thể điền <strong>Ngày sinh</strong> để hệ thống tự tính Tuổi/Tháng lẻ, hoặc bỏ qua và điền trực tiếp Tuổi/Tháng lẻ.
+      </div>
+      <div class="rc-grid">
+        <div class="rc-field">
+          <label for="respName">Họ và tên người làm bài *</label>
+          <input type="text" id="respName" placeholder="Nguyễn Văn A">
+        </div>
+        <div class="rc-field">
+          <label for="respDob" title="Điền ngày sinh để tự tính Tuổi/Tháng lẻ">Ngày sinh (tuỳ chọn)</label>
+          <input type="date" id="respDob">
+        </div>
+        <div class="rc-field">
+          <label for="respAge">Tuổi</label>
+          <input type="number" id="respAge" min="0" max="120" placeholder="VD: 15">
+        </div>
+        <div class="rc-field">
+          <label for="respAgeMonths" title="Chỉ cần điền cho bài Raven CPM (trẻ 4-11 tuổi)">Tháng lẻ</label>
+          <input type="number" id="respAgeMonths" min="0" max="11" placeholder="0-11">
+        </div>
+      </div>
+      <div class="rc-field" style="margin-top:10px;">
+        <label for="respNote">Ghi chú</label>
+        <input type="text" id="respNote" placeholder="Ghi chú thêm (nếu có)...">
+      </div>
+    </div>
+
+    <!-- TEST SHELL -->
+    <div class="test-shell" id="testShell">
+      <div id="interactiveMount"></div>
+    </div>
+  </div>
+</section>
+
+<!-- VỀ BÁC SĨ -->
+<section id="bac-si">
+  <div class="wrap about-grid">
+    <div class="doc-photo"><img src="bs-thanh-nhan.jpg" alt="BS. Phan Thị Thanh Nhàn" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;"></div>
+    <div>
+      <span class="eyebrow">Người đồng hành cùng bạn</span>
+      <h2>BS. Phan Thị Thanh Nhàn</h2>
+      <p class="lede">Bác sĩ Chuyên khoa Tâm thần (Bệnh viện Tâm thần Trung ương 2, trực thuộc Bộ Y tế). Với phương pháp lắng nghe thấu cảm, tôn trọng và không phán xét, BS. Thanh Nhàn trực tiếp đọc kết quả sàng lọc và đồng hành cùng bạn tháo gỡ những căng thẳng, lo âu, mất ngủ và rối loạn cảm xúc.</p>
+      <ul class="creds">
+        <li><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg><span>Bác sĩ Chuyên khoa Tâm thần — Bệnh viện Tâm thần Trung ương 2 (Bộ Y tế)</span></li>
+        <li><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg><span>Đánh giá và giải thích chuyên sâu 47 bộ trắc nghiệm tâm lý & thang đo lâm sàng</span></li>
+        <li><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg><span>Không gian tham vấn an toàn, riêng tư và bảo mật tuyệt đối qua Zalo / Trực tiếp</span></li>
+      </ul>
+      <div style="margin-top:1.6rem;display:flex;gap:10px;flex-wrap:wrap;">
+        <a href="#lien-he" class="btn btn-teal">Đặt lịch tư vấn cùng BS. Nhàn</a>
+        <a href="https://zalo.me/0354548939" target="_blank" rel="noopener" class="btn btn-ghost">💬 Nhắn Zalo: 0354.54.89.39</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIÊN HỆ / LEAD FORM -->
+<section id="lien-he">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow" style="color:var(--orb-light);">Bước tiếp theo</span>
+      <h2>Gửi kết quả ZAI — BS. Thanh Nhàn sẽ liên hệ tư vấn riêng cho bạn</h2>
+      <p>Bạn không phải đối mặt với mọi thứ một mình. Khi bạn hoàn thành bài đánh giá, điểm số sẽ tự động đính kèm vào biểu mẫu dưới đây để Bác sĩ nắm bắt chính xác tình trạng của bạn.</p>
+    </div>
+    <div class="form-grid">
+      <div class="form-box">
+        <div class="field">
+          <label for="fName">Họ và tên *</label>
+          <input id="fName" type="text" placeholder="Nguyễn Văn A" autocomplete="name">
+        </div>
+        <div class="field">
+          <label for="fPhone">Số điện thoại / Zalo *</label>
+          <input id="fPhone" type="tel" placeholder="09xx xxx xxx" autocomplete="tel">
+        </div>
+        <div class="field">
+          <label for="fTestSummary">Thang đo & Kết quả đính kèm</label>
+          <input id="fTestSummary" type="text" value="ZAI (Zung Self-Rating Anxiety Inventory (Trắc nghiệm Lo âu Zung))" readonly>
+        </div>
+        <div class="field">
+          <label for="fTopic">Bạn muốn được hỗ trợ về</label>
+          <select id="fTopic">
+            <option value="ZAI - Lo âu">ZAI — Lo âu</option>
+            <option value="Trầm cảm / Buồn chán">Trầm cảm / Buồn chán, mất hứng thú</option>
+            <option value="Lo âu / Căng thẳng">Lo âu, hồi hộp, căng thẳng thần kinh</option>
+            <option value="Giấc ngủ / Mất ngủ">Rối loạn giấc ngủ / Mất ngủ kéo dài</option>
+            <option value="Tâm lý Trẻ em & Vị thành niên">Tâm lý Trẻ em & Thanh thiếu niên (Tự kỷ, ADHD, Học đường)</option>
+            <option value="Nhận thức / Trí nhớ người lớn tuổi">Nhận thức / Trí nhớ / Sa sút trí tuệ</option>
+            <option value="Khác - Muốn được BS. Nhàn tư vấn">Chưa rõ — Muốn được BS. Nhàn tư vấn trực tiếp</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="fMsg">Lời nhắn hoặc triệu chứng bạn đang gặp (không bắt buộc)</label>
+          <textarea id="fMsg" placeholder="Chia sẻ ngắn gọn điều bạn hoặc người thân đang trải qua…"></textarea>
+        </div>
+        <button class="btn btn-primary" id="submitLead" type="button">Gửi thông tin & kết quả cho BS. Nhàn &rarr;</button>
+        <div class="form-ok" id="formOk"></div>
+      </div>
+      <div>
+        <div class="contact-list">
+          <a href="tel:0354548939">
+            <span class="ic">📞</span>
+            <span><b>Gọi điện trực tiếp</b><small>0354.54.89.39 — BS. Phan Thị Thanh Nhàn</small></span>
+          </a>
+          <a href="https://zalo.me/0354548939" target="_blank" rel="noopener">
+            <span class="ic">💬</span>
+            <span><b>Nhắn tin Zalo Tư vấn 1-1</b><small>zalo.me/0354548939 (Phản hồi nhanh)</small></span>
+          </a>
+          <a href="mailto:nhanthi.bs@gmail.com">
+            <span class="ic">✉️</span>
+            <span><b>Gửi Email</b><small>nhanthi.bs@gmail.com</small></span>
+          </a>
+          <a href="https://www.facebook.com/profile.php?id=61551714135624" target="_blank" rel="noopener">
+            <span class="ic">🌐</span>
+            <span><b>Facebook Chính Thức</b><small>BS. Thanh Nhàn — Chuyên khoa Tâm thần</small></span>
+          </a>
+        </div>
+        <p class="crisis" style="margin-top:22px;color:#9FBCB2;">
+          ⚠️ <strong>Hỗ trợ khẩn cấp 24/7:</strong> Nếu bạn đang có ý nghĩ tự làm hại bản thân hoặc rơi vào khủng hoảng cấp tính, vui lòng gọi ngay đường dây nóng <b>0931773637</b>, gọi cấp cứu <b>115</b> hoặc đến cơ sở y tế gần nhất.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KHO 47 BỘ TRẮC NGHIỆM TÂM LÝ & THANG ĐO LÂM SÀNG -->
+<section id="kho-47-test">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Hệ thống đầy đủ 47 thang đo chuẩn Bộ Y tế</span>
+      <h2>Kho 47 Bộ Trắc Nghiệm Tâm Lý & Thang Đo Lâm Sàng</h2>
+      <p>Mỗi bài đánh giá được thiết kế trên một trang riêng biệt với bảng màu trung tính độc bản và nội dung chuẩn hướng dẫn Bộ Y tế Việt Nam. Chuyển đổi nhanh giữa 47 thang đo dưới đây:</p>
+    </div>
+    <div class="hub-toolbar">
+      <input type="search" id="hubSearch" class="hub-search" placeholder="🔍 Tìm trong 47 bài trắc nghiệm (VD: DASS-21, PHQ-9, Raven, M-CHAT, MMSE, Rorschach...)">
+      <a href="kho-47-trac-nghiem-tam-ly.html" class="btn btn-teal">Mở Trang Tổng Hợp 47 Thang Đo &rarr;</a>
+    </div>
+    <div class="hub-cats" id="hubCats"></div>
+    <div class="hub-grid-47" id="hubGrid47"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-grid">
+    <a href="index.html" class="brand" style="text-decoration:none;">
+      <img src="bs-thanh-nhan.jpg" alt="BS. Thanh Nhàn" style="width:34px;height:34px;border-radius:50%;object-fit:cover;object-position:center top;">
+      <span>BS. Phan Thị Thanh Nhàn<small>© 2026 · Hệ thống 47 Trắc Nghiệm Tâm Lý & Thang Đo Lâm Sàng</small></span>
+    </a>
+    <p class="crisis">Thông tin trên trang này chỉ mang tính chất sàng lọc tham khảo, <b>không thay thế cho chẩn đoán hay điều trị y khoa chính thức</b>.</p>
+  </div>
+</footer>
+
+<script>
+window.__PAGE_DATA__ = {"key": "zai", "no": 17, "mode": "interactive", "meta": {"no": 17, "key": "zai", "filename": "test-zai.html", "categoryLabel": "Lo âu", "themeName": "Coastal Pebble & Warm Rust · Sỏi Biển Trung Tính & Cam Đất Trầm", "primary": "#3F6978", "bg": "#F1F4F5", "mist": "#E1E8EB", "apiCode": "ZAI", "name": "ZAI", "fullname": "Zung Self-Rating Anxiety Inventory (Trắc nghiệm Lo âu Zung)", "icon": "😟", "category": "anxiety", "desc": "Bài đánh giá theo tài liệu hướng dẫn Bộ Y tế.", "apiDesc": "Self-rated anxiety scale", "badges": [{"label": "20 câu hỏi"}, {"label": "~Theo quy trình"}], "mode": "interactive", "specialistNote": ""}, "scale": {"name": "ZAI", "fullname": "Zung Self-Rating Anxiety Inventory (Trắc nghiệm Lo âu Zung)", "icon": "😟", "iconBg": "var(--rose-light)", "iconBorder": "var(--rose)", "timeRef": "1 tuần qua", "totalQ": 20, "maxScore": 100, "subscales": ["anxiety"], "questions": [{"text": "Tôi cảm thấy nóng nảy và lo âu hơn thường lệ", "cat": "anxiety", "catLabel": "Lo âu"}, {"text": "Tôi cảm thấy sợ vô cớ", "cat": "anxiety", "catLabel": "Lo âu"}, {"text": "Tôi dễ bối rối và cảm thấy hoảng sợ", "cat": "anxiety", "catLabel": "Lo âu"}, {"text": "Tôi cảm thấy như bị ngã và vỡ ra từng mảnh", "cat": "anxiety", "catLabel": "Lo âu"}, {"text": "Tôi cảm thấy mọi thứ đều tốt và không có điều gì xấu sẽ xảy ra", "cat": "anxiety", "catLabel": "Lo âu", "likertOptions": [{"emoji": "😊", "label": "Không có", "score": 4}, {"emoji": "😐", "label": "Đôi khi", "score": 3}, {"emoji": "😟", "label": "Thường xuyên", "score": 2}, {"emoji": "😰", "label": "Luôn luôn", "score": 1}]}, {"text": "Tay và chân tôi lắc lư, run lên", "cat": "anxiety", "catLabel": "Lo âu"}, {"text": "Tôi đang khó chịu vì đau đầu, đau cổ, đau lưng", "cat": "anxiety", "catLabel": "Lo âu"}, {"text": "Tôi cảm thấy yếu và dễ mệt mỏi", "cat": "anxiety", "catLabel": "Lo âu"}, {"text": "Tôi cảm thấy bình tĩnh và có thể ngồi yên một cách dễ dàng", "cat": "anxiety", "catLabel": "Lo âu", "likertOptions": [{"emoji": "😊", "label": "Không có", "score": 4}, {"emoji": "😐", "label": "Đôi khi", "score": 3}, {"emoji": "😟", "label": "Thường xuyên", "score": 2}, {"emoji": "😰", "label": "Luôn luôn", "score": 1}]}, {"text": "Tôi cảm thấy tim mình đập nhanh", "cat": "anxiety", "catLabel": "Lo âu"}, {"text": "Tôi đang khó chịu vì cơn hoa mắt chóng mặt", "cat": "anxiety", "catLabel": "Lo âu"}, {"text": "Tôi bị ngất và có lúc cảm thấy gần như thế", "cat": "anxiety", "catLabel": "Lo âu"}, {"text": "Tôi có thể thở ra, hít vào một cách dễ dàng", "cat": "anxiety", "catLabel": "Lo âu", "likertOptions": [{"emoji": "😊", "label": "Không có", "score": 4}, {"emoji": "😐", "label": "Đôi khi", "score": 3}, {"emoji": "😟", "label": "Thường xuyên", "score": 2}, {"emoji": "😰", "label": "Luôn luôn", "score": 1}]}, {"text": "Tôi cảm thấy tê buốt, như có kiến bò ở đầu ngón tay, ngón chân", "cat": "anxiety", "catLabel": "Lo âu"}, {"text": "Tôi đang khó chịu vì đau dạ dày và đầy bụng", "cat": "anxiety", "catLabel": "Lo âu"}, {"text": "Tôi luôn cần phải đi đái", "cat": "anxiety", "catLabel": "Lo âu"}, {"text": "Bàn tay tôi thường khô và ấm", "cat": "anxiety", "catLabel": "Lo âu", "likertOptions": [{"emoji": "😊", "label": "Không có", "score": 4}, {"emoji": "😐", "label": "Đôi khi", "score": 3}, {"emoji": "😟", "label": "Thường xuyên", "score": 2}, {"emoji": "😰", "label": "Luôn luôn", "score": 1}]}, {"text": "Mặt tôi thường nóng và đỏ", "cat": "anxiety", "catLabel": "Lo âu"}, {"text": "Tôi ngủ dễ dàng và luôn có một giấc ngủ tốt", "cat": "anxiety", "catLabel": "Lo âu", "likertOptions": [{"emoji": "😊", "label": "Không có", "score": 4}, {"emoji": "😐", "label": "Đôi khi", "score": 3}, {"emoji": "😟", "label": "Thường xuyên", "score": 2}, {"emoji": "😰", "label": "Luôn luôn", "score": 1}]}, {"text": "Tôi thường có ác mộng", "cat": "anxiety", "catLabel": "Lo âu"}], "likertOptions": [{"emoji": "😊", "label": "Không có", "score": 1}, {"emoji": "😐", "label": "Đôi khi", "score": 2}, {"emoji": "😟", "label": "Thường xuyên", "score": 3}, {"emoji": "😰", "label": "Luôn luôn", "score": 4}], "scoring": {"anxiety": {"indices": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19], "multiplier": 1.25, "levels": [{"max": 44, "label": "Không có lo âu bệnh lý", "class": "level-0"}, {"max": 59, "label": "Lo âu mức độ nhẹ đến trung bình", "class": "level-1"}, {"max": 74, "label": "Lo âu mức độ nặng", "class": "level-2"}, {"max": 999, "label": "Lo âu mức độ rất nặng", "class": "level-3"}]}}, "prevScores": null}, "raven": null, "protocols": null, "protocolGroups": null, "catalog": [{"no": 1, "key": "dass21", "filename": "test-dass21.html", "name": "DASS-21", "fullname": "Depression Anxiety Stress Scales", "icon": "📊", "category": "stress", "categoryLabel": "Căng thẳng / Cảm xúc", "desc": "Đánh giá đồng thời 3 chiều: Trầm cảm, Lo âu và Căng thẳng.", "badges": [{"label": "21 câu hỏi"}, {"label": "~8 phút"}, {"label": "2 tuần/lần"}], "mode": "interactive", "themeName": "Sage Mist & Terracotta · Xanh Xô Thơm & Đất Nung", "primary": "#2F7D6E", "bg": "#F1F5F1"}, {"no": 2, "key": "gad7", "filename": "test-gad7.html", "name": "GAD-7", "fullname": "Generalized Anxiety Disorder 7-item", "icon": "😰", "category": "anxiety", "categoryLabel": "Lo âu", "desc": "Đánh giá mức độ lo âu tổng quát với thang đo ngắn, dễ lặp lại hàng tuần.", "badges": [{"label": "7 câu hỏi"}, {"label": "~3 phút"}, {"label": "Hàng tuần"}], "mode": "interactive", "themeName": "Nordic Fjord & Warm Amber · Xanh Đá Bắc Âu & Hổ Phách Trầm", "primary": "#3B6E8C", "bg": "#F2F5F7"}, {"no": 3, "key": "hars", "filename": "test-hars.html", "name": "HARS", "fullname": "Hamilton Anxiety Rating Scale", "icon": "🧠", "category": "anxiety", "categoryLabel": "Lo âu", "desc": "Đánh giá lo âu theo cả triệu chứng tâm lý lẫn thể chất.", "badges": [{"label": "14 câu hỏi"}, {"label": "~6 phút"}, {"label": "Khi cần sâu"}], "mode": "interactive", "themeName": "Lavender Stone & Cedarwood · Tím Đá Khói & Gỗ Tuyết Tùng", "primary": "#64547A", "bg": "#F4F2F6"}, {"no": 4, "key": "phq9", "filename": "test-phq9.html", "name": "PHQ-9", "fullname": "Patient Health Questionnaire-9", "icon": "🌧️", "category": "depression", "categoryLabel": "Trầm cảm", "desc": "Sàng lọc và đánh giá mức độ trầm cảm theo thang đo tiêu chuẩn.", "badges": [{"label": "9 câu hỏi"}, {"label": "~4 phút"}, {"label": "2 tuần/lần"}], "mode": "interactive", "themeName": "Eucalyptus Linen & Ochre Clay · Xanh Khuynh Diệp & Đất Hoàng Thổ", "primary": "#356B5C", "bg": "#F0F4F2"}, {"no": 5, "key": "bdi", "filename": "test-bdi.html", "name": "BDI", "fullname": "Thang Đánh Giá Trầm Cảm Beck", "icon": "🌧️", "category": "depression", "categoryLabel": "Trầm cảm", "desc": "Đánh giá chuyên sâu mức độ trầm cảm qua 21 khía cạnh — cảm xúc, thể chất, hành vi.", "badges": [{"label": "21 câu hỏi"}, {"label": "~8 phút"}, {"label": "Khi cần"}], "mode": "interactive", "themeName": "Pewter Moss & Sienna Earth · Rêu Xám Thiếc & Đất Sienna", "primary": "#4A6350", "bg": "#F2F4F0"}, {"no": 6, "key": "psqi", "filename": "test-psqi.html", "name": "PSQI", "fullname": "Pittsburgh Sleep Quality Index", "icon": "😴", "category": "sleep", "categoryLabel": "Giấc ngủ", "desc": "Đánh giá chất lượng giấc ngủ trong tháng gần nhất.", "badges": [{"label": "17 câu hỏi"}, {"label": "~8 phút"}, {"label": "Hàng tháng"}], "mode": "interactive", "themeName": "Twilight Cashmere & Honey Taupe · Xám Hoàng Hôn & Mật Ong Trầm", "primary": "#46566E", "bg": "#F4F3F0"}, {"no": 7, "key": "pss", "filename": "test-pss.html", "name": "PSS", "fullname": "Perceived Stress Scale", "icon": "😣", "category": "stress", "categoryLabel": "Căng thẳng / Cảm xúc", "desc": "Đánh giá mức độ stress cảm nhận được trong 1 tháng gần đây.", "badges": [{"label": "10 câu hỏi"}, {"label": "~4 phút"}, {"label": "Hàng tháng"}], "mode": "interactive", "themeName": "Warm Limestone & Burnt Umber · Đá Vôi Ấm & Nâu Umber", "primary": "#7C5846", "bg": "#F6F3EF"}, {"no": 8, "key": "sdq25", "filename": "test-sdq25.html", "name": "SDQ-25", "fullname": "Bảng hỏi Điểm mạnh & Khó khăn (Tự đánh giá)", "icon": "🧒", "category": "child_teen", "categoryLabel": "Trẻ em / Thanh thiếu niên", "desc": "Sàng lọc điểm mạnh và khó khăn về cảm xúc, hành vi dành cho thanh thiếu niên.", "badges": [{"label": "25 câu hỏi"}, {"label": "~10 phút"}, {"label": "Thanh thiếu niên"}], "mode": "interactive", "themeName": "Soft Celadon & Apricot Sand · Men Ngọc Bích & Cát Mơ", "primary": "#3D7A6E", "bg": "#F1F6F4"}, {"no": 9, "key": "mmse", "filename": "test-mmse.html", "name": "MMSE", "fullname": "Mini-Mental State Exam", "icon": "🧠", "category": "cognitive", "categoryLabel": "Nhận thức", "desc": "Đánh giá chức năng nhận thức: định hướng, trí nhớ, chú ý, ngôn ngữ — thường dùng cho người lớn tuổi.", "badges": [{"label": "19 câu hỏi"}, {"label": "~10 phút"}, {"label": "Người lớn tuổi"}], "mode": "interactive", "themeName": "Antique Parchment & Walnut Bronze · Giấy Cổ Điển & Đồng Óc Chó", "primary": "#635642", "bg": "#F6F4EE"}, {"no": 10, "key": "isi", "filename": "test-isi.html", "name": "ISI", "fullname": "Insomnia Severity Index", "icon": "😴", "category": "sleep", "categoryLabel": "Giấc ngủ", "desc": "Đánh giá mức độ nghiêm trọng và tác động của chứng mất ngủ trong 1 tháng qua.", "badges": [{"label": "7 câu hỏi"}, {"label": "~3 phút"}, {"label": "Hàng tháng"}], "mode": "interactive", "themeName": "Moonlit Slate & Muted Gold · Xanh Ánh Trăng & Vàng Dịu", "primary": "#3E4E68", "bg": "#F2F3F6"}, {"no": 11, "key": "iat", "filename": "test-iat.html", "name": "IAT", "fullname": "Internet Addiction Test", "icon": "📱", "category": "behavior_addiction", "categoryLabel": "Hành vi / Nghiện", "desc": "Đánh giá mức độ nghiện Internet trong tháng qua.", "badges": [{"label": "20 câu hỏi"}, {"label": "~7 phút"}, {"label": "Hàng tháng"}], "mode": "interactive", "themeName": "Mineral Blue-Gray & Copper Rose · Xám Khoáng Thạch & Đồng Hồng", "primary": "#386672", "bg": "#F1F5F6"}, {"no": 12, "key": "audit", "filename": "test-audit.html", "name": "AUDIT", "fullname": "Alcohol Use Disorders Identification Test", "icon": "🍺", "category": "substance", "categoryLabel": "Rượu bia / Chất gây nghiện", "desc": "Sàng lọc mức độ sử dụng rượu bia trong 12 tháng qua (WHO).", "badges": [{"label": "10 câu hỏi"}, {"label": "~5 phút"}, {"label": "12 tháng/lần"}], "mode": "interactive", "themeName": "Raw Linen & Olive Umber · Vải Lanh Thô & Ô Liu Trầm", "primary": "#5C6144", "bg": "#F5F3EE"}, {"no": 13, "key": "hdrs", "filename": "test-hdrs.html", "name": "HDRS", "fullname": "Hamilton Depression Rating Scale", "icon": "🌧️", "category": "clinician", "categoryLabel": "Chuyên gia đánh giá", "desc": "Bài đánh giá theo tài liệu hướng dẫn Bộ Y tế.", "badges": [{"label": "17 câu hỏi"}, {"label": "~Theo quy trình"}], "mode": "interactive", "themeName": "Dusk Pine & Rosewood Taupe · Thông Chiều Tà & Gỗ Hồng Sắc", "primary": "#2E5850", "bg": "#F0F3F2"}, {"no": 14, "key": "cdi", "filename": "test-cdi.html", "name": "CDI", "fullname": "Children's Depression Inventory", "icon": "🧸", "category": "child_teen", "categoryLabel": "Trẻ em / Thanh thiếu niên", "desc": "Bài đánh giá theo tài liệu hướng dẫn Bộ Y tế.", "badges": [{"label": "27 câu hỏi"}, {"label": "~Theo quy trình"}], "mode": "interactive", "themeName": "Warm Oat-Milk & Sage Leaf · Sữa Yến Mạch & Lá Xô Thơm", "primary": "#4E7360", "bg": "#F6F4EF"}, {"no": 15, "key": "gds", "filename": "test-gds.html", "name": "GDS", "fullname": "Geriatric Depression Scale", "icon": "🍂", "category": "depression", "categoryLabel": "Trầm cảm", "desc": "Bài đánh giá theo tài liệu hướng dẫn Bộ Y tế.", "badges": [{"label": "30 câu hỏi"}, {"label": "~Theo quy trình"}], "mode": "interactive", "themeName": "Silver Birch & Warm Chestnut · Bạch Dương Bạc & Hạt Dẻ Ấm", "primary": "#526458", "bg": "#F3F4F2"}, {"no": 16, "key": "epds", "filename": "test-epds.html", "name": "EPDS", "fullname": "Edinburgh Postnatal Depression Scale", "icon": "🤱", "category": "depression", "categoryLabel": "Trầm cảm", "desc": "Bài đánh giá theo tài liệu hướng dẫn Bộ Y tế.", "badges": [{"label": "10 câu hỏi"}, {"label": "~Theo quy trình"}], "mode": "interactive", "themeName": "Dusty Rose-Beige & Soft Plum · Hồng Phấn Trầm & Mận Chín Dịu", "primary": "#7D525E", "bg": "#F7F2F2"}, {"no": 17, "key": "zai", "filename": "test-zai.html", "name": "ZAI", "fullname": "Zung Self-Rating Anxiety Inventory (Trắc nghiệm Lo âu Zung)", "icon": "😟", "category": "anxiety", "categoryLabel": "Lo âu", "desc": "Bài đánh giá theo tài liệu hướng dẫn Bộ Y tế.", "badges": [{"label": "20 câu hỏi"}, {"label": "~Theo quy trình"}], "mode": "interactive", "themeName": "Coastal Pebble & Warm Rust · Sỏi Biển Trung Tính & Cam Đất Trầm", "primary": "#3F6978", "bg": "#F1F4F5"}, {"no": 18, "key": "hads", "filename": "test-hads.html", "name": "HADS", "fullname": "Hospital Anxiety and Depression Scale (Trắc nghiệm Lo âu - Trầm cảm)", "icon": "🏥", "category": "anxiety", "categoryLabel": "Lo âu", "desc": "Bài đánh giá theo tài liệu hướng dẫn Bộ Y tế.", "badges": [{"label": "14 câu hỏi"}, {"label": "~Theo quy trình"}], "mode": "interactive", "themeName": "Hospital Alabaster & Verdigris · Thạch Cao Trắng & Xanh Đồng Cổ", "primary": "#366863", "bg": "#F2F5F4"}, {"no": 19, "key": "mchat", "filename": "test-mchat.html", "name": "M-CHAT", "fullname": "Trắc nghiệm sàng lọc tự kỷ cho trẻ nhỏ 16-30 tháng (M-CHAT)", "icon": "🧩", "category": "child_teen", "categoryLabel": "Trẻ em / Thanh thiếu niên", "desc": "Bài đánh giá theo tài liệu hướng dẫn Bộ Y tế.", "badges": [{"label": "20 câu hỏi"}, {"label": "~Theo quy trình"}], "mode": "interactive", "themeName": "Chamomile Cream & Meadow Olive · Kem Cúc La Mã & Xanh Đồng Cỏ", "primary": "#5A6E4B", "bg": "#F6F5EE"}, {"no": 20, "key": "asq3", "filename": "test-asq3.html", "name": "ASQ-3 (24 tháng)", "fullname": "Trắc nghiệm giai đoạn và lứa tuổi cho trẻ em — Phiếu 6, 24-35 tháng tuổi (ASQ-3, bản Có/Không theo Bộ Y tế)", "icon": "🧸", "category": "child_teen", "categoryLabel": "Trẻ em / Thanh thiếu niên", "desc": "Bài đánh giá theo tài liệu hướng dẫn Bộ Y tế.", "badges": [{"label": "20 câu hỏi"}, {"label": "~Theo quy trình"}], "mode": "interactive", "themeName": "Sandstone & Seafoam Sage · Đá Sa Thạch & Bọt Biển Dịu", "primary": "#487262", "bg": "#F4F5F1"}, {"no": 21, "key": "cgis", "filename": "test-cgis.html", "name": "CGI-S", "fullname": "Trắc nghiệm Ấn tượng lâm sàng chung - Mức độ nặng (Clinical Global Impression - Severity Scale)", "icon": "🎯", "category": "clinician", "categoryLabel": "Chuyên gia đánh giá", "desc": "Bài đánh giá theo tài liệu hướng dẫn Bộ Y tế.", "badges": [{"label": "7 câu hỏi"}, {"label": "~Theo quy trình"}], "mode": "interactive", "themeName": "Graphite Silk & Amber Bronze · Lụa Than Chì & Đồng Hổ Phách", "primary": "#4A525D", "bg": "#F3F3F4"}, {"no": 22, "key": "bprs", "filename": "test-bprs.html", "name": "BPRS", "fullname": "Trắc nghiệm Tâm thần rút gọn (Brief Psychiatric Rating Scale)", "icon": "📋", "category": "clinician", "categoryLabel": "Chuyên gia đánh giá", "desc": "Bài đánh giá theo tài liệu hướng dẫn Bộ Y tế.", "badges": [{"label": "24 câu hỏi"}, {"label": "~Theo quy trình"}], "mode": "interactive", "themeName": "Smoky Quartz & Terracotta Ash · Thạch Anh Khói & Tro Đất Nung", "primary": "#615249", "bg": "#F4F2F0"}, {"no": 23, "key": "panss", "filename": "test-panss.html", "name": "PANSS", "fullname": "Thang Hội chứng Dương tính và Âm tính (Positive and Negative Syndrome Scale)", "icon": "🧩", "category": "clinician", "categoryLabel": "Chuyên gia đánh giá", "desc": "Bài đánh giá theo tài liệu hướng dẫn Bộ Y tế.", "badges": [{"label": "30 câu hỏi"}, {"label": "~Theo quy trình"}], "mode": "interactive", "themeName": "Deep Slate-Mist & Warm Copper · Đá Phiến Sương Mù & Đồng Ấm", "primary": "#3D5265", "bg": "#F1F3F5"}, {"no": 24, "key": "aims", "filename": "test-aims.html", "name": "AIMS", "fullname": "Trắc nghiệm vận động bất thường (Abnormal Involuntary Movement Scale)", "icon": "🕺", "category": "clinician", "categoryLabel": "Chuyên gia đánh giá", "desc": "Bài đánh giá theo tài liệu hướng dẫn Bộ Y tế.", "badges": [{"label": "10 câu hỏi"}, {"label": "~Theo quy trình"}], "mode": "interactive", "themeName": "Flint Ivory & Cypress Green · Ngà Đá Lửa & Xanh Bách Xù", "primary": "#436151", "bg": "#F2F4F1"}, {"no": 25, "key": "hachinski", "filename": "test-hachinski.html", "name": "HACHINSKI", "fullname": "Trắc nghiệm điểm thiếu máu cục bộ Hachinski (Hachinski Ischemic Score)", "icon": "🩸", "category": "cognitive", "categoryLabel": "Nhận thức", "desc": "Bài đánh giá theo tài liệu hướng dẫn Bộ Y tế.", "badges": [{"label": "13 câu hỏi"}, {"label": "~Theo quy trình"}], "mode": "interactive", "themeName": "Aged Vellum & Burgundy Taupe · Giấy Da Cổ & Nâu Đỏ Rượu Vang", "primary": "#6E4B4B", "bg": "#F6F2F0"}, {"no": 26, "key": "himmelbach", "filename": "test-himmelbach.html", "name": "HIMMELBACH", "fullname": "Trắc nghiệm mức độ nghiện Himmelbach (Himmelbach Withdrawal Scale)", "icon": "💉", "category": "substance", "categoryLabel": "Rượu bia / Chất gây nghiện", "desc": "Bài đánh giá theo tài liệu hướng dẫn Bộ Y tế.", "badges": [{"label": "12 câu hỏi"}, {"label": "~Theo quy trình"}], "mode": "interactive", "themeName": "River Clay & Juniper Slate · Đất Sét Sông & Xanh Bách Diệp", "primary": "#345E5B", "bg": "#F1F4F3"}, {"no": 27, "key": "epi", "filename": "test-epi.html", "name": "EPI", "fullname": "Trắc nghiệm Nhân cách Eysenck (Eysenck Personality Inventory)", "icon": "🎭", "category": "personality", "categoryLabel": "Nhân cách", "desc": "Bài đánh giá theo tài liệu hướng dẫn Bộ Y tế.", "badges": [{"label": "57 câu hỏi"}, {"label": "~Theo quy trình"}], "mode": "interactive", "themeName": "Velvet Taupe & Amethyst Gray · Nâu Nhung Trầm & Xám Thạch Anh Tím", "primary": "#5E4E68", "bg": "#F5F3F5"}, {"no": 28, "key": "vanderbilt", "filename": "test-vanderbilt.html", "name": "Vanderbilt", "fullname": "Thang Đánh giá Rối loạn Tăng động Giảm chú ý Vanderbilt (dành cho cha mẹ)", "icon": "⚡", "category": "child_teen", "categoryLabel": "Trẻ em / Thanh thiếu niên", "desc": "Bài đánh giá theo tài liệu hướng dẫn Bộ Y tế.", "badges": [{"label": "47 câu hỏi"}, {"label": "~Theo quy trình"}], "mode": "interactive", "themeName": "Warm Chalk & Pine Needle · Phấn Trắng Ấm & Lá Thông Xanh", "primary": "#3F684E", "bg": "#F3F5F1"}, {"no": 29, "key": "raven_cpm", "filename": "test-raven-cpm.html", "name": "Raven CPM", "fullname": "Coloured Progressive Matrices", "icon": "🧩", "category": "cognitive", "categoryLabel": "Nhận thức", "desc": "Trắc nghiệm phi ngôn ngữ đo tư duy logic bằng hình ảnh. Chuyên gia sẽ chấm điểm theo đáp án gốc.", "badges": [{"label": "36 câu hỏi"}, {"label": "~20 phút"}, {"label": "Chuyên gia chấm"}], "mode": "raven", "themeName": "Architectural Concrete & Indigo Slate · Bê Tông Kiến Trúc & Chàm Đá", "primary": "#394B6A", "bg": "#F2F3F6"}, {"no": 30, "key": "ymrs", "filename": "test-ymrs.html", "name": "YMRS", "fullname": "Young Mania Rating Scale", "icon": "🌤️", "category": "clinician", "categoryLabel": "Chuyên gia đánh giá", "desc": "Đánh giá chuyên môn; không tự chấm điểm.", "badges": [{"label": "Chuyên gia câu hỏi"}, {"label": "Không tự chấm"}], "mode": "specialist", "themeName": "Sunlit Travertine & Olive Bronze · Đá Travertine Nắng Nhẹ & Đồng Ô Liu", "primary": "#685B3E", "bg": "#F6F4EE"}, {"no": 31, "key": "scas", "filename": "test-scas.html", "name": "SCAS", "fullname": "Spence Children’s Anxiety Scale", "icon": "🧒", "category": "child_teen", "categoryLabel": "Trẻ em / Thanh thiếu niên", "desc": "Đánh giá chuyên môn; không tự chấm điểm.", "badges": [{"label": "Chuyên gia câu hỏi"}, {"label": "Không tự chấm"}], "mode": "specialist", "themeName": "Cloud Mist & Soft Teal-Slate · Sương Mây Trắng & Xanh Lam Khói", "primary": "#3B6D7C", "bg": "#F1F5F6"}, {"no": 32, "key": "denver2", "filename": "test-denver2.html", "name": "DENVER2", "fullname": "Denver Developmental Screening Test II", "icon": "🧩", "category": "child_teen", "categoryLabel": "Trẻ em / Thanh thiếu niên", "desc": "Đánh giá chuyên môn; không tự chấm điểm.", "badges": [{"label": "Chuyên gia câu hỏi"}, {"label": "Không tự chấm"}], "mode": "specialist", "themeName": "Warm Flax & Forest Moss · Sợi Lanh Ấm & Rêu Rừng Già", "primary": "#4C6B4F", "bg": "#F4F4EE"}, {"no": 33, "key": "cars", "filename": "test-cars.html", "name": "CARS", "fullname": "Childhood Autism Rating Scale", "icon": "🧩", "category": "child_teen", "categoryLabel": "Trẻ em / Thanh thiếu niên", "desc": "Đánh giá chuyên môn; không tự chấm điểm.", "badges": [{"label": "Chuyên gia câu hỏi"}, {"label": "Không tự chấm"}], "mode": "specialist", "themeName": "Soft Porcelain & Blue Spruce · Sứ Trắng Dịu & Vân Sam Xanh", "primary": "#3A5F73", "bg": "#F1F4F6"}, {"no": 34, "key": "dsm5asd", "filename": "test-dsm5asd.html", "name": "DSM5ASD", "fullname": "DSM-5 Autism Spectrum Disorder Diagnostic Criteria", "icon": "📖", "category": "clinician", "categoryLabel": "Chuyên gia đánh giá", "desc": "Đánh giá chuyên môn; không tự chấm điểm.", "badges": [{"label": "Chuyên gia câu hỏi"}, {"label": "Không tự chấm"}], "mode": "specialist", "themeName": "Archive Paper & Deep Slate-Teal · Giấy Lưu Trữ & Xanh Đá Sâu", "primary": "#2F5E5B", "bg": "#F2F5F4"}, {"no": 35, "key": "cbcl", "filename": "test-cbcl.html", "name": "CBCL", "fullname": "Child Behavior Checklist", "icon": "🧒", "category": "child_teen", "categoryLabel": "Trẻ em / Thanh thiếu niên", "desc": "Đánh giá chuyên môn; không tự chấm điểm.", "badges": [{"label": "Chuyên gia câu hỏi"}, {"label": "Không tự chấm"}], "mode": "specialist", "themeName": "Wheatfield Neutral & Sage Bark · Lúa Mạch Trung Tính & Vỏ Cây Xô Thơm", "primary": "#556850", "bg": "#F5F4EE"}, {"no": 36, "key": "wais", "filename": "test-wais.html", "name": "WAIS", "fullname": "Wechsler Adult Intelligence Scale", "icon": "🧠", "category": "cognitive", "categoryLabel": "Nhận thức", "desc": "Đánh giá chuyên môn; không tự chấm điểm.", "badges": [{"label": "Chuyên gia câu hỏi"}, {"label": "Không tự chấm"}], "mode": "specialist", "themeName": "Oxford Stone & Prussian Slate · Đá Oxford & Xanh Phổ Trầm", "primary": "#364C63", "bg": "#F2F3F5"}, {"no": 37, "key": "wisc", "filename": "test-wisc.html", "name": "WISC", "fullname": "Wechsler Intelligence Scale for Children", "icon": "🧠", "category": "child_teen", "categoryLabel": "Trẻ em / Thanh thiếu niên", "desc": "Đánh giá chuyên môn; không tự chấm điểm.", "badges": [{"label": "Chuyên gia câu hỏi"}, {"label": "Không tự chấm"}], "mode": "specialist", "themeName": "Morning Dew & Willow Green · Sương Sớm Tinh Khôi & Xanh Liễu Rủ", "primary": "#3E6E58", "bg": "#F1F5F2"}, {"no": 38, "key": "wms", "filename": "test-wms.html", "name": "WMS", "fullname": "Wechsler Memory Scale", "icon": "🧠", "category": "cognitive", "categoryLabel": "Nhận thức", "desc": "Đánh giá chuyên môn; không tự chấm điểm.", "badges": [{"label": "Chuyên gia câu hỏi"}, {"label": "Không tự chấm"}], "mode": "specialist", "themeName": "Almond Husk & Cinnamon Slate · Vỏ Hạnh Nhân & Nâu Quế Trầm", "primary": "#635047", "bg": "#F6F3F0"}, {"no": 39, "key": "bourdon", "filename": "test-bourdon.html", "name": "BOURDON", "fullname": "Bourdon Attention Test", "icon": "🔎", "category": "cognitive", "categoryLabel": "Nhận thức", "desc": "Đánh giá chuyên môn; không tự chấm điểm.", "badges": [{"label": "Chuyên gia câu hỏi"}, {"label": "Không tự chấm"}], "mode": "specialist", "themeName": "Steel-Wool Neutral & Amber Rust · Xám Thép Mịn & Nâu Hổ Phách", "primary": "#455561", "bg": "#F2F3F4"}, {"no": 40, "key": "pictogram", "filename": "test-pictogram.html", "name": "PICTOGRAM", "fullname": "Pictogram Memory Test", "icon": "🖼️", "category": "cognitive", "categoryLabel": "Nhận thức", "desc": "Đánh giá chuyên môn; không tự chấm điểm.", "badges": [{"label": "Chuyên gia câu hỏi"}, {"label": "Không tự chấm"}], "mode": "specialist", "themeName": "Gallery Canvas & Sepia Olive · Vải Bố Triển Lãm & Nâu Sepia", "primary": "#5B5944", "bg": "#F5F3EE"}, {"no": 41, "key": "mmpi", "filename": "test-mmpi.html", "name": "MMPI", "fullname": "Minnesota Multiphasic Personality Inventory", "icon": "🎭", "category": "personality", "categoryLabel": "Nhân cách", "desc": "Đánh giá chuyên môn; không tự chấm điểm.", "badges": [{"label": "Chuyên gia câu hỏi"}, {"label": "Không tự chấm"}], "mode": "specialist", "themeName": "Charcoal Linen & Mulberry Taupe · Vải Lanh Than & Tím Dâu Trầm", "primary": "#614856", "bg": "#F4F2F3"}, {"no": 42, "key": "rorschach", "filename": "test-rorschach.html", "name": "RORSCHACH", "fullname": "Rorschach Inkblot Test", "icon": "🖋️", "category": "personality", "categoryLabel": "Nhân cách", "desc": "Đánh giá chuyên môn; không tự chấm điểm.", "badges": [{"label": "Chuyên gia câu hỏi"}, {"label": "Không tự chấm"}], "mode": "specialist", "themeName": "Ink-Wash Ivory & Obsidian Slate · Ngà Thủy Mặc & Đá Huyền Vũ", "primary": "#37414C", "bg": "#F3F3F4"}, {"no": 43, "key": "cat", "filename": "test-cat.html", "name": "CAT", "fullname": "Children’s Apperception Test", "icon": "🖼️", "category": "personality", "categoryLabel": "Nhân cách", "desc": "Đánh giá chuyên môn; không tự chấm điểm.", "badges": [{"label": "Chuyên gia câu hỏi"}, {"label": "Không tự chấm"}], "mode": "specialist", "themeName": "Warm Honey-Linen & Sage Terrazzo · Lanh Mật Ong & Đá Mài Xanh Dịu", "primary": "#4D6959", "bg": "#F6F4EF"}, {"no": 44, "key": "tat", "filename": "test-tat.html", "name": "TAT", "fullname": "Thematic Apperception Test", "icon": "🖼️", "category": "personality", "categoryLabel": "Nhân cách", "desc": "Đánh giá chuyên môn; không tự chấm điểm.", "badges": [{"label": "Chuyên gia câu hỏi"}, {"label": "Không tự chấm"}], "mode": "specialist", "themeName": "Museum Matboard & Umber Gray · Bìa Bảo Tàng & Xám Nâu Umber", "primary": "#5A4E44", "bg": "#F5F2EE"}, {"no": 45, "key": "cattell", "filename": "test-cattell.html", "name": "CATTELL", "fullname": "Cattell Personality Questionnaire", "icon": "🎭", "category": "personality", "categoryLabel": "Nhân cách", "desc": "Đánh giá chuyên môn; không tự chấm điểm.", "badges": [{"label": "Chuyên gia câu hỏi"}, {"label": "Không tự chấm"}], "mode": "specialist", "themeName": "Dune Sand & Agave Teal · Cát Đồi Mịn & Xanh Thùa Dịu", "primary": "#3A675C", "bg": "#F3F5F3"}, {"no": 46, "key": "barnes", "filename": "test-barnes.html", "name": "BARNES", "fullname": "Barnes Akathisia Rating Scale", "icon": "🧍", "category": "clinician", "categoryLabel": "Chuyên gia đánh giá", "desc": "Đánh giá chuyên môn; không tự chấm điểm.", "badges": [{"label": "Chuyên gia câu hỏi"}, {"label": "Không tự chấm"}], "mode": "specialist", "themeName": "Glacier Ash & Cedar Clay · Tro Sông Băng & Đất Tuyết Tùng", "primary": "#3D5D61", "bg": "#F1F4F4"}, {"no": 47, "key": "ciwa", "filename": "test-ciwa.html", "name": "CIWA", "fullname": "Clinical Institute Withdrawal Assessment for Alcohol", "icon": "🍺", "category": "clinician", "categoryLabel": "Chuyên gia đánh giá", "desc": "Đánh giá chuyên môn; không tự chấm điểm.", "badges": [{"label": "Chuyên gia câu hỏi"}, {"label": "Không tự chấm"}], "mode": "specialist", "themeName": "Smoked Oak & Deep Cypress · Gỗ Sồi Xông Khói & Hoàng Đàn Sâu", "primary": "#475D4B", "bg": "#F4F3EE"}]};
+</script>
+<script src="assets/assessment-engine.js"></script>
+</body>
+</html>
