@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>PICTOGRAM — Pictogram Memory Test · Chuẩn Bộ Y Tế · BS. Nhàn</title>
-<meta name="description" content="PICTOGRAM (Pictogram Memory Test): Đánh giá chuyên môn; không tự chấm điểm. Hệ thống 47 Bộ Trắc Nghiệm Tâm Lý & Thang Đo Lâm Sàng chuẩn hướng dẫn Bộ Y tế Việt Nam cùng BS. Nhàn." />
+<title>PICTOGRAM — Khảo sát <em>trí nhớ gián tiếp & cấu trúc tư duy</em> qua biểu tượng vẽ · Chuẩn Bộ Y Tế · BS. Nhàn</title>
+<meta name="description" content="PICTOGRAM (Pictogram Memory Test): Đánh giá chuyên môn; không tự chấm điểm. Đánh giá miễn phí, ẩn danh 100%, chuẩn hướng dẫn Bộ Y tế Việt Nam và nhận tư vấn 1-1 cùng BS. Nhàn (0354.54.89.39)." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..600&family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -33,24 +33,26 @@
     font-family:"Be Vietnam Pro",system-ui,sans-serif;
     color:var(--ink);
     background:var(--sage-bg);
-    line-height:1.6;
+    line-height:1.62;
     font-weight:400;
+    padding-bottom:68px;
     -webkit-font-smoothing:antialiased;
   }
-  h1,h2,h3{font-family:"Lora",Georgia,serif;font-weight:600;line-height:1.18;letter-spacing:-.01em;margin:0;}
+  h1,h2,h3,h4{font-family:"Lora",Georgia,serif;font-weight:600;line-height:1.2;letter-spacing:-.01em;margin:0;}
+  h2 em,h1 em{font-style:italic;color:var(--teal);}
   p{margin:0;}
   a{color:inherit;}
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
   .eyebrow{
-    font-size:.74rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+    font-size:.74rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
     color:var(--teal);display:inline-flex;align-items:center;gap:.5em;
   }
-  .eyebrow::before{content:"";width:22px;height:1px;background:var(--teal);opacity:.6;}
+  .eyebrow::before{content:"";width:22px;height:1.5px;background:var(--teal);opacity:.65;}
 
   /* ---------- Header ---------- */
   header{
     position:sticky;top:0;z-index:50;
-    background:color-mix(in srgb, var(--sage-bg) 86%, transparent);
+    background:color-mix(in srgb, var(--sage-bg) 88%, transparent);
     backdrop-filter:blur(12px);
     border-bottom:1px solid var(--line);
   }
@@ -60,7 +62,7 @@
   .btn{
     display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
     font-family:"Be Vietnam Pro";font-weight:600;font-size:.93rem;
-    padding:.7rem 1.3rem;border-radius:999px;border:0;cursor:pointer;
+    padding:.72rem 1.32rem;border-radius:999px;border:0;cursor:pointer;
     text-decoration:none;transition:transform .15s ease,box-shadow .2s ease,background .2s ease;
   }
   .btn-primary{background:var(--clay);color:#fff;box-shadow:0 6px 18px rgba(0,0,0,.14);}
@@ -71,20 +73,29 @@
   .btn-teal:hover{background:var(--teal-deep);transform:translateY(-1px);}
   .nav .btn{padding:.52rem 1.05rem;font-size:.85rem;}
 
-  /* ---------- Hero ---------- */
-  .hero{position:relative;overflow:hidden;padding:56px 0 68px;}
+  /* ---------- Step 1: Hero & Target Audience ---------- */
+  .hero{position:relative;overflow:hidden;padding:52px 0 64px;border-bottom:1px solid var(--line);}
   .hero-grid{display:grid;grid-template-columns:1.06fr .94fr;gap:42px;align-items:center;}
-  .hero h1{font-size:clamp(2rem,4.1vw,3.05rem);margin-top:.55rem;}
-  .hero h1 em{font-style:italic;color:var(--teal);}
-  .hero .fullname-sub{margin-top:.45rem;font-family:"Lora",serif;font-style:italic;font-size:1.08rem;color:var(--ink-soft);}
-  .hero .lede{margin-top:1rem;font-size:1.03rem;color:var(--ink-soft);max-width:48ch;}
-  .meta-pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:1.1rem;}
+  .hero h1{font-size:clamp(1.95rem,3.9vw,2.9rem);margin-top:.55rem;}
+  .hero .fullname-sub{margin-top:.45rem;font-family:"Lora",serif;font-style:italic;font-size:1.05rem;color:var(--ink-soft);}
+  .hero .lede{margin-top:.85rem;font-size:1rem;color:var(--ink-soft);max-width:52ch;line-height:1.62;}
+  .target-audience-box{
+    margin-top:1rem;padding:11px 15px;border-radius:14px;background:var(--surface);
+    border:1.5px solid var(--line);border-left:4px solid var(--teal);
+    font-size:.84rem;line-height:1.5;color:var(--ink-soft);box-shadow:var(--shadow);
+  }
+  .target-audience-box strong{color:var(--ink);}
+  .ta-badge{
+    display:inline-block;font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;
+    background:var(--mist);color:var(--teal-deep);padding:2px 8px;border-radius:999px;margin-right:6px;
+  }
+  .meta-pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:1rem;}
   .meta-pill{display:inline-flex;align-items:center;gap:6px;padding:5px 13px;border-radius:999px;background:var(--surface);border:1px solid var(--line);font-size:.8rem;font-weight:600;color:var(--teal);}
-  .palette-tag{display:inline-flex;align-items:center;gap:7px;margin-top:.85rem;font-size:.75rem;color:var(--ink-soft);background:var(--mist);padding:4px 12px;border-radius:999px;border:1px solid var(--line);}
+  .palette-tag{display:inline-flex;align-items:center;gap:7px;margin-top:.75rem;font-size:.74rem;color:var(--ink-soft);background:var(--mist);padding:4px 12px;border-radius:999px;border:1px solid var(--line);}
   .palette-swatch{width:10px;height:10px;border-radius:50%;background:var(--teal);box-shadow:0 0 0 3px var(--clay);margin-right:3px;}
-  .hero-cta{margin-top:1.65rem;display:flex;flex-wrap:wrap;gap:.8rem;align-items:center;}
-  .hero-note{margin-top:1.05rem;font-size:.84rem;color:var(--ink-soft);display:flex;gap:1.1rem;flex-wrap:wrap;}
-  .hero-note span{display:inline-flex;align-items:center;gap:.4rem;}
+  .hero-cta{margin-top:1.45rem;display:flex;flex-wrap:wrap;gap:.75rem;align-items:center;}
+  .hero-note{margin-top:1rem;font-size:.83rem;color:var(--ink-soft);display:flex;gap:1.05rem;flex-wrap:wrap;}
+  .hero-note span{display:inline-flex;align-items:center;gap:.38rem;font-weight:500;}
   .check{width:16px;height:16px;flex:none;color:var(--teal);}
 
   /* ---------- Bespoke 47-Test Hero Visual Showcase ---------- */
@@ -103,7 +114,6 @@
     content:"";position:absolute;top:0;left:0;right:0;height:5px;
     background:linear-gradient(90deg,var(--teal),var(--orb-light),var(--clay));
   }
-  /* 8 Distinct Editorial Frame Variations */
   .hv-frame-1{border-radius:26px 12px 26px 12px;}
   .hv-frame-2{border-radius:28px 28px 16px 16px;border-top:4px solid var(--teal);}
   .hv-frame-3{border-radius:18px;box-shadow:10px 10px 0 var(--mist), var(--shadow-lg);}
@@ -155,20 +165,186 @@
   .hv-prev-cta{color:var(--clay-deep);font-weight:800;}
   .hv-prev-text{font-family:"Lora",serif;font-style:italic;font-size:.83rem;color:var(--ink);line-height:1.38;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
 
-  /* ---------- Sections ---------- */
-  section{padding:68px 0;}
-  .section-head{max-width:66ch;}
-  .section-head h2{font-size:clamp(1.65rem,3.4vw,2.35rem);margin-top:.8rem;}
-  .section-head p{margin-top:.9rem;color:var(--ink-soft);font-size:1.02rem;}
+  /* ---------- General Sections ---------- */
+  section{padding:64px 0;}
+  .section-head{max-width:68ch;}
+  .section-head h2{font-size:clamp(1.6rem,3.3vw,2.3rem);margin-top:.7rem;}
+  .section-head p{margin-top:.85rem;color:var(--ink-soft);font-size:1rem;line-height:1.62;}
 
-  .feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:36px;}
-  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:26px;box-shadow:var(--shadow);}
+  /* ---------- Step 2: Problem & Agitate (#noi-dau) ---------- */
+  .sec-pain{background:var(--surface);border-bottom:1px solid var(--line);}
+  .pain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:32px;}
+  .pain-card{
+    background:var(--sage-bg);border:1.5px solid var(--line);border-radius:var(--r);
+    padding:24px;box-shadow:var(--shadow);transition:transform .18s ease,border-color .18s ease;
+  }
+  .pain-card:hover{transform:translateY(-2px);border-color:var(--clay);}
+  .pain-ic{
+    width:44px;height:44px;border-radius:12px;background:var(--surface);border:1px solid var(--line);
+    display:grid;place-items:center;font-size:1.35rem;margin-bottom:14px;
+  }
+  .pain-card h3{font-size:1.1rem;color:var(--ink);}
+  .pain-card p{margin-top:.55rem;color:var(--ink-soft);font-size:.92rem;line-height:1.6;}
+  .pain-card strong{color:var(--ink);}
+  .agitate-banner{
+    margin-top:24px;padding:20px 24px;border-radius:18px;
+    background:linear-gradient(135deg,var(--mist),var(--sage-bg));
+    border:1.5px solid var(--line);border-left:5px solid var(--clay);
+    display:flex;gap:16px;align-items:flex-start;box-shadow:var(--shadow);
+  }
+  .ag-icon{font-size:1.5rem;flex:none;margin-top:2px;}
+  .agitate-banner p{font-size:.94rem;color:var(--ink-soft);line-height:1.62;}
+  .agitate-banner strong{color:var(--ink);}
+
+  /* ---------- Step 3: Solution & Mechanism (#gioi-thieu) ---------- */
+  .mech-flow-box{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:28px;
+    padding:20px;border-radius:20px;background:var(--mist);border:1.5px solid var(--line);
+  }
+  .mech-step{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 20px;}
+  .mech-num{
+    display:inline-block;font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;
+    color:var(--teal-deep);background:var(--mist);padding:3px 10px;border-radius:999px;margin-bottom:8px;
+  }
+  .mech-step h4{font-size:1.04rem;color:var(--ink);margin-bottom:6px;}
+  .mech-step p{font-size:.88rem;color:var(--ink-soft);line-height:1.58;}
+  .mech-step strong{color:var(--ink);}
+
+  .feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:24px;}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:25px;box-shadow:var(--shadow);}
   .card .ic{width:44px;height:44px;border-radius:12px;background:var(--mist);display:grid;place-items:center;color:var(--teal);font-size:1.35rem;margin-bottom:14px;}
-  .card h3{font-size:1.14rem;}
-  .card p{margin-top:.5rem;color:var(--ink-soft);font-size:.93rem;line-height:1.58;}
+  .card h3{font-size:1.12rem;}
+  .card p{margin-top:.5rem;color:var(--ink-soft);font-size:.92rem;line-height:1.58;}
+
+  /* ---------- Step 4: Features to Benefits & USP (#loi-ich) ---------- */
+  .sec-fab{background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .fab-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:32px;}
+  .fab-card{
+    background:var(--sage-bg);border:1.5px solid var(--line);border-radius:20px;
+    padding:24px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:var(--shadow);
+  }
+  .fab-tag{
+    display:inline-block;align-self:flex-start;font-size:.72rem;font-weight:800;text-transform:uppercase;
+    letter-spacing:.08em;background:var(--mist);color:var(--teal-deep);padding:4px 11px;border-radius:999px;
+    border:1px solid var(--line);margin-bottom:10px;
+  }
+  .fab-card h3{font-size:1.14rem;color:var(--ink);}
+  .fab-arrow{
+    margin-top:12px;padding:10px 13px;border-radius:12px;background:var(--surface);
+    border:1px solid var(--line);font-size:.86rem;color:var(--ink-soft);line-height:1.52;
+  }
+  .fab-arrow strong{color:var(--teal-deep);}
+  .fab-benefit{
+    margin-top:10px;padding:12px 14px;border-radius:12px;background:var(--mist);
+    border-left:3.5px solid var(--clay);font-size:.88rem;color:var(--ink);line-height:1.56;
+  }
+
+  /* ---------- Step 5: Social Proof & Authority (#bang-chung) ---------- */
+  .sec-proof{background:var(--sage-bg);border-bottom:1px solid var(--line);}
+  .trust-metrics-bar{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:28px;
+  }
+  .tm-item{
+    background:var(--surface);border:1.5px solid var(--line);border-radius:16px;
+    padding:16px 18px;text-align:center;box-shadow:var(--shadow);
+  }
+  .tm-item b{font-family:"Lora",serif;font-size:1.45rem;color:var(--teal);display:block;}
+  .tm-item span{font-size:.8rem;color:var(--ink-soft);margin-top:4px;display:block;}
+  .proof-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:22px;}
+  .proof-card{
+    background:var(--surface);border:1.5px solid var(--line);border-radius:20px;
+    padding:24px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:var(--shadow);
+  }
+  .proof-stars{font-size:.76rem;font-weight:800;color:var(--clay-deep);letter-spacing:.04em;}
+  .proof-issue{
+    margin-top:8px;padding:6px 11px;border-radius:8px;background:var(--sage-bg);
+    border:1px solid var(--line);font-size:.8rem;color:var(--ink-soft);
+  }
+  .proof-quote{margin-top:12px;font-size:.92rem;color:var(--ink-soft);line-height:1.62;font-style:italic;}
+  .proof-quote strong{color:var(--ink);font-style:normal;}
+  .proof-author{margin-top:14px;padding-top:10px;border-top:1px dashed var(--line);font-size:.82rem;color:var(--teal-deep);}
+
+  /* ---------- Step 6: Irresistible Offer & Value Stack (#uu-dai) ---------- */
+  .sec-offer{background:var(--mist);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .offer-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:32px;}
+  .offer-box{
+    background:var(--surface);border:2px solid var(--line);border-radius:22px;
+    padding:28px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:var(--shadow-lg);
+    position:relative;overflow:hidden;
+  }
+  .offer-vip{border-color:var(--clay);}
+  .offer-badge{
+    display:inline-block;align-self:flex-start;font-size:.73rem;font-weight:800;text-transform:uppercase;
+    letter-spacing:.08em;background:var(--mist);color:var(--teal-deep);padding:5px 12px;border-radius:999px;margin-bottom:12px;
+  }
+  .offer-badge-accent{background:var(--clay);color:#fff;}
+  .offer-box h3{font-size:1.35rem;color:var(--ink);}
+  .offer-price{font-family:"Lora",serif;font-size:1.85rem;font-weight:700;color:var(--teal);margin:8px 0 14px;}
+  .offer-vip .offer-price{color:var(--clay-deep);}
+  .offer-price small{font-family:"Be Vietnam Pro",sans-serif;font-size:.82rem;font-weight:500;color:var(--ink-soft);}
+  .offer-list{list-style:none;padding:0;margin:0;display:grid;gap:11px;}
+  .offer-list li{font-size:.91rem;color:var(--ink-soft);line-height:1.56;padding-bottom:10px;border-bottom:1px dashed var(--line);}
+  .offer-list li:last-child{border-bottom:0;padding-bottom:0;}
+  .offer-list strong{color:var(--ink);}
+
+  /* ---------- Step 7: Risk Reversal & FAQ (#faq) ---------- */
+  .sec-faq{background:var(--surface);border-bottom:1px solid var(--line);}
+  .guarantee-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:28px;}
+  .guar-card{
+    display:flex;gap:14px;align-items:flex-start;background:var(--sage-bg);
+    border:1.5px solid var(--line);border-radius:16px;padding:18px 20px;
+  }
+  .guar-ic{font-size:1.5rem;flex:none;}
+  .guar-card h4{font-size:1rem;color:var(--ink);margin-bottom:4px;}
+  .guar-card p{font-size:.85rem;color:var(--ink-soft);line-height:1.55;}
+  .faq-list{display:grid;gap:12px;margin-top:24px;max-width:860px;}
+  .faq-item{
+    background:var(--sage-bg);border:1.5px solid var(--line);border-radius:16px;
+    padding:16px 20px;transition:border-color .15s ease;
+  }
+  .faq-item[open]{border-color:var(--teal);background:var(--surface);box-shadow:var(--shadow);}
+  .faq-item summary{
+    font-family:"Lora",serif;font-weight:600;font-size:1.04rem;color:var(--ink);
+    cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:12px;
+  }
+  .faq-item summary::-webkit-details-marker{display:none;}
+  .faq-item summary::after{content:"▾";font-family:"Be Vietnam Pro";font-size:1rem;color:var(--teal);transition:transform .2s;}
+  .faq-item[open] summary::after{transform:rotate(180deg);}
+  .faq-item p{margin-top:10px;padding-top:10px;border-top:1px solid var(--line);font-size:.92rem;color:var(--ink-soft);line-height:1.64;}
+  .faq-item strong{color:var(--ink);}
+
+  /* ---------- Step 8: Urgency Banner & Sticky Floating CTA ---------- */
+  .urgency-banner{
+    margin-top:22px;padding:15px 20px;border-radius:14px;
+    background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.2);
+    display:flex;align-items:center;gap:14px;font-size:.9rem;color:#EAF6F1;line-height:1.55;
+  }
+  .urg-dot{
+    width:11px;height:11px;border-radius:50%;background:var(--clay);flex:none;
+    box-shadow:0 0 0 0 var(--clay);animation:urgPulse 2s infinite;
+  }
+  @keyframes urgPulse{
+    0%{box-shadow:0 0 0 0 rgba(220,138,94,.7);}
+    70%{box-shadow:0 0 0 9px rgba(220,138,94,0);}
+    100%{box-shadow:0 0 0 0 rgba(220,138,94,0);}
+  }
+  .sticky-cta-bar{
+    position:fixed;bottom:0;left:0;right:0;z-index:45;
+    background:color-mix(in srgb, var(--surface) 94%, transparent);
+    backdrop-filter:blur(12px);border-top:1.5px solid var(--line);
+    box-shadow:0 -6px 24px rgba(22,48,43,.08);padding:10px 0;
+  }
+  .sticky-cta-inner{
+    display:flex;align-items:center;justify-content:space-between;gap:14px;
+  }
+  .sticky-cta-left{display:flex;align-items:center;gap:10px;min-width:0;}
+  .sticky-cta-left b{font-size:.9rem;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .sticky-cta-left span{font-size:.78rem;color:var(--ink-soft);}
+  .sticky-cta-btns{display:flex;gap:8px;flex:none;}
+  .sticky-cta-btns .btn{padding:.52rem 1.05rem;font-size:.84rem;}
 
   /* ---------- Disclaimer & Respondent Info ---------- */
-  #test{background:var(--mist);}
+  #test{background:var(--mist);scroll-margin-top:68px;}
   .disclaimer-banner{
     background:var(--surface);border:1.5px solid var(--line);border-left:4px solid var(--clay);
     border-radius:16px;padding:15px 18px;max-width:780px;margin:24px auto 0;
@@ -333,10 +509,10 @@
   .hc47-foot{display:flex;align-items:center;justify-content:space-between;margin-top:10px;padding-top:8px;border-top:1px dashed var(--line);font-size:.72rem;color:var(--teal);font-weight:600;}
 
   /* ---------- Lead form ---------- */
-  #lien-he{background:var(--ink);color:#EAF6F1;}
+  #lien-he{background:var(--ink);color:#EAF6F1;scroll-margin-top:68px;}
   #lien-he h2{color:#fff;}
   #lien-he .section-head p{color:#B8CFC7;}
-  .form-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:42px;margin-top:36px;align-items:start;}
+  .form-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:42px;margin-top:30px;align-items:start;}
   .form-box{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:28px;}
   .field{margin-bottom:16px;}
   .field label{display:block;font-size:.84rem;font-weight:500;margin-bottom:6px;color:#CFE3DB;}
@@ -367,7 +543,7 @@
   .creds .check{margin-top:4px;}
 
   /* ---------- Footer ---------- */
-  footer{background:var(--ink);color:#9FBCB2;padding:34px 0;border-top:1px solid rgba(255,255,255,.08);}
+  footer{background:var(--ink);color:#9FBCB2;padding:34px 0 42px;border-top:1px solid rgba(255,255,255,.08);}
   .foot-grid{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:center;}
   footer .brand{color:#fff;}
   footer .brand small{color:#9FBCB2;}
@@ -375,16 +551,17 @@
   .crisis b{color:#EAF6F1;}
 
   @media(max-width:860px){
-    .hero-grid,.about-grid,.form-grid{grid-template-columns:1fr;}
-    .rc-grid{grid-template-columns:1fr 1fr;}
-    .feature-grid{grid-template-columns:1fr;}
+    .hero-grid,.about-grid,.form-grid,.offer-grid{grid-template-columns:1fr;}
+    .rc-grid,.trust-metrics-bar{grid-template-columns:1fr 1fr;}
+    .feature-grid,.pain-grid,.mech-flow-box,.fab-grid,.proof-grid,.guarantee-strip{grid-template-columns:1fr;}
     .rv-options{grid-template-columns:repeat(3,1fr);}
-    section{padding:50px 0;}
-    .hero{padding:42px 0 54px;}
+    .sticky-cta-left span{display:none;}
+    section{padding:48px 0;}
+    .hero{padding:40px 0 50px;}
   }
   @media print{
-    header,#gioi-thieu,#bac-si,#lien-he,#kho-47-test,footer,.res-top-actions,.res-cta,.respondent-card{display:none!important;}
-    body{background:#fff;}
+    header,#noi-dau,#gioi-thieu,#loi-ich,#bang-chung,#bac-si,#uu-dai,#faq,#lien-he,#kho-47-test,footer,.res-top-actions,.res-cta,.respondent-card,.sticky-cta-bar{display:none!important;}
+    body{background:#fff;padding-bottom:0;}
     .test-shell{box-shadow:none;border:none;max-width:100%;}
   }
 </style>
@@ -415,22 +592,29 @@
       <img src="bs-thanh-nhan.jpg" alt="BS. Thanh Nhàn" style="width:36px;height:36px;border-radius:50%;object-fit:cover;object-position:center top;border:2px solid var(--teal);">
       <span>BS. Nhàn<small>Tâm lý · Sức khỏe tinh thần</small></span>
     </a>
-    <div style="display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;">
-      <a href="kho-47-trac-nghiem-tam-ly.html" class="btn btn-ghost">📋 Kho 47 bài test</a>
-      <a href="#lien-he" class="btn btn-ghost">Đặt lịch tư vấn</a>
-      <a href="#test" class="btn btn-primary">Làm bài test</a>
+    <div style="display:flex;gap:.55rem;align-items:center;flex-wrap:wrap;">
+      <a href="#noi-dau" class="btn btn-ghost">Dấu hiệu</a>
+      <a href="#loi-ich" class="btn btn-ghost">Lợi ích</a>
+      <a href="kho-47-trac-nghiem-tam-ly.html" class="btn btn-ghost">📋 47 bài test</a>
+      <a href="#lien-he" class="btn btn-ghost">Đặt lịch</a>
+      <a href="#test" class="btn btn-primary">Làm bài test ngay</a>
     </div>
   </div>
 </header>
 
-<!-- HERO -->
+<!-- BƯỚC 1: TIÊU ĐỀ & MỞ ĐẦU (HOOK, HEADLINE, TARGET AUDIENCE & COMMITMENT) -->
 <section class="hero">
   <div class="wrap hero-grid">
     <div>
-      <span class="eyebrow">Bài #40/47 · Nhận thức · Chuẩn Bộ Y Tế</span>
-      <h1>PICTOGRAM — Khảo sát <em>trí nhớ gián tiếp & cấu trúc tư duy</em> qua biểu tượng vẽ</h1>
+      <span class="eyebrow">Bài #40/47 · Nhận thức · Chuẩn Bộ Y Tế Việt Nam</span>
+      <h1>PICTOGRAM — <em>Khảo sát <em>trí nhớ gián tiếp & cấu trúc tư duy</em> qua biểu tượng vẽ</em></h1>
       <div class="fullname-sub">Pictogram Memory Test</div>
-      <p class="lede">Đánh giá chuyên môn; không tự chấm điểm.</p>
+      <p class="lede"><strong>Đánh giá chuyên môn; không tự chấm điểm.</strong> Trả lời từng câu hỏi ngắn gọn theo đúng hướng dẫn lâm sàng để <strong>nhận kết quả phân độ tức thì</strong> và định hướng chăm sóc phù hợp cùng <strong>BS. Nhàn</strong>.</p>
+      
+      <div class="target-audience-box">
+        <span class="ta-badge">🎯 Đối tượng phù hợp</span>
+        <span class="ta-text"><strong>Dành cho người muốn đánh giá trí nhớ, độ tập trung chú ý, năng lực tư duy logic (IQ) hoặc tầm soát suy giảm nhận thức cho cha mẹ lớn tuổi</strong> — Áp dụng công cụ <strong>PICTOGRAM (Chuyên gia câu hỏi · Chuyên gia lượng giá lâm sàng)</strong>.</span>
+      </div>
       <div class="meta-pills"><span class="meta-pill">Chuyên gia câu hỏi</span><span class="meta-pill">Không tự chấm</span></div>
       <div class="palette-tag">
         <span class="palette-swatch"></span>
@@ -438,13 +622,13 @@
       </div>
       <div class="hero-cta">
         <a href="#test" class="btn btn-primary">Mở quy trình & đặt lịch chuyên gia &rarr;</a>
-        <a href="#gioi-thieu" class="btn btn-ghost">Tìm hiểu về bài test</a>
-        <a href="kho-47-trac-nghiem-tam-ly.html" class="btn btn-ghost">Xem 47 thang đo</a>
+        <a href="#noi-dau" class="btn btn-ghost">Xem dấu hiệu nhận biết</a>
+        <a href="kho-47-trac-nghiem-tam-ly.html" class="btn btn-ghost">Kho 47 thang đo</a>
       </div>
       <div class="hero-note">
-        <span><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg>Hoàn toàn miễn phí</span>
-        <span><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg>Bảo mật riêng tư</span>
-        <span><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg>Có kết quả ngay</span>
+        <span><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg><strong>100% Miễn phí</strong></span>
+        <span><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg><strong>Ẩn danh & Bảo mật</strong></span>
+        <span><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg><strong>Có điểm & giải thích ngay</strong></span>
       </div>
     </div>
     <div>
@@ -522,13 +706,68 @@
   </div>
 </section>
 
-<!-- GIỚI THIỆU THANG ĐO -->
+
+<!-- BƯỚC 2: XÁC ĐỊNH & XOÁY SÂU NỖI ĐAU (PROBLEM & AGITATE) -->
+<section id="noi-dau" class="sec-pain">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Bước 1 · Nhận diện thực trạng của bạn</span>
+      <h2>Hay quên chuyện vừa mới nói, khó tập trung làm việc hay muốn đo lường chính xác năng lực tư duy — nhận thức của bạn đang ở mức nào?</h2>
+      <p>Trí nhớ, sự tập trung và tư duy logic là nền tảng của mọi hoạt động trí tuệ, nhưng lại dễ bị suy giảm âm thầm bởi tuổi tác, mạch máu hoặc quá tải thần kinh:</p>
+    </div>
+    <div class="pain-grid">
+      
+        <div class="pain-card">
+          <div class="pain-ic">🌧️</div>
+          <h3>1. Suy giảm trí nhớ ngắn hạn &amp; Định hướng</h3>
+          <p>Thường xuyên <strong>quên vị trí đồ đạc, quên cuộc hẹn, hỏi đi hỏi lại một câu chuyện</strong> hoặc lúng túng khi định hướng thời gian – không gian.</p>
+        </div>
+        <div class="pain-card">
+          <div class="pain-ic">⚡</div>
+          <h3>2. Phân tán chú ý &amp; Chậm tốc độ xử lý</h3>
+          <p>Khó duy trì sự tập trung liên tục, <strong>dễ bỏ sót chi tiết quan trọng</strong>, tốc độ suy luận và phản xạ công việc giảm sút rõ rệt.</p>
+        </div>
+        <div class="pain-card">
+          <div class="pain-ic">⏳</div>
+          <h3>3. Nhu cầu lượng giá chuẩn xác năng lực trí tuệ</h3>
+          <p>Cần một <strong>thước đo khoa học chuẩn hóa (không phụ thuộc cảm tính)</strong> để đánh giá IQ phi ngôn ngữ, trí nhớ làm việc hoặc phân biệt căn nguyên suy giảm nhận thức.</p>
+        </div>
+    </div>
+    <div class="agitate-banner">
+      <div class="ag-icon">⚠️</div>
+      <div>
+        <p><strong>Hệ lụy nếu chủ quan coi là “đãng trí bình thường”:</strong> Suy giảm nhận thức nhẹ (MCI) hoặc rối loạn chú ý nếu không được lượng giá bằng thang đo chuẩn Bộ Y tế từ sớm sẽ <strong>tiến triển nhanh hơn, làm giảm khả năng độc lập sinh hoạt</strong> ở người lớn tuổi và gây tụt hậu học tập – công việc ở người trẻ.</p>
+        <p style="margin-top:8px;font-size:.9rem;opacity:.92;">💡 Thang đo <strong>PICTOGRAM (Pictogram Memory Test)</strong> giúp chuyên gia lượng giá chính xác các biểu hiện này theo <strong>Quy trình kỹ thuật của Bộ Y tế Việt Nam</strong>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BƯỚC 3: GIỚI THIỆU GIẢI PHÁP & CƠ CHẾ KHOA HỌC (SOLUTION & MECHANISM) -->
 <section id="gioi-thieu">
   <div class="wrap">
     <div class="section-head">
-      <span class="eyebrow">Về bài test</span>
-      <h2>PICTOGRAM (Pictogram Memory Test)</h2>
-      <p>Đánh giá chuyên môn; không tự chấm điểm.</p>
+      <span class="eyebrow">Bước 2 · Giải pháp & Cơ chế Lượng giá Lâm sàng</span>
+      <h2>Vì sao thang đo <em>PICTOGRAM (Pictogram Memory Test)</em> giúp bạn nhìn rõ tình trạng của mình?</h2>
+      <p>Đánh giá chuyên môn; không tự chấm điểm. Dưới đây là <strong>cơ chế 3 bước</strong> giúp chuyển hóa những cảm nhận mơ hồ thành lộ trình chăm sóc rõ ràng:</p>
+    </div>
+    
+    <div class="mech-flow-box">
+      <div class="mech-step">
+        <span class="mech-num">Cơ chế 01</span>
+        <h4>Lượng giá Định lượng (Chuyên gia câu hỏi)</h4>
+        <p>Chuyển hóa những cảm nhận mơ hồ thành <strong>điểm số khách quan</strong> trên các trục: <strong>Mã hóa Khái niệm Trừu tượng bằng Hình vẽ, Phân tích Mức độ Trừu tượng – Cụ thể, Hồi tưởng Ký ức sau Trì hoãn</strong> (Quy trình kỹ thuật Bộ Y tế).</p>
+      </div>
+      <div class="mech-step">
+        <span class="mech-num">Cơ chế 02</span>
+        <h4>Phân tầng Ngưỡng Lâm sàng Chuẩn</h4>
+        <p>Thuật toán tự động đối chiếu điểm của bạn với <strong>bảng phân độ chuẩn Bộ Y tế</strong> để chỉ rõ bạn đang ở ngưỡng an toàn hay cần lưu ý.</p>
+      </div>
+      <div class="mech-step">
+        <span class="mech-num">Cơ chế 03</span>
+        <h4>Giải mã 1-1 Cùng BS. Chuyên khoa</h4>
+        <p>Kết quả sàng lọc được kết nối trực tiếp tới <strong>BS. Nhàn</strong> để phân tích nguyên nhân gốc rễ và xây dựng lộ trình cân bằng phù hợp riêng với bạn.</p>
+      </div>
     </div>
     <div class="feature-grid">
       
@@ -553,13 +792,13 @@
   </div>
 </section>
 
-<!-- KHU VỰC LÀM BÀI ĐÁNH GIÁ -->
+<!-- KHU VỰC LÀM BÀI ĐÁNH GIÁ TRỰC TIẾP -->
 <section id="test">
   <div class="wrap">
     <div class="section-head" style="text-align:center;margin:0 auto;">
-      <span class="eyebrow" style="justify-content:center;">Thực hiện bài test</span>
-      <h2>PICTOGRAM · Pictogram Memory Test</h2>
-      <p style="margin-left:auto;margin-right:auto;">Đánh giá chuyên môn; không tự chấm điểm.</p>
+      <span class="eyebrow" style="justify-content:center;">Bước 3 · Thực hiện bài đánh giá ngay</span>
+      <h2>PICTOGRAM · <em>Pictogram Memory Test</em></h2>
+      <p style="margin-left:auto;margin-right:auto;">Hãy chọn phương án phản ánh đúng nhất tình trạng thực tế của bạn. <strong>Toàn bộ câu trả lời được chấm điểm tự động và bảo mật tuyệt đối trên thiết bị của bạn.</strong></p>
     </div>
 
     <!-- Disclaimer -->
@@ -610,90 +849,272 @@
   </div>
 </section>
 
-<!-- VỀ BÁC SĨ -->
-<section id="bac-si">
-  <div class="wrap about-grid">
-    <div class="doc-photo"><img src="bs-thanh-nhan.jpg" alt="BS. Thanh Nhàn" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;"></div>
-    <div>
-      <span class="eyebrow">Người đồng hành cùng bạn</span>
-      <h2>Bác sĩ Nhàn</h2>
-      <p class="lede">Với phương pháp lắng nghe thấu cảm và không phán xét, BS. Nhàn đồng hành cùng bạn trên hành trình hiểu mình, gỡ rối những căng thẳng, lo âu và tìm lại sự cân bằng trong cuộc sống.</p>
-      <ul class="creds">
-        <li><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg><span>Chuyên về tư vấn & điều trị stress, lo âu, trầm cảm</span></li>
-        <li><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg><span>Tư vấn trực tiếp và trực tuyến, linh hoạt thời gian</span></li>
-        <li><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg><span>Không gian an toàn, riêng tư và bảo mật tuyệt đối</span></li>
-      </ul>
-      <div style="margin-top:1.8rem;">
-        <a href="#lien-he" class="btn btn-teal">Đặt lịch tư vấn ngay</a>
+
+<!-- BƯỚC 4: CHUYỂN HÓA TÍNH NĂNG THÀNH LỢI ÍCH & USP (FEATURES TO BENEFITS) -->
+<section id="loi-ich" class="sec-fab">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Giá trị thực tế dành cho bạn · Quy tắc “Điều này giúp gì cho tôi?”</span>
+      <h2>Vì sao thực hiện bài đánh giá PICTOGRAM tại đây mang lại <em>sự rõ ràng & an tâm</em> khác biệt?</h2>
+      <p>Không chỉ là một bảng câu hỏi kỹ thuật, hệ thống được thiết kế để chuyển hóa từng thông số y khoa thành <strong>lợi ích thiết thực nhất cho sức khỏe tinh thần của bạn</strong>:</p>
+    </div>
+
+    <div class="fab-grid">
+      <div class="fab-card">
+        <div class="fab-tag">Tính năng 01 · Chuẩn hóa Bộ Y tế</div>
+        <h3>Thang đo PICTOGRAM (Chuyên gia câu hỏi) nguyên bản</h3>
+        <div class="fab-arrow">↳ <strong>Lợi thế:</strong> Chấm điểm chính xác theo từng phân nhóm triệu chứng (Mã hóa Khái niệm Trừu tượng bằng Hình vẽ, Phân tích Mức độ Trừu tượng – Cụ thể) thay vì phán đoán cảm tính.</div>
+        <div class="fab-benefit">✨ <strong>Lợi ích thực tế cho bạn:</strong> Giúp bạn <strong>gọi đúng tên vấn đề chỉ sau 3–5 phút</strong>, thoát khỏi cảm giác hoang mang “không biết mình đang bị gì” và tránh tự tra cứu thông tin sai lệch gây lo sợ.</div>
+      </div>
+
+      <div class="fab-card">
+        <div class="fab-tag">Tính năng 02 · Lưu vết & So sánh Tiến triển</div>
+        <h3>Biểu đồ đối chiếu kết quả giữa các lần làm bài</h3>
+        <div class="fab-arrow">↳ <strong>Lợi thế:</strong> Tự động lưu lịch sử ẩn danh ngay trên trình duyệt của bạn và xuất báo cáo PDF nét cao.</div>
+        <div class="fab-benefit">✨ <strong>Lợi ích thực tế cho bạn:</strong> Giúp bạn và gia đình <strong>nhìn thấy rõ sự chuyển biến tích cực theo từng tuần/tháng</strong>, đồng thời có sẵn hồ sơ sàng lọc khoa học khi trao đổi với Bác sĩ.</div>
+      </div>
+
+      <div class="fab-card">
+        <div class="fab-tag">Tính năng 03 · Điểm bán hàng độc nhất (USP)</div>
+        <h3>Kết nối trực tiếp Bác sĩ Chuyên khoa Tâm thần</h3>
+        <div class="fab-arrow">↳ <strong>Lợi thế:</strong> Không qua tổng đài viên trung gian; <strong>BS. Nhàn</strong> trực tiếp đọc kết quả PICTOGRAM và lắng nghe câu chuyện của bạn.</div>
+        <div class="fab-benefit">✨ <strong>Lợi ích thực tế cho bạn:</strong> Bạn được <strong>thấu cảm, tôn trọng trong không gian an toàn tuyệt đối</strong> và nhận định hướng chăm sóc sức khỏe tinh thần cá nhân hóa, lành tính, đúng chuyên môn.</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- LIÊN HỆ / LEAD FORM -->
+
+<!-- BƯỚC 5: BẰNG CHỨNG XÃ HỘI & UY TÍN BẢO CHỨNG (SOCIAL PROOF & AUTHORITY) -->
+<section id="bang-chung" class="sec-proof">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Bằng chứng thực tế & Sự bảo chứng chuyên môn</span>
+      <h2>Hành trình tìm lại sự cân bằng của những người từng <em>bắt đầu từ bài đánh giá này</em></h2>
+      <p>Tất cả phản hồi dưới đây đều được <strong>ẩn danh 100% theo quy tắc bảo mật y khoa</strong>, ghi nhận từ những thân chủ đã thực hiện sàng lọc <strong>PICTOGRAM</strong> và đồng hành cùng <strong>BS. Nhàn</strong>:</p>
+    </div>
+
+    <div class="trust-metrics-bar">
+      <div class="tm-item"><b>47 Bộ</b><span>Thang đo Tâm lý & Lâm sàng chuẩn Bộ Y tế</span></div>
+      <div class="tm-item"><b>25 Quy trình</b><span>Kỹ thuật Chuyên ngành Tâm thần (QT 45–69)</span></div>
+      <div class="tm-item"><b>100% Ẩn danh</b><span>Bảo mật tuyệt đối thông tin người làm test</span></div>
+      <div class="tm-item"><b>Tư vấn 1-1</b><span>Trực tiếp cùng BS. Nhàn (Online & Trực tiếp)</span></div>
+    </div>
+
+    <div class="proof-grid">
+      
+      <div class="proof-card">
+        <div class="proof-stars">★★★★★ · Câu chuyện ẩn danh 100%</div>
+        <div class="proof-issue">📌 Tầm soát: <strong>PICTOGRAM</strong> — Hay quên chuyện mới xảy ra, lặp lại câu hỏi</div>
+        <p class="proof-quote">“Bài kiểm tra định lượng từng phần rất rõ ràng từ định hướng đến ghi nhớ. Gửi kết quả cho <strong>BS. Nhàn</strong>, gia đình được hướng dẫn lộ trình chăm sóc và rèn luyện trí nhớ cho ông rất khoa học.”</p>
+        <div class="proof-author">— <strong>Anh V.T (Đánh giá nhận thức cho bố 68 tuổi)</strong></div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-stars">★★★★★ · Câu chuyện ẩn danh 100%</div>
+        <div class="proof-issue">📌 Tầm soát: <strong>PICTOGRAM</strong> — Đo tư duy logic hình ảnh không lời</div>
+        <p class="proof-quote">“36 ma trận hình ảnh hiển thị sắc nét, tự động đối chiếu bảng chuẩn IQ theo đúng số tuổi và tháng lẻ của bé. <strong>BS. Nhàn</strong> phân tích điểm mạnh tư duy của con cực kỳ chi tiết.”</p>
+        <div class="proof-author">— <strong>Chị K.L (Phụ huynh bé 8 tuổi — Test Raven CPM)</strong></div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-stars">★★★★★ · Câu chuyện ẩn danh 100%</div>
+        <div class="proof-issue">📌 Tầm soát: <strong>PICTOGRAM</strong> — Kiểm tra sức bền chú ý &amp; trí nhớ làm việc</div>
+        <p class="proof-quote">“Một hệ thống đánh giá nhận thức chuẩn mực hiếm có bằng tiếng Việt. Rất đáng tin cậy!”</p>
+        <div class="proof-author">— <strong>Bạn H.N (27 tuổi, Chuyên viên phân tích)</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VỀ BÁC SĨ (CHUYÊN GIA BẢO CHỨNG) -->
+<section id="bac-si">
+  <div class="wrap about-grid">
+    <div class="doc-photo"><img src="bs-thanh-nhan.jpg" alt="BS. Thanh Nhàn" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;"></div>
+    <div>
+      <span class="eyebrow">Chuyên gia Bảo chứng & Đồng hành cùng bạn</span>
+      <h2>Bác sĩ Nhàn <em>(BS. Phan Thị Thanh Nhàn)</em></h2>
+      <p class="lede">Với phương pháp <strong>lắng nghe thấu cảm, tôn trọng sự riêng tư và không phán xét</strong>, BS. Nhàn trực tiếp đồng hành cùng bạn trên hành trình thấu hiểu bản thân, gỡ rối những căng thẳng, lo âu và tìm lại sự cân bằng bền vững trong cuộc sống.</p>
+      <ul class="creds">
+        <li><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg><span><strong>Bác sĩ Chuyên khoa Tâm thần:</strong> Nền tảng lâm sàng vững chắc, chuẩn hóa theo tài liệu hướng dẫn của Bộ Y tế Việt Nam.</span></li>
+        <li><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg><span><strong>Đọc kết quả & Tham vấn 1-1:</strong> Giải thích cặn kẽ điểm số bài đánh giá <strong>PICTOGRAM</strong> và xây dựng lộ trình hỗ trợ cá nhân hóa.</span></li>
+        <li><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg><span><strong>Linh hoạt & Bảo mật tuyệt đối:</strong> Hỗ trợ tư vấn trực tiếp và trực tuyến qua Zalo/Điện thoại в không gian an toàn, kín đáo 100%.</span></li>
+      </ul>
+      <div style="margin-top:1.8rem;display:flex;gap:12px;flex-wrap:wrap;">
+        <a href="#lien-he" class="btn btn-teal">Đặt lịch tư vấn 1-1 cùng BS. Nhàn &rarr;</a>
+        <a href="https://zalo.me/0354548939" target="_blank" rel="noopener" class="btn btn-ghost">💬 Nhắn Zalo: 0354.54.89.39</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- BƯỚC 6: LỜI CHÀO HÀNG & GIÁ TRỊ CỘNG THÊM (IRRESISTIBLE OFFER & VALUE STACK) -->
+<section id="uu-dai" class="sec-offer">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Tổng hợp Quyền lợi & Giá trị Dành cho Bạn</span>
+      <h2>Bạn nhận được gì khi thực hiện bài đánh giá <em>PICTOGRAM</em> và kết nối cùng BS. Nhàn hôm nay?</h2>
+      <p>Chúng tôi minh bạch toàn bộ quyền lợi miễn phí ngay trên trang và các gói đồng hành chuyên sâu để bạn hoàn toàn chủ động lựa chọn:</p>
+    </div>
+
+    <div class="offer-grid">
+      <div class="offer-box offer-free">
+        <span class="offer-badge">Dành tặng miễn phí 100% ngay trên trang</span>
+        <h3>Gói Tự Sàng Lọc & Báo Cáo PICTOGRAM</h3>
+        <div class="offer-price">0đ <small>/ Không giới hạn số lần làm</small></div>
+        <ul class="offer-list">
+          <li>✓ <strong>Bài đánh giá PICTOGRAM (Pictogram Memory Test)</strong> chuẩn hướng dẫn Bộ Y tế <em>(Trị giá: 150.000đ)</em></li>
+          <li>✓ <strong>Chấm điểm tự động & Phân tích từng phân thang</strong> tức thì ngay sau khi hoàn thành <em>(Trị giá: 100.000đ)</em></li>
+          <li>✓ <strong>Biểu đồ so sánh tiến triển</strong> với các lần làm trước & Xuất file PDF lưu trữ <em>(Trị giá: 50.000đ)</em></li>
+          <li>✓ <strong>Quyền truy cập trọn bộ <a href="kho-47-trac-nghiem-tam-ly.html" style="text-decoration:underline;font-weight:700;">47 Thang Đo Tâm Lý</a></strong> trên hệ thống</li>
+        </ul>
+        <a href="#test" class="btn btn-teal" style="width:100%;margin-top:16px;">Làm bài đánh giá PICTOGRAM ngay (0đ) &rarr;</a>
+      </div>
+
+      <div class="offer-box offer-vip">
+        <span class="offer-badge offer-badge-accent">🎁 Quà tặng kèm khi gửi kết quả tư vấn</span>
+        <h3>Đồng Hành Chuyên Sâu 1-1 Cùng BS. Nhàn</h3>
+        <div class="offer-price">Ưu tiên <small>/ Hỗ trợ đọc kết quả & định hướng cá nhân hóa</small></div>
+        <ul class="offer-list">
+          <li>🎁 <strong>Bonus #1 (Miễn phí):</strong> BS. Nhàn trực tiếp xem trước điểm số <strong>PICTOGRAM</strong> của bạn và phản hồi định hướng bước đầu qua Zalo / Điện thoại.</li>
+          <li>🎁 <strong>Bonus #2:</strong> Hướng dẫn bài tập thư giãn thần kinh & điều chỉnh nhịp sinh hoạt phù hợp riêng với mức độ của bạn.</li>
+          <li>🎁 <strong>Lựa chọn nâng cao:</strong> Đăng ký <a href="goi-tu-sang-loc-an-danh.html" style="text-decoration:underline;font-weight:700;">Gói Sàng Lọc Ẩn Danh 6 Thang Đo Cốt Lõi (Chỉ 368.000đ)</a> hoặc đặt lịch tham vấn 1-1 riêng tư linh hoạt thời gian.</li>
+        </ul>
+        <a href="#lien-he" class="btn btn-primary" style="width:100%;margin-top:16px;">Gửi kết quả & Nhận tư vấn từ BS. Nhàn &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- BƯỚC 7: ĐẢO NGƯỢC RỦI RO & GIẢI ĐÁP THẮC MẮC (RISK REVERSAL & FAQ) -->
+<section id="faq" class="sec-faq">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Cam kết Bảo vệ Quyền lợi & Giải đáp Thắc mắc</span>
+      <h2>Cam kết “3 An Tâm” & Những câu hỏi thường gặp về thang đo <em>PICTOGRAM</em></h2>
+      <p>Mọi rào cản tâm lý về sự riêng tư, tính chính xác và chi phí đều được minh bạch hóa hoàn toàn trước khi bạn bắt đầu:</p>
+    </div>
+
+    <div class="guarantee-strip">
+      <div class="guar-card">
+        <span class="guar-ic">🔒</span>
+        <div>
+          <h4>1. Bảo mật & Ẩn danh Tuyệt đối</h4>
+          <p>Dữ liệu trả lời câu hỏi được xử lý ngay trên trình duyệt của bạn. Không ai biết bạn làm bài test trừ khi bạn chủ động gửi kết quả cho Bác sĩ.</p>
+        </div>
+      </div>
+      <div class="guar-card">
+        <span class="guar-ic">🌿</span>
+        <div>
+          <h4>2. Không Phán Xét – Không Dán Nhãn</h4>
+          <p>Kết quả sàng lọc chỉ dùng để thấu hiểu và định hướng chăm sóc sức khỏe tinh thần, tuyệt đối không dùng để dán nhãn bệnh lý tiêu cực.</p>
+        </div>
+      </div>
+      <div class="guar-card">
+        <span class="guar-ic">🤝</span>
+        <div>
+          <h4>3. Minh Bạch & Tự Nguyện 100%</h4>
+          <p>Làm bài test và nhận kết quả hoàn toàn miễn phí. Bạn chỉ đặt lịch tham vấn chuyên sâu khi thực sự cảm thấy tin tưởng và sẵn sàng.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-list">
+      <details class="faq-item" open>
+        <summary>1. Kết quả bài đánh giá PICTOGRAM (Pictogram Memory Test) trên trang có chính xác không?</summary>
+        <p>Bộ câu hỏi, thang điểm và công thức phân độ của <strong>PICTOGRAM</strong> trên trang được trích xuất <strong>nguyên văn 100% theo tài liệu hướng dẫn quy trình kỹ thuật chuyên ngành Tâm thần của Bộ Y tế Việt Nam</strong>. Đây là công cụ sàng lọc tham khảo có độ tin cậy cao giúp bạn nhận diện sớm mức độ hiện tại; tuy nhiên kết quả sàng lọc <strong>không thay thế cho chẩn đoán y khoa chính thức</strong> của bác sĩ chuyên khoa sau khi thăm khám trực tiếp.</p>
+      </details>
+      <details class="faq-item">
+        <summary>2. Tôi sợ thông tin cá nhân hoặc chuyện tâm lý của mình bị lộ thì sao?</summary>
+        <p>Hệ thống được thiết kế theo nguyên tắc <strong>Ẩn danh (Privacy-First)</strong>. Bạn có thể dùng tên viết tắt hoặc biệt danh khi làm bài. Khi bạn gửi biểu mẫu liên hệ, thông tin chỉ chuyển trực tiếp về email và Zalo cá nhân của <strong>BS. Nhàn (0354.54.89.39)</strong>, cam kết bảo mật y khoa 100%.</p>
+      </details>
+      <details class="faq-item">
+        <summary>3. Sau khi hoàn thành bài test và bấm “Gửi thông tin”, quy trình tiếp theo thế nào?</summary>
+        <p>Khi bạn hoàn thành bài test <strong>PICTOGRAM</strong>, hệ thống sẽ tự động đính kèm điểm số của bạn vào biểu mẫu liên hệ. Sau khi bạn gửi, <strong>BS. Nhàn</strong> sẽ xem trước kết quả và liên hệ lại qua <strong>Zalo hoặc Số điện thoại (0354.54.89.39)</strong> để giải thích ý nghĩa điểm số cũng như hẹn khung giờ tư vấn thuận tiện nhất cho bạn.</p>
+      </details>
+      <details class="faq-item">
+        <summary>4. Tôi ở tỉnh xa hoặc bận công việc giờ hành chính thì có tư vấn Online được không?</summary>
+        <p>Hoàn toàn được. <strong>BS. Nhàn</strong> hỗ trợ <strong>tư vấn trực tiếp và trực tuyến (qua Zalo / Video Call 1-1)</strong> với khung giờ linh hoạt (kể cả ngoài giờ hành chính hoặc cuối tuần theo lịch hẹn trước), giúp bạn thoải mái trò chuyện ngay tại không gian riêng tư của mình.</p>
+      </details>
+      <details class="faq-item">
+        <summary>5. Tôi muốn xem thêm các bài trắc nghiệm tâm lý khác ngoài PICTOGRAM thì tìm ở đâu?</summary>
+        <p>Bạn có thể chuyển đổi nhanh giữa toàn bộ <strong>47 Bộ Trắc Nghiệm Tâm Lý & Thang Đo Lâm Sàng</strong> ngay tại danh mục cuối trang này, hoặc mở trực tiếp trang tổng hợp <a href="kho-47-trac-nghiem-tam-ly.html" style="color:var(--teal);font-weight:700;text-decoration:underline;">Kho 47 Bộ Trắc Nghiệm Tâm Lý Chuẩn Bộ Y Tế</a> và <a href="index.html" style="color:var(--teal);font-weight:700;text-decoration:underline;">Trang chủ BS. Nhàn</a>.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- BƯỚC 8: KÊU GỌI HÀNH ĐỘNG & SỰ KHAN HIẾM ĐẠO ĐỨC (CTA & URGENCY) -->
 <section id="lien-he">
   <div class="wrap">
     <div class="section-head">
-      <span class="eyebrow" style="color:var(--orb-light);">Bước tiếp theo</span>
-      <h2>Để lại thông tin — BS. Nhàn sẽ liên hệ lại với bạn</h2>
-      <p>Bạn không phải đối mặt với mọi thứ một mình. Để lại lời nhắn, đội ngũ sẽ kết nối bạn với buổi tư vấn phù hợp.</p>
+      <span class="eyebrow" style="color:var(--orb-light);">Bước tiếp theo · Kết nối riêng tư cùng Bác sĩ</span>
+      <h2>Để lại thông tin — BS. Nhàn sẽ trực tiếp liên hệ lại với bạn</h2>
+      <p>Bạn không phải đối mặt với mọi thứ một mình. Hãy gửi kết quả bài test <strong>PICTOGRAM</strong> hoặc chia sẻ ngắn gọn điều bạn đang trăn trở để nhận định hướng phù hợp nhất.</p>
+    </div>
+    
+    <div class="urgency-banner">
+      <span class="urg-dot"></span>
+      <div><strong>📌 Lưu ý lịch tư vấn trong ngày:</strong> Để đảm bảo chất lượng lắng nghe sâu sắc và riêng tư nhất cho từng ca, <strong>BS. Nhàn chỉ nhận tối đa 5–7 lịch đọc kết quả & tham vấn 1-1 mỗi ngày</strong> theo thứ tự đăng ký. Hãy gửi thông tin ngay sau khi hoàn thành bài test để giữ lịch sớm nhất.</div>
     </div>
     <div class="form-grid">
       <div class="form-box">
         <div class="field">
-          <label for="fName">Họ và tên</label>
+          <label for="fName">Họ và tên (hoặc Tên gọi/Biệt danh của bạn)</label>
           <input id="fName" type="text" placeholder="Nguyễn Văn A" autocomplete="name">
         </div>
         <div class="field">
-          <label for="fPhone">Số điện thoại / Zalo</label>
+          <label for="fPhone">Số điện thoại / Zalo nhận phản hồi *</label>
           <input id="fPhone" type="tel" placeholder="09xx xxx xxx" autocomplete="tel">
         </div>
         <div class="field">
           <label for="fTopic">Bạn muốn được hỗ trợ về</label>
           <select id="fTopic">
+            <option>Đọc kết quả bài test PICTOGRAM & Định hướng</option>
             <option>Căng thẳng / Stress</option>
             <option>Lo âu, hồi hộp</option>
             <option>Buồn chán, mất hứng thú</option>
             <option>Giấc ngủ</option>
-            <option>Chưa rõ — muốn được tư vấn</option>
+            <option>Tâm lý & Phát triển Trẻ em / Vị thành niên</option>
+            <option>Chưa rõ — muốn được BS. Nhàn tư vấn</option>
           </select>
         </div>
         <div class="field">
-          <label for="fMsg">Lời nhắn (không bắt buộc)</label>
+          <label for="fMsg">Lời nhắn (không bắt buộc — kết quả test sẽ tự động đính kèm)</label>
           <textarea id="fMsg" placeholder="Chia sẻ ngắn gọn điều bạn đang gặp phải…"></textarea>
         </div>
         <input id="fTestSummary" type="hidden" value="PICTOGRAM (Pictogram Memory Test)">
-        <button class="btn btn-primary" id="submitLead" type="button">Gửi thông tin &rarr;</button>
+        <button class="btn btn-primary" id="submitLead" type="button">Gửi thông tin & Nhận tư vấn từ BS. Nhàn &rarr;</button>
         <div class="form-ok" id="formOk"></div>
       </div>
       <div>
         <div class="contact-list">
           <a href="tel:0354548939">
             <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7FCBB9" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2Z"/></svg></span>
-            <span><b>Gọi điện</b><small>0354.54.89.39</small></span>
+            <span><b>Gọi điện trực tiếp</b><small>0354.54.89.39 (BS. Nhàn)</small></span>
           </a>
           <a href="https://zalo.me/0354548939" target="_blank" rel="noopener">
             <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7FCBB9" stroke-width="2"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9.3 9.3 0 0 1-4-.9L3 20l1-3.9a8.4 8.4 0 0 1-1-4.1A8.4 8.4 0 0 1 12 3.5a8.4 8.4 0 0 1 9 8Z"/></svg></span>
-            <span><b>Nhắn Zalo</b><small>0354.54.89.39</small></span>
+            <span><b>Nhắn Zalo riêng tư</b><small>0354.54.89.39 (Phản hồi nhanh)</small></span>
           </a>
           <a href="mailto:nhanthi.bs@gmail.com">
             <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7FCBB9" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
-            <span><b>Gửi email</b><small>nhanthi.bs@gmail.com</small></span>
+            <span><b>Gửi Email bảo mật</b><small>nhanthi.bs@gmail.com</small></span>
           </a>
         </div>
-        <p class="crisis" style="margin-top:22px;color:#9FBCB2;">Nếu bạn đang có ý nghĩ làm tổn thương bản thân hoặc cần hỗ trợ khẩn cấp, hãy liên hệ ngay người thân hoặc đến cơ sở y tế gần nhất.</p>
+        <p class="crisis" style="margin-top:22px;color:#9FBCB2;">Nếu bạn đang có ý nghĩ làm tổn thương bản thân hoặc cần hỗ trợ khẩn cấp, hãy liên hệ ngay người thân, gọi <b>0354.54.89.39</b> hoặc đến cơ sở y tế gần nhất (Cấp cứu <b>115</b>).</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- KHO 47 BỘ TRẮC NGHIỆM TÂM LÝ & THANG ĐO LÂM SÀNG -->
+<!-- KHO 47 BỘ TRẮC NGHIỆM TÂM LÝ & THANG ĐO LÂM SÀNG (INTERNAL LINKING SEO) -->
 <section id="kho-47-test">
   <div class="wrap">
     <div class="section-head">
       <span class="eyebrow">Hệ thống đầy đủ 47 thang đo chuẩn Bộ Y tế</span>
       <h2>Kho 47 Bộ Trắc Nghiệm Tâm Lý & Thang Đo Lâm Sàng</h2>
-      <p>Mỗi bài đánh giá được thiết kế trên một trang riêng biệt với bảng màu trung tính độc bản và nội dung chuẩn hướng dẫn Bộ Y tế Việt Nam. Chuyển đổi nhanh giữa 47 thang đo dưới đây:</p>
+      <p>Mỗi bài đánh giá được thiết kế trên một trang riêng biệt với <strong>bảng màu trung tính độc bản, đồ họa trực quan riêng và cấu trúc chuẩn 8 bước</strong> theo hướng dẫn Bộ Y tế Việt Nam:</p>
     </div>
     <div class="hub-toolbar">
       <input type="search" id="hubSearch" class="hub-search" placeholder="🔍 Tìm trong 47 bài trắc nghiệm (VD: DASS-21, PHQ-9, Raven, M-CHAT, MMSE, Rorschach...)">
@@ -706,10 +1127,25 @@
 
 <footer>
   <div class="wrap foot-grid">
-    <div class="brand"><img src="bs-thanh-nhan.jpg" alt="BS. Thanh Nhàn" style="width:32px;height:32px;border-radius:50%;object-fit:cover;object-position:center top;"><span>BS. Nhàn<small>© 2026 · Tâm lý & Sức khỏe tinh thần</small></span></div>
+    <div class="brand"><img src="bs-thanh-nhan.jpg" alt="BS. Thanh Nhàn" style="width:32px;height:32px;border-radius:50%;object-fit:cover;object-position:center top;"><span>BS. Nhàn<small>© 2026 · Tâm lý & Sức khỏe tinh thần · ĐT/Zalo: 0354.54.89.39</small></span></div>
     <p class="crisis">Thông tin trên trang này chỉ mang tính tham khảo, <b>không thay thế cho tư vấn, chẩn đoán hay điều trị y khoa chuyên nghiệp</b>.</p>
   </div>
 </footer>
+
+<!-- STICKY FLOATING CTA BAR (STEP 8 CONVERSION BOOSTER) -->
+<div class="sticky-cta-bar">
+  <div class="wrap sticky-cta-inner">
+    <div class="sticky-cta-left">
+      <span>🖼️</span>
+      <b> Bài #40/47: PICTOGRAM — Khảo sát <em>trí nhớ gián tiếp & cấu trúc tư duy</em> qua biểu tượng vẽ</b>
+      <span>· Miễn phí & Ẩn danh 100%</span>
+    </div>
+    <div class="sticky-cta-btns">
+      <a href="#test" class="btn btn-primary">Làm bài test ngay</a>
+      <a href="https://zalo.me/0354548939" target="_blank" rel="noopener" class="btn btn-teal">💬 Zalo BS. Nhàn</a>
+    </div>
+  </div>
+</div>
 
 <script>
 window.__PAGE_DATA__ = {"key": "pictogram", "no": 40, "mode": "specialist", "meta": {"no": 40, "key": "pictogram", "filename": "test-pictogram.html", "categoryLabel": "Nhận thức", "themeName": "Gallery Canvas & Sepia Olive · Vải Bố Triển Lãm & Nâu Sepia", "primary": "#5B5944", "bg": "#F5F3EE", "mist": "#E8E4DA", "apiCode": "PICTOGRAM", "name": "PICTOGRAM", "fullname": "Pictogram Memory Test", "icon": "🖼️", "category": "cognitive", "desc": "Đánh giá chuyên môn; không tự chấm điểm.", "apiDesc": "", "badges": [{"label": "Chuyên gia câu hỏi"}, {"label": "Không tự chấm"}], "mode": "specialist", "specialistNote": "Cần chuyên gia thực hiện bằng bộ công cụ, bảng chuẩn và quy trình được cơ sở y tế phê duyệt."}, "scale": null, "raven": null, "protocols": [{"id": "relaxation", "no": 45, "group": "therapy", "icon": "🧘", "title": "Trị liệu thư giãn luyện tập", "summary": "Can thiệp thư giãn có cấu trúc, sau khi chuyên gia đánh giá chỉ định và khả năng hợp tác.", "definition": "Phương pháp thư giãn (Relaxation) đã được xây dựng từ những năm đầu của thế kỷ 20, dựa trên thuyết tâm lý thần kinh, cho rằng thư giãn, giãn mềm về cơ bắp thì có tác động lên con đường cảm xúc của hệ viền và vùng dưới đồi, tạo ra sự yên dịu, giảm stress, cũng như giảm các triệu chứng khác trong các bệnh lý tâm căn. Một số phương pháp như phương pháp điều khiển tích cực trương lực cơ của B.Stokvis, phương pháp giãn cơ tuần tiến của E.Jacobson và năm 1926, Schultz đã xây dựng phương pháp thư giãn tập trung. Phương pháp thư giãn tập trung của Schultz hết sức khoa học nhưng các bài tập đòi hỏi thời gian và giai đoạn hai của bài tập mang tính trừu tượng nên không được phổ biến rộng rãi. Từ năm 1970, GS. Nguyễn Việt và cộng sự đã nghiên cứu phương pháp “thư giãn-luyện tập”, khắc phục phần nào những hạn chế của phương pháp thư giãn tập trung, thu được những kết quả khả quan, phù hợp với những đặc điểm riêng của bệnh, tạo ra sự hào hứng và kiên trì tập luyện.\n\nCơ chế tác dụng: có hai cơ chế chính\n\nCơ chế tự ám thị được hiểu là sự tiếp nhận một cách chủ động những tác động tâm lý từ chính bản thân và từ đó cũng gây ra những biến đổi nhất định.\n\nCơ chế phản hồi sinh học trong phương pháp thư giãn luyện tập gồm ba hiện tượng phản hồi. Phản hồi thứ nhất là giữa trương lực cơ và cảm xúc. Thông qua tác dụng tự ám thị, việc tập luyện có tác dụng làm giảm trương lực cơ, tạo ra tác động lên thần kinh trung ương làm giảm trương lực cảm xúc. Ngược lại, giảm căng thẳng cũng sẽ tác động làm giảm trương lực cơ. Phản hồi thứ hai là giữa cơ thể và tâm thần. Tập các động tác Yoga làm hoạt hóa hệ thống cơ, xương khớp, từ đó làm cho cơ thể khỏe mạnh, tinh thần thư thái và ngược lại. Phản hồi thứ ba là giữa hô hấp và tâm thần. Việc tập thở chậm, đều làm cho tinh thần điềm tĩnh hơn và ngược lại.  Như vậy, thư giãn làm cho tâm thần yên tĩnh, thư thái và làm cho các bắp thịt mềm đi, giãn ra (làm mất trạng thái căng thẳng trong tâm thần và trong bắp thịt).\n\nNội dung của bài tập\n\nPhần thư giãn: có 3 bài cơ bản: “Tâm thần thư thái”, “Giãn mềm cơ bắp” và “Sưởi ấm cơ thể”.\n\nPhần luyện tập gồm: Luyện thở theo kiểu khí công và tập một số động tác Yoga: Trong phương pháp này sử dụng kết hợp 6 tư thế (Asana) Yoga nhằm làm cho phương pháp thư giãn ít rơi vào trạng thái tĩnh hơn, đặc biệt luyện tư thế giúp cho cơ thể cường tráng hơn và giúp hoạt hóa cơ, xương, khớp."}, {"id": "group", "no": 46, "group": "therapy", "icon": "👥", "title": "Trị liệu tâm lý nhóm", "summary": "Can thiệp nhóm có mục tiêu, sàng lọc thành viên, bảo mật và theo dõi diễn biến.", "definition": "Liệu pháp tâm lý nhóm (Group Psychotherapy) là một hình thức điều trị mà trong đó nhiều người bệnh cùng được tham gia, họ được lựa chọn một cách cẩn thận và được hướng dẫn bởi nhà liệu pháp nhóm nhằm thay đổi hành vi, nhận thức, cảm xúc không thích ứng của từng thành viên thông qua sự tác động tương hỗ và sự thông cảm giữa các thành viên trong nhóm.\n\n*Cơ chế:\n\nTác động cùng lúc lên nhiều bệnh nhân nhằm điều chỉnh, phục hồi và thay đổi hành vi, nhận thức, cảm xúc không thích ứng của từng thành viên trong nhóm thông qua việc thiết lập lại các mối quan hệ liên cá nhân, khuyến khích sự hồi tưởng và nhớ lại những trải nghiệm trong cuộc sống trước đây, khuyến khích tham gia vào các cuộc trò chuyện của nhóm.\n\nTạo điều kiện để loại bỏ hoặc làm thuyên giảm sự căng thẳng về cảm xúc, hướng dẫn các mẫu ứng xử phù hợp, huấn luyện các kỹ năng xử lý các mâu thuẫn, nâng cao lòng tự trọng (hỗ trợ việc nhớ lại nhưng thành tích và năng lực trước đây), khuyến khích sự thể hiện bản thân bằng lời nói và cảm xúc nhằm điều chỉnh những nét tính cách chưa phù hợp.\n\nTạo ra những thay đổi về nhận thức, cách cư xử và sự phát triển tính cách của mỗi người bệnh, hỗ trợ họ trong việc ra quyết định, giải quyết vấn đề và cách sắp xếp ưu tiên trong cuộc sống của họ.\n\nTăng cường xã hội hóa và giảm sự cô lập (khuyến khích hành vi hỗ trợ lẫn nhau giữa các thành viên trong nhóm), giúp phát triển mối quan hệ hài hòa nhằm mục đích tăng cường sự tham gia của họ trong nhóm, tạo sự gắn bó về mặt tình cảm, sự chấp nhận để hiểu người khác; giúp họ có cơ hội để quan sát, bắt chước và được cổ vũ về mặt xã hội. Tạo ra những thay đổi về hành vi: Khuyến khích các hành vi xã hội phù hợp, nâng cao kỹ năng xã hội\n\nQuản lý chứng mất trí nhớ và định hướng thực tế (kết nối kí ức và chủ đề với các sự kiện hiện tại) làm: (1) Tăng khoảng chú ý; (2) Tăng khả năng diễn đạt bằng lời nói; (3) Tăng cường kỹ năng xã hội; (4) Tăng kích thích giác quan; (5) Tăng cường lòng tự trọng và giá trị bản thân."}, {"id": "family", "no": 47, "group": "therapy", "icon": "👨‍👩‍👧", "title": "Trị liệu tâm lý gia đình", "summary": "Làm việc với hệ thống gia đình theo mục tiêu điều trị và đồng thuận phù hợp.", "definition": "Trị liệu tâm lý gia đình (Family Psychotherapy) là một loại hình trị liệu gia đình có thể giúp các thành viên trong gia đình cải thiện giao tiếp, giải quyết xung đột, cải thiện bầu không khí gia đình. Mặt khác, liệu pháp cũng cung cấp kĩ năng mới cho các thành viên trong gia đình để trợ giúp người bệnh đang gặp khó khăn về vấn đề tâm lý.\n\n*Cơ chế:\n\nTrị liệu gia đình coi trọng cấu trúc và tổ chức của một gia đình (kiểu hành vi, thói quen, thói quen giao tiếp…) nhằm giải quyết các nhu cầu tâm lý và cảm xúc của gia đình và tập trung giải quyết những khiếm khuyết trong cấu trúc gia đình để khôi phục chức năng bình thường của hệ thống gia đình, khắc phục sự mất cân bằng trong gia đình, đảm bảo trật tự gia đình hoạt động hiệu quả nhằm thiết lập bầu không khí hòa thuận trong gia đình.\n\nLàm giảm cảm xúc căng thẳng, thiết lập lại trạng thái cân bằng đã bị phá vỡ trong gia đình và tạo ra những cuộc đối thoại bình đẳng, cải thiện giao tiếp, cải thiện thứ bậc trong gia đình, tăng cường năng lực và sự hài lòng của cha mẹ giúp mỗi người nhận ra những điểm tích cực cũng như tiêu cực trong các quan hệ của họ.\n\nGiúp xây dựng mối quan hệ gia đình, giúp các cá nhân cải thiện phản ứng của họ trước nhu cầu thay đổi, quản lý hành vi thích nghi của các thành viên trong gia đình, cung cấp kỹ năng làm cha mẹ, xây dựng quy tắc ứng xử trong gia đình, sử dụng các kỹ thuật kỷ luật tích cực, giúp các thành viên trong gia đình hiểu và chấp nhận thực tế đang xảy ra trong gia đình họ và họ tự giải quyết.\n\nCơ cấu lại hệ thống tương tác trong gia đình, thiết lập ranh giới lành mạnh nhằm tăng cường khả năng thích ứng của gia đình trước tác động của môi trường.\n\nNhững thay đổi trong cách ứng xử cố hữu của gia đình sẽ cải thiện bầu không khí bế tắc trong gia đình, giúp các cá nhân hiểu hơn về bản thân, về các thành viên khác và về những hành vi ứng xử trong mối tương tác với người khác. Từ đó tạo ra sự thay đổi, cải thiện môi trường sống, làm giảm nguy cơ duy trì và phát triển hành vi không thích nghi trong gia đình. Các thành viên sử dụng những tiềm năng mới và tăng cường khả năng đối mặt với căng thẳng, xung đột. Đồng thời xây dựng những phương pháp giáo dục phù hợp (kỷ luật tích cực, khen thưởng tích cực) với người bệnh, giúp gia đình quản lý những hành vi thích hợp ở người bệnh.\n\nThông thường, một liệu trình của liệu pháp gia đình kéo dài khoảng 8 phiên. Tuy nhiên, số lượng phiên thay đổi khác nhau tùy tình trạng gia đình và các vấn đề của người bệnh cụ thể."}, {"id": "counseling", "no": 48, "group": "therapy", "icon": "💬", "title": "Tư vấn tâm lý cho người bệnh hoặc người nhà", "summary": "Cung cấp thông tin, hỗ trợ quyết định và kế hoạch theo dõi trong phạm vi chuyên môn.", "definition": "Tư vấn tâm lý cho người bệnh hoặc người nhà người bệnh là hoạt động tham vấn tâm lý giữa cán bộ tâm lý với những người đang cần sự hỗ trợ về mặt tinh thần để đối mặt với khó khăn hoặc vướng mắc trong cuộc sống. Tư vấn tâm lý là giúp người bệnh hoặc người nhà sáng tỏ hơn vấn đề của họ, xem xét các giải pháp khả thi để giải quyết vấn đề và giúp họ tự đưa ra được những lựa chọn tối ưu nhất. Các vấn đề của người bệnh có thể là những khó khăn trong cuộc sống, trong tư duy, tình cảm, ứng xử, định hướng… liên quan đến các vấn đề sức khoẻ, hôn nhân gia đình, giao tiếp gia đình, các xung đột từ gia đình, sang chấn gia đình... Trọng tâm của tư vấn tâm lý là định hướng sự việc/vấn đề và tập trung giải quyết vấn đề, không cần quá đi sâu vào giải quyết bản chất nảy sinh ra vấn đề.\n\nMục đích của tư vấn tâm lý cho người bệnh hoặc người nhà:\n\nGiúp người bệnh hoặcngười nhà giảm bớt các cảm xúc tiêu cực trong hoàn cảnh khó khăn và cảm thấy thoải mái khi trò chuyện về vấn đề khó khăn của họ.\n\nGiúp người bệnh hoặcngười nhà tăng thêm hiểu biết về bản thân và hoàn cảnh của họ; giúp họ chấp nhận vấn đề của mình như nó đang có.\n\nGiúp họ đưa ra các quyết định phù hợp và có khả năng xử lý được vấn đề\n\nHướng dẫn người bệnh hoặc người nhà tiến hành các quyết định của họ và có khả năng dự phòng các tình huống tương tự xảy ra trong tương lai."}, {"id": "rational", "no": 49, "group": "therapy", "icon": "🧭", "title": "Trị liệu giải thích hợp lý", "summary": "Can thiệp dựa trên giải thích, tái khung và phối hợp điều trị theo hồ sơ lâm sàng.", "definition": "Liệu pháp giải thích hợp lý (Rational Explanation Therapy) là liệu pháp tâm lý dùng lý lẽ logic để giải thích và thuyết phục, giúp người bệnh tự điều chỉnh lại các mối quan hệ và hệ thống thái độ có ý thức, chủ động khắc phục ý nghĩ sai lệch, tư duy thiếu logic về bệnh tật của mình.\n\nLý thuyết của liệu pháp giải thích hợp lý cho rằng, người bệnh do sự thiếu hiểu biết, lệch lạc và do tư duy không logic của người bệnh gây ra, vì vậy nhiệm vụ của nhân viên y tế là giải thích và dung lời lẽ để thuyết phục người bệnh, làm cho họ có ý thức và hiểu được ý nghĩ sai lệch của mình về bệnh tật. Vai trò của liệu pháp là làm cho người bệnh hoàn toàn tin tưởng vào kết quả điều trị.\n\nLiệu pháp giải thích hợp lý nhằm giải thích cho người bệnh hiểu rõ về bệnh tật của họ và gây dựng niềm tin cho người bệnh trong quá trình thăm khám, điều trị nhằm mục đích làm tăng hiệu quả của quá trình đó.\n\nNgười trị liệu trò chuyện với người bệnh, tìm hiểu những khó khăn của họ, tìm hiểu nguyên nhân gây bệnh, giúp người bệnh bộc lộ bản thân, và khi cần thiết dùng lời lẽ hợp lý, logic giải thích cho người bệnh về cơ chế sinh bệnh của họ, hay giúp họ điều chỉnh các mối quan hệ và điều chỉnh thái độ cho phù hợp với chuẩn mực, đồng thời tuân thủ điều trị."}, {"id": "behavior", "no": 50, "group": "therapy", "icon": "🔁", "title": "Trị liệu hành vi", "summary": "Can thiệp hành vi theo phân tích chức năng, mục tiêu đo lường được và theo dõi đáp ứng.", "definition": "Trị liệu hành vi (Behavioral Therapy) là Cán bộ thực hiện trị liệu sử dụng một loạt các kỹ thuật để thay đổi các hành vi không thích nghi ở người bệnh. Mục tiêu là củng cố các hành vi mong muốn và loại bỏ những hành vi không mong muốn của họ.\n\nLý thuyết về hành vi cho rằng tất cả các hành vi của con người đều được học và có thể được thay đổi. Hành vi của con người được học thông qua trải nghiệm và tương tác giữa họ với môi trường. Các hành vi được hình thành bằng cách quan sát ai đó thể hiện các hành vi này và lặp lại những hành vi đó.\n\nCả những hành vi bình thường và bất thường đều được hình thành theo chuỗi kích thích – phản ứng trên ba quá trình cơ bản: (1) điều kiện hóa cổ điển (một hành vi có thể được hình thành hay bị dập tắt (biến mất) dựa trên hai trường hợp: hoặc nó đi kèm hay không đi kèm với cái kích thích tạo ra sự căng thẳng tinh thần cho đối tượng); (2) điều kiện hóa thao tác (một hành vi sẽ được gia tăng, nâng cao hay được hoàn thiện nếu nó liên tục được củng cố, và ngược lại hành vi đó sẽ bị giảm bớt hay biến mất nếu nó liên tục bị trừng phạt ) và (3) học qua quan sát (mỗi con người luôn có những yếu tố phản xạ bẩm sinh để giúp cho họ có khả năng tiếp nhận, học hỏi và đạt được mọi điều trong cuộc sống, những yếu tố tự nhiên và đơn giản này chính là bước đầu cho sự hình thành mọi hành vi và khả năng hành xử phức tạp về sau).\n\nKhi một cá nhân có quá trình học hỏi đúng nguyên tắc thì đời sống tinh thần (suy nghĩ, cảm xúc) của người đó sẽ luôn thích hợp, lành mạnh và có tính xây dựng. Ngược lại, suy nghĩ và cảm xúc của họ sẽ không được cân bằng nếu trong quá trình sống người đó chỉ học hỏi, tiếp thu những cái xấu và điều sai, lệch lạc. Trọng tâm của việc điều trị thường là các vấn đề hiện tại và cách thay đổi chúng. Liệu pháp hành vi không chú trọng đến nguyên nhân, chỉ tập trung vào điều chỉnh những hành vi lệch lạc. Người bệnh chỉnh hành vi theo mẫu đúng, có sự hướng dẫn đánh giá của nhà trị liệu và chế độ thưởng phạt rõ ràng, nhằm thay đổi những hành vi của họ từ đó điều chỉnh được các triệu chứng.\n\nMột số các kỹ thuật được áp dụng như: kỹ thuật khử điều kiện, kỹ thuật tự điều chỉnh, kỹ thuật phản hồi sinh học, kỹ thuật tràn ngập, kỹ thuật giải mẫn cảm có hệ thống, kỹ thuật điều kiện hóa thao tác, kỹ thuật làm theo mẫu, kỹ thuật thư giãn và thở, kỹ thuật ác cảm (sự kích thích khó chịu có thể là thứ gây ra sự khó chịu, ví dụ, Cán bộ thực hiện trị liệu có thể dạy người bệnh về mối liên kết rượu với một ký ức khó chịu)…"}, {"id": "suggestion", "no": 51, "group": "therapy", "icon": "🗣️", "title": "Trị liệu ám thị", "summary": "Can thiệp chuyên môn cần đánh giá chỉ định, đồng thuận và theo dõi sát của người thực hiện.", "definition": "Liệu pháp ám thị (Suggestion Therapy) là sự tiếp nhận một cách thụ động những tác động tâm lý từ bên ngoài của một cá thể, từ đó gây ra những biến đổi nhất định về thể chất và tâm thần. Nói cách khác, liệu pháp ám thị là tác động tâm lý của một người lên người khác, làm cho họ nhận thức và tiếp thu một cách không phê phán những lời lẽ, ý nghĩa và ý chí biểu hiện trong đó.\n\nĐây là phương pháp hay dùng nhất để điều trị các triệu chứng chức năng và khi đó nhân cách người bệnh được điều chỉnh lại.\n\nCác loại ám thị:\n\nTự ám thị và bị ám thị\n\nÁm thị trực tiếp và ám thị gián tiếp\n\nÁm thị lúc thức (nhằm xóa bỏ một triệu chứng chức năng nào đó), ám thị trong giấc ngủ thôi miên và ám thị sau thôi miên."}, {"id": "cbt", "no": 52, "group": "therapy", "icon": "🧠", "title": "Trị liệu nhận thức hành vi", "summary": "Can thiệp CBT có cấu trúc, lượng giá tiến triển và bài tập phù hợp giữa các buổi.", "definition": "Liệu pháp nhận thức hành vi (Cognitive Behavioral Therapy-CBT) là liệu pháp được áp dụng để tìm hiểu và điều trị các dạng suy nghĩ và cảm xúc ảnh hưởng đến hành vi tiêu cực trong nhận thức của người bệnh, nhằm xác định và giải quyết các kiểu suy nghĩ không thích hợp dai dẳng để thay đổi cảm xúc và hành vi. Thông qua hoạt động trị liệu, người làm trị liệu sẽ hướng dẫn người bệnh các kỹ năng để họ đối phó với những khó khăn về mặt tâm lý bao gồm 5 lĩnh vực: tình huống, suy nghĩ, cảm xúc, cảm giác thể chất và hành động. Năm lĩnh vực này được kết nối và ảnh hưởng lẫn nhau.\n\nLiệu pháp nhận thức hành vi sử dụng các lý thuyết về phản xạ của Pavlov, học thuyết tập nhiễm của Skinner, học thuyết củng cố Albert Bandura, lý thuyết nhận thức Beck trong điều chỉnh hành vi thích nghi ở người bệnh thông qua việc thay đổi niềm tin sai lệch trong suy nghĩ của người bệnh. Mục tiêu của CBT là giúp người bệnh điều chỉnh suy nghĩ tự động (đôi khi được gọi là “suy nghĩ nóng nảy”), bằng cách đạt được những suy nghĩ cân bằng. Từ đó giúp họ có những cảm xúc, hành vi đúng mực, thích nghi hơn trong cuộc sống.\n\nCác kỹ thuật CBT bao gồm việc xác định những sai lệch như: (1) khái quát hóa quá mức các sự kiện tiêu cực, (2) thảm họa hóa, (3) giảm thiểu các sự kiện tích cực và (4) tối đa hóa các sự kiện tiêu cực. Người bệnh làm việc với nhà trị liệu để xác định và thay đổi những biến dạng trong nhận thức cũng như hành vi né tránh gây ra các triệu chứng của họ, giúp người bệnh tìm ra cách thay đổi những suy nghĩ và hành vi không có lợi. Sau khi tìm ra những gì người bệnh có thể thay đổi, người làm trị liệu sẽ yêu cầu họ thực hành những thay đổi này trong cuộc sống hàng ngày. Điều này sẽ giúp họ kiểm soát các vấn đề của mình và ngăn chặn chúng có tác động tiêu cực đến cuộc sống của họ, đồng thời làm giảm khả năng các triệu chứng bệnh lý quay trở lại ngay cả khi quá trình điều trị đã kết thúc."}, {"id": "cognitive", "no": 53, "group": "therapy", "icon": "💭", "title": "Trị liệu nhận thức", "summary": "Can thiệp tập trung vào nhận diện và điều chỉnh quá trình nhận thức theo công thức ca bệnh.", "definition": "Liệu pháp nhận thức (Cognitive Therapy) là một hình thức trị liệu nhấn mạnh vào những gì người bệnh nghĩ hơn là những gì họ làm. Dựa trên mô hình nhận thức, trong đó suy nghĩ, cảm xúc và hành vi có mối liên hệ với nhau và người bệnh có thể hướng tới việc vượt qua khó khăn và đạt được mục tiêu của mình bằng cách xác định và thay đổi những suy nghĩ vô ích hoặc không chính xác, hành vi có vấn đề và những phản ứng cảm xúc đau khổ\n\nLiệu pháp nhận thứcđược xây dựng dựa trên nguyên tắc cho rằng hành vi không thích hợp/ hành vi không hiệu quả được kích hoạt bởi những suy nghĩ tự động không phù hợp hoặc không hợp lý.\n\nLiệu pháp nhận thức nhằm thay đổi những cảm xúc và hành động có ảnh hưởng lên tư duy của người bệnh. Nhà trị liệu giúp người bệnh đồng nhất những suy nghĩ lệch lạc của họ và học cách thay đổi suy nghĩ thiết thực hơn. Nhà trị liệu sử dụng nhiều kỹ thuật khác nhau tác động lên người bệnh nhằm tạo ra những thay đổi nhận thức – thay đổi hệ thống tư duy và niềm tin của người bệnh và cuối cùng đem đến sự thay đổi trong cảm xúc và hành vi.\n\nLý thuyết nhận thức cho rằng những mẫu ứng xử bất thường và rối loạn cảm xúc bắt đầu với những suy nghĩ. Liệu pháp nhận thức tập trung vào (1) Thay đổi hành vi bằng kỹ thuật tự khẳng định bản thân. Những mẫu hành vi không phù hợp sẽ được biến đổi bằng sự tự khẳng định tiêu cực về bản thân chuyển sang sự tự khẳng định tích cực, sáng tạo. (2) Điều chỉnh hệ thống niềm tin sai lệch của người bệnh bằng việc chỉ ra 3 kiểu nhận thức không chuẩn mực: Những thái độ không hợp lý, những tiền đề sai lệch và những luật lệ hà khắc\n\nLiệu pháp nhận thứctập trung vào việc thay đổi những khuôn mẫu suy nghĩ lệch lạc bằng cách kiểm tra tính hợp lý và hợp lệ của các giả định đằng sau chúng. Quá trình này được gọi là tái cấu trúc nhận thức. Các nhà trị liệu sử dụng một số kỹ thuật khác nhau trong quá trình Liệu pháp nhận thứcđể giúp người bệnh kiểm tra suy nghĩ và hành vi. Bao gồm: (1) Kiểm tra tính hợp lệ, (2) Diễn tập nhận thức, (3) Khám phá có hướng dẫn, (4) Viết nhật ký, (5) Bài tập về nhà, (6) Làm mẫu. Từ đó, người bệnh có thể mô hình hóa hành vi này."}, {"id": "psychodynamic", "no": 54, "group": "therapy", "icon": "🔎", "title": "Trị liệu tâm lý động", "summary": "Can thiệp chuyên sâu cần nhà trị liệu được đào tạo, khung trị liệu và giám sát chuyên môn.", "definition": "Liệu pháp tâm lý động (Psychodynamic Therapy) còn có các tên gọi khác như Liệu pháp tâm lý động lực học, trị liệu tâm động học,… có nguồn gốc từ liệu pháp phân tâm học dựa trên công trình của Sigmund Freud. Trị liệu tâm động học là một hình thức trị liệu trò chuyện chuyên sâu dựa trên các lý thuyết và nguyên tắc phân tâm học, nhằm mục đích giúp các cá nhân hiểu rõ hơn về cảm xúc, động cơ vô thức và mô hình hành vi của họ. Liệu pháp tâm lý động tìm cách khám phá tiềm thức của người bệnh và ảnh hưởng của tiềm thức đối với sự tự nhận thức và hành vi của họ. Tâm lý động đi sâu vào các vấn đề có thể nảy sinh từ những trải nghiệm đầu đời và nhằm mục đích khám phá những động lực cơ bản, khám phá những khuôn mẫu ẩn giấu và thúc đẩy sự phát triển cá nhân.\n\nLiệu pháp tâm lý động tập trung vào việc nhận biết, thừa nhận, hiểu, bày tỏ và vượt qua những cảm giác tiêu cực và mâu thuẫn cũng như những cảm xúc bị kìm nén để cải thiện trải nghiệm và mối quan hệ giữa các cá nhân của người bệnh. Điều này bao gồm việc giúp người bệnh hiểu những cảm xúc bị kìm nén trong quá khứ ảnh hưởng như thế nào đến việc ra quyết định, hành vi và các mối quan hệ hiện tại. Liệu pháp tâm lý động cũng nhằm mục đích giúp đỡ những người bệnh nhận thức và hiểu được nguồn gốc của những khó khăn xã hội của họ nhưng không thể tự mình khắc phục vấn đề. Người bệnh học cách phân tích và giải quyết những khó khăn hiện tại cũng như thay đổi hành vi trong các mối quan hệ hiện tại thông qua việc khám phá và phân tích sâu sắc những trải nghiệm và cảm xúc trước đó.\n\nLiệu pháp tâm lý động tập trung vào vấn đề chủ yếu của người bệnh, nhằm giải thích động cơ thúc đẩy bên trong của người bệnh, nhấn mạnh vai trò của ý thức và vô thức đến hành vi của họ, ảnh hưởng quá khứ đến hình thành và quyết định nhân cách người bệnh. Liệu pháp tâm lý động tập trung hơn vào việc giải quyết vấn đề và kết quả, trái ngược với việc đi sâu vào các vấn đề có thể nảy sinh từ trải nghiệm đầu đời từ trị liệu phân tâm. Thời gian Liệu pháp tâm lý động thường ngắn hơn so với trị liệu phân tâm, khoảng 25 buổi hoặc hơn. Những lợi ích mang lại:\n\nGiảm triệu chứng: Mục tiêu là đạt được sự thuyên giảm các triệu chứng liên quan đến tình trạng sức khỏe tâm thần.\n\nTăng giá trị bản thân: Người bệnh thường cảm thấy giá trị bản thân tăng lên và tận dụng tốt hơn tài năng và khả năng của chính mình.\n\nCải thiện các mối quan hệ: Liệu pháp tâm lý động nâng cao khả năng phát triển và duy trì các mối quan hệ tốt hơn."}, {"id": "activation", "no": 55, "group": "therapy", "icon": "🌱", "title": "Trị liệu kích hoạt hành vi", "summary": "Lập kế hoạch hoạt động theo giá trị, theo dõi né tránh và điều chỉnh theo mức độ đáp ứng.", "definition": "Trị liệu kích hoạt hành vi (Behavioral Activation) là một phương pháp trị liệu tâm lý cho người bệnh trầm cảm được áp dụng nhiều trên thế giới, và được xem là phương pháp tương đối đơn giản, có hiệu quả, và có thể áp dụng tại cộng đồng.\n\nKích hoạt hành vi là trị liệu tâm lý dựa trên cơ sở của lý thuyết hành vi nhằm mục đích động viên người bệnh thực hiện các hoạt động mà người bệnh thích thú. Nhờ tăng cường thực hiện hoạt động đó, cảm xúc của người bệnh sẽ thay đổi, từ đó tình trạng bệnh được cải thiện.\n\nTrị liệu kích hoạt hành vi là cán bộ thực hiện trị liệu giáo dục cho người bệnh về các vấn đề như: (1) thay đổi cảm xúc giúp họ thay đổi hoạt động của mình. (2) Các thay đổi trong cuộc sống có thể dẫn tới trầm cảm và các chiến lược thích ứng ngắn hạn có thể làm họ lún sâu vào cảm giác buồn chán. (3) Việc duy trì và sử dụng thuốc chống trầm cảm là quan trọng. (4) Lên chương trình hoạt động dựa vào kế hoạch chứ không dựa vào cảm xúc. (5) Thay đổi sẽ dễ dàng hơn khi thực hiện từng bước nhỏ. (6) Nhấn mạnh các hoạt động được củng cố một cách tự nhiên. (6) Hoạt động như huấn luyện viên (7) Nhấn mạnh phương pháp thực nghiệm giải quyết vấn đề và nhận diện rằng mọi kết quả đều hữu ích. (8) Không chỉ nói mà phải làm. (9) Giải quyết sự cố có thể xảy ra và các cản trở thực tế đối với sự kích hoạt. Tất cả các kỹ thuật trong quá trình trị liệu đều nhằm mục tiêu làm gia tăng sự kích hoạt và hướng người bệnh tham gia nhiều hoạt động trong xã hội, làm giảm các hành vi né tránh."}, {"id": "aba", "no": 56, "group": "therapy", "icon": "🧩", "title": "Phân tích hành vi ứng dụng (ABA)", "summary": "Can thiệp ABA cần đánh giá hành vi chức năng, mục tiêu cá nhân hoá và giám sát chuyên môn.", "definition": "Phân tích hành vi ứng dụng (Applied Behavioral Analysis (ABA)) là việc sử dụng kỹ thuật phân tích hành vi và hậu quả của hành vi nhằm hướng dẫn cho người bệnh những cách cư xử hiệu quả hơn, thay đổi hậu quả của hành vi hiện có thông qua củng cố tích cực.\n\nNgười sáng lập ra ABA là nhà tâm lý học Ole Ivar Lovaas vào những năm 1960 ABA sử dụng củng cố tích cực để giảng dạy và thúc đẩy các kỹ năng xã hội, khả năng giao tiếp, kỹ năng học tập, hình thành thói quen tự chăm sóc bản thân, học các kỹ năng mới và duy trì các hành vi tích cực. ABA giúp điều chỉnh các kỹ năng và hành vi từ tình huống này sang tình huống khác, kiểm soát tình huống phát sinh hành vi tiêu cực và giảm thiểu hành vi tiêu cực. ABA cũng giúp người bệnh đối phó với những giảm sút do tuổi tác, như giảm trí nhớ và duy trì các mối quan hệ. ABA giúp người bệnh quản lý một số thách thức về lối sống đi kèm với nhiều tình trạng sức khỏe thể chất và tinh thần. Tất cả các hành vi mong muốn được chia thành các bước nhỏ hơn và khi học được từng bước, người bệnh sẽ được khen thưởng vì đã thực hiện thành công hành vi mục tiêu.\n\n*Cơ chế:\n\nTriết lý của chủ nghĩa hành vi là nỗ lực cải thiện tình trạng của người bệnh thông qua thay đổi hành vi (ví dụ: giáo dục, điều trị sức khỏe hành vi) sẽ hiệu quả nhất nếu bản thân hành vi là trọng tâm chính. Hành vi là sản phẩm của hoàn cảnh, đặc biệt là các sự kiện xảy ra ngay sau hành vi. Hành vi có thể dự đoán được, hành vi sẽ học được và sẽ thay đổi được theo thời gian. Do đó, thông qua các hành vi để có thể phân tích, đánh giá và đề xuất những hành vi thay thế phù hợp, tích cực.\n\nABA được thực hiện theo nguyên lý “những hành vi được củng cố (thưởng) sẽ tái diễn thường xuyên hơn là những hành vi bị bỏ qua hoặc bị phạt”. ABA giúp cải thiện nhiều lĩnh vực chức năng: nhận thức, quan hệ xã hội, ngôn ngữ, tự phục vụ… Đồng thời phương pháp này cũng nhấn mạnh việc loại bỏ những hành vi tiêu cực và thay thế bằng những hành vi tích cực, giúp trẻ có ứng xử phù hợp với cuộc sống\n\nCơ sở của phương pháp ABA là hành vi được củng cố sẽ được lặp lại liên tục, mục đích dạy kỹ năng cho người bệnh để tự chăm sóc, phục vụ cho chính mình, cải thiện tối đa các hành vi tiêu cực, chưa phù hợp và cuối cùng là cải thiện cuộc sống.\n\nABA cho rằng mọi hành vi mong muốn thay đổi cần xác định ba yếu tố sau đây: “A-BC” trong đó:\n\nTiền đề: là những gì xảy ra ngay trước hành vi (có thể bằng lời nói, chẳng hạn như một mệnh lệnh hoặc yêu cầu. Nó cũng có thể là vật chất, chẳng hạn như đồ chơi hoặc đồ vật, hoặc ánh sáng, âm thanh hoặc thứ gì đó khác trong môi trường). Tiền đề có thể đến từ môi trường, từ người khác hoặc từ bên trong (chẳng hạn như suy nghĩ hoặc cảm giác).\n\nHành vi kết quả: là phản ứng của người bệnh phản ứng đối với tiền đề. Nó có thể là một hành động, một phản ứng bằng lời nói, hoặc một cái gì đó khác\n\n(cử chỉ phi ngôn ngữ, biểu cảm cơ thể…)\n\nHậu quả: là kết quả xảy ra ngay sau hành vi.\n\nTùy thuộc vào nhu cầu, kỹ năng, sở thích và mức độ đáp ứng của mỗi người bệnh mà nhà trị liệu triển khai nhiều kỹ thuật ABA khác nhau và sử dụngcác hệ thống củng cố liên quan khác nhau để dạy người bệnh về hậu quả của việc tham gia vào các hành vi và hoạt động cụ thể, với mục đích những hành vi đó sẽ được tăng lên và lặp lại trong tương lai."}, {"id": "music", "no": 57, "group": "therapy", "icon": "🎵", "title": "Liệu pháp âm nhạc", "summary": "Sử dụng âm nhạc có mục tiêu điều trị, điều chỉnh theo tình trạng và đáp ứng người bệnh.", "definition": "Âm nhạc trị liệu là việc sử dụng âm nhạc (nhịp điệu, giai điệu, hòa âm, tiết tấu…) trong mối quan hệ trị liệu để duy trì phục hồi hoặc cải thiện sự tập trung chú ý, cảm xúc, nhận thức, hành vi, giao tiếp…\n\nÂm nhạc trị liệu có 2 hình thức:\n\nLiệu pháp âm nhạc tích cực chủ động: Người bệnh có thể hát, di chuyển theo điệu nhạc, viết bài hát và chơi các nhạc cụ…\n\nLiệu pháp âm nhạc thụ động: Người bệnh nghe, cảm nhận và tưởng tượng, âm nhạc tưởng tượng có hướng dẫn.\n\nÂm nhạc giúp cho người bệnh nhanh chóng lấy lại sự cân bằng dễ dàng vượt qua các bất ổn về tinh thần thể chất và xã hội. Các giai điệu âm nhạc kích thích sự hoạt động của các giác quan kích hoạt cơ chế điều hòa của não bộ giúp cho con người điều chỉnh cảm xúc, phục hồi chức năng nhận thức như tập trung chú ý và trí nhớ, giúp cải thiện nhận thức và điều chỉnh hành vi, sống tự tin vào bản thân, sống thỏai mái hơn, hạnh phúc hơn và dễ gắn kết yêu thương nhau hơn.\n\nQua các hoạt động âm nhạc người bệnh được cải thiện khả năng và kỹ năng giao tiếp với mọi người giúp họ tự khám phá bản thân, phát triển tư duy sáng tạo, tâm lý thoải mái hỗ trợ cho quá trình điều trị và phục hồi chức năng."}, {"id": "art", "no": 58, "group": "therapy", "icon": "🎨", "title": "Liệu pháp hội họa", "summary": "Can thiệp biểu đạt sáng tạo trong khung trị liệu, bảo mật và lượng giá phù hợp.", "definition": "Trị liệu nghệ thuật hội họa là một hình thức trị liệu tâm lý sử dụng tiến trình sáng tạo trong một không gian chữa lành an toàn để cải thiện và gia tăng sức khỏe tâm lý cho người bệnh.\n\nCó nhiều hình thức nghệ thuật được sử dụng trong liệu pháp này, tuy nhiên cách hiểu phổ biến nhất với cụm từ “nghệ thuật” ở đây là nghệ thuật thị giác. Nghệ thuật thị giác được sử dụng trong trị liệu nghệ thuật bao gồm nhưng không giới hạn trong các hình thức vẽ tranh với than, chì, màu nước, sáp màu, cắt dán hình ảnh, vẽ kể chuyện, nặn đất sét, sáng tạo với vải…\n\nNghệ thuật phản ánh cái đẹp bằng màu sắc, đường nét, hình khối, sắc độ.\n\nThông qua tương tác với các chất liệu và dụng cụ người bệnh có thể khám phá và giải quyết những mâu thuẫn nội tâm, cải thiện hành vi ứng xử, có thể phát triển khả năng nhận thức, tự nhận thức và niềm tin vào bản thân, tự tin tham gia vào các hoạt động xã hội.\n\nGiúp người bệnh giảm căng thẳng, cải thiện về mặt cảm xúc: người bệnh chủ động giải phóng những cảm xúc tiêu cực thay vì thụ động chờ đợi.\n\nGiúp người bệnh cải thiện về mặt xã hội: người bệnh tự tin hòa nhập với xã hội, phát huy khả năng bản thân.\n\nGiúp người bệnh cải thiện về mặt thể chất: Người bệnh giảm căng thẳng, khơi dậy tính chủ động tham gia vào các hoạt động.\n\nGiúp người bệnh cải thiện về thể chất: cải thiện chức năng chi trên (các hoạt động tinh, kỹ năng khéo léo bàn tay trong các bài tô vẽ, tạo hình bằng đất nặn…nghệ thuật trị liệu cải thiện chức năng nhận thức đặc biệt trí nhớ, chức năng điều hành, không gian thị giác…"}, {"id": "sport", "no": 59, "group": "therapy", "icon": "🏃", "title": "Liệu pháp thể dục, thể thao", "summary": "Kế hoạch hoạt động thể chất cần sàng lọc nguy cơ và phối hợp y khoa khi cần.", "definition": "Rèn luyện thể dục thể thao đều đặn không chỉ giúp chúng ta thư giãn đầu óc, cải thiện trí nhớ, giảm căng thẳng và ngủ ngon hơn, mà nó còn là liệu pháp tích cực có tác dụng chống trầm cảm, lo âu, khắc phục chứng tăng động giảm chú ý và nhiều chứng bệnh khác liên quan đến tâm thần.\n\nChức năng rèn luyện sức khỏe của thể dục thể thao đó là thông qua các hoạt động vận động khoa học, hợp lý, thông qua cơ chế sinh học, y học để cải thiện và nâng cao hiệu quả quá trình trao đổi chất, năng lực tổng hợp và phân giải các chất dinh dưỡng trong cơ thể, nâng cao sức khỏe và tăng cường thể chất, làm cho cơ thể và bản thân người tập có được sự phát triển hiệu quả.\n\nLuyện tập thể dục thể thao là phương pháp nên phối hợp để nâng cao thể lực của người bệnh cũng như giúp người bệnh có thể hòa đồng với những người xung quanh, tập dẫn khả năng phối hợp và tạo dựng lại niềm tin vào cuộc sống. Trong điều trị, tập luyên giúp cải thiện triệu chứng, hỗ trợ điều trị nguyên nhân, giảm các bệnh. Lấy lại cho người bệnh không chỉ thể lục tâm lý và sự tự tin khi hòa nhập với tập thể."}, {"id": "social", "no": 60, "group": "therapy", "icon": "🤝", "title": "Liệu pháp tái thích ứng xã hội", "summary": "Hỗ trợ phục hồi chức năng, kỹ năng sống và tái hòa nhập theo mục tiêu cá nhân.", "definition": "Liệu pháp tái thích ứng xã hội là liệu pháp tâm lý dùng kỹ thuật tâm lý để giải thích và thuyết phục người bệnh, giúp họ tự điều chỉnh lại hành vi/ việc làm của mình để chủ động khắc phục những khiếm khuyết về bệnh tật, đảm bảo người bệnh không tách rời các phương thức sinh hoạt xã hội trước đây, nhằm thích ứng và tái hoà nhập với cuộc sống.\n\nLiệu pháp tái thích ứng xã hội trong điều trị bệnh tâm thần cho người bệnh bao gồm 3 cấp độ: (1) dự phòng độ I: điều trị khỏi hoàn toàn, không để tái lại các triệu chứng, biểu hiện bệnh. (2) dự phòng độ II: phát hiện sớm, can thiệp và điều trị sớm giúp ngăn chặn tác hại của bệnh. (3) Dự phòng độ III: tái thích ứng xã hội, phục hồi chức năng về tâm lý xã hội cho người bệnh để họ có thể sinh hoạt, làm việc có ích cho bản thân, gia đình và xã hội."}, {"id": "occupational", "no": 61, "group": "therapy", "icon": "🛠️", "title": "Liệu pháp hoạt động – lao động", "summary": "Can thiệp hoạt động có mục tiêu phục hồi chức năng, theo khả năng và môi trường.", "definition": "Đây là liệu pháp quan trọng vào bậc nhất trong tâm thần học, không thể thiếu được trong cơ sở điều trị nào, nội trú cũng như ngoại trú.\n\nBất kỳ một hoạt động nào của con người đều có 2 thành tố chính: thành tố tâm lý bên trong và các thao tác bên ngoài. Lao động liệu pháp nhằm làm thay đổi, điều chỉnh cái tâm lý bên trong thông qua việc tổ chức thực hiện các thao tác bên ngoài.\n\nLiệu pháp hoạt động lao động làm cho người bệnh quên những cảm giác khó chịu do hoang tưởng ảo giác gây ra, giảm bớt lo lắng về bệnh tật, làm mất những ý nghĩ tiêu cực khi không hoạt động.\n\nLiệu pháp hoạt động lao động giúp người bệnh gắn với tập thể trong dây chuyền sản xuất, tăng tính tổ chức và kỷ luật.\n\nLiệu pháp hoạt động lao động giúp người bệnh có cảm giác thoải mái, khoan khoái trước sản phẩm của mình, khí sắc vui vẻ, lạc quan, gây lòng tin vào khả năng giúp ích xã hội của mình.\n\nLiệu pháp hoạt động lao động giúp người bệnh cải thiện các mối quan hệ và duy trì các mối quan hệ với các thành viên. Huấn luyện bệnh nhân có khả năng độc lập, tự chủ trong hoạt động tự chăm sóc bản thân, giao tiếp, tái thích ứng xã hội.\n\nGiúp bệnh nhân cải thiện và phát huy khả năng tập trung chú ý, sự biểu lộ, tính tổ chức, lòng tự tin.\n\nLiệu pháp hoạt động lao động giúp người bệnh khôi phục và duy trì thói quen và động tác sản xuất, huấn luyện bệnh nhân một số kỹ năng lao động, nghề nghiệp cơ bản để người bệnh sớm hòa nhập cộng đồng.\n\nLiệu pháp hoạt động lao động giúp người bệnh ăn ngon hơn, ngủ yên hơn. Hỗ trợ bệnh nhân lập kế hoạch tái hòa nhập cộng đồng trong tương lai."}, {"id": "eeg", "no": 62, "group": "diagnostic", "icon": "📈", "title": "Đo điện não vi tính", "summary": "Kỹ thuật cận lâm sàng cần thiết bị đạt chuẩn, chỉ định và người thực hiện được đào tạo.", "definition": "Phương pháp đo điện não được sử dụng rộng rãi trên thế giới từ năm 1930. Điện não đồ là phương pháp thăm dò không xâm lấn, dễ thực hiện. Đo điện não đồ là phương pháp ghi hoạt động điện học của não bằng các điện cực đặt tại da đầu một cách chuẩn mực\n\nCùng với sự hiểu biết ngày càng rõ ràng hơn về các vùng chức năng trong não bộ, các quá trình hoạt động tâm thần, hành vi được cho là gây ra các biến đổi sinh hoá, hình ảnh trên điện não đồ đáng tin cậy và lặp lại giống nhau khi các hoạt động đó diễn ra. Việc chạy trên máy chạy bộ giúp bác sĩ tim mạch xác định hoạt động của tim người bệnh, giống như vậy, việc kiểm tra các hoạt động tâm thần như đọc, tính toán, giải quyết vấn đề… thay đổi trên điện não đồ giúp bác sĩ tâm thần biết hoạt động của não bộ người bệnh xử lý như thế nào."}, {"id": "video-eeg", "no": 63, "group": "diagnostic", "icon": "🎥", "title": "Đo điện não video", "summary": "Theo dõi điện não kết hợp video theo chỉ định chuyên khoa và quy trình an toàn cơ sở.", "definition": "Phương pháp đo điện não được sử dụng rộng rãi trên thế giới từ năm 1930, đến nay có nhiều kỹ thuật mới và hiện đại như đo điện não video, ghi điện não não - cộng hưởng từ… Kỹ thuật đo điện não với các điện cực trên da đầu hoặc đặt trong nội sọ (điện não đồ nội sọ); dưới da đầu (dưới màng cứng)\n\nĐiện não đồ là phương pháp thăm dò không xâm lấn, dễ thực hiện.\n\nĐiện não video sử dụng một máy quay video kết nối đồng bộ với máy ghi điện não. Máy quay video sẽ ghi lại toàn bộ chuyển động thấy được của người bệnh, cùng lúc đố máy điện não sẽ ghi lại sóng điện não.\n\nĐiện não video được ghi kéo dài với nhiều mốc thời gian khác nhau tùy theo mục đích chẩn đoán. Thời gian phụ thuộc vào tần số xuất hiện cơn, sự cần thiết khảo sát giấc ngủ, cần xác minh sự liên quan giữa hình thái lâm sàng và biểu hiện trên điện não…"}, {"id": "rheography", "no": 64, "group": "diagnostic", "icon": "🩺", "title": "Đo lưu huyết não", "summary": "Kỹ thuật thăm dò chức năng cần chỉ định, thiết bị và diễn giải bởi nhân sự phù hợp.", "definition": "Đo lưu huyết não là phương pháp ghi lại đại lượng điện trở biến đổi của các mô sống, các cơ quan hoặc các phần của cơ thể khi cho một dòng điện xoay chiều tần số cao, cường độ yếu chạy qua.\n\nCác cơ quan hoặc một phần cơ thể sống luôn có một đại lượng điện trở tương đối ổn định. Những phần của cơ thể luôn có khả năng thay đổi về thể tích làm cho tính dẫn điện cũng thay đổi, sau khi hoạt động có một lượng máu nhất định vào hệ thống tuần hoàn, nhờ khả năng co giãn của mạch máu, lượng máu vào cơ quan tổ chức gây ra biến đổi điện trở.\n\nTrong thực tiễn y học hiện nay, lưu huyết não đồ được sử dụng như một phương pháp chẩn đoán khách quan có giá trị đối với một số bệnh về não, đặc biệt là chẩn đoán trương lực và lưu lượng tuần hoàn mạch máu não."}, {"id": "tms", "no": 65, "group": "restricted", "icon": "🧲", "title": "Kích thích từ xuyên sọ", "summary": "Can thiệp chuyên khoa chỉ thực hiện tại cơ sở đủ điều kiện, sau sàng lọc và đồng thuận.", "definition": "Kích thích từ xuyên sọ TMS (Transcranial Magnetic Stimulation - TMS) là một kỹ thuật kích thích và điều biến thần kinh dựa trên nguyên tắc cảm ứng điện từ của một điện trường trong não, dùng các xung từ tính sóng ngắn xuyên qua xương sọ kích thích các tế bào thần kinh để làm thay đổi chức năng điện thần kinh của vùng não tương ứng. Khi sử dụng các xung từ tính sóng ngắn dưới dạng xung đơn cùng cường độ tác động lặp lại tại một vùng não gọi là kích thích từ xuyên sọ lặp lại (repetitive Transcranial Magnetic Stimulation – rTMS)."}, {"id": "ect", "no": 66, "group": "restricted", "icon": "⚡", "title": "Sốc não thông thường", "summary": "Thủ thuật nguy cơ cao, chỉ thực hiện bởi ê-kíp đủ thẩm quyền theo quy trình cơ sở.", "definition": "Định nghĩa\n\nSốc não (Sốc điện) là một liệu pháp điều trị bằng cách đưa dòng điện một chiều có điện thế, cường độ và thời gian nhất định qua đầu người bệnh tạo nên một cơn co giật giống động kinh cơn lớn. Người bệnh mất ý thức một thời gian ngắn sau đó tỉnh lại dần.\n\nNguyên lý:Dòng điện được truyền vào não, làm thay đổi các hoạt chất hóa học trong não, làm thay đổi các thụ thể thần kinh trong não, từ đó làm thay đổi các triệu chứng.\n\nMục đích: Điều trị một số bệnh lý tâm thần."}, {"id": "agitation", "no": 67, "group": "safety", "icon": "🛡️", "title": "Kỹ thuật kiểm soát kích động", "summary": "Quy trình an toàn khẩn cấp: bảo vệ người bệnh, nhân viên và gọi hỗ trợ theo quy định cơ sở.", "definition": "Định nghĩa:\n\nKích động là một trạng thái hưng phấn tâm lý, vận động quá mức xuất hiện đột ngột, không có mục đích, không thích hợp với hoàn cảnh, thường mang tính chất phá hoại, nguy hiểm cho bản thân và những người xung quanh.\n\nNguyên nhân:\n\nRối loạn tâm thần:\n\nKích động: thường gặp nhất trong các bệnh sau: Tâm thần phân liệt, hưng cảm nặng ở bệnh rối loạn cảm xúc lưỡng cực. Động kinh tâm thần, nhân cách bệnh: thể bùng nổ, paranoia. Rối loạn tâm thần ở người già (sa sút trí tuệ).\n\nCác trạng thái kích động phản ứng: do căn nguyên tâm lý\n\nSang chấn tâm lý mạnh: rối loạn stress sau sang chấn, rối loạn phân ly…\n\nDo thay đổi đột ngột môi trường sinh hoạt (chuyển viện, chuyển phòng), do bệnh nhân tâm thần khác kích động mà kích động theo, do giận dữ, bất bình với những sự việc không vừa ý trong phòng bệnh. Do nhận thức sai là bị đưa đi giam giữ hoặc bị cưỡng ép, bị gia đình lừa dối đưa đi bệnh viện; thường có phủ định bệnh.\n\nKích động do các bệnh thực thể tại não: u não, chấn thương sọ não, dị dạng mạch não, nhiễm khuẩn não –màng não,….\n\nKích động liên quan đến rượu và ma túy:Trạng thái nhiễm độc rượu và ma túy, hội chứng cai."}, {"id": "suicide", "no": 68, "group": "safety", "icon": "🚨", "title": "Kỹ thuật kiểm soát tự sát", "summary": "Quy trình an toàn khẩn cấp: đánh giá nguy cơ trực tiếp, không để người bệnh một mình và kích hoạt hỗ trợ ngay.", "definition": "Tự sát là hành vi tự giết bản thân. Theo tổ chức y tế thế giới WHO, tự sát được chia thành:\n\nÝ tưởng tự sát (suicidal ideation): Thể hiện đơn thuần trong ý nghĩ muốn chết nhưng chưa hành động.\n\nToan tự sát (attempted suicide): Bao gồm các hành vi khác nhau cố gắng để tự tử nhưng không thành công.\n\nTự sát hoàn thành (completed suicide): hành vi trực tiếp hay gián tiếp của bệnh nhân dẫn đến tử vong.\n\nMột số nguyên nhân và các yếu tố nguy cơ hay gặp:\n\nRối loạn trầm cảm\n\nTâm thần phân liệt và rối loạn loạn thần cấp\n\nRối loạn hoang tưởng dai dẳng\n\nRối loạn tâm thần thực tổn\n\nLệ thuộc rượu và sử dụng chất kích thích\n\nRối loạn nhân cách\n\nRối loạn hành vi ăn uống\n\nTự sát và các nguyên nhân xã hội…"}, {"id": "refusal", "no": 69, "group": "safety", "icon": "🍽️", "title": "Kỹ thuật kiểm soát tình trạng không ăn", "summary": "Quy trình chuyên khoa cần đánh giá nguyên nhân, nguy cơ nội khoa và kế hoạch theo dõi tại cơ sở.", "definition": "Trạng thái không ăn là tình trạng người bệnh từ chối sử dụng bất kỳ loại thực phẩm dinh dưỡng nào kéo dài trên 24h mà không có lý do hoặc lý do không hợp lý. Đây là một cấp cứu tâm thần và là một trạng thái bệnh lý thường gặp ở bệnh nhân tâm thần do nhiều nguyên nhân khác nhau với bệnh cảnh kéo dài rất lâu, điều trị gặp nhiều khó khăn. Người bệnh dễ dẫn đến sụt cân, mất nước, suy kiệt, mắc các bệnh nhiễm trùng cơ hội, tử vong, đòi hỏi phải được chẩn đoán đúng, điều trị tích cực và chăm sóc tốt. Nguyên nhân:\n\nTrạng thái căng trương lực (kích động hoặc bất động) của tâm thần phân liệt: Người bệnh thường ngồi hoặc nằm bất động, không chịu ăn uống; khi đưa cơm nước vào miệng thì ngậm chặt lại.\n\nDo hoang tưởng, ảo giác chi phối:\n\n+Hoang tưởng bị tội: người bệnh cho rằng bản thân họ là xấu xa và có nhiều tội lỗi, không đáng sống, không đáng được ăn uống và từ chối không chịu ăn uống.\n\n+Hoang tưởng bị hại: người bệnh luôn lo sợ bị người khác ám hại, đầu độc mình bằng cách bỏ thuốc độc vào thức ăn nên không chịu ăn uống.\n\n+Ảo thanh xui khiến: có tiếng người bảo bệnh nhân không được ăn uống.\n\n+Ảo khứu và ảo vị với nội dung khó chịu: mùi hôi, mùi tanh, vị đắng… -Trầm cảm nặng.\n\nRối loạn bản năng ăn uống: ở trẻ chậm phát triển tâm thần, tâm thần phân liệt giai đoạn sa sút, sa sút trí tuệ ở người già.\n\nDo bệnh lý cơ thể: viêm dạ dày, lao phổi, ung thư, kém hấp thu …\n\nNguyên nhân tâm lý: thức ăn không thích hợp, tôn giáo … -Chán ăn tâm thần (anorexia nevrosa)."}], "protocolGroups": {"all": "Tất cả", "therapy": "Trị liệu tâm lý – phục hồi", "diagnostic": "Cận lâm sàng", "restricted": "Thủ thuật chuyên khoa", "safety": "An toàn khẩn cấp"}, "catalog": [{"no": 1, "key": "dass21", "filename": "test-dass21.html", "name": "DASS-21", "fullname": "Depression Anxiety Stress Scales", "icon": "📊", "category": "stress", "categoryLabel": "Căng thẳng / Cảm xúc", "desc": "Đánh giá đồng thời 3 chiều: Trầm cảm, Lo âu và Căng thẳng.", "badges": [{"label": "21 câu hỏi"}, {"label": "~8 phút"}, {"label": "2 tuần/lần"}], "mode": "interactive", "themeName": "Sage Mist & Terracotta · Xanh Xô Thơm & Đất Nung", "primary": "#2F7D6E", "bg": "#F1F5F1"}, {"no": 2, "key": "gad7", "filename": "test-gad7.html", "name": "GAD-7", "fullname": "Generalized Anxiety Disorder 7-item", "icon": "😰", "category": "anxiety", "categoryLabel": "Lo âu", "desc": "Đánh giá mức độ lo âu tổng quát với thang đo ngắn, dễ lặp lại hàng tuần.", "badges": [{"label": "7 câu hỏi"}, {"label": "~3 phút"}, {"label": "Hàng tuần"}], "mode": "interactive", "themeName": "Nordic Fjord & Warm Amber · Xanh Đá Bắc Âu & Hổ Phách Trầm", "primary": "#3B6E8C", "bg": "#F2F5F7"}, {"no": 3, "key": "hars", "filename": "test-hars.html", "name": "HARS", "fullname": "Hamilton Anxiety Rating Scale", "icon": "🧠", "category": "anxiety", "categoryLabel": "Lo âu", "desc": "Đánh giá lo âu theo cả triệu chứng tâm lý lẫn thể chất.", "badges": [{"label": "14 câu hỏi"}, {"label": "~6 phút"}, {"label": "Khi cần sâu"}], "mode": "interactive", "themeName": "Lavender Stone & Cedarwood · Tím Đá Khói & Gỗ Tuyết Tùng", "primary": "#64547A", "bg": "#F4F2F6"}, {"no": 4, "key": "phq9", "filename": "test-phq9.html", "name": "PHQ-9", "fullname": "Patient Health Questionnaire-9", "icon": "🌧️", "category": "depression", "categoryLabel": "Trầm cảm", "desc": "Sàng lọc và đánh giá mức độ trầm cảm theo thang đo tiêu chuẩn.", "badges": [{"label": "9 câu hỏi"}, {"label": "~4 phút"}, {"label": "2 tuần/lần"}], "mode": "interactive", "themeName": "Eucalyptus Linen & Ochre Clay · Xanh Khuynh Diệp & Đất Hoàng Thổ", "primary": "#356B5C", "bg": "#F0F4F2"}, {"no": 5, "key": "bdi", "filename": "test-bdi.html", "name": "BDI", "fullname": "Thang Đánh Giá Trầm Cảm Beck", "icon": "🌧️", "category": "depression", "categoryLabel": "Trầm cảm", "desc": "Đánh giá chuyên sâu mức độ trầm cảm qua 21 khía cạnh — cảm xúc, thể chất, hành vi.", "badges": [{"label": "21 câu hỏi"}, {"label": "~8 phút"}, {"label": "Khi cần"}], "mode": "interactive", "themeName": "Pewter Moss & Sienna Earth · Rêu Xám Thiếc & Đất Sienna", "primary": "#4A6350", "bg": "#F2F4F0"}, {"no": 6, "key": "psqi", "filename": "test-psqi.html", "name": "PSQI", "fullname": "Pittsburgh Sleep Quality Index", "icon": "😴", "category": "sleep", "categoryLabel": "Giấc ngủ", "desc": "Đánh giá chất lượng giấc ngủ trong tháng gần nhất.", "badges": [{"label": "17 câu hỏi"}, {"label": "~8 phút"}, {"label": "Hàng tháng"}], "mode": "interactive", "themeName": "Twilight Cashmere & Honey Taupe · Xám Hoàng Hôn & Mật Ong Trầm", "primary": "#46566E", "bg": "#F4F3F0"}, {"no": 7, "key": "pss", "filename": "test-pss.html", "name": "PSS", "fullname": "Perceived Stress Scale", "icon": "😣", "category": "stress", "categoryLabel": "Căng thẳng / Cảm xúc", "desc": "Đánh giá mức độ stress cảm nhận được trong 1 tháng gần đây.", "badges": [{"label": "10 câu hỏi"}, {"label": "~4 phút"}, {"label": "Hàng tháng"}], "mode": "interactive", "themeName": "Warm Limestone & Burnt Umber · Đá Vôi Ấm & Nâu Umber", "primary": "#7C5846", "bg": "#F6F3EF"}, {"no": 8, "key": "sdq25", "filename": "test-sdq25.html", "name": "SDQ-25", "fullname": "Bảng hỏi Điểm mạnh & Khó khăn (Tự đánh giá)", "icon": "🧒", "category": "child_teen", "categoryLabel": "Trẻ em / Thanh thiếu niên", "desc": "Sàng lọc điểm mạnh và khó khăn về cảm xúc, hành vi dành cho thanh thiếu niên.", "badges": [{"label": "25 câu hỏi"}, {"label": "~10 phút"}, {"label": "Thanh thiếu niên"}], "mode": "interactive", "themeName": "Soft Celadon & Apricot Sand · Men Ngọc Bích & Cát Mơ", "primary": "#3D7A6E", "bg": "#F1F6F4"}, {"no": 9, "key": "mmse", "filename": "test-mmse.html", "name": "MMSE", "fullname": "Mini-Mental State Exam", "icon": "🧠", "category": "cognitive", "categoryLabel": "Nhận thức", "desc": "Đánh giá chức năng nhận thức: định hướng, trí nhớ, chú ý, ngôn ngữ — thường dùng cho người lớn tuổi.", "badges": [{"label": "19 câu hỏi"}, {"label": "~10 phút"}, {"label": "Người lớn tuổi"}], "mode": "interactive", "themeName": "Antique Parchment & Walnut Bronze · Giấy Cổ Điển & Đồng Óc Chó", "primary": "#635642", "bg": "#F6F4EE"}, {"no": 10, "key": "isi", "filename": "test-isi.html", "name": "ISI", "fullname": "Insomnia Severity Index", "icon": "😴", "category": "sleep", "categoryLabel": "Giấc ngủ", "desc": "Đánh giá mức độ nghiêm trọng và tác động của chứng mất ngủ trong 1 tháng qua.", "badges": [{"label": "7 câu hỏi"}, {"label": "~3 phút"}, {"label": "Hàng tháng"}], "mode": "interactive", "themeName": "Moonlit Slate & Muted Gold · Xanh Ánh Trăng & Vàng Dịu", "primary": "#3E4E68", "bg": "#F2F3F6"}, {"no": 11, "key": "iat", "filename": "test-iat.html", "name": "IAT", "fullname": "Internet Addiction Test", "icon": "📱", "category": "behavior_addiction", "categoryLabel": "Hành vi / Nghiện", "desc": "Đánh giá mức độ nghiện Internet trong tháng qua.", "badges": [{"label": "20 câu hỏi"}, {"label": "~7 phút"}, {"label": "Hàng tháng"}], "mode": "interactive", "themeName": "Mineral Blue-Gray & Copper Rose · Xám Khoáng Thạch & Đồng Hồng", "primary": "#386672", "bg": "#F1F5F6"}, {"no": 12, "key": "audit", "filename": "test-audit.html", "name": "AUDIT", "fullname": "Alcohol Use Disorders Identification Test", "icon": "🍺", "category": "substance", "categoryLabel": "Rượu bia / Chất gây nghiện", "desc": "Sàng lọc mức độ sử dụng rượu bia trong 12 tháng qua (WHO).", "badges": [{"label": "10 câu hỏi"}, {"label": "~5 phút"}, {"label": "12 tháng/lần"}], "mode": "interactive", "themeName": "Raw Linen & Olive Umber · Vải Lanh Thô & Ô Liu Trầm", "primary": "#5C6144", "bg": "#F5F3EE"}, {"no": 13, "key": "hdrs", "filename": "test-hdrs.html", "name": "HDRS", "fullname": "Hamilton Depression Rating Scale", "icon": "🌧️", "category": "clinician", "categoryLabel": "Chuyên gia đánh giá", "desc": "Bài đánh giá theo tài liệu hướng dẫn Bộ Y tế.", "badges": [{"label": "17 câu hỏi"}, {"label": "~Theo quy trình"}], "mode": "interactive", "themeName": "Dusk Pine & Rosewood Taupe · Thông Chiều Tà & Gỗ Hồng Sắc", "primary": "#2E5850", "bg": "#F0F3F2"}, {"no": 14, "key": "cdi", "filename": "test-cdi.html", "name": "CDI", "fullname": "Children's Depression Inventory", "icon": "🧸", "category": "child_teen", "categoryLabel": "Trẻ em / Thanh thiếu niên", "desc": "Bài đánh giá theo tài liệu hướng dẫn Bộ Y tế.", "badges": [{"label": "27 câu hỏi"}, {"label": "~Theo quy trình"}], "mode": "interactive", "themeName": "Warm Oat-Milk & Sage Leaf · Sữa Yến Mạch & Lá Xô Thơm", "primary": "#4E7360", "bg": "#F6F4EF"}, {"no": 15, "key": "gds", "filename": "test-gds.html", "name": "GDS", "fullname": "Geriatric Depression Scale", "icon": "🍂", "category": "depression", "categoryLabel": "Trầm cảm", "desc": "Bài đánh giá theo tài liệu hướng dẫn Bộ Y tế.", "badges": [{"label": "30 câu hỏi"}, {"label": "~Theo quy trình"}], "mode": "interactive", "themeName": "Silver Birch & Warm Chestnut · Bạch Dương Bạc & Hạt Dẻ Ấm", "primary": "#526458", "bg": "#F3F4F2"}, {"no": 16, "key": "epds", "filename": "test-epds.html", "name": "EPDS", "fullname": "Edinburgh Postnatal Depression Scale", "icon": "🤱", "category": "depression", "categoryLabel": "Trầm cảm", "desc": "Bài đánh giá theo tài liệu hướng dẫn Bộ Y tế.", "badges": [{"label": "10 câu hỏi"}, {"label": "~Theo quy trình"}], "mode": "interactive", "themeName": "Dusty Rose-Beige & Soft Plum · Hồng Phấn Trầm & Mận Chín Dịu", "primary": "#7D525E", "bg": "#F7F2F2"}, {"no": 17, "key": "zai", "filename": "test-zai.html", "name": "ZAI", "fullname": "Zung Self-Rating Anxiety Inventory (Trắc nghiệm Lo âu Zung)", "icon": "😟", "category": "anxiety", "categoryLabel": "Lo âu", "desc": "Bài đánh giá theo tài liệu hướng dẫn Bộ Y tế.", "badges": [{"label": "20 câu hỏi"}, {"label": "~Theo quy trình"}], "mode": "interactive", "themeName": "Coastal Pebble & Warm Rust · Sỏi Biển Trung Tính & Cam Đất Trầm", "primary": "#3F6978", "bg": "#F1F4F5"}, {"no": 18, "key": "hads", "filename": "test-hads.html", "name": "HADS", "fullname": "Hospital Anxiety and Depression Scale (Trắc nghiệm Lo âu - Trầm cảm)", "icon": "🏥", "category": "anxiety", "categoryLabel": "Lo âu", "desc": "Bài đánh giá theo tài liệu hướng dẫn Bộ Y tế.", "badges": [{"label": "14 câu hỏi"}, {"label": "~Theo quy trình"}], "mode": "interactive", "themeName": "Hospital Alabaster & Verdigris · Thạch Cao Trắng & Xanh Đồng Cổ", "primary": "#366863", "bg": "#F2F5F4"}, {"no": 19, "key": "mchat", "filename": "test-mchat.html", "name": "M-CHAT", "fullname": "Trắc nghiệm sàng lọc tự kỷ cho trẻ nhỏ 16-30 tháng (M-CHAT)", "icon": "🧩", "category": "child_teen", "categoryLabel": "Trẻ em / Thanh thiếu niên", "desc": "Bài đánh giá theo tài liệu hướng dẫn Bộ Y tế.", "badges": [{"label": "20 câu hỏi"}, {"label": "~Theo quy trình"}], "mode": "interactive", "themeName": "Chamomile Cream & Meadow Olive · Kem Cúc La Mã & Xanh Đồng Cỏ", "primary": "#5A6E4B", "bg": "#F6F5EE"}, {"no": 20, "key": "asq3", "filename": "test-asq3.html", "name": "ASQ-3 (24 tháng)", "fullname": "Trắc nghiệm giai đoạn và lứa tuổi cho trẻ em — Phiếu 6, 24-35 tháng tuổi (ASQ-3, bản Có/Không theo Bộ Y tế)", "icon": "🧸", "category": "child_teen", "categoryLabel": "Trẻ em / Thanh thiếu niên", "desc": "Bài đánh giá theo tài liệu hướng dẫn Bộ Y tế.", "badges": [{"label": "20 câu hỏi"}, {"label": "~Theo quy trình"}], "mode": "interactive", "themeName": "Sandstone & Seafoam Sage · Đá Sa Thạch & Bọt Biển Dịu", "primary": "#487262", "bg": "#F4F5F1"}, {"no": 21, "key": "cgis", "filename": "test-cgis.html", "name": "CGI-S", "fullname": "Trắc nghiệm Ấn tượng lâm sàng chung - Mức độ nặng (Clinical Global Impression - Severity Scale)", "icon": "🎯", "category": "clinician", "categoryLabel": "Chuyên gia đánh giá", "desc": "Bài đánh giá theo tài liệu hướng dẫn Bộ Y tế.", "badges": [{"label": "7 câu hỏi"}, {"label": "~Theo quy trình"}], "mode": "interactive", "themeName": "Graphite Silk & Amber Bronze · Lụa Than Chì & Đồng Hổ Phách", "primary": "#4A525D", "bg": "#F3F3F4"}, {"no": 22, "key": "bprs", "filename": "test-bprs.html", "name": "BPRS", "fullname": "Trắc nghiệm Tâm thần rút gọn (Brief Psychiatric Rating Scale)", "icon": "📋", "category": "clinician", "categoryLabel": "Chuyên gia đánh giá", "desc": "Bài đánh giá theo tài liệu hướng dẫn Bộ Y tế.", "badges": [{"label": "24 câu hỏi"}, {"label": "~Theo quy trình"}], "mode": "interactive", "themeName": "Smoky Quartz & Terracotta Ash · Thạch Anh Khói & Tro Đất Nung", "primary": "#615249", "bg": "#F4F2F0"}, {"no": 23, "key": "panss", "filename": "test-panss.html", "name": "PANSS", "fullname": "Thang Hội chứng Dương tính và Âm tính (Positive and Negative Syndrome Scale)", "icon": "🧩", "category": "clinician", "categoryLabel": "Chuyên gia đánh giá", "desc": "Bài đánh giá theo tài liệu hướng dẫn Bộ Y tế.", "badges": [{"label": "30 câu hỏi"}, {"label": "~Theo quy trình"}], "mode": "interactive", "themeName": "Deep Slate-Mist & Warm Copper · Đá Phiến Sương Mù & Đồng Ấm", "primary": "#3D5265", "bg": "#F1F3F5"}, {"no": 24, "key": "aims", "filename": "test-aims.html", "name": "AIMS", "fullname": "Trắc nghiệm vận động bất thường (Abnormal Involuntary Movement Scale)", "icon": "🕺", "category": "clinician", "categoryLabel": "Chuyên gia đánh giá", "desc": "Bài đánh giá theo tài liệu hướng dẫn Bộ Y tế.", "badges": [{"label": "10 câu hỏi"}, {"label": "~Theo quy trình"}], "mode": "interactive", "themeName": "Flint Ivory & Cypress Green · Ngà Đá Lửa & Xanh Bách Xù", "primary": "#436151", "bg": "#F2F4F1"}, {"no": 25, "key": "hachinski", "filename": "test-hachinski.html", "name": "HACHINSKI", "fullname": "Trắc nghiệm điểm thiếu máu cục bộ Hachinski (Hachinski Ischemic Score)", "icon": "🩸", "category": "cognitive", "categoryLabel": "Nhận thức", "desc": "Bài đánh giá theo tài liệu hướng dẫn Bộ Y tế.", "badges": [{"label": "13 câu hỏi"}, {"label": "~Theo quy trình"}], "mode": "interactive", "themeName": "Aged Vellum & Burgundy Taupe · Giấy Da Cổ & Nâu Đỏ Rượu Vang", "primary": "#6E4B4B", "bg": "#F6F2F0"}, {"no": 26, "key": "himmelbach", "filename": "test-himmelbach.html", "name": "HIMMELBACH", "fullname": "Trắc nghiệm mức độ nghiện Himmelbach (Himmelbach Withdrawal Scale)", "icon": "💉", "category": "substance", "categoryLabel": "Rượu bia / Chất gây nghiện", "desc": "Bài đánh giá theo tài liệu hướng dẫn Bộ Y tế.", "badges": [{"label": "12 câu hỏi"}, {"label": "~Theo quy trình"}], "mode": "interactive", "themeName": "River Clay & Juniper Slate · Đất Sét Sông & Xanh Bách Diệp", "primary": "#345E5B", "bg": "#F1F4F3"}, {"no": 27, "key": "epi", "filename": "test-epi.html", "name": "EPI", "fullname": "Trắc nghiệm Nhân cách Eysenck (Eysenck Personality Inventory)", "icon": "🎭", "category": "personality", "categoryLabel": "Nhân cách", "desc": "Bài đánh giá theo tài liệu hướng dẫn Bộ Y tế.", "badges": [{"label": "57 câu hỏi"}, {"label": "~Theo quy trình"}], "mode": "interactive", "themeName": "Velvet Taupe & Amethyst Gray · Nâu Nhung Trầm & Xám Thạch Anh Tím", "primary": "#5E4E68", "bg": "#F5F3F5"}, {"no": 28, "key": "vanderbilt", "filename": "test-vanderbilt.html", "name": "Vanderbilt", "fullname": "Thang Đánh giá Rối loạn Tăng động Giảm chú ý Vanderbilt (dành cho cha mẹ)", "icon": "⚡", "category": "child_teen", "categoryLabel": "Trẻ em / Thanh thiếu niên", "desc": "Bài đánh giá theo tài liệu hướng dẫn Bộ Y tế.", "badges": [{"label": "47 câu hỏi"}, {"label": "~Theo quy trình"}], "mode": "interactive", "themeName": "Warm Chalk & Pine Needle · Phấn Trắng Ấm & Lá Thông Xanh", "primary": "#3F684E", "bg": "#F3F5F1"}, {"no": 29, "key": "raven_cpm", "filename": "test-raven-cpm.html", "name": "Raven CPM", "fullname": "Coloured Progressive Matrices", "icon": "🧩", "category": "cognitive", "categoryLabel": "Nhận thức", "desc": "Trắc nghiệm phi ngôn ngữ đo tư duy logic bằng hình ảnh. Chuyên gia sẽ chấm điểm theo đáp án gốc.", "badges": [{"label": "36 câu hỏi"}, {"label": "~20 phút"}, {"label": "Chuyên gia chấm"}], "mode": "raven", "themeName": "Architectural Concrete & Indigo Slate · Bê Tông Kiến Trúc & Chàm Đá", "primary": "#394B6A", "bg": "#F2F3F6"}, {"no": 30, "key": "ymrs", "filename": "test-ymrs.html", "name": "YMRS", "fullname": "Young Mania Rating Scale", "icon": "🌤️", "category": "clinician", "categoryLabel": "Chuyên gia đánh giá", "desc": "Đánh giá chuyên môn; không tự chấm điểm.", "badges": [{"label": "Chuyên gia câu hỏi"}, {"label": "Không tự chấm"}], "mode": "specialist", "themeName": "Sunlit Travertine & Olive Bronze · Đá Travertine Nắng Nhẹ & Đồng Ô Liu", "primary": "#685B3E", "bg": "#F6F4EE"}, {"no": 31, "key": "scas", "filename": "test-scas.html", "name": "SCAS", "fullname": "Spence Children’s Anxiety Scale", "icon": "🧒", "category": "child_teen", "categoryLabel": "Trẻ em / Thanh thiếu niên", "desc": "Đánh giá chuyên môn; không tự chấm điểm.", "badges": [{"label": "Chuyên gia câu hỏi"}, {"label": "Không tự chấm"}], "mode": "specialist", "themeName": "Cloud Mist & Soft Teal-Slate · Sương Mây Trắng & Xanh Lam Khói", "primary": "#3B6D7C", "bg": "#F1F5F6"}, {"no": 32, "key": "denver2", "filename": "test-denver2.html", "name": "DENVER2", "fullname": "Denver Developmental Screening Test II", "icon": "🧩", "category": "child_teen", "categoryLabel": "Trẻ em / Thanh thiếu niên", "desc": "Đánh giá chuyên môn; không tự chấm điểm.", "badges": [{"label": "Chuyên gia câu hỏi"}, {"label": "Không tự chấm"}], "mode": "specialist", "themeName": "Warm Flax & Forest Moss · Sợi Lanh Ấm & Rêu Rừng Già", "primary": "#4C6B4F", "bg": "#F4F4EE"}, {"no": 33, "key": "cars", "filename": "test-cars.html", "name": "CARS", "fullname": "Childhood Autism Rating Scale", "icon": "🧩", "category": "child_teen", "categoryLabel": "Trẻ em / Thanh thiếu niên", "desc": "Đánh giá chuyên môn; không tự chấm điểm.", "badges": [{"label": "Chuyên gia câu hỏi"}, {"label": "Không tự chấm"}], "mode": "specialist", "themeName": "Soft Porcelain & Blue Spruce · Sứ Trắng Dịu & Vân Sam Xanh", "primary": "#3A5F73", "bg": "#F1F4F6"}, {"no": 34, "key": "dsm5asd", "filename": "test-dsm5asd.html", "name": "DSM5ASD", "fullname": "DSM-5 Autism Spectrum Disorder Diagnostic Criteria", "icon": "📖", "category": "clinician", "categoryLabel": "Chuyên gia đánh giá", "desc": "Đánh giá chuyên môn; không tự chấm điểm.", "badges": [{"label": "Chuyên gia câu hỏi"}, {"label": "Không tự chấm"}], "mode": "specialist", "themeName": "Archive Paper & Deep Slate-Teal · Giấy Lưu Trữ & Xanh Đá Sâu", "primary": "#2F5E5B", "bg": "#F2F5F4"}, {"no": 35, "key": "cbcl", "filename": "test-cbcl.html", "name": "CBCL", "fullname": "Child Behavior Checklist", "icon": "🧒", "category": "child_teen", "categoryLabel": "Trẻ em / Thanh thiếu niên", "desc": "Đánh giá chuyên môn; không tự chấm điểm.", "badges": [{"label": "Chuyên gia câu hỏi"}, {"label": "Không tự chấm"}], "mode": "specialist", "themeName": "Wheatfield Neutral & Sage Bark · Lúa Mạch Trung Tính & Vỏ Cây Xô Thơm", "primary": "#556850", "bg": "#F5F4EE"}, {"no": 36, "key": "wais", "filename": "test-wais.html", "name": "WAIS", "fullname": "Wechsler Adult Intelligence Scale", "icon": "🧠", "category": "cognitive", "categoryLabel": "Nhận thức", "desc": "Đánh giá chuyên môn; không tự chấm điểm.", "badges": [{"label": "Chuyên gia câu hỏi"}, {"label": "Không tự chấm"}], "mode": "specialist", "themeName": "Oxford Stone & Prussian Slate · Đá Oxford & Xanh Phổ Trầm", "primary": "#364C63", "bg": "#F2F3F5"}, {"no": 37, "key": "wisc", "filename": "test-wisc.html", "name": "WISC", "fullname": "Wechsler Intelligence Scale for Children", "icon": "🧠", "category": "child_teen", "categoryLabel": "Trẻ em / Thanh thiếu niên", "desc": "Đánh giá chuyên môn; không tự chấm điểm.", "badges": [{"label": "Chuyên gia câu hỏi"}, {"label": "Không tự chấm"}], "mode": "specialist", "themeName": "Morning Dew & Willow Green · Sương Sớm Tinh Khôi & Xanh Liễu Rủ", "primary": "#3E6E58", "bg": "#F1F5F2"}, {"no": 38, "key": "wms", "filename": "test-wms.html", "name": "WMS", "fullname": "Wechsler Memory Scale", "icon": "🧠", "category": "cognitive", "categoryLabel": "Nhận thức", "desc": "Đánh giá chuyên môn; không tự chấm điểm.", "badges": [{"label": "Chuyên gia câu hỏi"}, {"label": "Không tự chấm"}], "mode": "specialist", "themeName": "Almond Husk & Cinnamon Slate · Vỏ Hạnh Nhân & Nâu Quế Trầm", "primary": "#635047", "bg": "#F6F3F0"}, {"no": 39, "key": "bourdon", "filename": "test-bourdon.html", "name": "BOURDON", "fullname": "Bourdon Attention Test", "icon": "🔎", "category": "cognitive", "categoryLabel": "Nhận thức", "desc": "Đánh giá chuyên môn; không tự chấm điểm.", "badges": [{"label": "Chuyên gia câu hỏi"}, {"label": "Không tự chấm"}], "mode": "specialist", "themeName": "Steel-Wool Neutral & Amber Rust · Xám Thép Mịn & Nâu Hổ Phách", "primary": "#455561", "bg": "#F2F3F4"}, {"no": 40, "key": "pictogram", "filename": "test-pictogram.html", "name": "PICTOGRAM", "fullname": "Pictogram Memory Test", "icon": "🖼️", "category": "cognitive", "categoryLabel": "Nhận thức", "desc": "Đánh giá chuyên môn; không tự chấm điểm.", "badges": [{"label": "Chuyên gia câu hỏi"}, {"label": "Không tự chấm"}], "mode": "specialist", "themeName": "Gallery Canvas & Sepia Olive · Vải Bố Triển Lãm & Nâu Sepia", "primary": "#5B5944", "bg": "#F5F3EE"}, {"no": 41, "key": "mmpi", "filename": "test-mmpi.html", "name": "MMPI", "fullname": "Minnesota Multiphasic Personality Inventory", "icon": "🎭", "category": "personality", "categoryLabel": "Nhân cách", "desc": "Đánh giá chuyên môn; không tự chấm điểm.", "badges": [{"label": "Chuyên gia câu hỏi"}, {"label": "Không tự chấm"}], "mode": "specialist", "themeName": "Charcoal Linen & Mulberry Taupe · Vải Lanh Than & Tím Dâu Trầm", "primary": "#614856", "bg": "#F4F2F3"}, {"no": 42, "key": "rorschach", "filename": "test-rorschach.html", "name": "RORSCHACH", "fullname": "Rorschach Inkblot Test", "icon": "🖋️", "category": "personality", "categoryLabel": "Nhân cách", "desc": "Đánh giá chuyên môn; không tự chấm điểm.", "badges": [{"label": "Chuyên gia câu hỏi"}, {"label": "Không tự chấm"}], "mode": "specialist", "themeName": "Ink-Wash Ivory & Obsidian Slate · Ngà Thủy Mặc & Đá Huyền Vũ", "primary": "#37414C", "bg": "#F3F3F4"}, {"no": 43, "key": "cat", "filename": "test-cat.html", "name": "CAT", "fullname": "Children’s Apperception Test", "icon": "🖼️", "category": "personality", "categoryLabel": "Nhân cách", "desc": "Đánh giá chuyên môn; không tự chấm điểm.", "badges": [{"label": "Chuyên gia câu hỏi"}, {"label": "Không tự chấm"}], "mode": "specialist", "themeName": "Warm Honey-Linen & Sage Terrazzo · Lanh Mật Ong & Đá Mài Xanh Dịu", "primary": "#4D6959", "bg": "#F6F4EF"}, {"no": 44, "key": "tat", "filename": "test-tat.html", "name": "TAT", "fullname": "Thematic Apperception Test", "icon": "🖼️", "category": "personality", "categoryLabel": "Nhân cách", "desc": "Đánh giá chuyên môn; không tự chấm điểm.", "badges": [{"label": "Chuyên gia câu hỏi"}, {"label": "Không tự chấm"}], "mode": "specialist", "themeName": "Museum Matboard & Umber Gray · Bìa Bảo Tàng & Xám Nâu Umber", "primary": "#5A4E44", "bg": "#F5F2EE"}, {"no": 45, "key": "cattell", "filename": "test-cattell.html", "name": "CATTELL", "fullname": "Cattell Personality Questionnaire", "icon": "🎭", "category": "personality", "categoryLabel": "Nhân cách", "desc": "Đánh giá chuyên môn; không tự chấm điểm.", "badges": [{"label": "Chuyên gia câu hỏi"}, {"label": "Không tự chấm"}], "mode": "specialist", "themeName": "Dune Sand & Agave Teal · Cát Đồi Mịn & Xanh Thùa Dịu", "primary": "#3A675C", "bg": "#F3F5F3"}, {"no": 46, "key": "barnes", "filename": "test-barnes.html", "name": "BARNES", "fullname": "Barnes Akathisia Rating Scale", "icon": "🧍", "category": "clinician", "categoryLabel": "Chuyên gia đánh giá", "desc": "Đánh giá chuyên môn; không tự chấm điểm.", "badges": [{"label": "Chuyên gia câu hỏi"}, {"label": "Không tự chấm"}], "mode": "specialist", "themeName": "Glacier Ash & Cedar Clay · Tro Sông Băng & Đất Tuyết Tùng", "primary": "#3D5D61", "bg": "#F1F4F4"}, {"no": 47, "key": "ciwa", "filename": "test-ciwa.html", "name": "CIWA", "fullname": "Clinical Institute Withdrawal Assessment for Alcohol", "icon": "🍺", "category": "clinician", "categoryLabel": "Chuyên gia đánh giá", "desc": "Đánh giá chuyên môn; không tự chấm điểm.", "badges": [{"label": "Chuyên gia câu hỏi"}, {"label": "Không tự chấm"}], "mode": "specialist", "themeName": "Smoked Oak & Deep Cypress · Gỗ Sồi Xông Khói & Hoàng Đàn Sâu", "primary": "#475D4B", "bg": "#F4F3EE"}]};
