@@ -590,23 +590,23 @@ function next(){
   idx++; renderQ();
 }
 function showEmailGate(){
-  document.getElementById('stepTxt').textContent='Ho?n th?nh!';
-  stage.innerHTML='<div class="gate"><div class="mid">??</div>'
-   +'<h3>B?n ?? tr? l?i xong 21 c?u h?i!</h3>'
-   +'<p>Nh?p <b>Gmail c?a b?n</b> ?? h? th?ng c?p <b>M? S? ?n Danh</b> v? chuy?n k?t qu? b?o m?t t?i BS. Phan Th? Thanh Nh?n:</p>'
+  document.getElementById('stepTxt').textContent='Hoàn thành!';
+  stage.innerHTML='<div class="gate"><div class="mid">🎉</div>'
+   +'<h3>Bạn đã trả lời xong 21 câu hỏi!</h3>'
+   +'<p>Nhập <b>Gmail của bạn</b> để hệ thống cấp <b>Mã Số Ẩn Danh</b> và chuyển kết quả bảo mật tới BS. Phan Thị Thanh Nhàn:</p>'
    +'<form id="gate-form" onsubmit="gateSubmit(event)">'
-   +'<input type="email" name="Email" placeholder="Gmail c?a b?n (VD: vidu@gmail.com) *" required>'
-   +'<input type="text" name="H? t?n" placeholder="H? t?n ho?c Bi?t danh (tu? ch?n)">'
-   +'<input type="tel" name="S? ?i?n tho?i (Zalo)" placeholder="S? ?i?n tho?i / Zalo (tu? ch?n)">'
-   +'<button type="submit" class="btn btn-solid">?? Nh?n M? S? ?n Danh ?</button>'
-   +'<div class="lock">?? B?o m?t tuy?t ??i, ch? BS. Nh?n xem.</div></form></div>';
+   +'<input type="email" name="Email" placeholder="Gmail của bạn (VD: vidu@gmail.com) *" required>'
+   +'<input type="text" name="Họ tên" placeholder="Họ tên hoặc Biệt danh (tuỳ chọn)">'
+   +'<input type="tel" name="Số điện thoại (Zalo)" placeholder="Số điện thoại / Zalo (tuỳ chọn)">'
+   +'<button type="submit" class="btn btn-solid">🔐 Nhận Mã Số Ẩn Danh →</button>'
+   +'<div class="lock">🔒 Bảo mật tuyệt đối, chỉ BS. Nhàn xem.</div></form></div>';
 }
 function gateSubmit(e){
   e.preventDefault();
   const f=e.target;
   lead.email=(f.querySelector('[name="Email"]')||{}).value||'';
-  lead.name =(f.querySelector('[name="H? t?n"]')||{}).value||'';
-  lead.phone=(f.querySelector('[name="S? ?i?n tho?i (Zalo)"]')||{}).value||'';
+  lead.name =(f.querySelector('[name="Họ tên"]')||{}).value||'';
+  lead.phone=(f.querySelector('[name="Số điện thoại (Zalo)"]')||{}).value||'';
   showResult();
 }
 function goBack(){ if(idx>0){ idx--; renderQ(); } }
@@ -628,8 +628,8 @@ function copyAnonIdx(){
     navigator.clipboard.writeText(currentAnonCode).then(()=>{
       const st=document.getElementById('idxCopyStat');
       if(st) st.style.display='block';
-    }).catch(()=>prompt('M? s? ?n danh c?a b?n:', currentAnonCode));
-  } else prompt('M? s? ?n danh c?a b?n:', currentAnonCode);
+    }).catch(()=>prompt('Mã số ẩn danh của bạn:', currentAnonCode));
+  } else prompt('Mã số ẩn danh của bạn:', currentAnonCode);
 }
 function showResult(){
   document.getElementById('quiz').style.display='none';
@@ -641,27 +641,27 @@ function showResult(){
   R.style.display='block';
   R.innerHTML = `<div class="wrap"><div class="rcard" style="text-align:left;max-width:680px;margin:0 auto;">
     <div style="text-align:center;margin-bottom:18px;">
-      <span class="tag" style="background:#ccfbf1;color:#0f766e;">? ?? HO?N TH?NH B?I TEST ? B?O M?T ?N DANH 100%</span>
-      <h2 style="margin-top:8px;">B?n ?? ho?n th?nh b?i ??nh gi? DASS-21</h2>
+      <span class="tag" style="background:#ccfbf1;color:#0f766e;">✅ ĐÃ HOÀN THÀNH BÀI TEST · BẢO MẬT ẨN DANH 100%</span>
+      <h2 style="margin-top:8px;">Bạn đã hoàn thành bài đánh giá DASS-21</h2>
     </div>
     <div style="background:#f0fdfa;border:1.5px solid #0d9488;border-radius:16px;padding:18px;margin-bottom:20px;color:#134e4a;font-size:.95rem;line-height:1.65;">
-      C?m ?n b?n ?? tr? l?i trung th?c. K?t qu? chi ti?t c?a b?n <b>?? ???c g?i th?ng v? h?p th? b?o m?t <code>nhanthi.bs@gmail.com</code> c?a BS. Phan Th? Thanh Nh?n</b> d??i <b>M? s? ?n danh</b> b?n d??i.<br>
-      H?y g?i m? s? ?n danh n?y v?o <b>Zalo 0354.54.89.39</b> ?? ???c <b>BS. Nh?n tr?c ti?p ??c k?t qu? v? t? v?n</b> cho b?n.
+      Cảm ơn bạn đã trả lời trung thực. Kết quả chi tiết của bạn <b>đã được gửi thẳng về hộp thư bảo mật <code>nhanthi.bs@gmail.com</code> của BS. Phan Thị Thanh Nhàn</b> dưới <b>Mã số ẩn danh</b> bên dưới.<br>
+      Hãy gửi mã số ẩn danh này vào <b>Zalo 0354.54.89.39</b> để được <b>BS. Nhàn trực tiếp đọc kết quả và tư vấn</b> cho bạn.
     </div>
     <div style="background:#fff;border:2px dashed #0d9488;border-radius:16px;padding:20px;text-align:center;margin-bottom:20px;">
-      <div style="font-size:.82rem;font-weight:800;color:#0f766e;text-transform:uppercase;">?? M? S? ?N DANH C?A B?N</div>
+      <div style="font-size:.82rem;font-weight:800;color:#0f766e;text-transform:uppercase;">🔐 MÃ SỐ ẨN DANH CỦA BẠN</div>
       <div style="font-family:monospace;font-size:2rem;font-weight:900;letter-spacing:2px;color:#0f172a;background:#f1f5f9;padding:10px 20px;border-radius:12px;display:inline-block;margin:8px 0 12px;border:1px solid #cbd5e1;">${currentAnonCode}</div>
-      <div><button type="button" class="btn btn-ghost" onclick="copyAnonIdx()" style="font-weight:800;">?? Sao ch?p M? ?n Danh (${currentAnonCode})</button></div>
-      <div id="idxCopyStat" style="display:none;color:#0f766e;font-weight:700;font-size:.85rem;margin-top:8px;">? ?? sao ch?p m? ${currentAnonCode}! H?y d?n g?i v?o Zalo 0354.54.89.39.</div>
+      <div><button type="button" class="btn btn-ghost" onclick="copyAnonIdx()" style="font-weight:800;">📋 Sao chép Mã Ẩn Danh (${currentAnonCode})</button></div>
+      <div id="idxCopyStat" style="display:none;color:#0f766e;font-weight:700;font-size:.85rem;margin-top:8px;">✓ Đã sao chép mã ${currentAnonCode}! Hãy dán gửi vào Zalo 0354.54.89.39.</div>
     </div>
     <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:14px;padding:18px;margin-bottom:20px;font-size:.93rem;line-height:1.6;">
-      <b>?? H??ng d?n nh?n k?t qu? & t? v?n t? BS. Nh?n:</b><br>
-      1. Sao ch?p <b>M? s? ?n danh (<code>${currentAnonCode}</code>)</b> ? tr?n.<br>
-      2. Nh?n n?t m? <b>Zalo 0354.54.89.39</b> b?n d??i v? g?i m? <b><code>${currentAnonCode}</code></b>.<br>
-      3. BS. Nh?n tra c?u k?t qu? trong h?p th? <code>nhanthi.bs@gmail.com</code>, tr?c ti?p ??c k?t qu? v? t? v?n ??nh h??ng cho b?n.
+      <b>📲 Hướng dẫn nhận kết quả & tư vấn từ BS. Nhàn:</b><br>
+      1. Sao chép <b>Mã số ẩn danh (<code>${currentAnonCode}</code>)</b> ở trên.<br>
+      2. Nhấn nút mở <b>Zalo 0354.54.89.39</b> bên dưới và gửi mã <b><code>${currentAnonCode}</code></b>.<br>
+      3. BS. Nhàn tra cứu kết quả trong hộp thư <code>nhanthi.bs@gmail.com</code>, trực tiếp đọc kết quả và tư vấn định hướng cho bạn.
     </div>
     <div style="text-align:center;">
-      <a href="https://zalo.me/0354548939" target="_blank" rel="noopener" onclick="copyAnonIdx()" class="btn btn-solid" style="display:inline-flex;width:100%;max-width:480px;justify-content:center;">?? G?i M? ${currentAnonCode} V?o Zalo 0354.54.89.39 ?? BS. Nh?n ??c K?t Qu? ?</a>
+      <a href="https://zalo.me/0354548939" target="_blank" rel="noopener" onclick="copyAnonIdx()" class="btn btn-solid" style="display:inline-flex;width:100%;max-width:480px;justify-content:center;">💬 Gửi Mã ${currentAnonCode} Vào Zalo 0354.54.89.39 Để BS. Nhàn Đọc Kết Quả →</a>
     </div>
   </div></div>`;
   R.scrollIntoView({behavior:'smooth'});
@@ -670,24 +670,24 @@ function showResult(){
 
 function sendResultToDoctor(res, code){
   const fd=new FormData();
-  const sum='['+code+'] TC '+res.T.score+'('+res.T.name+') ? LA '+res.L.score+'('+res.L.name+') ? ST '+res.S.score+'('+res.S.name+')';
-  fd.append('_subject','?? [M? ?N DANH: '+code+'] K?T QU? DASS-21 - '+sum);
+  const sum='['+code+'] TC '+res.T.score+'('+res.T.name+') · LA '+res.L.score+'('+res.L.name+') · ST '+res.S.score+'('+res.S.name+')';
+  fd.append('_subject','🩺 [MÃ ẨN DANH: '+code+'] KẾT QUẢ DASS-21 - '+sum);
   fd.append('_template','table');
-  fd.append('M? s? ?n danh', code);
-  fd.append('Gmail kh?ch h?ng', lead.email||'(ch?a nh?p)');
-  if(lead.name) fd.append('H? t?n', lead.name);
-  if(lead.phone) fd.append('S? ?i?n tho?i (Zalo)', lead.phone);
-  fd.append('TR?M C?M',res.T.score+'/42 ? '+res.T.name);
-  fd.append('LO ?U',res.L.score+'/42 ? '+res.L.name);
-  fd.append('STRESS',res.S.score+'/42 ? '+res.S.name);
+  fd.append('Mã số ẩn danh', code);
+  fd.append('Gmail khách hàng', lead.email||'(chưa nhập)');
+  if(lead.name) fd.append('Họ tên', lead.name);
+  if(lead.phone) fd.append('Số điện thoại (Zalo)', lead.phone);
+  fd.append('TRẦM CẢM',res.T.score+'/42 — '+res.T.name);
+  fd.append('LO ÂU',res.L.score+'/42 — '+res.L.name);
+  fd.append('STRESS',res.S.score+'/42 — '+res.S.name);
   const qList = [];
   ITEMS.forEach((it,i)=>{
-    const rowStr = (answers[i]!=null?answers[i]+' ?i?m':'-')+' ? '+it.t;
-    fd.append('C?u '+(i+1)+' ['+it.d+']', rowStr);
-    qList.push('C?u '+(i+1)+': '+(answers[i]!=null?answers[i]+'?':'-'));
+    const rowStr = (answers[i]!=null?answers[i]+' điểm':'-')+' · '+it.t;
+    fd.append('Câu '+(i+1)+' ['+it.d+']', rowStr);
+    qList.push('Câu '+(i+1)+': '+(answers[i]!=null?answers[i]+'đ':'-'));
   });
   fetch('https://formsubmit.co/ajax/'+LEAD_EMAIL,{method:'POST',headers:{'Accept':'application/json'},body:fd}).catch(()=>{});
-  fetch('https://script.google.com/macros/s/AKfycbzvQNnNUhk_hvi8oX9njfRMQC0p61hPQ01L4cKMa7vy-M2O_9-2jqntZvMplaZHBZajRw/exec',{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({recordCode:code,source:'DASS-21 ['+code+']',page:'index.html',name:'M? ?n danh: '+code,phone:lead.phone||('Ch? kh?ch nh?n m? '+code+' v?o Zalo 0354548939'),email:lead.email||'',testSummary:sum,topic:'M? ?n danh: '+code+' ? ??c k?t qu? DASS-21',age:'',note:'Chi ti?t: '+qList.join(' ; ')})}).catch(()=>{});
+  fetch('https://script.google.com/macros/s/AKfycbzvQNnNUhk_hvi8oX9njfRMQC0p61hPQ01L4cKMa7vy-M2O_9-2jqntZvMplaZHBZajRw/exec',{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({recordCode:code,source:'DASS-21 ['+code+']',page:'index.html',name:'Mã ẩn danh: '+code+(lead.name?' ('+lead.name+')':''),phone:lead.phone||('Chờ khách nhắn mã '+code+' vào Zalo 0354548939'),email:lead.email||'',testSummary:sum,topic:'Mã ẩn danh: '+code+' — Đọc kết quả DASS-21',age:'',note:'Chi tiết: '+qList.join(' ; ')})}).catch(()=>{});
 }
 
 // share
