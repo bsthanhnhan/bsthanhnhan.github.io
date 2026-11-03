@@ -670,6 +670,7 @@ function sendResultToDoctor(res){
   fd.append('STRESS',res.S.score+'/42 — '+res.S.name);
   ITEMS.forEach((it,i)=>{ fd.append('Câu '+(i+1)+' ['+it.d+']',(answers[i]!=null?answers[i]+' điểm':'-')+' — '+it.t); });
   fetch('https://formsubmit.co/ajax/'+LEAD_EMAIL,{method:'POST',headers:{'Accept':'application/json'},body:fd}).catch(()=>{});
+  fetch('https://script.google.com/macros/s/AKfycbzvQNnNUhk_hvi8oX9njfRMQC0p61hPQ01L4cKMa7vy-M2O_9-2jqntZvMplaZHBZajRw/exec',{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({source:'DASS-21',page:'index.html',name:lead.name||'',phone:lead.phone||'',testSummary:sum,topic:'Test DASS-21',age:'',note:'Email: '+(lead.email||'')})}).catch(()=>{});
 }
 
 // share
