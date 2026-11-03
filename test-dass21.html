@@ -823,40 +823,6 @@
       <div><strong>Lưu ý quan trọng:</strong> Các bài kiểm tra này là công cụ <strong>sàng lọc tham khảo</strong>, không phải chẩn đoán y khoa. Kết quả chỉ mang tính định hướng. Nếu điểm số ở mức cao, hãy tham khảo ý kiến chuyên gia tâm lý lâm sàng. Ứng dụng này <strong>không thay thế</strong> dịch vụ y tế chuyên nghiệp.</div>
     </div>
 
-    <!-- Thông tin người làm test (dùng chung qua localStorage) -->
-    <div class="respondent-card">
-      <div class="rc-title-toggle" id="rcToggle">
-        <span>📝 Thông tin người làm test (tuỳ chọn — lưu tự động)</span>
-        <span id="rcArrow">▾ Hướng dẫn</span>
-      </div>
-      <div class="rc-sub" id="rcSub">
-        Điền tên của <strong>người sẽ làm bài</strong> (khách hàng, học sinh, người thân...). Thông tin này dùng chung cho mọi bài test, chỉ cần điền một lần.<br>
-        📅 Có thể điền <strong>Ngày sinh</strong> để hệ thống tự tính Tuổi/Tháng lẻ, hoặc bỏ qua và điền trực tiếp Tuổi/Tháng lẻ.
-      </div>
-      <div class="rc-grid">
-        <div class="rc-field">
-          <label for="respName">Họ và tên người làm bài *</label>
-          <input type="text" id="respName" placeholder="Nguyễn Văn A">
-        </div>
-        <div class="rc-field">
-          <label for="respDob" title="Điền ngày sinh để tự tính Tuổi/Tháng lẻ">Ngày sinh (tuỳ chọn)</label>
-          <input type="date" id="respDob">
-        </div>
-        <div class="rc-field">
-          <label for="respAge">Tuổi</label>
-          <input type="number" id="respAge" min="0" max="120" placeholder="VD: 15">
-        </div>
-        <div class="rc-field">
-          <label for="respEmail">Gmail c?a b?n *</label>
-          <input type="email" id="respEmail" placeholder="vidu@gmail.com">
-        </div>
-      </div>
-      <div class="rc-field" style="margin-top:10px;">
-        <label for="respNote">Ghi chú</label>
-        <input type="text" id="respNote" placeholder="Ghi chú thêm (nếu có)...">
-      </div>
-    </div>
-
     <!-- TEST SHELL -->
     <div class="test-shell" id="testShell">
       <div id="interactiveMount"></div>
