@@ -7,7 +7,7 @@
   var STORAGE_RESP = "peaceflow_respondent_info";
   var STORAGE_HIST = "peaceflow_assessment_history_v1";
   // Google Apps Script Web App URL (có thể cập nhật sau khi deploy GAS)
-  var GAS_WEB_APP_URL = window.GOOGLE_APPS_SCRIPT_URL || "";
+  var GAS_WEB_APP_URL = window.GOOGLE_APPS_SCRIPT_URL || "https://script.google.com/macros/s/AKfycbzvQNnNUhk_hvi8oX9njfRMQC0p61hPQ01L4cKMa7vy-M2O_9-2jqntZvMplaZHBZajRw/exec";
 
   var CATEGORIES = {
     all: "Tất cả (9)",
@@ -1097,7 +1097,7 @@
         fetch(GAS_WEB_APP_URL, {
           method: "POST",
           mode: "no-cors",
-          headers: { "Content-Type": "application/json" },
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
           body: JSON.stringify({
             source: DATA.meta.apiCode || DATA.meta.name,
             page: window.location.pathname.split("/").pop() || DATA.meta.filename,

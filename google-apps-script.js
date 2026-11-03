@@ -6,6 +6,7 @@
  *   2. Dán toàn bộ mã này vào file Code.gs -> Lưu lại
  *   3. Nhấn Triển khai (Deploy) -> Tùy chọn triển khai mới (New deployment) -> Ứng dụng web (Web app)
  *   4. Quyền truy cập: "Bất kỳ ai" (Anyone) -> Sao chép URL Web App dán vào biến GOOGLE_APPS_SCRIPT_URL
+ *   Web App URL đang kết nối: https://script.google.com/macros/s/AKfycbzvQNnNUhk_hvi8oX9njfRMQC0p61hPQ01L4cKMa7vy-M2O_9-2jqntZvMplaZHBZajRw/exec
  */
 
 const SHEET_MASTER = "Leads_Tong_Hop_9_Test";
