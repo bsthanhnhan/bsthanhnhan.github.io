@@ -26,14 +26,15 @@ function doPost(e) {
     const page = String(data.page || "").trim();
     const name = String(data.name || (recordCode ? "Mã ẩn danh: " + recordCode : "Ẩn danh")).trim();
     const phone = String(data.phone || "Chờ nhắn Zalo 0354548939").trim();
+    const email = String(data.email || "").trim();
     const testSummary = String(data.testSummary || "").trim();
     const topic = String(data.topic || (recordCode ? "Mã ẩn danh: " + recordCode : "")).trim();
     const age = String(data.age || "").trim();
     const note = String(data.note || "").trim();
 
-    const row = [now, source, page, name, "'" + phone, age, testSummary, topic, note];
+    const row = [now, source, page, name, "'" + phone, email, age, testSummary, topic, note];
 
-    // 1. Ghi vào Sheet tổng hợp
+    // 1. Ghi vào Sheet tổng hợp (có cột Gmail Khách Hàng)
     const masterSheet = getOrCreateSheet_(ss, SHEET_MASTER);
     masterSheet.appendRow(row);
 
@@ -42,7 +43,7 @@ function doPost(e) {
       const codeBadge = recordCode ? "[" + recordCode + "] " : "";
       MailApp.sendEmail({
         to: NOTIFY_EMAIL,
-        subject: "🩺 " + codeBadge + "[KẾT QUẢ TEST TÂM LÝ] " + source + " — " + name,
+        subject: "🩺 " + codeBadge + "[KẾT QUẢ TEST TÂM LÝ] " + source + " — " + name + (email ? " (" + email + ")" : ""),
         htmlBody:
           "<h3>Kết quả bài trắc nghiệm ẩn danh & Thông tin tư vấn mới</h3>" +
           "<p>Khách hàng vừa hoàn thành bài test và nhận <b>Mã số ẩn danh</b>. Khách được hướng dẫn gửi mã này vào <b>Zalo 0354.54.89.39</b> để BS. Nhàn đọc kết quả và tư vấn.</p>" +
@@ -51,6 +52,7 @@ function doPost(e) {
           (recordCode ? "<tr><td><b>Mã số ẩn danh</b></td><td><b style='font-size:16px;color:#0f766e;'>" + recordCode + "</b></td></tr>" : "") +
           "<tr><td><b>Mã thang đo</b></td><td>" + source + " (" + page + ")</td></tr>" +
           "<tr><td><b>Người làm bài / Mã hồ sơ</b></td><td>" + name + "</td></tr>" +
+          "<tr><td><b>Gmail khách hàng</b></td><td><b style='color:#0068ff;'>" + (email || "Chưa nhập") + "</b></td></tr>" +
           "<tr><td><b>Số điện thoại / Trạng thái Zalo</b></td><td>" + phone + "</td></tr>" +
           "<tr><td><b>Độ tuổi</b></td><td>" + (age || "Ẩn danh") + "</td></tr>" +
           "<tr><td><b>Kết quả bài test (Điểm & Phân độ)</b></td><td><b style='color:#be123c;'>" + testSummary + "</b></td></tr>" +
@@ -83,22 +85,29 @@ function parsePayload_(e) {
 }
 
 function getOrCreateSheet_(ss, sheetName) {
+  const headers = [
+    "Thời gian",
+    "Mã Thang Đo",
+    "Trang Landing Page",
+    "Họ và tên / Mã Ẩn Danh",
+    "Số điện thoại / Zalo",
+    "Gmail Khách Hàng",
+    "Tuổi",
+    "Kết quả Trắc nghiệm",
+    "Chủ đề cần hỗ trợ",
+    "Lời nhắn / Ghi chú"
+  ];
   let sheet = ss.getSheetByName(sheetName);
   if (!sheet) {
     sheet = ss.insertSheet(sheetName);
-    sheet.appendRow([
-      "Thời gian",
-      "Mã Thang Đo",
-      "Trang Landing Page",
-      "Họ và tên",
-      "Số điện thoại / Zalo",
-      "Tuổi",
-      "Kết quả Trắc nghiệm",
-      "Chủ đề cần hỗ trợ",
-      "Lời nhắn / Ghi chú"
-    ]);
-    sheet.getRange(1, 1, 1, 9).setFontWeight("bold").setBackground("#E2EDE6");
+    sheet.appendRow(headers);
+    sheet.getRange(1, 1, 1, headers.length).setFontWeight("bold").setBackground("#E2EDE6");
     sheet.setFrozenRows(1);
+  } else {
+    const firstRow = sheet.getRange(1, 1, 1, headers.length).getValues()[0];
+    if (firstRow[5] !== "Gmail Khách Hàng") {
+      sheet.getRange(1, 1, 1, headers.length).setValues([headers]).setFontWeight("bold").setBackground("#E2EDE6");
+    }
   }
   return sheet;
 }

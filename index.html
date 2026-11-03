@@ -584,10 +584,30 @@ function choose(j){
 }
 function next(){
   if(idx>=ITEMS.length-1){
-    showResult();
+    if(!lead.email){ showEmailGate(); } else { showResult(); }
     return;
   }
   idx++; renderQ();
+}
+function showEmailGate(){
+  document.getElementById('stepTxt').textContent='Ho?n th?nh!';
+  stage.innerHTML='<div class="gate"><div class="mid">??</div>'
+   +'<h3>B?n ?? tr? l?i xong 21 c?u h?i!</h3>'
+   +'<p>Nh?p <b>Gmail c?a b?n</b> ?? h? th?ng c?p <b>M? S? ?n Danh</b> v? chuy?n k?t qu? b?o m?t t?i BS. Phan Th? Thanh Nh?n:</p>'
+   +'<form id="gate-form" onsubmit="gateSubmit(event)">'
+   +'<input type="email" name="Email" placeholder="Gmail c?a b?n (VD: vidu@gmail.com) *" required>'
+   +'<input type="text" name="H? t?n" placeholder="H? t?n ho?c Bi?t danh (tu? ch?n)">'
+   +'<input type="tel" name="S? ?i?n tho?i (Zalo)" placeholder="S? ?i?n tho?i / Zalo (tu? ch?n)">'
+   +'<button type="submit" class="btn btn-solid">?? Nh?n M? S? ?n Danh ?</button>'
+   +'<div class="lock">?? B?o m?t tuy?t ??i, ch? BS. Nh?n xem.</div></form></div>';
+}
+function gateSubmit(e){
+  e.preventDefault();
+  const f=e.target;
+  lead.email=(f.querySelector('[name="Email"]')||{}).value||'';
+  lead.name =(f.querySelector('[name="H? t?n"]')||{}).value||'';
+  lead.phone=(f.querySelector('[name="S? ?i?n tho?i (Zalo)"]')||{}).value||'';
+  showResult();
 }
 function goBack(){ if(idx>0){ idx--; renderQ(); } }
 const lead={name:'',phone:'',email:''};
@@ -654,6 +674,9 @@ function sendResultToDoctor(res, code){
   fd.append('_subject','?? [M? ?N DANH: '+code+'] K?T QU? DASS-21 - '+sum);
   fd.append('_template','table');
   fd.append('M? s? ?n danh', code);
+  fd.append('Gmail kh?ch h?ng', lead.email||'(ch?a nh?p)');
+  if(lead.name) fd.append('H? t?n', lead.name);
+  if(lead.phone) fd.append('S? ?i?n tho?i (Zalo)', lead.phone);
   fd.append('TR?M C?M',res.T.score+'/42 ? '+res.T.name);
   fd.append('LO ?U',res.L.score+'/42 ? '+res.L.name);
   fd.append('STRESS',res.S.score+'/42 ? '+res.S.name);
@@ -664,7 +687,7 @@ function sendResultToDoctor(res, code){
     qList.push('C?u '+(i+1)+': '+(answers[i]!=null?answers[i]+'?':'-'));
   });
   fetch('https://formsubmit.co/ajax/'+LEAD_EMAIL,{method:'POST',headers:{'Accept':'application/json'},body:fd}).catch(()=>{});
-  fetch('https://script.google.com/macros/s/AKfycbzvQNnNUhk_hvi8oX9njfRMQC0p61hPQ01L4cKMa7vy-M2O_9-2jqntZvMplaZHBZajRw/exec',{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({recordCode:code,source:'DASS-21 ['+code+']',page:'index.html',name:'M? ?n danh: '+code,phone:'Ch? kh?ch nh?n m? '+code+' v?o Zalo 0354548939',testSummary:sum,topic:'M? ?n danh: '+code+' ? ??c k?t qu? DASS-21',age:'',note:'Chi ti?t: '+qList.join(' ; ')})}).catch(()=>{});
+  fetch('https://script.google.com/macros/s/AKfycbzvQNnNUhk_hvi8oX9njfRMQC0p61hPQ01L4cKMa7vy-M2O_9-2jqntZvMplaZHBZajRw/exec',{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({recordCode:code,source:'DASS-21 ['+code+']',page:'index.html',name:'M? ?n danh: '+code,phone:lead.phone||('Ch? kh?ch nh?n m? '+code+' v?o Zalo 0354548939'),email:lead.email||'',testSummary:sum,topic:'M? ?n danh: '+code+' ? ??c k?t qu? DASS-21',age:'',note:'Chi ti?t: '+qList.join(' ; ')})}).catch(()=>{});
 }
 
 // share

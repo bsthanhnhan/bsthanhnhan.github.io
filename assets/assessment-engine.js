@@ -32,6 +32,7 @@
 
   // ---------- 1. Respondent Info (Chuẩn PeaceFlow) ----------
   var respName = $("#respName");
+  var respEmail = $("#respEmail");
   var respDob = $("#respDob");
   var respAge = $("#respAge");
   var respAgeMonths = $("#respAgeMonths");
@@ -65,32 +66,50 @@
       var saved = JSON.parse(localStorage.getItem(STORAGE_RESP) || "null");
       if (saved) {
         if (respName) respName.value = saved.name || "";
+        if (respEmail) respEmail.value = saved.email || "";
         if (respDob) respDob.value = saved.dob || "";
         if (respAge) respAge.value = saved.age || "";
         if (respAgeMonths) respAgeMonths.value = saved.ageMonths || "";
         if (respNote) respNote.value = saved.note || "";
         var fName = $("#fName");
         if (fName && !fName.value && saved.name) fName.value = saved.name;
+        var fEmail = $("#fEmail");
+        if (fEmail && !fEmail.value && saved.email) fEmail.value = saved.email;
       }
     } catch (e) {}
   }
 
   function getRespondent() {
+    var saved = {};
+    try {
+      saved = JSON.parse(localStorage.getItem(STORAGE_RESP) || "{}") || {};
+    } catch (e) {}
     return {
-      name: String((respName && respName.value) || "").trim(),
-      dob: String((respDob && respDob.value) || "").trim(),
-      age: String((respAge && respAge.value) || "").trim(),
-      ageMonths: String((respAgeMonths && respAgeMonths.value) || "").trim(),
-      note: String((respNote && respNote.value) || "").trim()
+      name: String((respName && respName.value) || saved.name || "").trim(),
+      email: String((respEmail && respEmail.value) || saved.email || "").trim(),
+      phone: String(saved.phone || "").trim(),
+      dob: String((respDob && respDob.value) || saved.dob || "").trim(),
+      age: String((respAge && respAge.value) || saved.age || "").trim(),
+      ageMonths: String((respAgeMonths && respAgeMonths.value) || saved.ageMonths || "").trim(),
+      note: String((respNote && respNote.value) || saved.note || "").trim()
     };
   }
 
-  function saveRespondent() {
+  function saveRespondent(extra) {
     try {
       var info = getRespondent();
+      if (extra && typeof extra === "object") {
+        if (extra.name !== undefined) info.name = extra.name;
+        if (extra.email !== undefined) info.email = extra.email;
+        if (extra.phone !== undefined) info.phone = extra.phone;
+      }
       localStorage.setItem(STORAGE_RESP, JSON.stringify(info));
+      if (respName && info.name) respName.value = info.name;
+      if (respEmail && info.email) respEmail.value = info.email;
       var fName = $("#fName");
       if (fName && info.name && !fName.value) fName.value = info.name;
+      var fEmail = $("#fEmail");
+      if (fEmail && info.email && !fEmail.value) fEmail.value = info.email;
     } catch (e) {}
   }
 
@@ -104,8 +123,8 @@
       saveRespondent();
     });
   }
-  [respName, respAge, respAgeMonths, respNote].forEach(function (el) {
-    if (el) el.addEventListener("input", saveRespondent);
+  [respName, respEmail, respAge, respAgeMonths, respNote].forEach(function (el) {
+    if (el) el.addEventListener("input", function () { saveRespondent(); });
   });
   loadRespondent();
 
@@ -364,7 +383,7 @@
           curQ += 1;
           renderQuestion();
         } else {
-          renderResult();
+          renderEmailGateOrResult();
         }
       }
 
@@ -388,11 +407,61 @@
               curQ += 1;
               renderQuestion();
             } else {
-              renderResult();
+              renderEmailGateOrResult();
             }
           }, 260);
         });
       });
+    }
+
+    function renderEmailGateOrResult() {
+      var curResp = getRespondent();
+      if (curResp.email && curResp.email.indexOf("@") !== -1) {
+        renderResult();
+        return;
+      }
+      container.innerHTML =
+        '<div class="result-card show" style="text-align:center;max-width:560px;margin:0 auto;">' +
+        '  <div style="font-size:2.4rem;margin-bottom:6px;">🎉</div>' +
+        '  <h3 style="margin-bottom:8px;">Bạn đã hoàn thành toàn bộ câu hỏi ' + esc(scale.name) + '!</h3>' +
+        '  <p style="color:var(--ink-soft);font-size:.94rem;margin-bottom:18px;line-height:1.6;">Vui lòng nhập <strong>Gmail của bạn</strong> bên dưới để hệ thống cấp <strong>Mã Số Ẩn Danh</strong> và chuyển kết quả bảo mật tới <strong>BS. Phan Thị Thanh Nhàn</strong>:</p>' +
+        '  <form id="emailGateForm" style="text-align:left;display:grid;gap:12px;">' +
+        '    <div>' +
+        '      <label style="display:block;font-size:.84rem;font-weight:700;margin-bottom:4px;">Gmail của bạn *</label>' +
+        '      <input type="email" id="gateEmailInput" required placeholder="vidu@gmail.com" value="' + esc(curResp.email || "") + '" style="width:100%;padding:12px 14px;border:1.5px solid #0d9488;border-radius:10px;font-size:.96rem;box-sizing:border-box;">' +
+        "    </div>" +
+        '    <div>' +
+        '      <label style="display:block;font-size:.84rem;font-weight:700;margin-bottom:4px;">Họ tên hoặc Biệt danh (tuỳ chọn)</label>' +
+        '      <input type="text" id="gateNameInput" placeholder="Nguyễn Văn A (hoặc Biệt danh)" value="' + esc(curResp.name || "") + '" style="width:100%;padding:11px 14px;border:1.5px solid #cbd5e1;border-radius:10px;font-size:.94rem;box-sizing:border-box;">' +
+        "    </div>" +
+        '    <div>' +
+        '      <label style="display:block;font-size:.84rem;font-weight:700;margin-bottom:4px;">Số điện thoại / Zalo (tuỳ chọn)</label>' +
+        '      <input type="tel" id="gatePhoneInput" placeholder="09xx xxx xxx" value="' + esc(curResp.phone || "") + '" style="width:100%;padding:11px 14px;border:1.5px solid #cbd5e1;border-radius:10px;font-size:.94rem;box-sizing:border-box;">' +
+        "    </div>" +
+        '    <button type="submit" class="btn btn-teal" style="width:100%;justify-content:center;padding:14px;font-size:1rem;font-weight:800;margin-top:4px;">🔐 Nhận Mã Số Ẩn Danh & Hoàn Tất Bài Test &rarr;</button>' +
+        '    <div style="text-align:center;font-size:.8rem;color:var(--ink-soft);">🔒 Bảo mật 100% — Thông tin chỉ gửi riêng cho BS. Phan Thị Thanh Nhàn</div>' +
+        "  </form>" +
+        "</div>";
+
+      var gateForm = $("#emailGateForm");
+      if (gateForm) {
+        gateForm.addEventListener("submit", function (ev) {
+          ev.preventDefault();
+          var gEmail = String((($("#gateEmailInput") || {}).value) || "").trim();
+          var gName = String((($("#gateNameInput") || {}).value) || "").trim();
+          var gPhone = String((($("#gatePhoneInput") || {}).value) || "").trim();
+          if (!gEmail || gEmail.indexOf("@") === -1) {
+            alert("Vui lòng nhập địa chỉ Gmail hợp lệ của bạn.");
+            return;
+          }
+          saveRespondent({
+            email: gEmail,
+            name: gName || curResp.name,
+            phone: gPhone || curResp.phone
+          });
+          renderResult();
+        });
+      }
     }
 
     function renderResult() {
@@ -615,6 +684,8 @@
       autoFd.append("Bài trắc nghiệm", scale.name + " (" + scale.fullname + ")");
       autoFd.append("Thời gian hoàn thành", timeStr);
       autoFd.append("Người làm bài", resp.name || "Khách hàng ẩn danh");
+      autoFd.append("Gmail khách hàng", resp.email || "Chưa nhập");
+      if (resp.phone) autoFd.append("Số điện thoại / Zalo", resp.phone);
       autoFd.append(
         "Độ tuổi / Năm sinh",
         (resp.age ? resp.age + " tuổi" : "") + (resp.dob ? " (" + resp.dob + ")" : "") || "Ẩn danh"
@@ -646,7 +717,8 @@
             source: ((meta && meta.apiCode) || scale.name) + " [" + recordCode + "]",
             page: window.location.pathname.split("/").pop() || (meta && meta.filename) || "",
             name: "Mã ẩn danh: " + recordCode + (resp.name ? " (" + resp.name + ")" : ""),
-            phone: "Chờ khách nhắn mã " + recordCode + " vào Zalo 0354548939",
+            phone: resp.phone || "Chờ khách nhắn mã " + recordCode + " vào Zalo 0354548939",
+            email: resp.email || "",
             testSummary: summaryForForm,
             topic: "Mã ẩn danh: " + recordCode + " — Đọc kết quả " + scale.name,
             age: resp.age || "",
@@ -779,6 +851,7 @@
                 page: window.location.pathname.split("/").pop() || (meta && meta.filename) || "",
                 name: "Mã ẩn danh: " + recordCode + (resp.name ? " (" + resp.name + ")" : ""),
                 phone: qPhone,
+                email: resp.email || "",
                 testSummary: summaryForForm,
                 topic: "Khách để lại SĐT nhận tư vấn mã " + recordCode,
                 age: resp.age || "",
@@ -1250,6 +1323,7 @@
     submitBtn.addEventListener("click", function () {
       var name = (($("#fName") || {}).value || "").trim();
       var phone = (($("#fPhone") || {}).value || "").trim();
+      var email = (($("#fEmail") || {}).value || "").trim();
       var summary = (($("#fTestSummary") || {}).value || "").trim();
       var topic = (($("#fTopic") || {}).value || "").trim();
       var msg = (($("#fMsg") || {}).value || "").trim();
@@ -1266,12 +1340,14 @@
       }
 
       var resp = getRespondent();
+      var finalEmail = email || resp.email || "";
       var codeStr = window.__lastRecordCode__ || "Chưa có mã";
       var fd = new FormData();
       fd.append("_subject", "🌿 Đăng ký tư vấn [" + DATA.meta.name + "] [" + codeStr + "] — " + name);
       fd.append("_template", "table");
       fd.append("Mã số ẩn danh", codeStr);
       fd.append("Họ tên", name);
+      fd.append("Gmail khách hàng", finalEmail || "(chưa nhập)");
       fd.append("Số điện thoại / Zalo", phone);
       fd.append("Bài test", summary || DATA.meta.name);
       fd.append("Chủ đề cần hỗ trợ", topic);
@@ -1294,6 +1370,7 @@
             page: window.location.pathname.split("/").pop() || DATA.meta.filename,
             name: name + " (" + codeStr + ")",
             phone: phone,
+            email: finalEmail,
             testSummary: summary,
             topic: topic,
             age: resp.age || "",
