@@ -21,12 +21,13 @@ function doPost(e) {
     const data = parsePayload_(e);
 
     const now = Utilities.formatDate(new Date(), "Asia/Ho_Chi_Minh", "dd/MM/yyyy HH:mm:ss");
+    const recordCode = String(data.recordCode || "").trim();
     const source = String(data.source || "UNKNOWN").trim();
     const page = String(data.page || "").trim();
-    const name = String(data.name || "").trim();
-    const phone = String(data.phone || "").trim();
+    const name = String(data.name || (recordCode ? "Mã ẩn danh: " + recordCode : "Ẩn danh")).trim();
+    const phone = String(data.phone || "Chờ nhắn Zalo 0354548939").trim();
     const testSummary = String(data.testSummary || "").trim();
-    const topic = String(data.topic || "").trim();
+    const topic = String(data.topic || (recordCode ? "Mã ẩn danh: " + recordCode : "")).trim();
     const age = String(data.age || "").trim();
     const note = String(data.note || "").trim();
 
@@ -36,22 +37,25 @@ function doPost(e) {
     const masterSheet = getOrCreateSheet_(ss, SHEET_MASTER);
     masterSheet.appendRow(row);
 
-    // 2. Gửi email thông báo tức thì cho BS. Phan Thị Thanh Nhàn
+    // 2. Gửi email thông báo tức thì về nhanthi.bs@gmail.com cho BS. Phan Thị Thanh Nhàn
     if (NOTIFY_EMAIL) {
+      const codeBadge = recordCode ? "[" + recordCode + "] " : "";
       MailApp.sendEmail({
         to: NOTIFY_EMAIL,
-        subject: "🩺 [9 TEST TÂM LÝ] " + source + " — " + name + " (" + phone + ")",
+        subject: "🩺 " + codeBadge + "[KẾT QUẢ TEST TÂM LÝ] " + source + " — " + name,
         htmlBody:
-          "<h3>Thông tin đăng ký tư vấn & Kết quả sàng lọc mới</h3>" +
+          "<h3>Kết quả bài trắc nghiệm ẩn danh & Thông tin tư vấn mới</h3>" +
+          "<p>Khách hàng vừa hoàn thành bài test và nhận <b>Mã số ẩn danh</b>. Khách được hướng dẫn gửi mã này vào <b>Zalo 0354.54.89.39</b> để BS. Nhàn đọc kết quả và tư vấn.</p>" +
           "<table border='1' cellpadding='8' cellspacing='0' style='border-collapse:collapse;font-family:sans-serif;'>" +
           "<tr><td><b>Thời gian</b></td><td>" + now + "</td></tr>" +
+          (recordCode ? "<tr><td><b>Mã số ẩn danh</b></td><td><b style='font-size:16px;color:#0f766e;'>" + recordCode + "</b></td></tr>" : "") +
           "<tr><td><b>Mã thang đo</b></td><td>" + source + " (" + page + ")</td></tr>" +
-          "<tr><td><b>Họ và tên</b></td><td>" + name + "</td></tr>" +
-          "<tr><td><b>Số điện thoại / Zalo</b></td><td>" + phone + "</td></tr>" +
-          "<tr><td><b>Độ tuổi</b></td><td>" + (age || "Chưa nhập") + "</td></tr>" +
-          "<tr><td><b>Kết quả bài test</b></td><td><b>" + testSummary + "</b></td></tr>" +
+          "<tr><td><b>Người làm bài / Mã hồ sơ</b></td><td>" + name + "</td></tr>" +
+          "<tr><td><b>Số điện thoại / Trạng thái Zalo</b></td><td>" + phone + "</td></tr>" +
+          "<tr><td><b>Độ tuổi</b></td><td>" + (age || "Ẩn danh") + "</td></tr>" +
+          "<tr><td><b>Kết quả bài test (Điểm & Phân độ)</b></td><td><b style='color:#be123c;'>" + testSummary + "</b></td></tr>" +
           "<tr><td><b>Chủ đề cần hỗ trợ</b></td><td>" + topic + "</td></tr>" +
-          "<tr><td><b>Lời nhắn / Ghi chú</b></td><td>" + (note || "(không có)") + "</td></tr>" +
+          "<tr><td><b>Chi tiết câu trả lời / Ghi chú</b></td><td>" + (note || "(không có)") + "</td></tr>" +
           "</table>"
       });
     }

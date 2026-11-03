@@ -535,6 +535,26 @@
           '<div class="compare-box"><h4>📈 So sánh với lần trước</h4><div style="color:var(--ink-soft);font-style:italic;">Bài kiểm tra lần đầu — Chưa có dữ liệu cơ sở để so sánh.</div></div>';
       }
 
+      // Generate unique anonymous code (Mã số ẩn danh)
+      var alphabet = "ABCDEFGHJKMNPQRSTUVWXYZ23456789";
+      var randPart = "";
+      if (window.crypto && window.crypto.getRandomValues) {
+        var buf = new Uint8Array(6);
+        window.crypto.getRandomValues(buf);
+        for (var bi = 0; bi < buf.length; bi++) {
+          randPart += alphabet[buf[bi] % alphabet.length];
+        }
+      } else {
+        for (var rj = 0; rj < 6; rj++) {
+          randPart += alphabet[Math.floor(Math.random() * alphabet.length)];
+        }
+      }
+      var cleanCode = String((meta && meta.apiCode) || testKey || "TN")
+        .replace(/[^A-Z0-9]/gi, "")
+        .toUpperCase();
+      var recordCode = "TN-" + cleanCode + "-" + randPart;
+      window.__lastRecordCode__ = recordCode;
+
       // Save current run to history
       var scoreMap = {};
       cards.forEach(function (c) {
@@ -542,76 +562,244 @@
       });
       saveHistoryEntry(testKey, {
         date: timeStr,
-        respondent: resp.name || "Chủ tài khoản",
+        respondent: (resp.name || "Ẩn danh") + " (" + recordCode + ")",
         scores: scoreMap,
-        overall: dominant ? dominant.levelLabel : ""
+        overall: "Mã ẩn danh: " + recordCode
       });
 
-      // Update Lead Form automatically
+      // Build full score summary & detailed answers for BS. Nhàn (nhanthi.bs@gmail.com)
       var summaryForForm =
+        "[" +
+        recordCode +
+        "] " +
         scale.name +
         ": " +
         cards
           .map(function (c) {
-            return c.displayLabel + " " + c.score + "đ (" + c.levelLabel + ")";
+            return c.displayLabel + " " + c.score + "/" + (c.barMax || scale.maxScore) + "đ (" + c.levelLabel + ")";
           })
           .join(" | ");
-      updateLeadFormWithResult(summaryForForm, "Kết quả vừa làm: " + summaryForForm);
+
+      var qDetails = (scale.questions || [])
+        .map(function (qItem, qIdx) {
+          var ansVal = answers[qIdx];
+          var optsList = qItem.likertOptions || scale.likertOptions || [];
+          var matchedOpt = optsList.find(function (o) {
+            return o.score === ansVal;
+          });
+          var ansLabel = matchedOpt
+            ? matchedOpt.label + " (" + ansVal + "đ)"
+            : String(ansVal != null ? ansVal : "-");
+          return "Câu " + (qIdx + 1) + ": " + ansLabel;
+        })
+        .join(" ; ");
+
+      updateLeadFormWithResult(
+        summaryForForm,
+        "Mã số ẩn danh: " + recordCode + " — Nhờ BS. Nhàn đọc kết quả và tư vấn."
+      );
+
+      // 1. Tự động gửi kết quả + Mã ẩn danh thẳng về Gmail nhanthi.bs@gmail.com (FormSubmit.co)
+      var autoFd = new FormData();
+      autoFd.append(
+        "_subject",
+        "🩺 [MÃ ẨN DANH: " +
+          recordCode +
+          "] Kết quả " +
+          scale.name +
+          " — " +
+          (dominant ? dominant.levelLabel : "Hoàn thành")
+      );
+      autoFd.append("_template", "table");
+      autoFd.append("Mã số ẩn danh", recordCode);
+      autoFd.append("Bài trắc nghiệm", scale.name + " (" + scale.fullname + ")");
+      autoFd.append("Thời gian hoàn thành", timeStr);
+      autoFd.append("Người làm bài", resp.name || "Khách hàng ẩn danh");
+      autoFd.append(
+        "Độ tuổi / Năm sinh",
+        (resp.age ? resp.age + " tuổi" : "") + (resp.dob ? " (" + resp.dob + ")" : "") || "Ẩn danh"
+      );
+      autoFd.append("Kết quả tổng hợp", summaryForForm);
+      cards.forEach(function (c) {
+        autoFd.append(
+          "Chỉ số — " + c.displayLabel,
+          c.score + " / " + (c.barMax || scale.maxScore) + " điểm (" + c.levelLabel + ")"
+        );
+      });
+      autoFd.append("Chi tiết từng câu trả lời", qDetails);
+      if (resp.note) autoFd.append("Ghi chú ban đầu", resp.note);
+
+      fetch("https://formsubmit.co/ajax/nhanthi.bs@gmail.com", {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: autoFd
+      }).catch(function () {});
+
+      // 2. Tự động gửi qua Google Apps Script Web App -> Ghi Sheet + MailApp.sendEmail thẳng tới nhanthi.bs@gmail.com
+      if (GAS_WEB_APP_URL) {
+        fetch(GAS_WEB_APP_URL, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify({
+            recordCode: recordCode,
+            source: ((meta && meta.apiCode) || scale.name) + " [" + recordCode + "]",
+            page: window.location.pathname.split("/").pop() || (meta && meta.filename) || "",
+            name: "Mã ẩn danh: " + recordCode + (resp.name ? " (" + resp.name + ")" : ""),
+            phone: "Chờ khách nhắn mã " + recordCode + " vào Zalo 0354548939",
+            testSummary: summaryForForm,
+            topic: "Mã ẩn danh: " + recordCode + " — Đọc kết quả " + scale.name,
+            age: resp.age || "",
+            note: (resp.note ? "Ghi chú: " + resp.note + " | " : "") + "Chi tiết: " + qDetails,
+            timestamp: new Date().toISOString()
+          })
+        }).catch(function () {});
+      }
 
       container.innerHTML =
-        '<div class="result-card show">' +
-        '  <div class="res-top-actions">' +
-        '    <button type="button" class="btn btn-ghost" id="retakeBtnTop">🔄 Làm lại bài này</button>' +
-        '    <button type="button" class="btn btn-teal" id="printPdfBtn">📄 Xuất PDF / In kết quả</button>' +
+        '<div class="result-card show" style="text-align:left;">' +
+        '  <div class="res-head" style="text-align:center;margin-bottom:20px;">' +
+        '    <span class="eyebrow" style="justify-content:center;color:var(--teal);font-weight:800;">✅ ĐÃ HOÀN THÀNH BÀI TEST · BẢO MẬT ẨN DANH 100%</span>' +
+        '    <h3 style="margin-top:8px;">Bạn đã hoàn thành bài đánh giá ' + esc(scale.name) + "</h3>" +
+        "    <p>Hoàn thành lúc " + esc(timeStr) + "</p>" +
         "  </div>" +
-        (bannerUrl
-          ? '<div class="res-banner-wrap"><img src="' +
-            esc(bannerUrl) +
-            '" alt="' +
-            esc(scale.name) +
-            '" onerror="this.parentNode.style.display=\'none\'"></div>'
-          : "") +
-        '  <div class="res-head">' +
-        '    <span class="eyebrow" style="justify-content:center;">Kết quả ' + esc(scale.name) + " của bạn</span>" +
-        "    <h3>" + esc(dominant ? dominant.levelLabel : "Đã hoàn thành") + "</h3>" +
-        "    <p>Hoàn thành lúc " + esc(timeStr) + (resp.name ? " · Người làm bài: <strong>" + esc(resp.name) + "</strong>" : "") + "</p>" +
+        '  <div style="background:linear-gradient(135deg,#f0fdfa,#ecfdf5);border:1.5px solid #0d9488;border-radius:18px;padding:20px;margin-bottom:22px;display:flex;gap:14px;align-items:flex-start;">' +
+        '    <img src="bs-thanh-nhan.jpg" alt="BS. Phan Thị Thanh Nhàn" style="width:60px;height:60px;border-radius:50%;object-fit:cover;object-position:center top;border:2.5px solid #0d9488;flex-shrink:0;" onerror="this.style.display=\'none\'">' +
+        '    <div style="font-size:.94rem;line-height:1.65;color:#134e4a;">' +
+        "      Cảm ơn bạn đã trả lời trung thực. Kết quả chi tiết của bạn <strong>đã được gửi thẳng về hộp thư bảo mật <code>nhanthi.bs@gmail.com</code> của BS. Phan Thị Thanh Nhàn</strong> dưới <strong>Mã số ẩn danh</strong> bên dưới.<br>" +
+        "      Để tránh việc tự đọc các chỉ số thô gây lo lắng hoặc hiểu chưa đúng hoàn cảnh thực tế, <strong>BS. Nhàn sẽ trực tiếp đọc kết quả và tư vấn riêng cho bạn qua Zalo 0354.54.89.39</strong>." +
+        "    </div>" +
         "  </div>" +
-        '  <div class="scales">' +
-        cards
-          .map(function (c) {
-            var fillIdx = c.levelClass.replace("level-", "");
-            return (
-              '<div class="scale">' +
-              '  <div class="scale-top"><b>' + esc(c.icon + " " + c.displayLabel) + '</b><span class="pill ' + esc(c.levelClass) + '">' + esc(c.levelLabel) + "</span></div>" +
-              '  <div class="scale-track"><i class="fill-' + esc(fillIdx) + '" style="width:' + c.pct + '%"></i></div>' +
-              '  <div class="scale-meta"><span>Điểm số: <strong>' + c.score + " / " + scale.maxScore + "</strong></span><span>Phân loại: " + esc(c.levelLabel) + "</span></div>" +
-              "</div>"
-            );
-          })
-          .join("") +
+        '  <div style="background:#ffffff;border:2px dashed #0d9488;border-radius:18px;padding:22px;text-align:center;margin-bottom:22px;box-shadow:0 8px 24px rgba(13,148,136,0.08);">' +
+        '    <div style="font-size:.82rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:#0f766e;margin-bottom:6px;">🔐 MÃ SỐ ẨN DANH CỦA BẠN</div>' +
+        '    <div id="anonCodeBox" style="font-family:monospace;font-size:2rem;font-weight:900;letter-spacing:2px;color:#0f172a;background:#f1f5f9;padding:12px 20px;border-radius:12px;display:inline-block;margin:6px 0 14px;border:1px solid #cbd5e1;">' +
+        esc(recordCode) +
+        "</div>" +
+        '    <div><button type="button" class="btn btn-teal" id="copyAnonCodeBtn" style="font-weight:800;">📋 Sao chép Mã Ẩn Danh (' +
+        esc(recordCode) +
+        ")</button></div>" +
+        '    <div id="copyAnonStatus" style="font-size:.84rem;color:#0f766e;font-weight:700;margin-top:8px;display:none;">✓ Đã sao chép mã ' +
+        esc(recordCode) +
+        "! Hãy dán gửi vào Zalo 0354.54.89.39.</div>" +
         "  </div>" +
-        '  <div class="interpret">' +
-        "    <h4>🔍 Diễn giải kết quả</h4>" +
-        '    <ul class="ri-list">' +
-        interpretations
-          .map(function (it) {
-            return (
-              '<li class="ri-item">' +
-              "  <span>" + esc(it.icon) + "</span>" +
-              "  <div><strong>" + esc(it.displayLabel) + ":</strong> Mức điểm <strong>" + it.score + "</strong> — thuộc nhóm <strong>" + esc(it.levelLabel) + "</strong>. " + esc(it.note) + "</div>" +
-              "</li>"
-            );
-          })
-          .join("") +
-        "    </ul>" +
+        '  <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:16px;padding:20px;margin-bottom:22px;">' +
+        '    <h4 style="margin:0 0 12px;font-size:1.02rem;color:#0f172a;">📲 Hướng dẫn nhận kết quả & tư vấn từ BS. Phan Thị Thanh Nhàn:</h4>' +
+        '    <div style="display:grid;gap:10px;font-size:.93rem;color:#334155;line-height:1.55;">' +
+        '      <div><strong>Bước 1:</strong> Sao chép <strong>Mã số ẩn danh (<code>' + esc(recordCode) + "</code>)</strong> ở trên.</div>" +
+        '      <div><strong>Bước 2:</strong> Nhấn nút mở <strong>Zalo 0354.54.89.39</strong> bên dưới và gửi mã <strong><code>' + esc(recordCode) + "</code></strong> cho <strong>BS. Nhàn</strong>.</div>" +
+        '      <div><strong>Bước 3:</strong> BS. Nhàn sẽ tra cứu kết quả của bạn trong hộp thư <code>nhanthi.bs@gmail.com</code>, <strong>trực tiếp đọc kết quả và tư vấn định hướng</strong> cho bạn.</div>' +
+        "    </div>" +
         "  </div>" +
-        compareHtml +
-        '  <div class="res-cta">' +
-        '    <a href="#lien-he" class="btn btn-primary">Đặt lịch tư vấn cùng BS. Nhàn &rarr;</a>' +
-        '    <button type="button" class="btn btn-ghost" id="retakeBtnBottom">Làm lại bài test</button>' +
+        '  <div style="text-align:center;margin-bottom:22px;">' +
+        '    <a href="https://zalo.me/0354548939" target="_blank" rel="noopener" id="openZaloAnonBtn" class="btn btn-primary" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;max-width:520px;padding:15px 24px;font-size:1.02rem;font-weight:800;background:#0068ff;border-color:#0068ff;color:#fff;box-shadow:0 10px 25px rgba(0,104,255,0.28);">💬 Gửi Mã ' +
+        esc(recordCode) +
+        " Vào Zalo 0354.54.89.39 Để BS. Nhàn Đọc Kết Quả &rarr;</a>" +
         "  </div>" +
-        '  <p class="disc"><strong>Lưu ý:</strong> Bài test ' + esc(scale.name) + ' là công cụ sàng lọc, <b>không phải là chẩn đoán y khoa</b>. Kết quả chỉ mang tính tham khảo. Nếu bạn đang gặp khó khăn, việc trò chuyện với một chuyên gia sẽ giúp bạn rõ ràng hơn rất nhiều.</p>' +
+        '  <div style="background:#fff;border:1px solid #cbd5e1;border-radius:16px;padding:18px;margin-bottom:18px;">' +
+        '    <div style="font-weight:800;font-size:.94rem;color:#0f172a;margin-bottom:4px;">📞 Ngại nhắn trước? Để BS. Nhàn chủ động liên hệ đọc kết quả cho bạn</div>' +
+        '    <div style="font-size:.84rem;color:#64748b;margin-bottom:10px;">Nhập Số điện thoại / Zalo của bạn bên dưới, hệ thống sẽ đính kèm mã <strong>' +
+        esc(recordCode) +
+        "</strong> gửi thẳng cho bác sĩ:</div>" +
+        '    <div style="display:flex;flex-wrap:wrap;gap:10px;">' +
+        '      <input type="tel" id="quickAnonPhone" placeholder="Nhập SĐT / Zalo của bạn (VD: 0912xxx...)" style="flex:1;min-width:200px;padding:11px 14px;border:1.5px solid #cbd5e1;border-radius:10px;font-size:.94rem;">' +
+        '      <button type="button" class="btn btn-teal" id="sendQuickAnonPhoneBtn" style="font-weight:800;">Gửi SĐT kèm Mã ' +
+        esc(recordCode) +
+        "</button>" +
+        "    </div>" +
+        '    <div id="quickAnonPhoneMsg" style="font-size:.86rem;font-weight:700;color:#0f766e;margin-top:8px;display:none;"></div>' +
+        "  </div>" +
+        '  <div class="res-cta" style="justify-content:center;">' +
+        '    <button type="button" class="btn btn-ghost" id="retakeBtnBottom">🔄 Làm lại bài test</button>' +
+        "  </div>" +
+        '  <p class="disc"><strong>Lưu ý:</strong> Bài test ' + esc(scale.name) + ' là công cụ sàng lọc, <b>không phải là chẩn đoán y khoa</b>. Bạn có thể nhắn mã <b>' + esc(recordCode) + '</b> qua Zalo <b>0354.54.89.39</b> để được BS. Phan Thị Thanh Nhàn trực tiếp giải thích kết quả.</p>' +
         "</div>";
+
+      var copyBtn = $("#copyAnonCodeBtn");
+      var copyStat = $("#copyAnonStatus");
+      var zaloBtn = $("#openZaloAnonBtn");
+      function copyAnonCodeToClipboard(showAlert) {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard
+            .writeText(recordCode)
+            .then(function () {
+              if (copyStat) copyStat.style.display = "block";
+            })
+            .catch(function () {
+              if (showAlert) prompt("Sao chép mã số ẩn danh của bạn:", recordCode);
+            });
+        } else if (showAlert) {
+          prompt("Sao chép mã số ẩn danh của bạn:", recordCode);
+        }
+      }
+      if (copyBtn) {
+        copyBtn.addEventListener("click", function () {
+          copyAnonCodeToClipboard(true);
+        });
+      }
+      if (zaloBtn) {
+        zaloBtn.addEventListener("click", function () {
+          copyAnonCodeToClipboard(false);
+        });
+      }
+
+      var quickPhoneBtn = $("#sendQuickAnonPhoneBtn");
+      if (quickPhoneBtn) {
+        quickPhoneBtn.addEventListener("click", function () {
+          var qPhone = (($("#quickAnonPhone") || {}).value || "").trim();
+          var qMsg = $("#quickAnonPhoneMsg");
+          if (!qPhone) {
+            if (qMsg) {
+              qMsg.style.display = "block";
+              qMsg.style.color = "#e11d48";
+              qMsg.textContent = "Vui lòng nhập Số điện thoại / Zalo hoặc nhắn trực tiếp mã " + recordCode + " vào Zalo 0354.54.89.39.";
+            }
+            return;
+          }
+          var pFd = new FormData();
+          pFd.append("_subject", "📞 [KHÁCH ĐỂ LẠI SĐT] Mã ẩn danh " + recordCode + " — SĐT: " + qPhone);
+          pFd.append("_template", "table");
+          pFd.append("Mã số ẩn danh", recordCode);
+          pFd.append("Số điện thoại / Zalo khách hàng", qPhone);
+          pFd.append("Bài trắc nghiệm", scale.name);
+          pFd.append("Kết quả tổng hợp", summaryForForm);
+          fetch("https://formsubmit.co/ajax/nhanthi.bs@gmail.com", {
+            method: "POST",
+            headers: { Accept: "application/json" },
+            body: pFd
+          }).catch(function () {});
+
+          if (GAS_WEB_APP_URL) {
+            fetch(GAS_WEB_APP_URL, {
+              method: "POST",
+              mode: "no-cors",
+              headers: { "Content-Type": "text/plain;charset=utf-8" },
+              body: JSON.stringify({
+                recordCode: recordCode,
+                source: ((meta && meta.apiCode) || scale.name) + " [" + recordCode + "]",
+                page: window.location.pathname.split("/").pop() || (meta && meta.filename) || "",
+                name: "Mã ẩn danh: " + recordCode + (resp.name ? " (" + resp.name + ")" : ""),
+                phone: qPhone,
+                testSummary: summaryForForm,
+                topic: "Khách để lại SĐT nhận tư vấn mã " + recordCode,
+                age: resp.age || "",
+                note: "Chi tiết: " + qDetails,
+                timestamp: new Date().toISOString()
+              })
+            }).catch(function () {});
+          }
+
+          if (qMsg) {
+            qMsg.style.display = "block";
+            qMsg.style.color = "#0f766e";
+            qMsg.innerHTML =
+              "✓ Đã gửi SĐT kèm mã <b>" +
+              esc(recordCode) +
+              '</b> tới BS. Nhàn! Để nhanh nhất, bạn hãy <a href="https://zalo.me/0354548939" target="_blank" rel="noopener" style="color:#0068ff;text-decoration:underline;">nhắn mã ' +
+              esc(recordCode) +
+              " vào Zalo 0354.54.89.39</a>.";
+          }
+        });
+      }
 
       var rTop = $("#retakeBtnTop");
       var rBot = $("#retakeBtnBottom");
@@ -1078,9 +1266,11 @@
       }
 
       var resp = getRespondent();
+      var codeStr = window.__lastRecordCode__ || "Chưa có mã";
       var fd = new FormData();
-      fd.append("_subject", "🌿 Đăng ký tư vấn [" + DATA.meta.name + "] — " + name);
+      fd.append("_subject", "🌿 Đăng ký tư vấn [" + DATA.meta.name + "] [" + codeStr + "] — " + name);
       fd.append("_template", "table");
+      fd.append("Mã số ẩn danh", codeStr);
       fd.append("Họ tên", name);
       fd.append("Số điện thoại / Zalo", phone);
       fd.append("Bài test", summary || DATA.meta.name);
@@ -1099,9 +1289,10 @@
           mode: "no-cors",
           headers: { "Content-Type": "text/plain;charset=utf-8" },
           body: JSON.stringify({
-            source: DATA.meta.apiCode || DATA.meta.name,
+            recordCode: codeStr,
+            source: (DATA.meta.apiCode || DATA.meta.name) + " [" + codeStr + "]",
             page: window.location.pathname.split("/").pop() || DATA.meta.filename,
-            name: name,
+            name: name + " (" + codeStr + ")",
             phone: phone,
             testSummary: summary,
             topic: topic,
@@ -1119,7 +1310,11 @@
         ok.textContent =
           "Cảm ơn " +
           name +
-          "! Thông tin đã được gửi tới email nhanthi.bs@gmail.com. BS. Nhàn sẽ liên hệ với bạn trong thời gian sớm nhất.";
+          "! Thông tin và mã " +
+          codeStr +
+          " đã được gửi tới email nhanthi.bs@gmail.com. Bạn cũng có thể nhắn mã " +
+          codeStr +
+          " vào Zalo 0354.54.89.39 để BS. Nhàn đọc kết quả ngay.";
       }
     });
   }

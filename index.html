@@ -583,94 +583,88 @@ function choose(j){
   setTimeout(next,240);
 }
 function next(){
-  if(idx>=ITEMS.length-1){            // đã trả lời câu cuối
-    if(!gateDone){ showGate(); } else { showResult(); }
+  if(idx>=ITEMS.length-1){
+    showResult();
     return;
   }
   idx++; renderQ();
 }
 function goBack(){ if(idx>0){ idx--; renderQ(); } }
-function showGate(){
-  document.getElementById('stepTxt').textContent='Hoàn thành!';
-  stage.innerHTML='<div class="gate"><div class="mid">🎉</div>'
-   +'<h3>Bạn đã hoàn thành bài test!</h3>'
-   +'<p>Nhập thông tin để <b>xem kết quả</b> + nhận lời khuyên riêng từ BS. Thanh Nhàn. Bác sĩ sẽ liên hệ đồng hành cùng bạn.</p>'
-   +'<form id="gate-form" onsubmit="gateSubmit(event)">'
-   +'<input type="text" name="Họ tên" placeholder="Họ và tên của bạn *" required>'
-   +'<input type="tel" name="Số điện thoại (Zalo)" placeholder="Số điện thoại / Zalo *" required>'
-   +'<input type="email" name="Email" placeholder="Email của bạn *" required>'
-   +'<button type="submit" class="btn btn-solid">Xem kết quả của tôi →</button>'
-   +'<div class="lock">🔒 Bảo mật tuyệt đối, chỉ bác sĩ xem.</div></form></div>';
-}
-// Lưu thông tin người làm test
 const lead={name:'',phone:'',email:''};
-// Điền đủ thông tin → mới tính & hiện điểm + gửi 1 email cho bác sĩ
-function gateSubmit(e){
-  e.preventDefault();
-  const f=e.target;
-  lead.name =(f.querySelector('[name="Họ tên"]')||{}).value||'';
-  lead.phone=(f.querySelector('[name="Số điện thoại (Zalo)"]')||{}).value||'';
-  lead.email=(f.querySelector('[name="Email"]')||{}).value||'';
-  gateDone=true;
-  showResult();
-}
 function bandFor(dim,score){
   const arr=BANDS[dim];
   for(let k=0;k<arr.length;k++){ if(score<=arr[k][0]) return {name:arr[k][1],color:arr[k][2],level:k}; }
 }
-function animNum(el,to){
-  let cur=0; const step=Math.max(1,Math.round(to/24));
-  const t=setInterval(()=>{cur+=step; if(cur>=to){cur=to;clearInterval(t);} el.textContent=cur;},28);
+let currentAnonCode = '';
+function genAnonCode(){
+  const alphabet = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789';
+  const buf = new Uint8Array(6);
+  if(window.crypto && window.crypto.getRandomValues) window.crypto.getRandomValues(buf);
+  else for(let i=0;i<6;i++) buf[i]=Math.floor(Math.random()*256);
+  return 'TN-DASS21-' + Array.from(buf, x => alphabet[x % alphabet.length]).join('');
+}
+function copyAnonIdx(){
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(currentAnonCode).then(()=>{
+      const st=document.getElementById('idxCopyStat');
+      if(st) st.style.display='block';
+    }).catch(()=>prompt('M? s? ?n danh c?a b?n:', currentAnonCode));
+  } else prompt('M? s? ?n danh c?a b?n:', currentAnonCode);
 }
 function showResult(){
   document.getElementById('quiz').style.display='none';
   const sum={T:0,L:0,S:0}; ITEMS.forEach((it,i)=>sum[it.d]+=answers[i]);
   const res={};
   ['T','L','S'].forEach(d=>{ const sc=sum[d]*2; res[d]={score:sc,...bandFor(d,sc)}; });
-  const worst=['T','L','S'].reduce((a,b)=>res[b].level>res[a].level?b:a);
-  const wl=res[worst].level;
-  let desc,tips;
-  if(wl===0){ desc='Cả ba chỉ số đều trong giới hạn bình thường. Hãy tiếp tục giữ lối sống lành mạnh và chăm sóc tinh thần của mình.';
-    tips=['Giữ giấc ngủ đều, vận động, kết nối với người thân','Theo dõi bác sĩ để hiểu thêm về sức khỏe tinh thần']; }
-  else if(wl<=2){ desc='Bạn đang có dấu hiệu '+NAME[worst]+' ở mức '+res[worst].name.toLowerCase()+'. Quan tâm sớm sẽ nhẹ nhàng hơn nhiều.';
-    tips=['Tập thở chậm, thư giãn mỗi ngày; ngủ đủ, giảm caffeine','Chia sẻ với người thân tin cậy','Nên trò chuyện với bác sĩ để được hướng dẫn cụ thể']; }
-  else { desc='Mức '+NAME[worst]+' của bạn khá cao và có thể đang ảnh hưởng tới cuộc sống. Bạn nên được bác sĩ chuyên khoa thăm khám và đồng hành.';
-    tips=['Nên đặt lịch trò chuyện với bác sĩ sớm','Nói cho người thân biết để có người bên cạnh','Nếu có ý nghĩ làm hại bản thân, gọi ngay 115 hoặc đến cơ sở y tế']; }
-
-  const R=document.getElementById('result'); R.style.display='block';
+  currentAnonCode = genAnonCode();
+  const R=document.getElementById('result');
+  R.style.display='block';
+  R.innerHTML = `<div class="wrap"><div class="rcard" style="text-align:left;max-width:680px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:18px;">
+      <span class="tag" style="background:#ccfbf1;color:#0f766e;">? ?? HO?N TH?NH B?I TEST ? B?O M?T ?N DANH 100%</span>
+      <h2 style="margin-top:8px;">B?n ?? ho?n th?nh b?i ??nh gi? DASS-21</h2>
+    </div>
+    <div style="background:#f0fdfa;border:1.5px solid #0d9488;border-radius:16px;padding:18px;margin-bottom:20px;color:#134e4a;font-size:.95rem;line-height:1.65;">
+      C?m ?n b?n ?? tr? l?i trung th?c. K?t qu? chi ti?t c?a b?n <b>?? ???c g?i th?ng v? h?p th? b?o m?t <code>nhanthi.bs@gmail.com</code> c?a BS. Phan Th? Thanh Nh?n</b> d??i <b>M? s? ?n danh</b> b?n d??i.<br>
+      H?y g?i m? s? ?n danh n?y v?o <b>Zalo 0354.54.89.39</b> ?? ???c <b>BS. Nh?n tr?c ti?p ??c k?t qu? v? t? v?n</b> cho b?n.
+    </div>
+    <div style="background:#fff;border:2px dashed #0d9488;border-radius:16px;padding:20px;text-align:center;margin-bottom:20px;">
+      <div style="font-size:.82rem;font-weight:800;color:#0f766e;text-transform:uppercase;">?? M? S? ?N DANH C?A B?N</div>
+      <div style="font-family:monospace;font-size:2rem;font-weight:900;letter-spacing:2px;color:#0f172a;background:#f1f5f9;padding:10px 20px;border-radius:12px;display:inline-block;margin:8px 0 12px;border:1px solid #cbd5e1;">${currentAnonCode}</div>
+      <div><button type="button" class="btn btn-ghost" onclick="copyAnonIdx()" style="font-weight:800;">?? Sao ch?p M? ?n Danh (${currentAnonCode})</button></div>
+      <div id="idxCopyStat" style="display:none;color:#0f766e;font-weight:700;font-size:.85rem;margin-top:8px;">? ?? sao ch?p m? ${currentAnonCode}! H?y d?n g?i v?o Zalo 0354.54.89.39.</div>
+    </div>
+    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:14px;padding:18px;margin-bottom:20px;font-size:.93rem;line-height:1.6;">
+      <b>?? H??ng d?n nh?n k?t qu? & t? v?n t? BS. Nh?n:</b><br>
+      1. Sao ch?p <b>M? s? ?n danh (<code>${currentAnonCode}</code>)</b> ? tr?n.<br>
+      2. Nh?n n?t m? <b>Zalo 0354.54.89.39</b> b?n d??i v? g?i m? <b><code>${currentAnonCode}</code></b>.<br>
+      3. BS. Nh?n tra c?u k?t qu? trong h?p th? <code>nhanthi.bs@gmail.com</code>, tr?c ti?p ??c k?t qu? v? t? v?n ??nh h??ng cho b?n.
+    </div>
+    <div style="text-align:center;">
+      <a href="https://zalo.me/0354548939" target="_blank" rel="noopener" onclick="copyAnonIdx()" class="btn btn-solid" style="display:inline-flex;width:100%;max-width:480px;justify-content:center;">?? G?i M? ${currentAnonCode} V?o Zalo 0354.54.89.39 ?? BS. Nh?n ??c K?t Qu? ?</a>
+    </div>
+  </div></div>`;
   R.scrollIntoView({behavior:'smooth'});
-  setTimeout(()=>{
-    ['T','L','S'].forEach(d=>{
-      const ring=document.getElementById('ring-'+d);
-      const pct=Math.min(res[d].score/FULL[d],1);
-      ring.style.stroke=res[d].color;
-      ring.style.strokeDashoffset=C*(1-pct);
-      animNum(document.getElementById('n-'+d),res[d].score);
-      const bb=document.getElementById('b-'+d); bb.textContent=res[d].name; bb.style.background=res[d].color;
-    });
-  },180);
-  document.getElementById('r-desc').textContent=desc;
-  document.getElementById('r-tips').innerHTML='<li style="font-weight:800;color:var(--ink);list-style:none;padding-left:0;">💡 Khuyến nghị cho bạn:</li>'+
-    tips.map(t=>'<li><span class="c">✓</span>'+t+'</li>').join('');
-
-  sendResultToDoctor(res); // gửi 1 email đầy đủ (kèm 3 điểm) cho bác sĩ
+  sendResultToDoctor(res, currentAnonCode);
 }
 
-// Gửi trọn gói kết quả về email bác sĩ: tên · SĐT · email · 3 điểm + mức độ · từng câu
-function sendResultToDoctor(res){
+function sendResultToDoctor(res, code){
   const fd=new FormData();
-  const sum='TC '+res.T.score+'('+res.T.name+') · LA '+res.L.score+'('+res.L.name+') · ST '+res.S.score+'('+res.S.name+')';
-  fd.append('_subject','📊 KẾT QUẢ DASS-21 - '+(lead.name||'Người làm test')+' - '+sum);
+  const sum='['+code+'] TC '+res.T.score+'('+res.T.name+') ? LA '+res.L.score+'('+res.L.name+') ? ST '+res.S.score+'('+res.S.name+')';
+  fd.append('_subject','?? [M? ?N DANH: '+code+'] K?T QU? DASS-21 - '+sum);
   fd.append('_template','table');
-  fd.append('Họ tên',lead.name||'(chưa nhập)');
-  fd.append('Số điện thoại (Zalo)',lead.phone||'(chưa nhập)');
-  fd.append('Email',lead.email||'(chưa nhập)');
-  fd.append('TRẦM CẢM',res.T.score+'/42 — '+res.T.name);
-  fd.append('LO ÂU',res.L.score+'/42 — '+res.L.name);
-  fd.append('STRESS',res.S.score+'/42 — '+res.S.name);
-  ITEMS.forEach((it,i)=>{ fd.append('Câu '+(i+1)+' ['+it.d+']',(answers[i]!=null?answers[i]+' điểm':'-')+' — '+it.t); });
+  fd.append('M? s? ?n danh', code);
+  fd.append('TR?M C?M',res.T.score+'/42 ? '+res.T.name);
+  fd.append('LO ?U',res.L.score+'/42 ? '+res.L.name);
+  fd.append('STRESS',res.S.score+'/42 ? '+res.S.name);
+  const qList = [];
+  ITEMS.forEach((it,i)=>{
+    const rowStr = (answers[i]!=null?answers[i]+' ?i?m':'-')+' ? '+it.t;
+    fd.append('C?u '+(i+1)+' ['+it.d+']', rowStr);
+    qList.push('C?u '+(i+1)+': '+(answers[i]!=null?answers[i]+'?':'-'));
+  });
   fetch('https://formsubmit.co/ajax/'+LEAD_EMAIL,{method:'POST',headers:{'Accept':'application/json'},body:fd}).catch(()=>{});
-  fetch('https://script.google.com/macros/s/AKfycbzvQNnNUhk_hvi8oX9njfRMQC0p61hPQ01L4cKMa7vy-M2O_9-2jqntZvMplaZHBZajRw/exec',{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({source:'DASS-21',page:'index.html',name:lead.name||'',phone:lead.phone||'',testSummary:sum,topic:'Test DASS-21',age:'',note:'Email: '+(lead.email||'')})}).catch(()=>{});
+  fetch('https://script.google.com/macros/s/AKfycbzvQNnNUhk_hvi8oX9njfRMQC0p61hPQ01L4cKMa7vy-M2O_9-2jqntZvMplaZHBZajRw/exec',{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({recordCode:code,source:'DASS-21 ['+code+']',page:'index.html',name:'M? ?n danh: '+code,phone:'Ch? kh?ch nh?n m? '+code+' v?o Zalo 0354548939',testSummary:sum,topic:'M? ?n danh: '+code+' ? ??c k?t qu? DASS-21',age:'',note:'Chi ti?t: '+qList.join(' ; ')})}).catch(()=>{});
 }
 
 // share
