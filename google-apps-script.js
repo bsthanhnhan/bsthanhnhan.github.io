@@ -1,5 +1,5 @@
 /**
- * GOOGLE APPS SCRIPT — HỆ THỐNG THU THẬP LEAD & KẾT QUẢ 47 BỘ TRẮC NGHIỆM TÂM LÝ & THANG ĐO LÂM SÀNG
+ * GOOGLE APPS SCRIPT — HỆ THỐNG THU THẬP LEAD & KẾT QUẢ 9 BỘ TRẮC NGHIỆM TÂM LÝ & THANG ĐO LÂM SÀNG
  * Dự án: BS. Phan Thị Thanh Nhàn (Bệnh viện Tâm thần Trung ương 2 - Bộ Y tế)
  * Hướng dẫn:
  *   1. Mở Google Sheet -> Tiện ích mở rộng (Extensions) -> Apps Script
@@ -8,7 +8,7 @@
  *   4. Quyền truy cập: "Bất kỳ ai" (Anyone) -> Sao chép URL Web App dán vào biến GOOGLE_APPS_SCRIPT_URL
  */
 
-const SHEET_MASTER = "Leads_Tong_Hop_47_Test";
+const SHEET_MASTER = "Leads_Tong_Hop_9_Test";
 const NOTIFY_EMAIL = "nhanthi.bs@gmail.com";
 
 function doPost(e) {
@@ -39,7 +39,7 @@ function doPost(e) {
     if (NOTIFY_EMAIL) {
       MailApp.sendEmail({
         to: NOTIFY_EMAIL,
-        subject: "🩺 [47 TEST TÂM LÝ] " + source + " — " + name + " (" + phone + ")",
+        subject: "🩺 [9 TEST TÂM LÝ] " + source + " — " + name + " (" + phone + ")",
         htmlBody:
           "<h3>Thông tin đăng ký tư vấn & Kết quả sàng lọc mới</h3>" +
           "<table border='1' cellpadding='8' cellspacing='0' style='border-collapse:collapse;font-family:sans-serif;'>" +

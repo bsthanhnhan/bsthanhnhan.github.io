@@ -10,17 +10,12 @@
   var GAS_WEB_APP_URL = window.GOOGLE_APPS_SCRIPT_URL || "";
 
   var CATEGORIES = {
-    all: "Tất cả (47)",
-    depression: "Trầm cảm",
-    anxiety: "Lo âu",
+    all: "Tất cả (9)",
     stress: "Căng thẳng / Cảm xúc",
+    anxiety: "Lo âu",
+    depression: "Trầm cảm",
     sleep: "Giấc ngủ",
-    substance: "Rượu bia / Chất gây nghiện",
-    behavior_addiction: "Hành vi / Nghiện",
-    child_teen: "Trẻ em / Thanh thiếu niên",
-    cognitive: "Nhận thức",
-    personality: "Nhân cách",
-    clinician: "Chuyên gia đánh giá"
+    child_teen: "Trẻ em / Thanh thiếu niên"
   };
 
   function $(sel) {
