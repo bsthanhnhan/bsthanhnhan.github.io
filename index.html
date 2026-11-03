@@ -584,7 +584,7 @@ function choose(j){
 }
 function next(){
   if(idx>=ITEMS.length-1){
-    if(!lead.email){ showEmailGate(); } else { showResult(); }
+    showEmailGate();
     return;
   }
   idx++; renderQ();

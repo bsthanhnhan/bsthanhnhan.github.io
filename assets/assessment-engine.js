@@ -416,29 +416,25 @@
 
     function renderEmailGateOrResult() {
       var curResp = getRespondent();
-      if (curResp.email && curResp.email.indexOf("@") !== -1) {
-        renderResult();
-        return;
-      }
       container.innerHTML =
         '<div class="result-card show" style="text-align:center;max-width:560px;margin:0 auto;">' +
         '  <div style="font-size:2.4rem;margin-bottom:6px;">🎉</div>' +
         '  <h3 style="margin-bottom:8px;">Bạn đã hoàn thành toàn bộ câu hỏi ' + esc(scale.name) + '!</h3>' +
-        '  <p style="color:var(--ink-soft);font-size:.94rem;margin-bottom:18px;line-height:1.6;">Vui lòng nhập <strong>Gmail của bạn</strong> bên dưới để hệ thống cấp <strong>Mã Số Ẩn Danh</strong> và chuyển kết quả bảo mật tới <strong>BS. Phan Thị Thanh Nhàn</strong>:</p>' +
+        '  <p style="color:var(--ink-soft);font-size:.94rem;margin-bottom:18px;line-height:1.6;">Điền thông tin bên dưới để hệ thống cấp <strong>Mã Số Ẩn Danh</strong> và chuyển kết quả bảo mật tới <strong>BS. Phan Thị Thanh Nhàn</strong> đọc kết quả qua Zalo:</p>' +
         '  <form id="emailGateForm" style="text-align:left;display:grid;gap:12px;">' +
+        '    <div>' +
+        '      <label style="display:block;font-size:.84rem;font-weight:700;margin-bottom:4px;">Họ tên hoặc Biệt danh của bạn *</label>' +
+        '      <input type="text" id="gateNameInput" required placeholder="Nguyễn Văn A (hoặc Biệt danh)" value="' + esc(curResp.name || "") + '" style="width:100%;padding:11px 14px;border:1.5px solid #cbd5e1;border-radius:10px;font-size:.94rem;box-sizing:border-box;">' +
+        "    </div>" +
+        '    <div>' +
+        '      <label style="display:block;font-size:.84rem;font-weight:700;margin-bottom:4px;">Số điện thoại / Zalo *</label>' +
+        '      <input type="tel" id="gatePhoneInput" required placeholder="09xx xxx xxx" value="' + esc(curResp.phone || "") + '" style="width:100%;padding:11px 14px;border:1.5px solid #cbd5e1;border-radius:10px;font-size:.94rem;box-sizing:border-box;">' +
+        "    </div>" +
         '    <div>' +
         '      <label style="display:block;font-size:.84rem;font-weight:700;margin-bottom:4px;">Gmail của bạn *</label>' +
         '      <input type="email" id="gateEmailInput" required placeholder="vidu@gmail.com" value="' + esc(curResp.email || "") + '" style="width:100%;padding:12px 14px;border:1.5px solid #0d9488;border-radius:10px;font-size:.96rem;box-sizing:border-box;">' +
         "    </div>" +
-        '    <div>' +
-        '      <label style="display:block;font-size:.84rem;font-weight:700;margin-bottom:4px;">Họ tên hoặc Biệt danh (tuỳ chọn)</label>' +
-        '      <input type="text" id="gateNameInput" placeholder="Nguyễn Văn A (hoặc Biệt danh)" value="' + esc(curResp.name || "") + '" style="width:100%;padding:11px 14px;border:1.5px solid #cbd5e1;border-radius:10px;font-size:.94rem;box-sizing:border-box;">' +
-        "    </div>" +
-        '    <div>' +
-        '      <label style="display:block;font-size:.84rem;font-weight:700;margin-bottom:4px;">Số điện thoại / Zalo (tuỳ chọn)</label>' +
-        '      <input type="tel" id="gatePhoneInput" placeholder="09xx xxx xxx" value="' + esc(curResp.phone || "") + '" style="width:100%;padding:11px 14px;border:1.5px solid #cbd5e1;border-radius:10px;font-size:.94rem;box-sizing:border-box;">' +
-        "    </div>" +
-        '    <button type="submit" class="btn btn-teal" style="width:100%;justify-content:center;padding:14px;font-size:1rem;font-weight:800;margin-top:4px;">🔐 Nhận Mã Số Ẩn Danh & Hoàn Tất Bài Test &rarr;</button>' +
+        '    <button type="submit" class="btn btn-teal" style="width:100%;justify-content:center;padding:14px;font-size:1rem;font-weight:800;margin-top:4px;">🔐 Nhận Mã Số Ẩn Danh & Xem Kết Quả &rarr;</button>' +
         '    <div style="text-align:center;font-size:.8rem;color:var(--ink-soft);">🔒 Bảo mật 100% — Thông tin chỉ gửi riêng cho BS. Phan Thị Thanh Nhàn</div>' +
         "  </form>" +
         "</div>";
